@@ -1,1 +1,8 @@
-# Modelleisenbahn-Team2
+# Modelleisenbahn
+
+#Nils Schulist
+#Johann Ganin
+#Jan Kaufmann
+#Tobias Rettemeyer
+#Marcel Reimers
+#Phillip Wollschläger
