@@ -144,7 +144,7 @@ byte KeyTimerAction( void *UserPointer);
 byte MessageTimerAction( void *UserPointer);
 byte ReleaseStopTimerAction( void *UserPointer);
 void initKeys( void );
-
+void initSlots(struct rwslotdata_t *slotArray[]);
 /******************************************************************************/
 // main defines & variables
 /******************************************************************************/
@@ -235,9 +235,7 @@ lnMsg *RxPacket;
 //word      RxMsgCount ;
 lnMsg TxPacket;
 
-#define NUMBER_OF_SLOTS 2 //number of slots to be managed by the device
-rwSlotDataMsg rSlot;
-rwSlotDataMsg rSlotZwei;
+#define NUMBER_OF_SLOTS 4 //number of slots to be managed by the device
 struct rwslotdata_t slotArray[NUMBER_OF_SLOTS];
 int8_t		slotnumber = 0;
 /******************************************************************************/
@@ -802,6 +800,79 @@ void vSetState( byte bState, rwSlotDataMsg *currentSlot)
 }
 
 
+void initSlots (struct rwslotdata_t *slotArray[]) {
+	
+
+  slotArray[0]->command   = OPC_WR_SL_DATA;
+  slotArray[0]->mesg_size = 14;
+  slotArray[0]->slot      = 0;                        /* slot number for this request                         */
+  slotArray[0]->stat      = 0;                        /* slot status                                          */
+  slotArray[0]->adr       = 0;                        /* loco address                                         */
+  slotArray[0]->spd       = 0;                        /* command speed                                        */
+  slotArray[0]->dirf      = 0;                        /* direction and F0-F4 bits                             */
+  slotArray[0]->trk       = 0;                        /* track status                                         */
+  slotArray[0]->ss2       = 0;                        /* slot status 2 (tells how to use ID1/ID2 & ADV Consist*/
+  slotArray[0]->adr2      = 0;                        /* loco address high                                    */
+  slotArray[0]->snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
+  slotArray[0]->dirKey	  = DIRKEY1;
+  slotArray[0]->funKey	  = FUNKEY1;
+  slotArray[0]->ledAdr	  = LED1;
+  slotArray[0]->ledPort   = PORTA;
+  
+  
+  //-----------------------------------------------------------------RSLOTZWEI---------------------------------
+  
+  slotArray[1]->command   = OPC_WR_SL_DATA;
+  slotArray[1]->mesg_size = 14;
+  slotArray[1]->slot      = 0;                        /* slot number for this request                         */
+  slotArray[1]->stat      = 0;                        /* slot status                                          */
+  slotArray[1]->adr       = 0;                        /* loco address                                         */
+  slotArray[1]->spd       = 0;                        /* command speed                                        */
+  slotArray[1]->dirf      = 0;                        /* direction and F0-F4 bits                             */
+  slotArray[1]->trk       = 0;                        /* track status                                         */
+  slotArray[1]->ss2       = 0;                        /* slot status 2 (tells how to use ID1/ID2 & ADV Consist*/
+  slotArray[1]->adr2      = 0;                        /* loco address high                                    */
+  slotArray[1]->snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
+  slotArray[1]->dirKey	  = DIRKEY2;
+  slotArray[1]->funKey	  = FUNKEY2;
+  slotArray[1]->ledAdr	  = LED2;
+  slotArray[1]->ledPort   = PORTA;  
+  //----------------------------------------------------------RSLOTDREI-----------------------------------------------
+  slotArray[2]->command   = OPC_WR_SL_DATA;
+  slotArray[2]->mesg_size = 14;
+  slotArray[2]->slot      = 0;                        /* slot number for this request                         */
+  slotArray[2]->stat      = 0;                        /* slot status                                          */
+  slotArray[2]->adr       = 0;                        /* loco address                                         */
+  slotArray[2]->spd       = 0;                        /* command speed                                        */
+  slotArray[2]->dirf      = 0;                        /* direction and F0-F4 bits                             */
+  slotArray[2]->trk       = 0;                        /* track status                                         */
+  slotArray[2]->ss2       = 0;                        /* slot status 2 (tells how to use ID1/ID2 & ADV Consist*/
+  slotArray[2]->adr2      = 0;                        /* loco address high                                    */
+  slotArray[2]->snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
+  slotArray[2]->dirKey	  = DIRKEY3;
+  slotArray[2]->funKey	  = FUNKEY3;
+  slotArray[2]->ledAdr	  = LED3;
+  slotArray[2]->ledPort   = PORTC;
+  //-----------------------------------------------------------------RSLOTVIER---------------------------------
+  
+  slotArray[3]->command   = OPC_WR_SL_DATA;
+  slotArray[3]->mesg_size = 14;
+  slotArray[3]->slot      = 0;                        /* slot number for this request                         */
+  slotArray[3]->stat      = 0;                        /* slot status                                          */
+  slotArray[3]->adr       = 0;                        /* loco address                                         */
+  slotArray[3]->spd       = 0;                        /* command speed                                        */
+  slotArray[3]->dirf      = 0;                        /* direction and F0-F4 bits                             */
+  slotArray[3]->trk       = 0;                        /* track status                                         */
+  slotArray[3]->ss2       = 0;                        /* slot status 2 (tells how to use ID1/ID2 & ADV Consist*/
+  slotArray[3]->adr2      = 0;                        /* loco address high                                    */
+  slotArray[3]->snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
+  slotArray[3]->dirKey	  = DIRKEY4;
+  slotArray[3]->funKey	  = FUNKEY4;
+  slotArray[3]->ledAdr	  = LED4;
+  slotArray[3]->ledPort   = PORTC;
+}
+
+
 /******************************************************FunctionHeaderBegin******
  * CREATED     : 2004-12-20
  * AUTHOR      : Olaf Funke
@@ -839,37 +910,14 @@ int main(void)
   /***************************************/
 
   bSpdCnt = 0;
-
-  rSlot.command   = OPC_WR_SL_DATA;
-  rSlot.mesg_size = 14;
-  rSlot.slot      = 0;                        /* slot number for this request                         */
-  rSlot.stat      = 0;                        /* slot status                                          */
-  rSlot.adr       = 0;                        /* loco address                                         */
-  rSlot.spd       = 0;                        /* command speed                                        */
-  rSlot.dirf      = 0;                        /* direction and F0-F4 bits                             */
-  rSlot.trk       = 0;                        /* track status                                         */
-  rSlot.ss2       = 0;                        /* slot status 2 (tells how to use ID1/ID2 & ADV Consist*/
-  rSlot.adr2      = 0;                        /* loco address high                                    */
-  rSlot.snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
   
-  //-----------------------------------------------------------------RSLOTZWEI---------------------------------
-  
-  rSlotZwei.command   = OPC_WR_SL_DATA;
-  rSlotZwei.mesg_size = 14;
-  rSlotZwei.slot      = 0;                        /* slot number for this request                         */
-  rSlotZwei.stat      = 0;                        /* slot status                                          */
-  rSlotZwei.adr       = 0;                        /* loco address                                         */
-  rSlotZwei.spd       = 0;                        /* command speed                                        */
-  rSlotZwei.dirf      = 0;                        /* direction and F0-F4 bits                             */
-  rSlotZwei.trk       = 0;                        /* track status                                         */
-  rSlotZwei.ss2       = 0;                        /* slot status 2 (tells how to use ID1/ID2 & ADV Consist*/
-  rSlotZwei.adr2      = 0;                        /* loco address high                                    */
-  rSlotZwei.snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
+	
+	initSlots(slotArray);			// initialisierung der vier rSlots.
 
   
    if ((eeprom_read_byte(&abEEPROM[EEPROM_IMAGE]) != EEPROM_IMAGE_DEFAULT))
   {
-    vSetState(THR_STATE_SELFTEST, &rSlot);
+    vSetState(THR_STATE_SELFTEST, &slotArray[0]);
 
     eeprom_write_byte(&abEEPROM[EEPROM_ADR_LOCO_LB], 0);                 // no loco active at selftest
     eeprom_write_byte(&abEEPROM[EEPROM_ADR_LOCO_HB], 0);
@@ -901,16 +949,16 @@ int main(void)
       eeprom_write_byte(&abEEPROM[EEPROM_SW_YEAR],     SW_YEAR);
     }
 
-    vSetState(THR_STATE_INIT, &rSlot);
-    rSlot.adr   = eeprom_read_byte(&abEEPROM[EEPROM_ADR_LOCO_LB]);
-    rSlot.adr2  = eeprom_read_byte(&abEEPROM[EEPROM_ADR_LOCO_HB]);
-    rSlot.stat  = eeprom_read_byte(&abEEPROM[EEPROM_DECODER_TYPE]);
+    vSetState(THR_STATE_INIT, &slotArray[0]);
+    slotArray[0].adr   = eeprom_read_byte(&abEEPROM[EEPROM_ADR_LOCO_LB]);
+    slotArray[0].adr2  = eeprom_read_byte(&abEEPROM[EEPROM_ADR_LOCO_HB]);
+    slotArray[0].stat  = eeprom_read_byte(&abEEPROM[EEPROM_DECODER_TYPE]);
   }
 
-	 rSlot.id1   = eeprom_read_byte(&abEEPROM[EEPROM_ID1]); // get ID from EEPROM
-	 rSlot.id2   = eeprom_read_byte(&abEEPROM[EEPROM_ID2]);
+	 slotArray[0].id1   = eeprom_read_byte(&abEEPROM[EEPROM_ID1]); // get ID from EEPROM
+	 slotArray[0].id2   = eeprom_read_byte(&abEEPROM[EEPROM_ID2]);
 
-/*  if ((rSlot.id1 & 0x80) || (rSlot.id2 & 0x80))
+/*  if ((slotArray[0].id1 & 0x80) || (slotArray[0].id2 & 0x80))
   { // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // if no slot ID was programmed, you get the ID "0xff 0xff"
 		// or if an unguilty ID was programmed
@@ -981,13 +1029,13 @@ int main(void)
   if (bThrState < THR_STATE_SELFTEST)
   {
     // if a address for a loco is available, show blinking state
-    if ((rSlot.adr != 0) || (rSlot.adr2 != 0))
+    if ((slotArray[0].adr != 0) || (slotArray[0].adr2 != 0))
     {
-      vSetState(THR_STATE_RECONNECT_GET_SLOT, &rSlot);
+      vSetState(THR_STATE_RECONNECT_GET_SLOT, &slotArray[0]);
     }
     else
     {
-      vSetState(THR_STATE_UNCONNECTED, &rSlot);
+      vSetState(THR_STATE_UNCONNECTED, &slotArray[0]);
     }
 
     while (bit_is_clear(ACSR, ACO))     // wait for start of loconet
@@ -1001,20 +1049,20 @@ int main(void)
       processTimerActions();
     }
 
-    if (rSlot.adr)                      // wait for a pseudo random time
+    if (slotArray[0].adr)                      // wait for a pseudo random time
     {
-      delayTimer(rSlot.adr);
+      delayTimer(slotArray[0].adr);
     }
 
-    if (rSlot.adr2)
+    if (slotArray[0].adr2)
     {
-      delayTimer(rSlot.adr2);
+      delayTimer(slotArray[0].adr2);
     }
 
     // if a address for a loco is available, try to reconnect
     if (bThrState == THR_STATE_RECONNECT_GET_SLOT)
     {
-      sendLocoNetAdr(&rSlot);
+      sendLocoNetAdr(&slotArray[0]);
     }
   }
   else
@@ -1066,18 +1114,18 @@ int main(void)
 		
 	  
 /*	for (int i = 0; i < NUMBER_OF_SLOTS; i++) {  
-		vProcessRxLoconetMessage(&rSlot);
-		vProcessKey(&rSlot);
-		vProcessRxLoconetMessage(&rSlot);
+		vProcessRxLoconetMessage(&slotArray[0]);
+		vProcessKey(&slotArray[0]);
+		vProcessRxLoconetMessage(&slotArray[0]);
 
 		if (bFrediVersion == FREDI_VERSION_ANALOG) {
-			vProcessPoti(&rSlot);
+			vProcessPoti(&slotArray[0]);
 		}
 		else
 		{
-			vProcessEncoder(&rSlot);
+			vProcessEncoder(&slotArray[0]);
 		}
-		vProcessRxLoconetMessage(&rSlot);
+		vProcessRxLoconetMessage(&slotArray[0]);
 		processTimerActions();
 	} */ //end of for
   } // end of while(1)
@@ -1235,13 +1283,17 @@ void vProcessRxLoconetMessage(rwSlotDataMsg *currentSlot)
 
         if (currentSlot->dirf & 0x20)
         {
-          LED_PORT &= ~_BV(LED_GREEN_R);
-          LED_PORT |=  _BV(LED_GREEN_L); 
+			
+         // LED_PORT &= ~_BV(LED_GREEN_R);			//Anpassen an LED.
+         // LED_PORT |=  _BV(LED_GREEN_L);			//Rückwärts
+		  currentSlot->ledPort &= ~_BV(currentSlot->ledAdr);
+		   
         }
         else
         {
-          LED_PORT &= ~_BV(LED_GREEN_L); 
-          LED_PORT |=  _BV(LED_GREEN_R);
+          //LED_PORT &= ~_BV(LED_GREEN_L);			//Vorwärts   15.05.2017
+          //LED_PORT |=  _BV(LED_GREEN_R);
+		  currentSlot->ledPort |= _BV(currentSlot->ledAdr);
         }
       }
       break;
