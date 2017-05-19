@@ -138,7 +138,7 @@ void potAdcInit(void) {
 
   ADMUX  = (0<<REFS1) | (1<<REFS0) // AVCC pin as reference
          | (0<<ADLAR)              // 0 = left adjust, 1 = right adjust
-         | (0<<MUX3)  | (0<<MUX2)  | (0<<MUX1)  | (0<<MUX0); // select ADC0 pin
+         | (0<<MUX3)  | (1<<MUX2)  | (1<<MUX1)  | (0<<MUX0); // select ADC6 pin PA6 benötigt
 
   #if defined(__AVR_ATmega48__)  | defined(__AVR_ATmega48A__)  \
     | defined(__AVR_ATmega48P__) | defined(__AVR_ATmega88__)   \

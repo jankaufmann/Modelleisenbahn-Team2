@@ -99,9 +99,10 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/eeprom.h>     // #define EEMEM
-#include <util/delay.h>
+
 
 #include "sysdef.h"
+#include <util/delay.h>
 #include "common_defs.h"
 #include "ln_sw_uart.h"
 #include "ln_interface.h"
@@ -144,7 +145,7 @@ byte KeyTimerAction( void *UserPointer);
 byte MessageTimerAction( void *UserPointer);
 byte ReleaseStopTimerAction( void *UserPointer);
 void initKeys( void );
-void initSlots(struct rwslotdata_t *slotArray[]);
+void initSlots(struct rwslotdata_t *slotArray);
 /******************************************************************************/
 // main defines & variables
 /******************************************************************************/
@@ -234,7 +235,6 @@ lnMsg *RxPacket;
 //LN_STATUS RxStatus ;
 //word      RxMsgCount ;
 lnMsg TxPacket;
-
 #define NUMBER_OF_SLOTS 4 //number of slots to be managed by the device
 struct rwslotdata_t slotArray[NUMBER_OF_SLOTS];
 int8_t		slotnumber = 0;
@@ -654,7 +654,16 @@ void initKeys( void )
   ENC_PORT |= ( _BV(ENC_SWITCH) ) ;
 
   // set data direction register for keys
-  KEYPIN_DDR  &= ~KEYPIN_ALL ;
+ // KEYPIN_DDR  &= ~KEYPIN_ALL ;
+  DDRC		&= ~(_BV(FUNKEY1));
+  DDRB		&= ~(_BV(FUNKEY2));
+  DDRB		&= ~(_BV(FUNKEY3));
+  DDRA		&= ~(_BV(FUNKEY4));
+  //-------------------erweiterte Funktionstasten
+  DDRD		&= ~(_BV(ERW_FUNKEY1));
+//  DDRD		&= ~(_BV(ERW_FUNKEY2));
+  DDRD		&= ~(_BV(ERW_FUNKEY3));
+  DDRD		&= ~(_BV(ERW_FUNKEY4));
   // Enable the pull-ups
   KEYPIN_PORT |=  KEYPIN_ALL ;
 
@@ -662,9 +671,14 @@ void initKeys( void )
         || (bFrediVersion == FREDI_VERSION_ANALOG          ))
   {
     // set data direction register for direction switch
-    DIRSWITCH_DDR   &= ~( _BV(DIRSWITCH) );
+   // DIRSWITCH_DDR   &= ~( _BV(DIRSWITCH) );
+		DDRC		&= ~(_BV(DIRKEY1));		//setzen der Richtungstasten 1-4 19.05.2017
+		DDRA		&= ~(_BV(DIRKEY2));
+		DDRC		&= ~(_BV(DIRKEY3));
+		DDRC		&= ~(_BV(DIRKEY4));
     // Enable the pull-up
     DIRSWITCH_PORT  |=  ( _BV(DIRSWITCH) );
+	//????????????? Widerstände auch setzen?
   }
 
   addTimerAction(&KeyTimer, KEY_POLL_TIME, KeyTimerAction, 0, TIMER_FAST ) ;
@@ -672,16 +686,25 @@ void initKeys( void )
   /***************************************/
   //  init LEDs
   /***************************************/
-/*
-  LED_DDR  |=  _BV(LED_GREEN_L); 
-  LED_PORT &= ~_BV(LED_GREEN_L); 
 
-  LED_DDR  |=  _BV(LED_GREEN_R); 
-  LED_PORT &= ~_BV(LED_GREEN_R); 
+  DDRA	   |= (_BV(LED1));
+  PORTA		&= ~(_BV(LED1));
+//  LED_DDR  |=  _BV(LED_GREEN_L); 
+//  LED_PORT &= ~_BV(LED_GREEN_L); 
 
-  LED_DDR  |=  _BV(LED_RED); 
-  LED_PORT |= _BV(LED_RED);       // set red LED at startup
-*/
+  DDRA	   |= (_BV(LED2));
+  PORTA	   &= ~(_BV(LED2));
+  //LED_DDR  |=  _BV(LED_GREEN_R); 
+  //LED_PORT &= ~_BV(LED_GREEN_R); 
+
+  DDRC	   |= (_BV(LED3));
+  PORTC	   &= ~(_BV(LED3));
+  //LED_DDR  |=  _BV(LED_RED); 
+  //LED_PORT |= _BV(LED_RED);       // set red LED at startup
+  
+  DDRC	   |= (_BV(LED4));
+  PORTC	   &= ~(_BV(LED4));
+
  // addTimerAction(&LEDTimer, LED_BLINK_TIME, LEDTimerAction, 0, TIMER_SLOW ) ;
 }
 
@@ -800,76 +823,76 @@ void vSetState( byte bState, rwSlotDataMsg *currentSlot)
 }
 
 
-void initSlots (struct rwslotdata_t *slotArray[]) {
+void initSlots (struct rwslotdata_t *slotArray) {
 	
 
-  slotArray[0]->command   = OPC_WR_SL_DATA;
-  slotArray[0]->mesg_size = 14;
-  slotArray[0]->slot      = 0;                        /* slot number for this request                         */
-  slotArray[0]->stat      = 0;                        /* slot status                                          */
-  slotArray[0]->adr       = 0;                        /* loco address                                         */
-  slotArray[0]->spd       = 0;                        /* command speed                                        */
-  slotArray[0]->dirf      = 0;                        /* direction and F0-F4 bits                             */
-  slotArray[0]->trk       = 0;                        /* track status                                         */
-  slotArray[0]->ss2       = 0;                        /* slot status 2 (tells how to use ID1/ID2 & ADV Consist*/
-  slotArray[0]->adr2      = 0;                        /* loco address high                                    */
-  slotArray[0]->snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
-  slotArray[0]->dirKey	  = DIRKEY1;
-  slotArray[0]->funKey	  = FUNKEY1;
-  slotArray[0]->ledAdr	  = LED1;
-  slotArray[0]->ledPort   = PORTA;
+  slotArray[0].command   = OPC_WR_SL_DATA;
+  slotArray[0].mesg_size = 14;
+  slotArray[0].slot      = 0;                        /* slot number for this request                         */
+  slotArray[0].stat      = 0;                        /* slot status                                          */
+  slotArray[0].adr       = 0;                        /* loco address                                         */
+  slotArray[0].spd       = 0;                        /* command speed                                        */
+  slotArray[0].dirf      = 0;                        /* direction and F0-F4 bits                             */
+  slotArray[0].trk       = 0;                        /* track status                                         */
+  slotArray[0].ss2       = 0;                        /* slot status 2 (tells how to use ID1/ID2 & ADV Consist*/
+  slotArray[0].adr2      = 0;                        /* loco address high                                    */
+  slotArray[0].snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
+  slotArray[0].dirKey	  = DIRKEY1;
+  slotArray[0].funKey	  = FUNKEY1;
+  slotArray[0].ledAdr	  = LED1;
+  slotArray[0].ledPort   = PORTA;
   
   
   //-----------------------------------------------------------------RSLOTZWEI---------------------------------
   
-  slotArray[1]->command   = OPC_WR_SL_DATA;
-  slotArray[1]->mesg_size = 14;
-  slotArray[1]->slot      = 0;                        /* slot number for this request                         */
-  slotArray[1]->stat      = 0;                        /* slot status                                          */
-  slotArray[1]->adr       = 0;                        /* loco address                                         */
-  slotArray[1]->spd       = 0;                        /* command speed                                        */
-  slotArray[1]->dirf      = 0;                        /* direction and F0-F4 bits                             */
-  slotArray[1]->trk       = 0;                        /* track status                                         */
-  slotArray[1]->ss2       = 0;                        /* slot status 2 (tells how to use ID1/ID2 & ADV Consist*/
-  slotArray[1]->adr2      = 0;                        /* loco address high                                    */
-  slotArray[1]->snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
-  slotArray[1]->dirKey	  = DIRKEY2;
-  slotArray[1]->funKey	  = FUNKEY2;
-  slotArray[1]->ledAdr	  = LED2;
-  slotArray[1]->ledPort   = PORTA;  
+  slotArray[1].command   = OPC_WR_SL_DATA;
+  slotArray[1].mesg_size = 14;
+  slotArray[1].slot      = 0;                        /* slot number for this request                         */
+  slotArray[1].stat      = 0;                        /* slot status                                          */
+  slotArray[1].adr       = 0;                        /* loco address                                         */
+  slotArray[1].spd       = 0;                        /* command speed                                        */
+  slotArray[1].dirf      = 0;                        /* direction and F0-F4 bits                             */
+  slotArray[1].trk       = 0;                        /* track status                                         */
+  slotArray[1].ss2       = 0;                        /* slot status 2 (tells how to use ID1/ID2 & ADV Consist*/
+  slotArray[1].adr2      = 0;                        /* loco address high                                    */
+  slotArray[1].snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
+  slotArray[1].dirKey	  = DIRKEY2;
+  slotArray[1].funKey	  = FUNKEY2;
+  slotArray[1].ledAdr	  = LED2;
+  slotArray[1].ledPort   = PORTA;  
   //----------------------------------------------------------RSLOTDREI-----------------------------------------------
-  slotArray[2]->command   = OPC_WR_SL_DATA;
-  slotArray[2]->mesg_size = 14;
-  slotArray[2]->slot      = 0;                        /* slot number for this request                         */
-  slotArray[2]->stat      = 0;                        /* slot status                                          */
-  slotArray[2]->adr       = 0;                        /* loco address                                         */
-  slotArray[2]->spd       = 0;                        /* command speed                                        */
-  slotArray[2]->dirf      = 0;                        /* direction and F0-F4 bits                             */
-  slotArray[2]->trk       = 0;                        /* track status                                         */
-  slotArray[2]->ss2       = 0;                        /* slot status 2 (tells how to use ID1/ID2 & ADV Consist*/
-  slotArray[2]->adr2      = 0;                        /* loco address high                                    */
-  slotArray[2]->snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
-  slotArray[2]->dirKey	  = DIRKEY3;
-  slotArray[2]->funKey	  = FUNKEY3;
-  slotArray[2]->ledAdr	  = LED3;
-  slotArray[2]->ledPort   = PORTC;
+  slotArray[2].command   = OPC_WR_SL_DATA;
+  slotArray[2].mesg_size = 14;
+  slotArray[2].slot      = 0;                        /* slot number for this request                         */
+  slotArray[2].stat      = 0;                        /* slot status                                          */
+  slotArray[2].adr       = 0;                        /* loco address                                         */
+  slotArray[2].spd       = 0;                        /* command speed                                        */
+  slotArray[2].dirf      = 0;                        /* direction and F0-F4 bits                             */
+  slotArray[2].trk       = 0;                        /* track status                                         */
+  slotArray[2].ss2       = 0;                        /* slot status 2 (tells how to use ID1/ID2 & ADV Consist*/
+  slotArray[2].adr2      = 0;                        /* loco address high                                    */
+  slotArray[2].snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
+  slotArray[2].dirKey	  = DIRKEY3;
+  slotArray[2].funKey	  = FUNKEY3;
+  slotArray[2].ledAdr	  = LED3;
+  slotArray[2].ledPort   = PORTC;
   //-----------------------------------------------------------------RSLOTVIER---------------------------------
   
-  slotArray[3]->command   = OPC_WR_SL_DATA;
-  slotArray[3]->mesg_size = 14;
-  slotArray[3]->slot      = 0;                        /* slot number for this request                         */
-  slotArray[3]->stat      = 0;                        /* slot status                                          */
-  slotArray[3]->adr       = 0;                        /* loco address                                         */
-  slotArray[3]->spd       = 0;                        /* command speed                                        */
-  slotArray[3]->dirf      = 0;                        /* direction and F0-F4 bits                             */
-  slotArray[3]->trk       = 0;                        /* track status                                         */
-  slotArray[3]->ss2       = 0;                        /* slot status 2 (tells how to use ID1/ID2 & ADV Consist*/
-  slotArray[3]->adr2      = 0;                        /* loco address high                                    */
-  slotArray[3]->snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
-  slotArray[3]->dirKey	  = DIRKEY4;
-  slotArray[3]->funKey	  = FUNKEY4;
-  slotArray[3]->ledAdr	  = LED4;
-  slotArray[3]->ledPort   = PORTC;
+  slotArray[3].command   = OPC_WR_SL_DATA;
+  slotArray[3].mesg_size = 14;
+  slotArray[3].slot      = 0;                        /* slot number for this request                         */
+  slotArray[3].stat      = 0;                        /* slot status                                          */
+  slotArray[3].adr       = 0;                        /* loco address                                         */
+  slotArray[3].spd       = 0;                        /* command speed                                        */
+  slotArray[3].dirf      = 0;                        /* direction and F0-F4 bits                             */
+  slotArray[3].trk       = 0;                        /* track status                                         */
+  slotArray[3].ss2       = 0;                        /* slot status 2 (tells how to use ID1/ID2 & ADV Consist*/
+  slotArray[3].adr2      = 0;                        /* loco address high                                    */
+  slotArray[3].snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
+  slotArray[3].dirKey	  = DIRKEY4;
+  slotArray[3].funKey	  = FUNKEY4;
+  slotArray[3].ledAdr	  = LED4;
+  slotArray[3].ledPort   = PORTC;
 }
 
 
@@ -913,6 +936,7 @@ int main(void)
   
 	
 	initSlots(slotArray);			// initialisierung der vier rSlots.
+	//initSlots(&slotArray[0]);		äquivalent zu dem oberen.
 
   
    if ((eeprom_read_byte(&abEEPROM[EEPROM_IMAGE]) != EEPROM_IMAGE_DEFAULT))
@@ -1077,55 +1101,52 @@ int main(void)
 		  DDRC  |= (1<<PC3);
 		  DDRA  |= (1<<PA0); 
 		  DDRA  |= (1<<PA1);
+		  
+		  
+
+
   while (1)
   {
 
-	  
-	/*  if (bit_is_set(PINC,PINC1)) {
-		  PORTC |= _BV(PC4);
-	  }
-	  
-	  if (bit_is_clear(PINC, PINC1)) {
-		PORTC &= ~_BV(PC4);
-	  }*/
-	  
-	  	  if (PINC & ( 1<<DIRKEY4 )) {  //richtungstaste4 gedrückt, dann LED 1 anschalten
+	  /*  if (PINC & ( 1<<DIRKEY1 )) {  //richtungstaste4 gedrückt, dann LED 1 anschalten
 			//PORTC |= 1<<PC4;
 			PORTA |= 1<<LED1;			
 			//_delay_ms(10);
 	  	  }
 	  	  
-	  	  if (!(PINC & ( 1<<DIRKEY4 ))) {	//wenn richtungstaste4 nicht gedrückt, dann LED 1 ausschalten
+	  	  if (!(PINC & ( 1<<DIRKEY1 ))) {	//wenn richtungstaste4 nicht gedrückt, dann LED 1 ausschalten
 		  	  //PORTC &= ~(1<<PC4);
 			  PORTA &= ~(1<<LED1);				
-	  	  }
+	  	  } */
+			
+	  	  
 		  
-	  	  if (PINC & ( 1<<DIRKEY3 )) {	//wenn richtungstaste 3 gedrückt, dann LED 2 anschalten
+	  /*	  if (PINA & ( 1<<DIRKEY2 )) {	//wenn richtungstaste 3 gedrückt, dann LED 2 anschalten
 		  	  //PORTC |= (1<<PC3);
 			  PORTA |= 1<<LED2;				
 				//_delay_ms(10);
 	  	  }
 	  	  
-	  	  if (!(PINC & ( 1<<DIRKEY3 ))) { //wenn richtungstaste3 nicht gedrückt, dann LED 2 aus
+	  	  if (!(PINA & ( 1<<DIRKEY2 ))) { //wenn richtungstaste3 nicht gedrückt, dann LED 2 aus
 		  	  //PORTC &= ~(1<<PC3);
 			  PORTA &= ~(1<<LED2);				
-	  	  }
+	  	  } */
 	  
 		
 	  
 /*	for (int i = 0; i < NUMBER_OF_SLOTS; i++) {  
-		vProcessRxLoconetMessage(&slotArray[0]);
-		vProcessKey(&slotArray[0]);
-		vProcessRxLoconetMessage(&slotArray[0]);
+		vProcessRxLoconetMessage(&slotArray[i]);
+		vProcessKey(&slotArray[i]);
+		vProcessRxLoconetMessage(&slotArray[i]);
 
 		if (bFrediVersion == FREDI_VERSION_ANALOG) {
-			vProcessPoti(&slotArray[0]);
+			vProcessPoti(&slotArray[i]);
 		}
 		else
 		{
-			vProcessEncoder(&slotArray[0]);
+			vProcessEncoder(&slotArray[i]);
 		}
-		vProcessRxLoconetMessage(&slotArray[0]);
+		vProcessRxLoconetMessage(&slotArray[i]);
 		processTimerActions();
 	} */ //end of for
   } // end of while(1)
@@ -1335,7 +1356,7 @@ void vProcessRxLoconetMessage(rwSlotDataMsg *currentSlot)
  *******************************************************FunctionHeaderEnd******/
 void vProcessKey(rwSlotDataMsg *currentSlot)
 {
-  if (bEvent & EVENT_KEY)
+  if (bEvent & EVENT_KEY) //event_key = 0x01
   {
     static byte bLastCurrentkey = 0;
     byte bSet;
@@ -1350,7 +1371,8 @@ void vProcessKey(rwSlotDataMsg *currentSlot)
 			{
 				resetTimerAction(&ReleaseStopTimer, RELEASE_STOP_TIME); 
 			}
-      else if ((bLastCurrentkey & Key_Dir) != (bCurrentKey & Key_Dir))
+      //else if ((bLastCurrentkey & Key_Dir) != (bCurrentKey & Key_Dir))			geändert 16.05.2017
+      else if ((bLastCurrentkey & currentSlot->dirKey) != (bCurrentKey & currentSlot->dirKey))
       { // dir switch changed
         if (  (bThrState == THR_STATE_CONNECTED)
            && (  (bFrediVersion == FREDI_VERSION_ANALOG)
@@ -1370,17 +1392,22 @@ void vProcessKey(rwSlotDataMsg *currentSlot)
 
           sendLocoNetSpd(currentSlot);
 
-          if (bCurrentKey & Key_Dir)
+          //if (bCurrentKey & Key_Dir)
+          if (bCurrentKey & currentSlot->dirKey)
           { // dir switch was pressed
-            currentSlot->dirf |= 0x20;
-            LED_PORT   &= ~_BV(LED_GREEN_L); 
-            LED_PORT   |=  _BV(LED_GREEN_R);
+            //currentSlot->dirf |= 0x20;
+			currentSlot->dirKey |= 0x20;
+          //  LED_PORT   &= ~_BV(LED_GREEN_L);					geändert 15.05.2017
+          //  LED_PORT   |=  _BV(LED_GREEN_R);
+			currentSlot->ledPort |= _BV(currentSlot->ledAdr);
           }
           else
           { // dir switch was released
-            currentSlot->dirf &= ~0x20;
-            LED_PORT &= ~_BV(LED_GREEN_R);
-            LED_PORT |=  _BV(LED_GREEN_L); 
+           // currentSlot->dirf &= ~0x20;
+		   currentSlot->dirKey &= ~0x20;
+          //  LED_PORT &= ~_BV(LED_GREEN_R);
+          //  LED_PORT |=  _BV(LED_GREEN_L); 
+			currentSlot->ledPort &= ~_BV(currentSlot->ledAdr);
           }
           sendLocoNetDirf(currentSlot);
 
@@ -1397,9 +1424,10 @@ void vProcessKey(rwSlotDataMsg *currentSlot)
           {
             bSet = currentSlot->snd; 
 
-            switch (bCurrentKey & ~Key_Dir)
+            //switch (bCurrentKey & ~Key_Dir)
+            switch (bCurrentKey & ~currentSlot->dirKey)   // geändert 15.05.2017
             {
-            case (Key_Stop | Key_SHIFT): // undispatch
+            case (Key_Stop | Key_SHIFT): // undispatch				?????????????
               currentSlot->stat = 0x20;
 
               vSetState(THR_STATE_UNCONNECTED_WRITE, currentSlot);
@@ -1423,7 +1451,8 @@ void vProcessKey(rwSlotDataMsg *currentSlot)
           {
             bSet = currentSlot->dirf; 
 
-            switch (bCurrentKey & ~Key_Dir)
+            //switch (bCurrentKey & ~Key_Dir)
+            switch (bCurrentKey & ~currentSlot->dirKey) //  geändert 15.05.2017
             {
             case Key_Stop: // increment pushbutton or extra button on analog fredi
               sEncDir = 0;
@@ -1486,7 +1515,8 @@ void vProcessKey(rwSlotDataMsg *currentSlot)
         } // end of if(bThrState == THR_STATE_CONNECTED)
         else if (bThrState == THR_STATE_UNCONNECTED)
         {
-          if ((bCurrentKey & ~Key_Dir) == (Key_Stop | Key_SHIFT))   // try to dispatch
+          //if ((bCurrentKey & ~Key_Dir) == (Key_Stop | Key_SHIFT))   // try to dispatch
+          if ((bCurrentKey & ~currentSlot->dirKey) == (Key_Stop | Key_SHIFT))   // try to dispatch  geändert 16.05.2017
           {
             vSetState(THR_STATE_ACQUIRE_LOCO_GET, currentSlot);
             sendLocoNetMove(0, 0, currentSlot);

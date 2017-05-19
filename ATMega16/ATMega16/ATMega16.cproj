@@ -205,10 +205,10 @@
       </AvrGcc>
     </ToolchainSettings>
     <UsesExternalMakeFile>True</UsesExternalMakeFile>
-    <OutputDirectory>C:\Studium\8.Semester (SS17)\Teamprojekt\Quellcode\ATMega16-Team2\ATMega16\ATMega16\Debug</OutputDirectory>
+    <OutputDirectory>C:\Studium\8. Semester (SS17)\Teamprojekt\Quellcode\ATMega16-Team2\ATMega16\ATMega16\Debug</OutputDirectory>
     <BuildTarget>all</BuildTarget>
     <CleanTarget>clean</CleanTarget>
-    <ExternalMakeFilePath>C:\Studium\8.Semester (SS17)\Teamprojekt\Quellcode\ATMega16-Team2\ATMega16\ATMega16\Debug\Makefile</ExternalMakeFilePath>
+    <ExternalMakeFilePath>C:\Studium\8. Semester (SS17)\Teamprojekt\Quellcode\ATMega16-Team2\ATMega16\ATMega16\Debug\Makefile</ExternalMakeFilePath>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\" />
