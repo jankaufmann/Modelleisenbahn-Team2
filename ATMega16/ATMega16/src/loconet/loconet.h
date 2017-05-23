@@ -455,10 +455,13 @@ typedef struct rwslotdata_t {
     byte id2;           /* ms 7 bits of ID code                                 */
     byte chksum;        /* exclusive-or checksum for the message                */
 	byte funKey;		/* address of function key								09.05.2017		*/
+	byte funKeyStatus;
 	byte dirKey;		/* address of the direction key							09.05.2017		*/
+	byte dirKeyStatus;
 	byte spdInput;		/* address of the speed input							09.05.2017		*/
 	byte ledAdr;		/* address of the led									09.05.2017		*/
 	byte ledPort;		/* address of the led port								15.05.2017		*/
+	
 } rwSlotDataMsg;
 
 /* Fast Clock Message */

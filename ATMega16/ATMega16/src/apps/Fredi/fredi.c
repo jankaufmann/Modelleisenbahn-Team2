@@ -146,6 +146,8 @@ byte MessageTimerAction( void *UserPointer);
 byte ReleaseStopTimerAction( void *UserPointer);
 void initKeys( void );
 void initSlots(struct rwslotdata_t *slotArray);
+void ProcessKeyInput (byte *pin, byte *port, byte *keyStatus, byte *shiftedKeyStatus, byte *locoInfo);
+void ProcessShiftedKeyInput (byte *pin, byte *port, byte *keyStatus, byte *shiftStatus, byte *locoInfo);
 /******************************************************************************/
 // main defines & variables
 /******************************************************************************/
@@ -238,6 +240,14 @@ lnMsg TxPacket;
 #define NUMBER_OF_SLOTS 4 //number of slots to be managed by the device
 struct rwslotdata_t slotArray[NUMBER_OF_SLOTS];
 int8_t		slotnumber = 0;
+
+//First Bit is status of first fun/dir/erwfun - key, second bit of..... 0 = key was not pressed, 1 = key was pressed
+byte bERWFunKey1Status;
+byte bERWFunKey2Status;
+byte bERWFunKey3Status;
+byte bERWFunKey4Status;
+
+
 /******************************************************************************/
 // timer
 /******************************************************************************/
@@ -838,7 +848,9 @@ void initSlots (struct rwslotdata_t *slotArray) {
   slotArray[0].adr2      = 0;                        /* loco address high                                    */
   slotArray[0].snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
   slotArray[0].dirKey	  = DIRKEY1;
+  slotArray[0].dirKeyStatus	  = 0;
   slotArray[0].funKey	  = FUNKEY1;
+  slotArray[0].funKeyStatus	  = 0;
   slotArray[0].ledAdr	  = LED1;
   slotArray[0].ledPort   = PORTA;
   
@@ -857,7 +869,9 @@ void initSlots (struct rwslotdata_t *slotArray) {
   slotArray[1].adr2      = 0;                        /* loco address high                                    */
   slotArray[1].snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
   slotArray[1].dirKey	  = DIRKEY2;
+  slotArray[1].dirKeyStatus	  = 0;
   slotArray[1].funKey	  = FUNKEY2;
+  slotArray[1].funKeyStatus	  = 0;
   slotArray[1].ledAdr	  = LED2;
   slotArray[1].ledPort   = PORTA;  
   //----------------------------------------------------------RSLOTDREI-----------------------------------------------
@@ -873,7 +887,9 @@ void initSlots (struct rwslotdata_t *slotArray) {
   slotArray[2].adr2      = 0;                        /* loco address high                                    */
   slotArray[2].snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
   slotArray[2].dirKey	  = DIRKEY3;
+  slotArray[2].dirKeyStatus	  = 0;
   slotArray[2].funKey	  = FUNKEY3;
+  slotArray[2].funKeyStatus	  = 0;
   slotArray[2].ledAdr	  = LED3;
   slotArray[2].ledPort   = PORTC;
   //-----------------------------------------------------------------RSLOTVIER---------------------------------
@@ -890,10 +906,14 @@ void initSlots (struct rwslotdata_t *slotArray) {
   slotArray[3].adr2      = 0;                        /* loco address high                                    */
   slotArray[3].snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
   slotArray[3].dirKey	  = DIRKEY4;
+  slotArray[3].dirKeyStatus	  = 0;
   slotArray[3].funKey	  = FUNKEY4;
+  slotArray[3].funKeyStatus	  = 0;
   slotArray[3].ledAdr	  = LED4;
   slotArray[3].ledPort   = PORTC;
 }
+
+
 
 
 /******************************************************FunctionHeaderBegin******
@@ -910,13 +930,13 @@ int main(void)
   RESET_RESET_SOURCE(); // Clear Reset Status Register (WDRF,BORF,EXTRF,PORF)
 
   byte bCount = 0;
-
+  bFrediVersion = FREDI_VERSION_ANALOG;
   /***************************************/
   //  init analog input for getting 
   //  FrediVersion
   /***************************************/
 
-	 DDRC  &= ~_BV(DDC5); // set version detector to tristate to get kind of fredi
+/*	 DDRC  &= ~_BV(DDC5); // set version detector to tristate to get kind of fredi
 	 PORTC |=  _BV(PC5);
 
   if (bit_is_set(PINC, PINC5))
@@ -926,7 +946,7 @@ int main(void)
   else
   {
     bFrediVersion = FREDI_VERSION_INCREMENT;
-  }
+  } */
   
   /***************************************/
   //  init throttle slot
@@ -1101,23 +1121,48 @@ int main(void)
 		  DDRC  |= (1<<PC3);
 		  DDRA  |= (1<<PA0); 
 		  DDRA  |= (1<<PA1);
+		  //alle LEDS ausschalten
+		/*	PORTA &= ~(1<<LED1);
+			PORTA &= ~(1<<LED2);
+			PORTC &= ~(1<<LED3);
+			PORTC &= ~(1<<LED4); */
+		// alle LED anschalten
+			PORTA |= (1<<LED1);
+			PORTA |= (1<<LED2);
+			PORTC |= (1<<LED3);
+			PORTC |= (1<<LED4);
+			
+		  ADCSRA = 0<< ADEN;
 		  
-		  
-
-
+	byte testPort = PORTC;
+	byte shiftedKeyStatus = 0;
+	
   while (1)
   {
-
-	  /*  if (PINC & ( 1<<DIRKEY1 )) {  //richtungstaste4 gedrückt, dann LED 1 anschalten
+		
+		ProcessKeyInput(&slotArray[0].funKey, &testPort, &slotArray[0].funKeyStatus, &shiftedKeyStatus, &slotArray[0].dirf);
+		ProcessShiftedKeyInput(&slotArray[0].funKey, &testPort, &shiftedKeyStatus, &slotArray[0].funKeyStatus, &slotArray[0].dirf);
+	/*   if (PINA & ( 1<<DIRKEY2 )) {  //richtungstaste4 gedrückt, dann LED 1 anschalten
 			//PORTC |= 1<<PC4;
-			PORTA |= 1<<LED1;			
+			PORTA |= 1<<LED2;
 			//_delay_ms(10);
 	  	  }
 	  	  
-	  	  if (!(PINC & ( 1<<DIRKEY1 ))) {	//wenn richtungstaste4 nicht gedrückt, dann LED 1 ausschalten
+	  	  if (!(PINA & ( 1<<DIRKEY2 ))) {	//wenn richtungstaste4 nicht gedrückt, dann LED 1 ausschalten
 		  	  //PORTC &= ~(1<<PC4);
-			  PORTA &= ~(1<<LED1);				
-	  	  } */
+			  PORTA &= ~(1<<LED2);				
+	  	  } 
+			
+		potAdcTimerAction();
+			
+			if (potAdcSpeedValue < 64) {
+				PORTA &=  ~1<<LED2;
+			}
+			
+			if (potAdcSpeedValue >= 64) {
+				PORTA |= 1<<LED2;
+			} */
+			
 			
 	  	  
 		  
@@ -1395,16 +1440,16 @@ void vProcessKey(rwSlotDataMsg *currentSlot)
           //if (bCurrentKey & Key_Dir)
           if (bCurrentKey & currentSlot->dirKey)
           { // dir switch was pressed
-            //currentSlot->dirf |= 0x20;
-			currentSlot->dirKey |= 0x20;
+            currentSlot->dirf |= 0x20;
+			//currentSlot->dirKey |= 0x20;
           //  LED_PORT   &= ~_BV(LED_GREEN_L);					geändert 15.05.2017
           //  LED_PORT   |=  _BV(LED_GREEN_R);
 			currentSlot->ledPort |= _BV(currentSlot->ledAdr);
           }
           else
           { // dir switch was released
-           // currentSlot->dirf &= ~0x20;
-		   currentSlot->dirKey &= ~0x20;
+            currentSlot->dirf &= ~0x20;
+		   //currentSlot->dirKey &= ~0x20;
           //  LED_PORT &= ~_BV(LED_GREEN_R);
           //  LED_PORT |=  _BV(LED_GREEN_L); 
 			currentSlot->ledPort &= ~_BV(currentSlot->ledAdr);
@@ -1545,6 +1590,37 @@ void vProcessKey(rwSlotDataMsg *currentSlot)
     bLastCurrentkey = bCurrentKey;
   } // end of if (bEvent & EVENT_KEY)
 } // end of void vProcessKey(void)
+
+
+void ProcessKeyInput (byte *pin, byte *port, byte *keyStatus, byte *shiftedKeyStatus, byte *locoInfo) {
+	if (bit_is_set(PIND, ERW_FUNKEY3)) {
+		*keyStatus = 0x01;
+	} else if (*keyStatus && *shiftedKeyStatus == 0x00) {
+		*keyStatus = 0x00;
+		//hier info in locoinfo schreiben/tastenevent
+			        PORTA |= 1<<LED1;
+					//PORTA &= ~(1<<LED1);
+	}
+}
+
+
+
+
+void ProcessShiftedKeyInput (byte *pin, byte *port, byte *keyStatus, byte *shiftStatus, byte *locoInfo) {
+	if (shiftStatus) {
+		if (bit_is_set(PINB, FUNKEY2)) {
+			*keyStatus = 0x01;
+		} else if (*keyStatus) {
+			*shiftStatus = 0x00;
+			*keyStatus = 0x00;
+			//hier info in locoinfo schreiben/tastenevent
+			        PORTA &= ~(1<<LED1);
+					//PORTA |= 1<<LED1;
+		}
+	}
+}
+
+
 
 /******************************************************FunctionHeaderBegin******
  * CREATED     : 2005-01-29

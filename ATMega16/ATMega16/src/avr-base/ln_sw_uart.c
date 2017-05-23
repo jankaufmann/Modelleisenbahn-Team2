@@ -103,12 +103,12 @@
 
 #define LN_TMR_PRESCALER      1
 
-#define LN_RX_PORT            PINB
-#define LN_RX_BIT             PB0
-
-#define LN_TX_PORT            PORTD
-#define LN_TX_DDR             DDRD
-#define LN_TX_BIT             PD6
+#define LN_RX_PORT            PINB				//
+#define LN_RX_BIT             PB0				//
+												// werden benutzt??
+#define LN_TX_PORT            PORTD				//
+#define LN_TX_DDR             DDRD				//
+#define LN_TX_BIT             PD6				//
 
 
 #elif defined BOARD_PROTO_128 //ProtoBoardMega128
