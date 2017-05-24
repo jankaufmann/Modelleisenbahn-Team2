@@ -146,8 +146,16 @@ byte MessageTimerAction( void *UserPointer);
 byte ReleaseStopTimerAction( void *UserPointer);
 void initKeys( void );
 void initSlots(struct rwslotdata_t *slotArray);
-void ProcessKeyInput (byte *pin, byte *port, byte *keyStatus, byte *shiftedKeyStatus, byte *locoInfo);
-void ProcessShiftedKeyInput (byte *pin, byte *port, byte *keyStatus, byte *shiftStatus, byte *locoInfo);
+//LED Funktionen
+void setLEDasOutput(void);		//setzt Port A Bit 0,1 und Port C Bit 3,4 als Ausgang
+void enableLED1(void);			//Einschalten LED 1
+void enableLED2(void);			//Einschalten LED 2
+void enableLED3(void);			//Einschalten LED 3
+void enableLED4(void);			//Einschalten LED 4
+void disableLED1(void);			//Ausschalten LED 1
+void disableLED2(void);			//Ausschalten LED 2
+void disableLED3(void);			//Ausschalten LED 3
+void disableLED4(void);			//Ausschalten LED 4
 /******************************************************************************/
 // main defines & variables
 /******************************************************************************/
@@ -240,14 +248,6 @@ lnMsg TxPacket;
 #define NUMBER_OF_SLOTS 4 //number of slots to be managed by the device
 struct rwslotdata_t slotArray[NUMBER_OF_SLOTS];
 int8_t		slotnumber = 0;
-
-//First Bit is status of first fun/dir/erwfun - key, second bit of..... 0 = key was not pressed, 1 = key was pressed
-byte bERWFunKey1Status;
-byte bERWFunKey2Status;
-byte bERWFunKey3Status;
-byte bERWFunKey4Status;
-
-
 /******************************************************************************/
 // timer
 /******************************************************************************/
@@ -272,6 +272,165 @@ static volatile byte    bStopPressed  = FALSE;
 
 /******************************************************************************/
 
+void setLEDasOutput() {
+	DDRA |= _BV(LED1);
+	DDRA |= _BV(LED2);
+	DDRC |= _BV(LED3);
+	DDRC |= _BV(LED4);
+}
+
+void enableLED1(){
+	PORTA |= _BV(LED1);
+}
+
+void enableLED2(){
+	PORTA |= _BV(LED2);
+}
+
+void enableLED3(){
+	PORTC |= _BV(LED3);
+}
+
+void enableLED4(){
+	PORTC |= _BV(LED4);
+}
+
+void disableLED1(){
+	PORTA &= ~(_BV(LED1));
+}
+
+void disableLED2(){
+	PORTA &= ~(_BV(LED2));
+}
+
+void disableLED3(){
+	PORTC &= ~(_BV(LED3));
+}
+
+void disableLED4(){
+	PORTC &= ~(_BV(LED4));
+}
+
+int8_t mapKeYAdressToInt (byte keyAdress) {
+	switch (keyAdress) {
+		case FUNKEY1: return 1;
+		case FUNKEY2: return 2;
+		case FUNKEY3: return 3;
+		case FUNKEY4: return 4;
+		//case DIRKEY1: return 5;
+		//case DIRKEY2: return 6;
+		//case DIRKEY3: return 7;
+		//case DIRKEY4: return 8;
+		//case ERW_FUNKEY1: return 9;
+		//case ERW_FUNKEY2: return 10;
+		//case ERW_FUNKEY3: return 11;
+		//case ERW_FUNKEY4: return 12;
+	}
+	return 0;
+}
+
+int8_t getKeyValue(uint8_t key){
+	
+	switch (key)
+	{
+	case 1:
+		if(bit_is_set(PORTC,FUNKEY1)){
+			return 1;
+			break;
+		}
+		else {
+			return 0;
+			break;
+		}
+		
+	case 2:
+		if(bit_is_set(PORTB,FUNKEY2)){
+			return 1;
+		}
+		else {
+			return 0;
+		}
+		
+	case 3:
+		if(bit_is_set(PORTB,FUNKEY3)){
+			return 1;
+		}
+		else {
+			return 0;
+		}
+		
+	case 4:
+		if(bit_is_set(PORTA,FUNKEY4)){
+			return 1;
+		}
+		else {
+			return 0;
+		}
+		
+	case 5:
+		if(bit_is_set(PORTC,DIRKEY1)){
+			return 1;
+		}
+		else {
+			return 0;
+		}
+				
+	case 6:
+		if(bit_is_set(PORTA,DIRKEY2)){
+			return 1;
+		}
+		else {
+			return 0;
+		}
+		
+	case 7:
+		if(bit_is_set(PORTC,DIRKEY3)){
+			return 1;
+		}
+		else {
+			return 0;
+		}
+		
+	case 8:
+		if(bit_is_set(PORTC,DIRKEY4)){
+			return 1;
+		}
+		else {
+			return 0;
+		}
+		
+	case 9:
+		if(bit_is_set(PORTD,ERW_FUNKEY1)){
+			return 1;
+		}
+		else {
+			return 0;
+		}
+		
+	case 10:
+		if(bit_is_set(PORTD,ERW_FUNKEY2)){
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	case 11:
+		if(bit_is_set(PORTD,ERW_FUNKEY3)){
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	case 12:
+		if(bit_is_set(PORTD,ERW_FUNKEY4)){
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	return 2;
+	}
+}
 /******************************************************FunctionHeaderBegin******
  * FUNCTION    : IncrementTimerAction
  * CREATED     : 2005-01-21
@@ -848,9 +1007,7 @@ void initSlots (struct rwslotdata_t *slotArray) {
   slotArray[0].adr2      = 0;                        /* loco address high                                    */
   slotArray[0].snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
   slotArray[0].dirKey	  = DIRKEY1;
-  slotArray[0].dirKeyStatus	  = 0;
   slotArray[0].funKey	  = FUNKEY1;
-  slotArray[0].funKeyStatus	  = 0;
   slotArray[0].ledAdr	  = LED1;
   slotArray[0].ledPort   = PORTA;
   
@@ -869,9 +1026,7 @@ void initSlots (struct rwslotdata_t *slotArray) {
   slotArray[1].adr2      = 0;                        /* loco address high                                    */
   slotArray[1].snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
   slotArray[1].dirKey	  = DIRKEY2;
-  slotArray[1].dirKeyStatus	  = 0;
   slotArray[1].funKey	  = FUNKEY2;
-  slotArray[1].funKeyStatus	  = 0;
   slotArray[1].ledAdr	  = LED2;
   slotArray[1].ledPort   = PORTA;  
   //----------------------------------------------------------RSLOTDREI-----------------------------------------------
@@ -887,9 +1042,7 @@ void initSlots (struct rwslotdata_t *slotArray) {
   slotArray[2].adr2      = 0;                        /* loco address high                                    */
   slotArray[2].snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
   slotArray[2].dirKey	  = DIRKEY3;
-  slotArray[2].dirKeyStatus	  = 0;
   slotArray[2].funKey	  = FUNKEY3;
-  slotArray[2].funKeyStatus	  = 0;
   slotArray[2].ledAdr	  = LED3;
   slotArray[2].ledPort   = PORTC;
   //-----------------------------------------------------------------RSLOTVIER---------------------------------
@@ -906,14 +1059,10 @@ void initSlots (struct rwslotdata_t *slotArray) {
   slotArray[3].adr2      = 0;                        /* loco address high                                    */
   slotArray[3].snd       = 0;                        /* Sound 1-4 / F5-F8                                    */
   slotArray[3].dirKey	  = DIRKEY4;
-  slotArray[3].dirKeyStatus	  = 0;
   slotArray[3].funKey	  = FUNKEY4;
-  slotArray[3].funKeyStatus	  = 0;
   slotArray[3].ledAdr	  = LED4;
   slotArray[3].ledPort   = PORTC;
 }
-
-
 
 
 /******************************************************FunctionHeaderBegin******
@@ -927,242 +1076,269 @@ void initSlots (struct rwslotdata_t *slotArray) {
  *******************************************************FunctionHeaderEnd******/
 int main(void)
 {
-  RESET_RESET_SOURCE(); // Clear Reset Status Register (WDRF,BORF,EXTRF,PORF)
-
-  byte bCount = 0;
-  bFrediVersion = FREDI_VERSION_ANALOG;
-  /***************************************/
-  //  init analog input for getting 
-  //  FrediVersion
-  /***************************************/
-
-/*	 DDRC  &= ~_BV(DDC5); // set version detector to tristate to get kind of fredi
-	 PORTC |=  _BV(PC5);
-
-  if (bit_is_set(PINC, PINC5))
-  {
-    bFrediVersion = FREDI_VERSION_ANALOG;
-  }
-  else
-  {
-    bFrediVersion = FREDI_VERSION_INCREMENT;
-  } */
-  
-  /***************************************/
-  //  init throttle slot
-  /***************************************/
-
-  bSpdCnt = 0;
-  
-	
-	initSlots(slotArray);			// initialisierung der vier rSlots.
-	//initSlots(&slotArray[0]);		äquivalent zu dem oberen.
-
-  
-   if ((eeprom_read_byte(&abEEPROM[EEPROM_IMAGE]) != EEPROM_IMAGE_DEFAULT))
-  {
-    vSetState(THR_STATE_SELFTEST, &slotArray[0]);
-
-    eeprom_write_byte(&abEEPROM[EEPROM_ADR_LOCO_LB], 0);                 // no loco active at selftest
-    eeprom_write_byte(&abEEPROM[EEPROM_ADR_LOCO_HB], 0);
-
-    eeprom_write_byte(&abEEPROM[EEPROM_DECODER_TYPE], EEPROM_DECODER_TYPE_DEFAULT);
-
-    eeprom_write_byte(&abEEPROM[EEPROM_SW_INDEX_HB], HIBYTE(SW_INDEX));  // write Version in EEPROM on first startup
-    eeprom_write_byte(&abEEPROM[EEPROM_SW_INDEX_LB], LOBYTE(SW_INDEX));
-
-    eeprom_write_byte(&abEEPROM[EEPROM_SW_DAY],      SW_DAY);            // write date of SW in EEPROM
-    eeprom_write_byte(&abEEPROM[EEPROM_SW_MONTH],    SW_MONTH);
-    eeprom_write_byte(&abEEPROM[EEPROM_SW_YEAR],     SW_YEAR);
-
-    eeprom_write_byte(&abEEPROM[EEPROM_VERSION],     bFrediVersion);     // store detected HW version
-  }
-  else
-  { // selftest was successful before
-    if (  (eeprom_read_byte(&abEEPROM[EEPROM_SW_INDEX_HB]) != HIBYTE(SW_INDEX))
-          || (eeprom_read_byte(&abEEPROM[EEPROM_SW_INDEX_LB]) != LOBYTE(SW_INDEX))
-          || (eeprom_read_byte(&abEEPROM[EEPROM_SW_DAY])      != SW_DAY)
-          || (eeprom_read_byte(&abEEPROM[EEPROM_SW_MONTH])    != SW_MONTH)
-          || (eeprom_read_byte(&abEEPROM[EEPROM_SW_YEAR])     != SW_YEAR))
-    { // sw index or date has changed
-      eeprom_write_byte(&abEEPROM[EEPROM_SW_INDEX_HB], HIBYTE(SW_INDEX));// write Version in EEPROM on first startup
-      eeprom_write_byte(&abEEPROM[EEPROM_SW_INDEX_LB], LOBYTE(SW_INDEX));
-
-      eeprom_write_byte(&abEEPROM[EEPROM_SW_DAY],      SW_DAY);          // write date of SW in EEPROM
-      eeprom_write_byte(&abEEPROM[EEPROM_SW_MONTH],    SW_MONTH);
-      eeprom_write_byte(&abEEPROM[EEPROM_SW_YEAR],     SW_YEAR);
-    }
-
-    vSetState(THR_STATE_INIT, &slotArray[0]);
-    slotArray[0].adr   = eeprom_read_byte(&abEEPROM[EEPROM_ADR_LOCO_LB]);
-    slotArray[0].adr2  = eeprom_read_byte(&abEEPROM[EEPROM_ADR_LOCO_HB]);
-    slotArray[0].stat  = eeprom_read_byte(&abEEPROM[EEPROM_DECODER_TYPE]);
-  }
-
-	 slotArray[0].id1   = eeprom_read_byte(&abEEPROM[EEPROM_ID1]); // get ID from EEPROM
-	 slotArray[0].id2   = eeprom_read_byte(&abEEPROM[EEPROM_ID2]);
-
-/*  if ((slotArray[0].id1 & 0x80) || (slotArray[0].id2 & 0x80))
-  { // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // if no slot ID was programmed, you get the ID "0xff 0xff"
-		// or if an unguilty ID was programmed
-    // stop program at this point and switch all leds on
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    LED_DDR  |= _BV(LED_GREEN_L); 
-    LED_PORT |= _BV(LED_GREEN_L); 
-    LED_DDR  |= _BV(LED_GREEN_R); 
-    LED_PORT |= _BV(LED_GREEN_R); 
-    LED_DDR  |= _BV(LED_RED); 
-    LED_PORT |= _BV(LED_RED);
-    while (1);
-  } */
-  
-  #ifdef LOCONET_LEVEL_TEST
-    LED_DDR  |= _BV(LED_GREEN_L);
-    LED_PORT |= _BV(LED_GREEN_L);
-    LED_DDR  |= _BV(LED_GREEN_R);
-    LED_PORT |= _BV(LED_GREEN_R);
-    LED_DDR  |= _BV(LED_RED);
-    LED_PORT |= _BV(LED_RED);
-    ACSR  = (0<<ACD)  | (0<<ACBG) | (0<<ACO)   | (0<<ACI)
-          | (0<<ACIE) | (0<<ACIC) | (0<<ACIS1) | (0<<ACIS0);
-    #if defined(__AVR_ATmega48__)  | defined(__AVR_ATmega48A__)  \
-      | defined(__AVR_ATmega48P__) | defined(__AVR_ATmega88__)   \
-      | defined(__AVR_ATmega88A__) | defined(__AVR_ATmega88P__)  \
-      | defined(__AVR_ATmega168__) | defined(__AVR_ATmega168A__) \
-      | defined(__AVR_ATmega168P__)| defined(__AVR_ATmega328__)  \
-      | defined(__AVR_ATmega328P__)
-      //AIN1, AIN0 digital input disable:
-      // disable digital input buffer on the pins to reduce power consumption
-      DIDR1 |= (1<<AIN1D) | (1<<AIN0D);
-    #endif
-    while (1) {
-      if( bit_is_set(ACSR,ACO) ) {
-        LED_PORT |= _BV(LED_GREEN_L);
-        LED_PORT |= _BV(LED_GREEN_R);
-        LED_PORT |= _BV(LED_RED);
-      } else {
-        LED_PORT &= ~_BV(LED_GREEN_L);
-        LED_PORT &= ~_BV(LED_GREEN_R);
-        LED_PORT &= ~_BV(LED_RED);
-      }
-    }
-  #endif
-
-  /***************************************/
-  //  init loconet
-  /***************************************/
-
-  initLocoNet(&RxBuffer) ;
-
-  /***************************************/
-  //  init keys and timer
-  /***************************************/
-
-  initKeys();
-  initTimer();
- 
-  addTimerAction(&MessageTimer, 0, MessageTimerAction, 0, TIMER_SLOW) ;
-
-  /***************************************/
-  //  set state and start interrupts
-  /***************************************/
-
-  sei();
-
-  if (bThrState < THR_STATE_SELFTEST)
-  {
-    // if a address for a loco is available, show blinking state
-    if ((slotArray[0].adr != 0) || (slotArray[0].adr2 != 0))
-    {
-      vSetState(THR_STATE_RECONNECT_GET_SLOT, &slotArray[0]);
-    }
-    else
-    {
-      vSetState(THR_STATE_UNCONNECTED, &slotArray[0]);
-    }
-
-    while (bit_is_clear(ACSR, ACO))     // wait for start of loconet
-    {
-      processTimerActions();
-    }
-    // loconet is available, now
-    for (bCount =0;bCount < 50;bCount++)
-    {
-      delayTimer( 10 );                 // wait a little bit longer
-      processTimerActions();
-    }
-
-    if (slotArray[0].adr)                      // wait for a pseudo random time
-    {
-      delayTimer(slotArray[0].adr);
-    }
-
-    if (slotArray[0].adr2)
-    {
-      delayTimer(slotArray[0].adr2);
-    }
-
-    // if a address for a loco is available, try to reconnect
-    if (bThrState == THR_STATE_RECONNECT_GET_SLOT)
-    {
-      sendLocoNetAdr(&slotArray[0]);
-    }
-  }
-  else
-  {
-    sendLocoNetFredCd( bCount );
-  }  
+  //RESET_RESET_SOURCE(); // Clear Reset Status Register (WDRF,BORF,EXTRF,PORF)
+//
+  ////byte bCount = 0;
+////
+  /////***************************************/
+  //////  init analog input for getting 
+  //////  FrediVersion
+  /////***************************************/
+////
+	 ////DDRC  &= ~_BV(DDC5); // set version detector to tristate to get kind of fredi
+	 ////PORTC |=  _BV(PC5);
+////
+  ////if (bit_is_set(PINC, PINC5))
+  ////{
+    ////bFrediVersion = FREDI_VERSION_ANALOG;
+  ////}
+  ////else
+  ////{
+    ////bFrediVersion = FREDI_VERSION_INCREMENT;
+  ////}
+  ////
+  /////***************************************/
+  //////  init throttle slot
+  /////***************************************/
+////
+  ////bSpdCnt = 0;
+  ////
+	////
+	////initSlots(slotArray);			// initialisierung der vier rSlots.
+	//////initSlots(&slotArray[0]);		äquivalent zu dem oberen.
+////
+  ////
+   ////if ((eeprom_read_byte(&abEEPROM[EEPROM_IMAGE]) != EEPROM_IMAGE_DEFAULT))
+  ////{
+    ////vSetState(THR_STATE_SELFTEST, &slotArray[0]);
+////
+    ////eeprom_write_byte(&abEEPROM[EEPROM_ADR_LOCO_LB], 0);                 // no loco active at selftest
+    ////eeprom_write_byte(&abEEPROM[EEPROM_ADR_LOCO_HB], 0);
+////
+    ////eeprom_write_byte(&abEEPROM[EEPROM_DECODER_TYPE], EEPROM_DECODER_TYPE_DEFAULT);
+////
+    ////eeprom_write_byte(&abEEPROM[EEPROM_SW_INDEX_HB], HIBYTE(SW_INDEX));  // write Version in EEPROM on first startup
+    ////eeprom_write_byte(&abEEPROM[EEPROM_SW_INDEX_LB], LOBYTE(SW_INDEX));
+////
+    ////eeprom_write_byte(&abEEPROM[EEPROM_SW_DAY],      SW_DAY);            // write date of SW in EEPROM
+    ////eeprom_write_byte(&abEEPROM[EEPROM_SW_MONTH],    SW_MONTH);
+    ////eeprom_write_byte(&abEEPROM[EEPROM_SW_YEAR],     SW_YEAR);
+////
+    ////eeprom_write_byte(&abEEPROM[EEPROM_VERSION],     bFrediVersion);     // store detected HW version
+  ////}
+  ////else
+  ////{ // selftest was successful before
+    ////if (  (eeprom_read_byte(&abEEPROM[EEPROM_SW_INDEX_HB]) != HIBYTE(SW_INDEX))
+          ////|| (eeprom_read_byte(&abEEPROM[EEPROM_SW_INDEX_LB]) != LOBYTE(SW_INDEX))
+          ////|| (eeprom_read_byte(&abEEPROM[EEPROM_SW_DAY])      != SW_DAY)
+          ////|| (eeprom_read_byte(&abEEPROM[EEPROM_SW_MONTH])    != SW_MONTH)
+          ////|| (eeprom_read_byte(&abEEPROM[EEPROM_SW_YEAR])     != SW_YEAR))
+    ////{ // sw index or date has changed
+      ////eeprom_write_byte(&abEEPROM[EEPROM_SW_INDEX_HB], HIBYTE(SW_INDEX));// write Version in EEPROM on first startup
+      ////eeprom_write_byte(&abEEPROM[EEPROM_SW_INDEX_LB], LOBYTE(SW_INDEX));
+////
+      ////eeprom_write_byte(&abEEPROM[EEPROM_SW_DAY],      SW_DAY);          // write date of SW in EEPROM
+      ////eeprom_write_byte(&abEEPROM[EEPROM_SW_MONTH],    SW_MONTH);
+      ////eeprom_write_byte(&abEEPROM[EEPROM_SW_YEAR],     SW_YEAR);
+    ////}
+////
+    ////vSetState(THR_STATE_INIT, &slotArray[0]);
+    ////slotArray[0].adr   = eeprom_read_byte(&abEEPROM[EEPROM_ADR_LOCO_LB]);
+    ////slotArray[0].adr2  = eeprom_read_byte(&abEEPROM[EEPROM_ADR_LOCO_HB]);
+    ////slotArray[0].stat  = eeprom_read_byte(&abEEPROM[EEPROM_DECODER_TYPE]);
+  ////}
+////
+	 ////slotArray[0].id1   = eeprom_read_byte(&abEEPROM[EEPROM_ID1]); // get ID from EEPROM
+	 ////slotArray[0].id2   = eeprom_read_byte(&abEEPROM[EEPROM_ID2]);
+////
+/////*  if ((slotArray[0].id1 & 0x80) || (slotArray[0].id2 & 0x80))
+  ////{ // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    ////// if no slot ID was programmed, you get the ID "0xff 0xff"
+		////// or if an unguilty ID was programmed
+    ////// stop program at this point and switch all leds on
+    ////// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    ////LED_DDR  |= _BV(LED_GREEN_L); 
+    ////LED_PORT |= _BV(LED_GREEN_L); 
+    ////LED_DDR  |= _BV(LED_GREEN_R); 
+    ////LED_PORT |= _BV(LED_GREEN_R); 
+    ////LED_DDR  |= _BV(LED_RED); 
+    ////LED_PORT |= _BV(LED_RED);
+    ////while (1);
+  ////} */
+  ////
+  ////#ifdef LOCONET_LEVEL_TEST
+    ////LED_DDR  |= _BV(LED_GREEN_L);
+    ////LED_PORT |= _BV(LED_GREEN_L);
+    ////LED_DDR  |= _BV(LED_GREEN_R);
+    ////LED_PORT |= _BV(LED_GREEN_R);
+    ////LED_DDR  |= _BV(LED_RED);
+    ////LED_PORT |= _BV(LED_RED);
+    ////ACSR  = (0<<ACD)  | (0<<ACBG) | (0<<ACO)   | (0<<ACI)
+          ////| (0<<ACIE) | (0<<ACIC) | (0<<ACIS1) | (0<<ACIS0);
+    ////#if defined(__AVR_ATmega48__)  | defined(__AVR_ATmega48A__)  \
+      ////| defined(__AVR_ATmega48P__) | defined(__AVR_ATmega88__)   \
+      ////| defined(__AVR_ATmega88A__) | defined(__AVR_ATmega88P__)  \
+      ////| defined(__AVR_ATmega168__) | defined(__AVR_ATmega168A__) \
+      ////| defined(__AVR_ATmega168P__)| defined(__AVR_ATmega328__)  \
+      ////| defined(__AVR_ATmega328P__)
+      //////AIN1, AIN0 digital input disable:
+      ////// disable digital input buffer on the pins to reduce power consumption
+      ////DIDR1 |= (1<<AIN1D) | (1<<AIN0D);
+    ////#endif
+    ////while (1) {
+      ////if( bit_is_set(ACSR,ACO) ) {
+        ////LED_PORT |= _BV(LED_GREEN_L);
+        ////LED_PORT |= _BV(LED_GREEN_R);
+        ////LED_PORT |= _BV(LED_RED);
+      ////} else {
+        ////LED_PORT &= ~_BV(LED_GREEN_L);
+        ////LED_PORT &= ~_BV(LED_GREEN_R);
+        ////LED_PORT &= ~_BV(LED_RED);
+      ////}
+    ////}
+  ////#endif
+////
+  /////***************************************/
+  //////  init loconet
+  /////***************************************/
+////
+  //initLocoNet(&RxBuffer) ;
+////
+  /////***************************************/
+  //////  init keys and timer
+  /////***************************************/
+////
+  //initKeys();
+  //initTimer();
+ ////
+  ////addTimerAction(&MessageTimer, 0, MessageTimerAction, 0, TIMER_SLOW) ;
+////
+  /////***************************************/
+  //////  set state and start interrupts
+  /////***************************************/
+////
+  ////sei();
+////
+  ////if (bThrState < THR_STATE_SELFTEST)
+  ////{
+    ////// if a address for a loco is available, show blinking state
+    ////if ((slotArray[0].adr != 0) || (slotArray[0].adr2 != 0))
+    ////{
+      ////vSetState(THR_STATE_RECONNECT_GET_SLOT, &slotArray[0]);
+    ////}
+    ////else
+    ////{
+      ////vSetState(THR_STATE_UNCONNECTED, &slotArray[0]);
+    ////}
+////
+    ////while (bit_is_clear(ACSR, ACO))     // wait for start of loconet
+    ////{
+      ////processTimerActions();
+    ////}
+    ////// loconet is available, now
+    ////for (bCount =0;bCount < 50;bCount++)
+    ////{
+      ////delayTimer( 10 );                 // wait a little bit longer
+      ////processTimerActions();
+    ////}
+////
+    ////if (slotArray[0].adr)                      // wait for a pseudo random time
+    ////{
+      ////delayTimer(slotArray[0].adr);
+    ////}
+////
+    ////if (slotArray[0].adr2)
+    ////{
+      ////delayTimer(slotArray[0].adr2);
+    ////}
+////
+    ////// if a address for a loco is available, try to reconnect
+    ////if (bThrState == THR_STATE_RECONNECT_GET_SLOT)
+    ////{
+      ////sendLocoNetAdr(&slotArray[0]);
+    ////}
+  ////}
+  ////else
+  ////{
+    ////sendLocoNetFredCd( bCount );
+  ////}  
 
 /******************************************************************************/
 // main endless loop 
 /******************************************************************************/
-		  DDRC  |= (1<<PC4); 
-		  DDRC  |= (1<<PC3);
-		  DDRA  |= (1<<PA0); 
-		  DDRA  |= (1<<PA1);
-		  //alle LEDS ausschalten
-		/*	PORTA &= ~(1<<LED1);
-			PORTA &= ~(1<<LED2);
-			PORTC &= ~(1<<LED3);
-			PORTC &= ~(1<<LED4); */
-		// alle LED anschalten
-			PORTA |= (1<<LED1);
-			PORTA |= (1<<LED2);
-			PORTC |= (1<<LED3);
-			PORTC |= (1<<LED4);
-			
-		  ADCSRA = 0<< ADEN;
-		  
-	byte testPort = PORTC;
-	byte shiftedKeyStatus = 0;
-	
+		  //DDRC  |= (1<<PC4);
+		  //DDRC  |= (1<<PC3);
+		  //DDRA  |= (1<<PA0);
+		  //DDRA  |= (1<<PA1);
+		  //
+		  //
+//
+uint8_t test = 0;
+uint8_t statusLED = 1;
+ADCSRA = (0<<ADEN);
+setLEDasOutput();
+enableLED1();
+enableLED2();
+enableLED3();
+disableLED4();
+initLocoNet(&RxBuffer);
+sendLocoNet4BytePacket(0xA0,0x05,0x26);
   while (1)
   {
-		
-		ProcessKeyInput(&slotArray[0].funKey, &testPort, &slotArray[0].funKeyStatus, &shiftedKeyStatus, &slotArray[0].dirf);
-		ProcessShiftedKeyInput(&slotArray[0].funKey, &testPort, &shiftedKeyStatus, &slotArray[0].funKeyStatus, &slotArray[0].dirf);
-	/*   if (PINA & ( 1<<DIRKEY2 )) {  //richtungstaste4 gedrückt, dann LED 1 anschalten
+	  //if (bit_is_set(PINC,DIRKEY1)){
+		  //test = 1;
+	  //}
+	  //else {
+		  //if (test) {
+			//if(bit_is_set(PORTA, LED1))
+			//{
+				//disableLED1();
+				//test = 0;
+			//} else
+				//enableLED1();
+				//test = 0;
+			//{
+			//}
+		  //}
+	  //}
+	  //if (PINC & ( 1<<DIRKEY1)) {
+		//if(test == 1) {
+			//test = 2;
+		//}
+		//if (test == 2) {
+			//test = 1;
+		//}
+		//
+	  //}
+	  //if(test == 1 && statusLED) {
+		  //disableLED1();
+		  //statusLED = 0;
+	  //}
+	  //if(test == 2 && !statusLED) {
+		  //enableLED1();
+		  //statusLED = 1;
+	  //}
+	
+	//if(bit_is_set(PORTC,FUNKEY1)){
+			//test = 1;
+			//disableLED1();
+	//}
+	
+	//if(bit_is_clear(PORTC,FUNKEY1) && test == 1) {
+			//test = 0;
+		////	
+			//enableLED1();
+	//}
+	/*    if (PINC & ( 1<<DIRKEY1 )) {  //richtungstaste4 gedrückt, dann LED 1 anschalten
 			//PORTC |= 1<<PC4;
-			PORTA |= 1<<LED2;
+			PORTA |= 1<<LED1;			
 			//_delay_ms(10);
 	  	  }
 	  	  
-	  	  if (!(PINA & ( 1<<DIRKEY2 ))) {	//wenn richtungstaste4 nicht gedrückt, dann LED 1 ausschalten
+	  	  if (!(PINC & ( 1<<DIRKEY1 ))) {	//wenn richtungstaste4 nicht gedrückt, dann LED 1 ausschalten
 		  	  //PORTC &= ~(1<<PC4);
-			  PORTA &= ~(1<<LED2);				
-	  	  } 
-			
-		potAdcTimerAction();
-			
-			if (potAdcSpeedValue < 64) {
-				PORTA &=  ~1<<LED2;
-			}
-			
-			if (potAdcSpeedValue >= 64) {
-				PORTA |= 1<<LED2;
-			} */
-			
+			  PORTA &= ~(1<<LED1);				
+	  	  } */
 			
 	  	  
 		  
@@ -1440,16 +1616,16 @@ void vProcessKey(rwSlotDataMsg *currentSlot)
           //if (bCurrentKey & Key_Dir)
           if (bCurrentKey & currentSlot->dirKey)
           { // dir switch was pressed
-            currentSlot->dirf |= 0x20;
-			//currentSlot->dirKey |= 0x20;
+            //currentSlot->dirf |= 0x20;
+			currentSlot->dirKey |= 0x20;
           //  LED_PORT   &= ~_BV(LED_GREEN_L);					geändert 15.05.2017
           //  LED_PORT   |=  _BV(LED_GREEN_R);
 			currentSlot->ledPort |= _BV(currentSlot->ledAdr);
           }
           else
           { // dir switch was released
-            currentSlot->dirf &= ~0x20;
-		   //currentSlot->dirKey &= ~0x20;
+           // currentSlot->dirf &= ~0x20;
+		   currentSlot->dirKey &= ~0x20;
           //  LED_PORT &= ~_BV(LED_GREEN_R);
           //  LED_PORT |=  _BV(LED_GREEN_L); 
 			currentSlot->ledPort &= ~_BV(currentSlot->ledAdr);
@@ -1590,37 +1766,6 @@ void vProcessKey(rwSlotDataMsg *currentSlot)
     bLastCurrentkey = bCurrentKey;
   } // end of if (bEvent & EVENT_KEY)
 } // end of void vProcessKey(void)
-
-
-void ProcessKeyInput (byte *pin, byte *port, byte *keyStatus, byte *shiftedKeyStatus, byte *locoInfo) {
-	if (bit_is_set(PIND, ERW_FUNKEY3)) {
-		*keyStatus = 0x01;
-	} else if (*keyStatus && *shiftedKeyStatus == 0x00) {
-		*keyStatus = 0x00;
-		//hier info in locoinfo schreiben/tastenevent
-			        PORTA |= 1<<LED1;
-					//PORTA &= ~(1<<LED1);
-	}
-}
-
-
-
-
-void ProcessShiftedKeyInput (byte *pin, byte *port, byte *keyStatus, byte *shiftStatus, byte *locoInfo) {
-	if (shiftStatus) {
-		if (bit_is_set(PINB, FUNKEY2)) {
-			*keyStatus = 0x01;
-		} else if (*keyStatus) {
-			*shiftStatus = 0x00;
-			*keyStatus = 0x00;
-			//hier info in locoinfo schreiben/tastenevent
-			        PORTA &= ~(1<<LED1);
-					//PORTA |= 1<<LED1;
-		}
-	}
-}
-
-
 
 /******************************************************FunctionHeaderBegin******
  * CREATED     : 2005-01-29
