@@ -190,17 +190,6 @@ AVRDUDE_PORT = com1    # programmer connected to serial device
 
 AVRDUDE_BAUDRATE = -b 115200
 
-#AVRDUDE_WRITE_FUSES = -U hfuse:w:0xD1:m -U lfuse:w:0xBF:m
-ifeq ($(MCU),atmega8)
-     AVRDUDE_WRITE_FUSES = -U hfuse:w:$(TARGET)-hfuses.hex \
-                           -U lfuse:w:$(TARGET)-lfuses.hex
-else
-     AVRDUDE_WRITE_FUSES = -U hfuse:w:$(TARGET)-hfuses.hex \
-                           -U lfuse:w:$(TARGET)-lfuses.hex \
-                           -U efuse:w:$(TARGET)-efuses.hex
-endif
-
-
 AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex
 AVRDUDE_WRITE_EEPROM = -U eeprom:w:$(TARGET).eep
 
@@ -312,28 +301,12 @@ allprocessors:
 	make -f makefile MCU=atmega8 all fuses-hex
 	make -f makefile cleanintermediate
 
-build: elf hex eep fuses-hex lss sym 
-
 elf: $(TARGET).elf
 hex: $(TARGET).hex
 eep: $(TARGET).eep
 lss: $(TARGET).lss 
 sym: $(TARGET).sym
-
-$(TARGET)-lfuses.hex: $(TARGET).elf
-	-$(OBJCOPY) -j lfuses --change-section-address lfuses=0 \
-	-O ihex $(TARGET).elf $(TARGET)-lfuses.hex
-
-$(TARGET)-hfuses.hex: $(TARGET).elf
-	-$(OBJCOPY) -j hfuses --change-section-address hfuses=0 \
-	-O ihex $(TARGET).elf $(TARGET)-hfuses.hex
-
-# generates "empty" hex file for ATmega8 
-$(TARGET)-efuses.hex: $(TARGET).elf
-	-$(OBJCOPY) -j efuses --change-section-address efuses=0 \
-	-O ihex $(TARGET).elf $(TARGET)-efuses.hex
 	
-fuses-hex: $(TARGET)-lfuses.hex $(TARGET)-hfuses.hex $(TARGET)-efuses.hex
 
 # Eye candy.
 # AVR Studio 3.x does not check make's exit code but relies on

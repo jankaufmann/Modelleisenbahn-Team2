@@ -21,7 +21,8 @@
 /*
  *  Define fuses in elf file
  */
-
+#ifndef __FUSES_H__
+#define __FUSES_H__
 #define LFUSE __attribute__ ((section ("lfuses")))
 #define HFUSE __attribute__ ((section ("hfuses")))
 #define EFUSE __attribute__ ((section ("efuses")))
@@ -262,3 +263,4 @@
     #error unsupported MCU value (for now)
 
 #endif
+#endif //__FUSES_H__

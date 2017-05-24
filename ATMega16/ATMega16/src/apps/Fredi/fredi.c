@@ -329,108 +329,108 @@ int8_t mapKeYAdressToInt (byte keyAdress) {
 	return 0;
 }
 
-int8_t getKeyValue(uint8_t key){
-	
-	switch (key)
-	{
-	case 1:
-		if(bit_is_set(PORTC,FUNKEY1)){
-			return 1;
-			break;
-		}
-		else {
-			return 0;
-			break;
-		}
-		
-	case 2:
-		if(bit_is_set(PORTB,FUNKEY2)){
-			return 1;
-		}
-		else {
-			return 0;
-		}
-		
-	case 3:
-		if(bit_is_set(PORTB,FUNKEY3)){
-			return 1;
-		}
-		else {
-			return 0;
-		}
-		
-	case 4:
-		if(bit_is_set(PORTA,FUNKEY4)){
-			return 1;
-		}
-		else {
-			return 0;
-		}
-		
-	case 5:
-		if(bit_is_set(PORTC,DIRKEY1)){
-			return 1;
-		}
-		else {
-			return 0;
-		}
-				
-	case 6:
-		if(bit_is_set(PORTA,DIRKEY2)){
-			return 1;
-		}
-		else {
-			return 0;
-		}
-		
-	case 7:
-		if(bit_is_set(PORTC,DIRKEY3)){
-			return 1;
-		}
-		else {
-			return 0;
-		}
-		
-	case 8:
-		if(bit_is_set(PORTC,DIRKEY4)){
-			return 1;
-		}
-		else {
-			return 0;
-		}
-		
-	case 9:
-		if(bit_is_set(PORTD,ERW_FUNKEY1)){
-			return 1;
-		}
-		else {
-			return 0;
-		}
-		
-	case 10:
-		if(bit_is_set(PORTD,ERW_FUNKEY2)){
-			return 1;
-		}
-		else {
-			return 0;
-		}
-	case 11:
-		if(bit_is_set(PORTD,ERW_FUNKEY3)){
-			return 1;
-		}
-		else {
-			return 0;
-		}
-	case 12:
-		if(bit_is_set(PORTD,ERW_FUNKEY4)){
-			return 1;
-		}
-		else {
-			return 0;
-		}
-	return 2;
-	}
-}
+//int8_t getKeyValue(uint8_t key){
+	//
+	//switch (key)
+	//{
+	//case 1:
+		//if(bit_is_set(PORTC,FUNKEY1)){
+			//return 1;
+			//break;
+		//}
+		//else {
+			//return 0;
+			//break;
+		//}
+		//
+	//case 2:
+		//if(bit_is_set(PORTB,FUNKEY2)){
+			//return 1;
+		//}
+		//else {
+			//return 0;
+		//}
+		//
+	//case 3:
+		//if(bit_is_set(PORTB,FUNKEY3)){
+			//return 1;
+		//}
+		//else {
+			//return 0;
+		//}
+		//
+	//case 4:
+		//if(bit_is_set(PORTA,FUNKEY4)){
+			//return 1;
+		//}
+		//else {
+			//return 0;
+		//}
+		//
+	//case 5:
+		//if(bit_is_set(PORTC,DIRKEY1)){
+			//return 1;
+		//}
+		//else {
+			//return 0;
+		//}
+				//
+	//case 6:
+		//if(bit_is_set(PORTA,DIRKEY2)){
+			//return 1;
+		//}
+		//else {
+			//return 0;
+		//}
+		//
+	//case 7:
+		//if(bit_is_set(PORTC,DIRKEY3)){
+			//return 1;
+		//}
+		//else {
+			//return 0;
+		//}
+		//
+	//case 8:
+		//if(bit_is_set(PORTC,DIRKEY4)){
+			//return 1;
+		//}
+		//else {
+			//return 0;
+		//}
+		//
+	//case 9:
+		//if(bit_is_set(PORTD,ERW_FUNKEY1)){
+			//return 1;
+		//}
+		//else {
+			//return 0;
+		//}
+		//
+	//case 10:
+		//if(bit_is_set(PORTD,ERW_FUNKEY2)){
+			//return 1;
+		//}
+		//else {
+			//return 0;
+		//}
+	//case 11:
+		//if(bit_is_set(PORTD,ERW_FUNKEY3)){
+			//return 1;
+		//}
+		//else {
+			//return 0;
+		//}
+	//case 12:
+		//if(bit_is_set(PORTD,ERW_FUNKEY4)){
+			//return 1;
+		//}
+		//else {
+			//return 0;
+		//}
+	//return 2;
+	//}
+//}
 /******************************************************FunctionHeaderBegin******
  * FUNCTION    : IncrementTimerAction
  * CREATED     : 2005-01-21
@@ -1273,7 +1273,7 @@ int main(void)
 		  //
 		  //
 //
-uint8_t test = 0;
+int8_t test = 0;
 uint8_t statusLED = 1;
 ADCSRA = (0<<ADEN);
 setLEDasOutput();
@@ -1282,12 +1282,14 @@ enableLED2();
 enableLED3();
 disableLED4();
 initLocoNet(&RxBuffer);
-sendLocoNet4BytePacket(0xA0,0x05,0x26);
+sendLocoNet4BytePacketTry(0xA0,0x05,0x43,0x19);
   while (1)
   {
-	  //if (bit_is_set(PINC,DIRKEY1)){
-		  //test = 1;
-	  //}
+	  test++;
+	  if(test >= 200) {			// [A0 05 43 19]
+		  sendLocoNet4BytePacketTry(0xA0,0x05,0x26,0x19);
+		  test = 0;
+	  }
 	  //else {
 		  //if (test) {
 			//if(bit_is_set(PORTA, LED1))

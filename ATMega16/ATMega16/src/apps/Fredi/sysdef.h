@@ -21,7 +21,6 @@
 #define _SYSDEF_H_
 
 #include <avr/io.h>		// [we need all register and port definitions]
-
 #define wBOARD_FREDI
 
 //#define SW_INDEX        0x0001  // Software aus Wehmingen 05
@@ -91,7 +90,7 @@
 /******************************************************************************/
 
 #ifndef F_CPU
-  #define F_CPU                     7372800    // Fredi
+  #define F_CPU                     16000000//7372800     Fredi
 #endif
 
 #if defined(__AVR_ATmega48__)  | defined(__AVR_ATmega48A__)  \
@@ -104,8 +103,8 @@
                                           // on ATmega328P or ATmega168
                                           // avr-gcc (WinAVR 20100110) 4.3.3
 #elif defined(__AVR_ATmega16__)
-  #define LN_TIMER_TX_RELOAD_ADJUST    98 // 13.3 us delay for FREDI an ATmega8
-                                          // avr-gcc (WinAVR 20100110) 4.3.3
+  #define LN_TIMER_TX_RELOAD_ADJUST    213 // 13.3 us delay for FREDI an ATmega8
+                                          // avr-gcc (WinAVR 20100110) 4.3.3	war 98 für ATmega8
 #else
   #error "unknown mcu"
 #endif
@@ -193,10 +192,10 @@
   #error unsupported MCU value (for now)
 #endif
 
-#define LN_TX_PORT            PORTD
-#define LN_TX_DDR             DDRD
+#define LN_TX_PORT            PORTB
+#define LN_TX_DDR             DDRB
 
-#define LN_TX_BIT             PD4
+#define LN_TX_BIT             PB1
 
 
 
@@ -277,7 +276,7 @@
 
 //Erweiterte Funktionstasten (Nummeriert von oben nach unten)
 #define ERW_FUNKEY1		PD3 //PIND
-//#define ERW_FUNKEY2		PD4 //PINDgibt dauerhaft 1 aus
+#define ERW_FUNKEY2		PD4 //PINDgibt dauerhaft 1 aus
 #define ERW_FUNKEY3		PD5 //PIND
 #define ERW_FUNKEY4		PD6 //PIND
 // encoder interrupt
@@ -407,6 +406,5 @@ enum EEPROM_ADR
 
 #define LN_MAX_BUFFER_SIZE  240
 
-
-
 #endif // _SYSDEF_H_
+

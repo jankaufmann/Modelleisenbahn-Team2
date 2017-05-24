@@ -61,9 +61,9 @@
 //#define TX_START_MEASUREMENT
 
 #ifdef TX_START_MEASUREMENT
-	#define TX_MEASUREMENT_PORT PORTD
-	#define TX_MEASUREMENT_DDR  DDRD
-	#define TX_MEASUREMENT_PIN  PD0
+	#define TX_MEASUREMENT_PORT PORTB		// geändert von Pin D auf Pin B 19.5.17
+	#define TX_MEASUREMENT_DDR  DDRB
+	#define TX_MEASUREMENT_PIN  PB1
 #endif
 
 
@@ -103,12 +103,12 @@
 
 #define LN_TMR_PRESCALER      1
 
-#define LN_RX_PORT            PINB				//
-#define LN_RX_BIT             PB0				//
-												// werden benutzt??
-#define LN_TX_PORT            PORTD				//
-#define LN_TX_DDR             DDRD				//
-#define LN_TX_BIT             PD6				//
+#define LN_RX_PORT            PINB
+#define LN_RX_BIT             PB0
+
+#define LN_TX_PORT            PORTB
+#define LN_TX_DDR             DDRB
+#define LN_TX_BIT             PB1
 
 
 #elif defined BOARD_PROTO_128 //ProtoBoardMega128
