@@ -123,6 +123,7 @@
 /*** INCLUDES ***/
 
 #include "common_defs.h"
+#include <stdint.h>
 
 /*** CONSTANTS ****/
 
@@ -455,9 +456,10 @@ typedef struct rwslotdata_t {
     byte id2;           /* ms 7 bits of ID code                                 */
     byte chksum;        /* exclusive-or checksum for the message                */
 	byte funKey;		/* address of function key								09.05.2017		*/
-	byte funKeyStatus;
+	int8_t funKeyStatus;
+	int8_t funkeyTimeOut;
 	byte dirKey;		/* address of the direction key							09.05.2017		*/
-	byte dirKeyStatus;
+	int8_t dirKeyStatus;
 	byte spdInput;		/* address of the speed input							09.05.2017		*/
 	byte ledAdr;		/* address of the led									09.05.2017		*/
 	byte ledPort;		/* address of the led port								15.05.2017		*/
