@@ -1204,35 +1204,29 @@ int main(void)
   while (1)
   {
 		
-		ProcessKeyInput(&slotArray[0].funKey, &testPort);
+		//ProcessKeyInput(&slotArray[0].funKey, &testPort);
 		//ProcessShiftedKeyInput(&slotArray[0].funKey, &testPort);
-	/*   if (PINA & ( 1<<DIRKEY2 )) {  
-		   new_val = bit_is_set(PINA, DIRKEY2); //Rückgabewert ist es die Wertigkeit des abgefragten Bits, also 1 für Bit0, 2 für Bit1, 4 für Bit2 etc.
+	   if (PINA & ( 1<<DIRKEY2 )) {  
+		   new_val = bit_is_set(PINA, DIRKEY2); //Rückgabewert ist die Wertigkeit des abgefragten Bits, also 1 für Bit0, 2 für Bit1, 4 für Bit2 etc.
 		   if (new_val > 0) {
 			   new_val = 1;
 		   }
-			entprellen_druecken(new_val, value);	
-	  }
-	  	  if (!(PINA & ( 1<<DIRKEY2 ))) {	//wenn richtungstaste4 nicht gedrückt, dann LED 1 ausschalten
-		  	  new_val = bit_is_set(PINA, DIRKEY2); //Rückgabewert ist es die Wertigkeit des abgefragten Bits, also 1 für Bit0, 2 für Bit1, 4 für Bit2 etc.
-				if (value == 1) {
-					entprellen_loslassen(new_val, old_value);
-				}
-
-	  	  } 
+	   }
+		else {
+		    new_val = 0;
+		}
+			entprellen_druecken(new_val, value);	//entprellen läuft immer durch, entprellt das drücken und loslassen der Taste.
 			
-			if ((value == 1) && (old_value == 0) && (pressed == 0)) {
-				pressed = 1;
+			if ((value == 0) && (old_value == 1)) {		//Wenn Taste gerdückt wird und wieder losgelassen, LED anschalten
 				PORTA |= 1<<LED2;
-				value = 0;
-				old_value = 1;
+				old_value = 0;
+				pressed = 1;
 			}
-			if ((value == 1) && (old_value == 0) && (pressed == 1)) {
+			if ((value == 0) && (old_value == 1) && (pressed == 1)) { //Wenn Taste gedrückt wird und wieder losgelassen UND LED an, dann LED ausschalten
 				PORTA &= ~(1<<LED2);
-				value = 0;
-				old_value = 1;		
+				old_value = 0;		
 				pressed = 0;		
-			} */
+			} 
 	  	  
 
 			
@@ -1288,18 +1282,12 @@ void entprellen_druecken (byte new_value, byte val) {
 	else {
 		entprell = 0;
 		value = new_value;
+		if (value == 1) {
+			old_value = 1;
+		}
 	}
 }
 
-void entprellen_loslassen (byte new_value, byte val) {
-	if ((new_value != val) && (entprell < 60)) { // 60x gleiches signal hinterneinander
-		entprell++;
-	}
-	else {
-		entprell = 0;
-		old_value = new_value;
-	}
-}
 
 /******************************************************FunctionHeaderBegin******
  * CREATED     : 2005-01-29
@@ -1699,7 +1687,7 @@ shiftTimeOut wird auf 1 gesetzt wenn die funktionstatse als shift taste(zum benu
 die abfrage ist dafür, dass die fuktionstaste nichts auslöst wenn sie nur als shift taste gedrückt wurde und nach dem drücken der geshifteten taste wieder
 losgelassen wird
 */
-void ProcessKeyInput (byte *pin, byte *port) {
+/*void ProcessKeyInput (byte *pin, byte *port) {
 	processValue(bit_is_set(PINC, FUNKEY1));
 	if (keyStatus == 0 && value == 3) {
 		keyStatus = 1;
@@ -1746,7 +1734,7 @@ void processValue (int8_t new_value) {
 		new_value = 2;
 	}
 	value = value / 2 + new_value;
-}
+} */
 	 
 
 
