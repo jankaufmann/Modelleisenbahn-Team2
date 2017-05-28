@@ -161,6 +161,13 @@ void ProcessShiftedKeyInput (byte *pin, byte *port);
 void processValue(int8_t);
 void entprellen_druecken(byte new_val, byte val);
 void entprellen_loslassen(byte new_val, byte val);
+
+//TMT Funktionen
+void testFalseSignalStreakIsSet (byte pin, byte taste, long middleCompare, long distance, long tries);
+void testFalseSignalStreakIsClear (byte pin, byte taste, long middleCompare, long distance, long tries);
+void testSignalRatio (byte pin, byte taste, long tries);
+void testKeySignal (byte pin, byte taste);
+void _delay_1500ms (void);
 /******************************************************************************/
 // main defines & variables
 /******************************************************************************/
@@ -260,6 +267,12 @@ int8_t keyStatus = 0;
 int8_t shiftStatus = 0;
 int8_t shiftTimeOut = 0;
 
+//TMT Variables
+unsigned long int streak = 0;
+unsigned long int highStreak = 0;
+unsigned long int correctSignal = 0;
+unsigned long int wrongSignal = 0;
+uint16_t ratioCounter = 0;
 
 //First Bit is status of first fun/dir/erwfun - key, second bit of..... 0 = key was not pressed, 1 = key was pressed
 byte bERWFunKey1Status;
@@ -1687,7 +1700,7 @@ shiftTimeOut wird auf 1 gesetzt wenn die funktionstatse als shift taste(zum benu
 die abfrage ist dafür, dass die fuktionstaste nichts auslöst wenn sie nur als shift taste gedrückt wurde und nach dem drücken der geshifteten taste wieder
 losgelassen wird
 */
-/*void ProcessKeyInput (byte *pin, byte *port) {
+void ProcessKeyInput (byte *pin, byte *port) {
 	processValue(bit_is_set(PINC, FUNKEY1));
 	if (keyStatus == 0 && value == 3) {
 		keyStatus = 1;
@@ -1734,8 +1747,115 @@ void processValue (int8_t new_value) {
 		new_value = 2;
 	}
 	value = value / 2 + new_value;
-} */
-	 
+} 
+
+
+
+/*******************************
+Test-Methoden (TMT)
+*******************************/
+
+
+void testFalseSignalStreakIsSet (byte pin, byte taste, long middleCompare, long distance, long tries) {
+	for (long i = 0; i < tries; i++) {
+		processValue(bit_is_set(pin, taste));
+		if (value == 3) {
+			streak++;
+		} else {
+			if (streak > highStreak) {
+				highStreak = streak;
+			}
+			streak = 0;
+		}
+	}
+	if (highStreak > middleCompare - (2 * distance)) {
+		disableLED1();
+	}
+	if (highStreak > middleCompare - distance) {
+		disableLED2();
+	}
+	if (highStreak > middleCompare + distance) {
+		disableLED3();
+	}
+	if (highStreak > middleCompare + (2 * distance)) {
+		enableLED4();
+	} 
+}
+
+void testFalseSignalStreakIsClear (byte pin, byte taste, long middleCompare, long distance, long tries) {
+	for (long i = 0; i < tries; i++) {
+		processValue(bit_is_clear(pin, taste));
+		if (value == 3) {
+			streak++;
+		} else {
+			if (streak > highStreak) {
+				highStreak = streak;
+			}
+			streak = 0;
+		}
+	}
+	if (highStreak > middleCompare - (2 * distance)) {
+		disableLED1();
+	}
+	if (highStreak > middleCompare - distance) {
+		disableLED2();
+	}
+	if (highStreak > middleCompare + distance) {
+		disableLED3();
+	}
+	if (highStreak > middleCompare + (2 * distance)) {
+		enableLED4();
+	}
+}
+
+void testSignalRatio (byte pin, byte taste, long tries) {
+	for (long i = 0; i < tries; i++) {
+		if (bit_is_set(pin, taste)) {
+			correctSignal++;
+			} else {
+			wrongSignal++;
+		}
+	}
+	if (correctSignal > wrongSignal) {
+		while (wrongSignal < correctSignal) {
+			for (long i = 0; i < tries || wrongSignal >= correctSignal; i++) {
+				if (bit_is_clear(pin, taste)) {
+					wrongSignal++;
+				}
+			}
+			ratioCounter++;
+		}
+	} else {
+		while (correctSignal < wrongSignal) {
+			for (long i = 0; i < tries || wrongSignal >= correctSignal; i++) {
+				if (bit_is_set(pin, taste)) {
+					correctSignal++;
+				}
+			}
+			ratioCounter++;
+		}
+	}
+	for (int i = 0; i <  ratioCounter; i++) {
+		_delay_1500ms();
+		disableLED1();
+		_delay_1500ms();
+		enableLED1();
+	}
+}
+
+void testKeySignal (byte pin, byte taste) {
+	if (bit_is_set(pin, taste)) {
+		disableLED1();
+	} else {
+		enableLED1();
+	}
+}
+
+void _delay_1500ms (void) {
+	for (int t = 0; t < 100; t++) {
+		_delay_ms(15);
+	}
+}	 
 
 
 
