@@ -164,7 +164,7 @@ void entprellen_loslassen(byte new_val, byte val);
 
 //TMT Funktionen
 void testFalseSignalStreakIsSet (byte pin, byte taste, long middleCompare, long distance, long tries);
-void testFalseSignalStreakIsClear (byte pin, byte taste, long middleCompare, long distance, long tries);
+void testFalseSignalStreakIsClear (byte pin, byte taste, long middleCompare, long distance);
 void testSignalRatio (byte pin, byte taste, long tries);
 void testKeySignal (byte pin, byte taste);
 void _delay_1500ms (void);
@@ -260,7 +260,7 @@ lnMsg TxPacket;
 #define NUMBER_OF_SLOTS 4 //number of slots to be managed by the device
 struct rwslotdata_t slotArray[NUMBER_OF_SLOTS];
 int8_t		slotnumber = 0;
-byte value = 0;
+uint8_t value = 0;
 byte old_value = 0; //war 1 bei Jan
 byte entprell = 0;
 int8_t keyStatus = 0;
@@ -269,7 +269,7 @@ int8_t shiftTimeOut = 0;
 
 //TMT Variables
 unsigned long int streak = 0;
-unsigned long int highStreak = 0;
+unsigned long int highStreak = 1;
 unsigned long int correctSignal = 0;
 unsigned long int wrongSignal = 0;
 uint16_t ratioCounter = 0;
@@ -1214,32 +1214,38 @@ int main(void)
 	byte new_val = 0;
 
 	byte pressed = 0;
+	disableLED1();
+	_delay_1500ms();
+	enableLED1();
+	_delay_1500ms();
+	PORTC |= 0x80; //Pullup von Taste1 anschalten
   while (1)
   {
-		
+		testFalseSignalStreakIsClear(PINC, FUNKEY1, 35000L, 75L);
+		//testKeySignal(PINC, DIRKEY4);
 		//ProcessKeyInput(&slotArray[0].funKey, &testPort);
 		//ProcessShiftedKeyInput(&slotArray[0].funKey, &testPort);
-	   if (PINA & ( 1<<DIRKEY2 )) {  
-		   new_val = bit_is_set(PINA, DIRKEY2); //Rückgabewert ist die Wertigkeit des abgefragten Bits, also 1 für Bit0, 2 für Bit1, 4 für Bit2 etc.
-		   if (new_val > 0) {
-			   new_val = 1;
-		   }
-	   }
-		else {
-		    new_val = 0;
-		}
-			entprellen_druecken(new_val, value);	//entprellen läuft immer durch, entprellt das drücken und loslassen der Taste.
-			
-			if ((value == 0) && (old_value == 1)) {		//Wenn Taste gerdückt wird und wieder losgelassen, LED anschalten
-				PORTA |= 1<<LED2;
-				old_value = 0;
-				pressed = 1;
-			}
-			if ((value == 0) && (old_value == 1) && (pressed == 1)) { //Wenn Taste gedrückt wird und wieder losgelassen UND LED an, dann LED ausschalten
-				PORTA &= ~(1<<LED2);
-				old_value = 0;		
-				pressed = 0;		
-			} 
+	   //if (PINA & ( 1<<DIRKEY2 )) {  
+		   //new_val = bit_is_set(PINA, DIRKEY2); //Rückgabewert ist die Wertigkeit des abgefragten Bits, also 1 für Bit0, 2 für Bit1, 4 für Bit2 etc.
+		   //if (new_val > 0) {
+			   //new_val = 1;
+		   //}
+	   //}
+		//else {
+		    //new_val = 0;
+		//}
+			//entprellen_druecken(new_val, value);	//entprellen läuft immer durch, entprellt das drücken und loslassen der Taste.
+			//
+			//if ((value == 0) && (old_value == 1)) {		//Wenn Taste gerdückt wird und wieder losgelassen, LED anschalten
+				//PORTA |= 1<<LED2;
+				//old_value = 0;
+				//pressed = 1;
+			//}
+			//if ((value == 0) && (old_value == 1) && (pressed == 1)) { //Wenn Taste gedrückt wird und wieder losgelassen UND LED an, dann LED ausschalten
+				//PORTA &= ~(1<<LED2);
+				//old_value = 0;		
+				//pressed = 0;		
+			//} 
 	  	  
 
 			
@@ -1743,10 +1749,11 @@ void ProcessShiftedKeyInput (byte *pin, byte *port) {
 }
 
 void processValue (int8_t new_value) {
-	if (new_value != 1) {
-		new_value = 2;
+	if (new_value) {
+		value = (value / 2) + 2;
+	} else {
+		value = value / 2;
 	}
-	value = value / 2 + new_value;
 } 
 
 
@@ -1756,9 +1763,9 @@ Test-Methoden (TMT)
 *******************************/
 
 
-void testFalseSignalStreakIsSet (byte pin, byte taste, long middleCompare, long distance, long tries) {
+void testFalseSignalStreakIsSet (byte pin, byte taste, long lowerRange, long distance, long tries) {
 	for (long i = 0; i < tries; i++) {
-		processValue(bit_is_set(pin, taste));
+		processValue(bit_is_set(PINC, FUNKEY1));
 		if (value == 3) {
 			streak++;
 		} else {
@@ -1768,43 +1775,52 @@ void testFalseSignalStreakIsSet (byte pin, byte taste, long middleCompare, long 
 			streak = 0;
 		}
 	}
-	if (highStreak > middleCompare - (2 * distance)) {
+	if (highStreak > (lowerRange)) {
 		disableLED1();
 	}
-	if (highStreak > middleCompare - distance) {
+	if (highStreak > (lowerRange + distance)) {
 		disableLED2();
 	}
-	if (highStreak > middleCompare + distance) {
+	if (highStreak > (lowerRange + (2 * distance))) {
 		disableLED3();
 	}
-	if (highStreak > middleCompare + (2 * distance)) {
+	if (highStreak > (lowerRange + (3 * distance))) {
 		enableLED4();
 	} 
 }
 
-void testFalseSignalStreakIsClear (byte pin, byte taste, long middleCompare, long distance, long tries) {
-	for (long i = 0; i < tries; i++) {
-		processValue(bit_is_clear(pin, taste));
+void testFalseSignalStreakIsClear (byte pin, byte taste, long lowerRange, long distance) {
+	for (long i = 0; i < 500000; i++) {
+		processValue(bit_is_set(PIND, ERW_FUNKEY4));
 		if (value == 3) {
 			streak++;
-		} else {
+			
+			} else {
 			if (streak > highStreak) {
 				highStreak = streak;
+				
 			}
 			streak = 0;
+			
 		}
 	}
-	if (highStreak > middleCompare - (2 * distance)) {
+	
+	
+	if (highStreak > 2 && highStreak < 35000) {
 		disableLED1();
 	}
-	if (highStreak > middleCompare - distance) {
+	if (highStreak > 3) {
 		disableLED2();
 	}
-	if (highStreak > middleCompare + distance) {
+	if (highStreak > 4) {
 		disableLED3();
 	}
-	if (highStreak > middleCompare + (2 * distance)) {
+	if (highStreak > 6) {
 		enableLED4();
+	}
+	
+	if (highStreak > 1000) {
+		enableLED1();
 	}
 }
 
