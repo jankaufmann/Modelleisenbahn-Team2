@@ -88,10 +88,8 @@ Discarded input sections
                 0x00000000       0x26 src/apps/Fredi/fredi.o
  .text.ProcessShiftedKeyInput
                 0x00000000       0x32 src/apps/Fredi/fredi.o
- .text.processValue
-                0x00000000       0x1e src/apps/Fredi/fredi.o
  .text.ProcessKeyInput
-                0x00000000       0x64 src/apps/Fredi/fredi.o
+                0x00000000       0x76 src/apps/Fredi/fredi.o
  .text.testFalseSignalStreakIsSet
                 0x00000000      0x1ac src/apps/Fredi/fredi.o
  .text.testFalseSignalStreakIsClear
@@ -128,9 +126,9 @@ Discarded input sections
                 0x00000000       0x36 src/apps/Fredi/fredi.o
  .text.vProcessRxLoconetMessage
                 0x00000000      0x244 src/apps/Fredi/fredi.o
- .data.bOldValue.2531
+ .data.bOldValue.2552
                 0x00000000        0x2 src/apps/Fredi/fredi.o
- .bss.bLastCurrentkey.2436
+ .bss.bLastCurrentkey.2442
                 0x00000000        0x1 src/apps/Fredi/fredi.o
  .bss.wSelfTest
                 0x00000000        0x2 src/apps/Fredi/fredi.o
@@ -143,16 +141,11 @@ Discarded input sections
  .data.highStreak
                 0x00000000        0x4 src/apps/Fredi/fredi.o
  .bss.streak    0x00000000        0x4 src/apps/Fredi/fredi.o
- .bss.shiftTimeOut
-                0x00000000        0x1 src/apps/Fredi/fredi.o
  .bss.shiftStatus
-                0x00000000        0x1 src/apps/Fredi/fredi.o
- .bss.keyStatus
                 0x00000000        0x1 src/apps/Fredi/fredi.o
  .bss.entprell  0x00000000        0x1 src/apps/Fredi/fredi.o
  .bss.old_value
                 0x00000000        0x1 src/apps/Fredi/fredi.o
- .bss.value     0x00000000        0x1 src/apps/Fredi/fredi.o
  .rodata.abSpd  0x00000000       0x25 src/apps/Fredi/fredi.o
  .bss.bNewState
                 0x00000000        0x1 src/apps/Fredi/fredi.o
@@ -655,7 +648,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xf22
+.text           0x00000000      0xfbc
  *(.vectors)
  .vectors       0x00000000       0x54 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
                 0x00000000                __vector_default
@@ -773,82 +766,91 @@ END GROUP
  .text.initSlots
                 0x00000506       0xb6 src/apps/Fredi/fredi.o
                 0x00000506                initSlots
+ .text.processValue
+                0x000005bc       0x1e src/apps/Fredi/fredi.o
+                0x000005bc                processValue
+ .text.ProcessKeyInputTest8Streak
+                0x000005da       0x54 src/apps/Fredi/fredi.o
+                0x000005da                ProcessKeyInputTest8Streak
+ .text.setPullUps
+                0x0000062e       0x1a src/apps/Fredi/fredi.o
+                0x0000062e                setPullUps
  .text._delay_1500ms
-                0x000005bc       0x16 src/apps/Fredi/fredi.o
-                0x000005bc                _delay_1500ms
+                0x00000648       0x16 src/apps/Fredi/fredi.o
+                0x00000648                _delay_1500ms
  .text.sendLocoNetAdr
-                0x000005d2       0x22 src/apps/Fredi/fredi.o
-                0x000005d2                sendLocoNetAdr
+                0x0000065e       0x22 src/apps/Fredi/fredi.o
+                0x0000065e                sendLocoNetAdr
  .text.sendLocoNetFredCd
-                0x000005f4        0xc src/apps/Fredi/fredi.o
-                0x000005f4                sendLocoNetFredCd
- .text.main     0x00000600      0x1b0 src/apps/Fredi/fredi.o
-                0x00000600                main
+                0x00000680        0xc src/apps/Fredi/fredi.o
+                0x00000680                sendLocoNetFredCd
+ .text.main     0x0000068c      0x1be src/apps/Fredi/fredi.o
+                0x0000068c                main
  .text.potAdcPowerOff
-                0x000007b0        0x4 src/apps/Fredi/potAdc.o
-                0x000007b0                potAdcPowerOff
+                0x0000084a        0x4 src/apps/Fredi/potAdc.o
+                0x0000084a                potAdcPowerOff
  .text.potAdcInit
-                0x000007b4       0x16 src/apps/Fredi/potAdc.o
-                0x000007b4                potAdcInit
+                0x0000084e       0x16 src/apps/Fredi/potAdc.o
+                0x0000084e                potAdcInit
  .text.potAdcTimerAction
-                0x000007ca       0x92 src/apps/Fredi/potAdc.o
-                0x000007ca                potAdcTimerAction
+                0x00000864       0x92 src/apps/Fredi/potAdc.o
+                0x00000864                potAdcTimerAction
  .text.__vector_5
-                0x0000085c       0x54 src/avr-base/ln_sw_uart.o
-                0x0000085c                __vector_5
+                0x000008f6       0x54 src/avr-base/ln_sw_uart.o
+                0x000008f6                __vector_5
  .text.__vector_6
-                0x000008b0      0x274 src/avr-base/ln_sw_uart.o
-                0x000008b0                __vector_6
+                0x0000094a      0x274 src/avr-base/ln_sw_uart.o
+                0x0000094a                __vector_6
  .text.initLocoNetHardware
-                0x00000b24       0x2a src/avr-base/ln_sw_uart.o
-                0x00000b24                initLocoNetHardware
+                0x00000bbe       0x2a src/avr-base/ln_sw_uart.o
+                0x00000bbe                initLocoNetHardware
  .text.sendLocoNetPacketTry
-                0x00000b4e      0x13c src/avr-base/ln_sw_uart.o
-                0x00000b4e                sendLocoNetPacketTry
+                0x00000be8      0x13c src/avr-base/ln_sw_uart.o
+                0x00000be8                sendLocoNetPacketTry
  .text.__vector_9
-                0x00000c8a       0x66 src/avr-base/systimer.o
-                0x00000c8a                __vector_9
+                0x00000d24       0x66 src/avr-base/systimer.o
+                0x00000d24                __vector_9
  .text.initTimer
-                0x00000cf0       0x1a src/avr-base/systimer.o
-                0x00000cf0                initTimer
+                0x00000d8a       0x1a src/avr-base/systimer.o
+                0x00000d8a                initTimer
  .text.addTimerAction
-                0x00000d0a       0x46 src/avr-base/systimer.o
-                0x00000d0a                addTimerAction
+                0x00000da4       0x46 src/avr-base/systimer.o
+                0x00000da4                addTimerAction
  .text.resetTimerAction
-                0x00000d50        0x6 src/avr-base/systimer.o
-                0x00000d50                resetTimerAction
+                0x00000dea        0x6 src/avr-base/systimer.o
+                0x00000dea                resetTimerAction
  .text.delayTimer
-                0x00000d56       0x16 src/avr-base/systimer.o
-                0x00000d56                delayTimer
+                0x00000df0       0x16 src/avr-base/systimer.o
+                0x00000df0                delayTimer
  .text.processTimerActions
-                0x00000d6c       0xb0 src/avr-base/systimer.o
-                0x00000d6c                processTimerActions
+                0x00000e06       0xb0 src/avr-base/systimer.o
+                0x00000e06                processTimerActions
  .text.getLnMsgSize
-                0x00000e1c       0x1a src/loconet/ln_buf.o
-                0x00000e1c                getLnMsgSize
+                0x00000eb6       0x1a src/loconet/ln_buf.o
+                0x00000eb6                getLnMsgSize
  .text.initLocoNet
-                0x00000e36        0xc src/loconet/ln_interface.o
-                0x00000e36                initLocoNet
+                0x00000ed0        0xc src/loconet/ln_interface.o
+                0x00000ed0                initLocoNet
  .text.sendLocoNetPacket
-                0x00000e42       0x74 src/loconet/ln_interface.o
-                0x00000e42                sendLocoNetPacket
+                0x00000edc       0x74 src/loconet/ln_interface.o
+                0x00000edc                sendLocoNetPacket
  .text.sendLocoNet4BytePacket
-                0x00000eb6       0x32 src/loconet/ln_interface.o
-                0x00000eb6                sendLocoNet4BytePacket
- .text.libgcc   0x00000ee8        0xc e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
-                0x00000ee8                __tablejump2__
+                0x00000f50       0x32 src/loconet/ln_interface.o
+                0x00000f50                sendLocoNet4BytePacket
+ .text.libgcc   0x00000f82        0xc e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
+                0x00000f82                __tablejump2__
  .text.avr-libc
-                0x00000ef4       0x10 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
-                0x00000ef4                eeprom_read_byte
+                0x00000f8e       0x10 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
+                0x00000f8e                eeprom_read_byte
  .text.avr-libc
-                0x00000f04       0x1a E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
-                0x00000f04                eeprom_write_byte
-                0x00000f06                eeprom_write_r18
-                0x00000f1e                . = ALIGN (0x2)
+                0x00000f9e       0x1a E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
+                0x00000f9e                eeprom_write_byte
+                0x00000fa0                eeprom_write_r18
+                0x00000fb8                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000f1e        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00000f1e                _exit
-                0x00000f1e                exit
+ .fini9         0x00000fb8        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00000fb8                _exit
+                0x00000fb8                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -867,19 +869,19 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000f1e        0x4 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000fb8        0x4 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000f22                _etext = .
+                0x00000fbc                _etext = .
 
-.data           0x00800060        0x6 load address 0x00000f22
+.data           0x00800060        0x6 load address 0x00000fbc
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
- .data.bLastDirSwitch.2345
+ .data.bLastDirSwitch.2350
                 0x00800060        0x1 src/apps/Fredi/fredi.o
- .data.bLastEncSwitch.2341
+ .data.bLastEncSwitch.2346
                 0x00800061        0x1 src/apps/Fredi/fredi.o
- .data.bLastKey.2343
+ .data.bLastKey.2348
                 0x00800062        0x1 src/apps/Fredi/fredi.o
  .data.fSetSpeed
                 0x00800063        0x1 src/apps/Fredi/fredi.o
@@ -896,7 +898,7 @@ END GROUP
                 0x00800066                _edata = .
                 0x00800066                PROVIDE (__data_end, .)
 
-.bss            0x00800066      0x148
+.bss            0x00800066      0x14b
                 0x00800066                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
@@ -905,79 +907,87 @@ END GROUP
  .bss.bCurrentKey
                 0x00800067        0x1 src/apps/Fredi/fredi.o
  .bss.sEncDir   0x00800068        0x1 src/apps/Fredi/fredi.o
- .bss.slotnumber
+ .bss.shiftTimeOut
                 0x00800069        0x1 src/apps/Fredi/fredi.o
-                0x00800069                slotnumber
- .bss.bSpdCnt   0x0080006a        0x1 src/apps/Fredi/fredi.o
- .bss.bEvent    0x0080006b        0x1 src/apps/Fredi/fredi.o
-                0x0080006b                bEvent
- .bss.bFrediVersion
+                0x00800069                shiftTimeOut
+ .bss.keyStatus
+                0x0080006a        0x1 src/apps/Fredi/fredi.o
+                0x0080006a                keyStatus
+ .bss.value     0x0080006b        0x1 src/apps/Fredi/fredi.o
+                0x0080006b                value
+ .bss.slotnumber
                 0x0080006c        0x1 src/apps/Fredi/fredi.o
-                0x0080006c                bFrediVersion
+                0x0080006c                slotnumber
+ .bss.bSpdCnt   0x0080006d        0x1 src/apps/Fredi/fredi.o
+ .bss.bEvent    0x0080006e        0x1 src/apps/Fredi/fredi.o
+                0x0080006e                bEvent
+ .bss.bFrediVersion
+                0x0080006f        0x1 src/apps/Fredi/fredi.o
+                0x0080006f                bFrediVersion
  .bss.timeFilterState.1795
-                0x0080006d        0x1 src/apps/Fredi/potAdc.o
+                0x00800070        0x1 src/apps/Fredi/potAdc.o
  .bss.count.1796
-                0x0080006e        0x1 src/apps/Fredi/potAdc.o
+                0x00800071        0x1 src/apps/Fredi/potAdc.o
  .bss.deltaFilterState.1786
-                0x0080006f        0x2 src/apps/Fredi/potAdc.o
+                0x00800072        0x2 src/apps/Fredi/potAdc.o
  .bss.potAdcRawValue
-                0x00800071        0x2 src/apps/Fredi/potAdc.o
-                0x00800071                potAdcRawValue
+                0x00800074        0x2 src/apps/Fredi/potAdc.o
+                0x00800074                potAdcRawValue
  .bss.potAdcSpeedValue
-                0x00800073        0x1 src/apps/Fredi/potAdc.o
-                0x00800073                potAdcSpeedValue
+                0x00800076        0x1 src/apps/Fredi/potAdc.o
+                0x00800076                potAdcSpeedValue
  .bss.DelayTimerTicks
-                0x00800074        0x2 src/avr-base/systimer.o
-                0x00800074                DelayTimerTicks
+                0x00800077        0x2 src/avr-base/systimer.o
+                0x00800077                DelayTimerTicks
  .bss.FastTimerTicks
-                0x00800076        0x1 src/avr-base/systimer.o
-                0x00800076                FastTimerTicks
+                0x00800079        0x1 src/avr-base/systimer.o
+                0x00800079                FastTimerTicks
  .bss.SlowTimerTicks
-                0x00800077        0x1 src/avr-base/systimer.o
-                0x00800077                SlowTimerTicks
+                0x0080007a        0x1 src/avr-base/systimer.o
+                0x0080007a                SlowTimerTicks
  .bss.SlowTimerAccumulator
-                0x00800078        0x1 src/avr-base/systimer.o
-                0x00800078                SlowTimerAccumulator
+                0x0080007b        0x1 src/avr-base/systimer.o
+                0x0080007b                SlowTimerAccumulator
  .bss.FastTimerActionList
-                0x00800079        0x2 src/avr-base/systimer.o
+                0x0080007c        0x2 src/avr-base/systimer.o
  .bss.SlowTimerActionList
-                0x0080007b        0x2 src/avr-base/systimer.o
+                0x0080007e        0x2 src/avr-base/systimer.o
  .bss.pstLnRxBuffer
-                0x0080007d        0x2 src/loconet/ln_interface.o
+                0x00800080        0x2 src/loconet/ln_interface.o
  *(COMMON)
- COMMON         0x0080007f      0x123 src/apps/Fredi/fredi.o
-                0x0080007f                MessageTimer
-                0x00800086                bERWFunKey2Status
-                0x00800087                IncrementTimer
-                0x0080008e                LEDTimer
-                0x00800095                bERWFunKey4Status
-                0x00800096                KeyTimer
-                0x0080009d                RxPacket
-                0x0080009f                RxBuffer
-                0x0080012b                ReleaseStopTimer
-                0x00800132                TxPacket
-                0x00800148                slotArray
-                0x008001a0                bERWFunKey3Status
-                0x008001a1                bERWFunKey1Status
- COMMON         0x008001a2        0xc src/avr-base/ln_sw_uart.o
-                0x008001a2                lnTxSuccess
-                0x008001a3                lnTxIndex
-                0x008001a4                lnTxLength
-                0x008001a5                lnCurrentByte
-                0x008001a6                lnCompareTarget
-                0x008001a8                lnRxBuffer
-                0x008001aa                lnState
-                0x008001ab                lnBitCount
-                0x008001ac                lnTxData
-                0x008001ae                PROVIDE (__bss_end, .)
-                0x00000f22                __data_load_start = LOADADDR (.data)
-                0x00000f28                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800082      0x123 src/apps/Fredi/fredi.o
+                0x00800082                MessageTimer
+                0x00800089                bERWFunKey2Status
+                0x0080008a                IncrementTimer
+                0x00800091                LEDTimer
+                0x00800098                bERWFunKey4Status
+                0x00800099                KeyTimer
+                0x008000a0                RxPacket
+                0x008000a2                RxBuffer
+                0x0080012e                ReleaseStopTimer
+                0x00800135                TxPacket
+                0x0080014b                slotArray
+                0x008001a3                bERWFunKey3Status
+                0x008001a4                bERWFunKey1Status
+ COMMON         0x008001a5        0xc src/avr-base/ln_sw_uart.o
+                0x008001a5                lnTxSuccess
+                0x008001a6                lnTxIndex
+                0x008001a7                lnTxLength
+                0x008001a8                lnCurrentByte
+                0x008001a9                lnCompareTarget
+                0x008001ab                lnRxBuffer
+                0x008001ad                lnState
+                0x008001ae                lnBitCount
+                0x008001af                lnTxData
+                0x008001b1                PROVIDE (__bss_end, .)
+                0x00000fbc                __data_load_start = LOADADDR (.data)
+                0x00000fc2                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008001ae        0x0
+.noinit         0x008001b1        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008001ae                _end = .
+                0x008001b1                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0xc
@@ -1049,39 +1059,39 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x2e8
+.debug_aranges  0x00000000      0x2f8
  *(.debug_aranges)
  .debug_aranges
-                0x00000000      0x180 src/apps/Fredi/fredi.o
+                0x00000000      0x190 src/apps/Fredi/fredi.o
  .debug_aranges
-                0x00000180       0x30 src/apps/Fredi/potAdc.o
+                0x00000190       0x30 src/apps/Fredi/potAdc.o
  .debug_aranges
-                0x000001b0       0x38 src/avr-base/ln_sw_uart.o
+                0x000001c0       0x38 src/avr-base/ln_sw_uart.o
  .debug_aranges
-                0x000001e8       0x48 src/avr-base/systimer.o
+                0x000001f8       0x48 src/avr-base/systimer.o
  .debug_aranges
-                0x00000230       0x38 src/loconet/ln_buf.o
+                0x00000240       0x38 src/loconet/ln_buf.o
  .debug_aranges
-                0x00000268       0x40 src/loconet/ln_interface.o
+                0x00000278       0x40 src/loconet/ln_interface.o
  .debug_aranges
-                0x000002a8       0x20 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
+                0x000002b8       0x20 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
  .debug_aranges
-                0x000002c8       0x20 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
+                0x000002d8       0x20 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x6ea2
+.debug_info     0x00000000     0x6f84
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x52e E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
- .debug_info    0x0000052e     0x2e19 src/apps/Fredi/fredi.o
- .debug_info    0x00003347      0x226 src/apps/Fredi/potAdc.o
- .debug_info    0x0000356d     0x1262 src/avr-base/ln_sw_uart.o
- .debug_info    0x000047cf      0x2d8 src/avr-base/systimer.o
- .debug_info    0x00004aa7     0x10e5 src/loconet/ln_buf.o
- .debug_info    0x00005b8c     0x11c2 src/loconet/ln_interface.o
- .debug_info    0x00006d4e       0xaa E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
- .debug_info    0x00006df8       0xaa E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
+ .debug_info    0x0000052e     0x2efb src/apps/Fredi/fredi.o
+ .debug_info    0x00003429      0x226 src/apps/Fredi/potAdc.o
+ .debug_info    0x0000364f     0x1262 src/avr-base/ln_sw_uart.o
+ .debug_info    0x000048b1      0x2d8 src/avr-base/systimer.o
+ .debug_info    0x00004b89     0x10e5 src/loconet/ln_buf.o
+ .debug_info    0x00005c6e     0x11c2 src/loconet/ln_interface.o
+ .debug_info    0x00006e30       0xaa E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
+ .debug_info    0x00006eda       0xaa E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
 
 .debug_abbrev   0x00000000     0x10db
  *(.debug_abbrev)
@@ -1095,51 +1105,51 @@ END GROUP
  .debug_abbrev  0x000010b3       0x14 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
  .debug_abbrev  0x000010c7       0x14 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
 
-.debug_line     0x00000000     0x2e59
+.debug_line     0x00000000     0x2f57
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x115 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
- .debug_line    0x00000115     0x1750 src/apps/Fredi/fredi.o
- .debug_line    0x00001865      0x2fc src/apps/Fredi/potAdc.o
- .debug_line    0x00001b61      0x5e9 src/avr-base/ln_sw_uart.o
- .debug_line    0x0000214a      0x426 src/avr-base/systimer.o
- .debug_line    0x00002570      0x42a src/loconet/ln_buf.o
- .debug_line    0x0000299a      0x3ad src/loconet/ln_interface.o
- .debug_line    0x00002d47       0x7a E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
- .debug_line    0x00002dc1       0x98 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
+ .debug_line    0x00000115     0x184e src/apps/Fredi/fredi.o
+ .debug_line    0x00001963      0x2fc src/apps/Fredi/potAdc.o
+ .debug_line    0x00001c5f      0x5e9 src/avr-base/ln_sw_uart.o
+ .debug_line    0x00002248      0x426 src/avr-base/systimer.o
+ .debug_line    0x0000266e      0x42a src/loconet/ln_buf.o
+ .debug_line    0x00002a98      0x3ad src/loconet/ln_interface.o
+ .debug_line    0x00002e45       0x7a E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
+ .debug_line    0x00002ebf       0x98 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
 
-.debug_frame    0x00000000      0x778
+.debug_frame    0x00000000      0x7b0
  *(.debug_frame)
- .debug_frame   0x00000000      0x460 src/apps/Fredi/fredi.o
- .debug_frame   0x00000460       0x44 src/apps/Fredi/potAdc.o
- .debug_frame   0x000004a4       0xd4 src/avr-base/ln_sw_uart.o
- .debug_frame   0x00000578       0xa4 src/avr-base/systimer.o
- .debug_frame   0x0000061c       0xb4 src/loconet/ln_buf.o
- .debug_frame   0x000006d0       0xa8 src/loconet/ln_interface.o
+ .debug_frame   0x00000000      0x498 src/apps/Fredi/fredi.o
+ .debug_frame   0x00000498       0x44 src/apps/Fredi/potAdc.o
+ .debug_frame   0x000004dc       0xd4 src/avr-base/ln_sw_uart.o
+ .debug_frame   0x000005b0       0xa4 src/avr-base/systimer.o
+ .debug_frame   0x00000654       0xb4 src/loconet/ln_buf.o
+ .debug_frame   0x00000708       0xa8 src/loconet/ln_interface.o
 
-.debug_str      0x00000000     0x9ae4
+.debug_str      0x00000000     0x9b13
  *(.debug_str)
  .debug_str     0x00000000      0x1af E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
- .debug_str     0x000001af     0x8ff4 src/apps/Fredi/fredi.o
-                               0x91ed (size before relaxing)
- .debug_str     0x000091a3      0x2d2 src/apps/Fredi/potAdc.o
+ .debug_str     0x000001af     0x9023 src/apps/Fredi/fredi.o
+                               0x921c (size before relaxing)
+ .debug_str     0x000091d2      0x2d2 src/apps/Fredi/potAdc.o
                                0x6bf6 (size before relaxing)
- .debug_str     0x00009475      0x3f5 src/avr-base/ln_sw_uart.o
+ .debug_str     0x000094a4      0x3f5 src/avr-base/ln_sw_uart.o
                                0x847f (size before relaxing)
- .debug_str     0x0000986a      0x145 src/avr-base/systimer.o
+ .debug_str     0x00009899      0x145 src/avr-base/systimer.o
                                0x6cbb (size before relaxing)
- .debug_str     0x000099af       0xad src/loconet/ln_buf.o
+ .debug_str     0x000099de       0xad src/loconet/ln_buf.o
                                0x7628 (size before relaxing)
- .debug_str     0x00009a5c       0x88 src/loconet/ln_interface.o
+ .debug_str     0x00009a8b       0x88 src/loconet/ln_interface.o
                                0x82fe (size before relaxing)
 
-.debug_loc      0x00000000     0x1faa
+.debug_loc      0x00000000     0x20ea
  *(.debug_loc)
- .debug_loc     0x00000000     0x1469 src/apps/Fredi/fredi.o
- .debug_loc     0x00001469       0x49 src/apps/Fredi/potAdc.o
- .debug_loc     0x000014b2      0x354 src/avr-base/ln_sw_uart.o
- .debug_loc     0x00001806      0x1df src/avr-base/systimer.o
- .debug_loc     0x000019e5      0x2ad src/loconet/ln_buf.o
- .debug_loc     0x00001c92      0x318 src/loconet/ln_interface.o
+ .debug_loc     0x00000000     0x15a9 src/apps/Fredi/fredi.o
+ .debug_loc     0x000015a9       0x49 src/apps/Fredi/potAdc.o
+ .debug_loc     0x000015f2      0x354 src/avr-base/ln_sw_uart.o
+ .debug_loc     0x00001946      0x1df src/avr-base/systimer.o
+ .debug_loc     0x00001b25      0x2ad src/loconet/ln_buf.o
+ .debug_loc     0x00001dd2      0x318 src/loconet/ln_interface.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -1159,14 +1169,14 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x298
+.debug_ranges   0x00000000      0x2a8
  *(.debug_ranges)
- .debug_ranges  0x00000000      0x1a8 src/apps/Fredi/fredi.o
- .debug_ranges  0x000001a8       0x20 src/apps/Fredi/potAdc.o
- .debug_ranges  0x000001c8       0x40 src/avr-base/ln_sw_uart.o
- .debug_ranges  0x00000208       0x38 src/avr-base/systimer.o
- .debug_ranges  0x00000240       0x28 src/loconet/ln_buf.o
- .debug_ranges  0x00000268       0x30 src/loconet/ln_interface.o
+ .debug_ranges  0x00000000      0x1b8 src/apps/Fredi/fredi.o
+ .debug_ranges  0x000001b8       0x20 src/apps/Fredi/potAdc.o
+ .debug_ranges  0x000001d8       0x40 src/avr-base/ln_sw_uart.o
+ .debug_ranges  0x00000218       0x38 src/avr-base/systimer.o
+ .debug_ranges  0x00000250       0x28 src/loconet/ln_buf.o
+ .debug_ranges  0x00000278       0x30 src/loconet/ln_interface.o
 
 .debug_macro    0x00000000     0x3542
  *(.debug_macro)

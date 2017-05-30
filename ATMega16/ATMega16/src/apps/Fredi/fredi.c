@@ -157,8 +157,10 @@ void disableLED2(void);			//Ausschalten LED 2
 void disableLED3(void);			//Ausschalten LED 3
 void disableLED4(void);			//Ausschalten LED 4
 void ProcessKeyInput (byte *pin, byte *port);
+void ProcessKeyInputTest8Streak (byte *pin, byte *port);
 void ProcessShiftedKeyInput (byte *pin, byte *port);
 void processValue(int8_t);
+void setPullUps (void);
 void entprellen_druecken(byte new_val, byte val);
 void entprellen_loslassen(byte new_val, byte val);
 
@@ -263,8 +265,10 @@ int8_t		slotnumber = 0;
 uint8_t value = 0;
 byte old_value = 0; //war 1 bei Jan
 byte entprell = 0;
-int8_t keyStatus = 0;
+long keyStatus = 0;
+int8_t shiftedKeyStatus = 0;
 int8_t shiftStatus = 0;
+unsigned long shiftPressed = 0;
 int8_t shiftTimeOut = 0;
 
 //TMT Variables
@@ -1009,6 +1013,7 @@ int main(void)
 
   byte bCount = 0;
   bFrediVersion = FREDI_VERSION_ANALOG;
+  setPullUps();
   /***************************************/
   //  init analog input for getting 
   //  FrediVersion
@@ -1219,9 +1224,71 @@ int main(void)
 	enableLED1();
 	_delay_1500ms();
 	PORTC |= 0x80; //Pullup von Taste1 anschalten
+	int8_t pull_ups = 1;
   while (1)
   {
-		testFalseSignalStreakIsClear(PINC, FUNKEY1, 35000L, 75L);
+		//Pullups testen Funkeys
+		//if (pull_ups == 1) {
+			//if (bit_is_set(PORTC, 7)) {
+				//disableLED1();
+			//}
+			//if (bit_is_set(PORTB, 0)) {
+				//disableLED2();
+			//}
+			//if (bit_is_set(PORTB, 4)) {
+				//disableLED3();
+			//}
+			//if (bit_is_set(PORTA, 2)) {
+				//enableLED4();
+			//}
+		//}
+		//
+		 ///* Pullups DIRKEY */
+		//if (pull_ups == 2) {
+			//if (bit_is_set(PORTC, 0)) {
+				//disableLED1();
+			//}
+			//if (bit_is_set(PORTA, 3)) {
+				//disableLED2();
+			//}
+			//if (bit_is_set(PORTC, 2)) {
+				//disableLED3();
+			//}
+			//if (bit_is_set(PORTC, 1)) {
+				//enableLED4();
+			//}
+		//}
+		//
+		 ///* Pullups ERW_FUNKEY */
+		 //if (pull_ups == 3) {
+			//if (bit_is_set(PORTD, 3)) {
+				//disableLED1();
+			//}
+			//if (bit_is_set(PORTD, 4)) {
+				//disableLED2();
+			//}
+			//if (bit_is_set(PORTD, 5)) {
+				//disableLED3();
+			//}
+			//if (bit_is_set(PORTD, 6)) {
+				//enableLED4();
+			//}
+		 //}
+		//
+		
+		ProcessKeyInputTest8Streak(2, 3);
+		ProcessShiftedKeyInput(2, 3);
+		if (bit_is_clear(PIND, ERW_FUNKEY1)) {
+			enableLED1();
+		}
+		if (bit_is_clear(PIND, ERW_FUNKEY3)) {
+			enableLED2();
+		}
+		if (shiftStatus) {
+			enableLED4();
+		} else {
+			disableLED4();
+		}
 		//testKeySignal(PINC, DIRKEY4);
 		//ProcessKeyInput(&slotArray[0].funKey, &testPort);
 		//ProcessShiftedKeyInput(&slotArray[0].funKey, &testPort);
@@ -1707,25 +1774,59 @@ die abfrage ist dafür, dass die fuktionstaste nichts auslöst wenn sie nur als sh
 losgelassen wird
 */
 void ProcessKeyInput (byte *pin, byte *port) {
-	processValue(bit_is_set(PINC, FUNKEY1));
-	if (keyStatus == 0 && value == 3) {
+	for (int i = 0; i < 8; i++) {
+		processValue(bit_is_set(PINC, FUNKEY1));
+	}
+	if (keyStatus == 0 && value == 0) {
 		keyStatus = 1;
-	} else if (keyStatus >=10 && value == 0) {
+	} else if (keyStatus >=10 && value == 255) {
 		keyStatus++;
-		if (keyStatus == 20 && shiftTimeOut == 0) { //siehe kommentar oben
+		if (keyStatus >= 20 && shiftTimeOut == 0) { //siehe kommentar oben
 		//hier info in locoinfo schreiben/tastenevent
-			PORTA &= ~(1<<LED1);
+			disableLED1();
 			//PORTA &= ~(1<<LED1);
 			keyStatus = 0;
-	} else if (keyStatus == 20) {
+		} else if (keyStatus >= 20) {
 			shiftTimeOut = 0;
 			keyStatus = 0;
 	}
 	
-	} else if (value == 3 && keyStatus > 0) {
+	} else if (value == 0 && keyStatus > 0) {
 		keyStatus++;
 	}
 	
+}
+
+void ProcessKeyInputTest8Streak (byte *pin, byte *port) {
+	for (int i = 0; i < 8; i++) {
+		processValue(bit_is_set(PINB, FUNKEY2));
+	}
+	if (value == 0 && keyStatus >= 0) {
+		keyStatus++;
+		if (keyStatus > 30000L) {
+			keyStatus = -1;
+			if (shiftStatus) {
+				shiftStatus = 0;
+				//disableLED4();
+			} else {
+				shiftStatus = 1;
+				//enableLED4();
+			}
+		}
+	} else if (value == 255 && (keyStatus >= 5 || keyStatus == -1)) {
+		//siehe kommentar oben
+		//hier info in locoinfo schreiben/tastenevent
+		
+		if (keyStatus >= 5 && shiftStatus == 0) {
+			disableLED1();
+			keyStatus = 0;
+		} else {
+			keyStatus = 0;
+		}
+	} else if (value == 255 && shiftPressed) {
+		shiftStatus = 0;
+		shiftPressed = 0;
+	}
 }
 
 
@@ -1733,27 +1834,47 @@ void ProcessKeyInput (byte *pin, byte *port) {
 
 void ProcessShiftedKeyInput (byte *pin, byte *port) {
 	if (shiftStatus) {
-		if (bit_is_set(PIND, ERW_FUNKEY1)) {
-			keyStatus = 1;
-		} else if (keyStatus++) {
+		for (int i = 0; i < 8; i++) {
+			processValue(bit_is_set(PIND, ERW_FUNKEY2));
+		}
+		if (value == 0) {
+			shiftedKeyStatus = 1;
+		} else if (shiftedKeyStatus == 1 && value == 255) {
 			// *keyStatus++;
-			if (keyStatus == 20) {
-				shiftTimeOut = 1;
-				keyStatus = 0;
-				//hier info in locoinfo schreiben/tastenevent
-			    PORTA |= 1<<LED1;
-				//PORTA |= 1<<LED1;
-			}
+			
+			
+			shiftedKeyStatus = 0;
+			shiftPressed++;
+			//hier info in locoinfo schreiben/tastenevent
+			  disableLED2();
+			  //disableLED4();
+			//PORTA |= 1<<LED1;
 		}
 	}
+	
 }
 
 void processValue (int8_t new_value) {
 	if (new_value) {
-		value = (value / 2) + 2;
+		value = (value / 2) + 128;
 	} else {
 		value = value / 2;
 	}
+}
+
+void setPullUps (void) {
+	PORTC |= (1<<FUNKEY1);
+	PORTB |= (1<<FUNKEY2);
+	PORTB |= (1<<FUNKEY3);
+	PORTA |= (1<<FUNKEY4);
+	PORTC |= (1<<DIRKEY1);
+	PORTA |= (1<<DIRKEY2);
+	PORTC |= (1<<DIRKEY3);
+	PORTC |= (1<<DIRKEY4);
+	PORTD |= (1<<ERW_FUNKEY1);
+	PORTD |= (1<<ERW_FUNKEY2);
+	PORTD |= (1<<ERW_FUNKEY3);
+	PORTD |= (1<<ERW_FUNKEY4);
 } 
 
 
