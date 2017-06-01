@@ -3,35 +3,35 @@ ATMega16.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000fbc  00000000  00000000  000000b4  2**1
+  0 .text         00000f92  00000000  00000000  000000b4  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000006  00800060  00000fbc  00001070  2**0
+  1 .data         00000006  00800060  00000f92  00001046  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          0000014b  00800066  00800066  00001076  2**0
+  2 .bss          0000014b  00800066  00800066  0000104c  2**0
                   ALLOC
-  3 .eeprom       0000000c  00810000  00810000  00001076  2**0
+  3 .eeprom       0000000c  00810000  00810000  0000104c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  4 .comment      00000030  00000000  00000000  00001082  2**0
+  4 .comment      00000030  00000000  00000000  00001058  2**0
                   CONTENTS, READONLY
-  5 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000010b4  2**2
+  5 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001088  2**2
                   CONTENTS, READONLY
-  6 .debug_aranges 000002f8  00000000  00000000  000010f0  2**3
+  6 .debug_aranges 000002c8  00000000  00000000  000010c8  2**3
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_info   00006f84  00000000  00000000  000013e8  2**0
+  7 .debug_info   00006be9  00000000  00000000  00001390  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 000010db  00000000  00000000  0000836c  2**0
+  8 .debug_abbrev 000010b1  00000000  00000000  00007f79  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_line   00002f57  00000000  00000000  00009447  2**0
+  9 .debug_line   00002cc2  00000000  00000000  0000902a  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_frame  000007b0  00000000  00000000  0000c3a0  2**2
+ 10 .debug_frame  00000674  00000000  00000000  0000bcec  2**2
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_str    00009b13  00000000  00000000  0000cb50  2**0
+ 11 .debug_str    000099a9  00000000  00000000  0000c360  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_loc    000020ea  00000000  00000000  00016663  2**0
+ 12 .debug_loc    000017fe  00000000  00000000  00015d09  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_ranges 000002a8  00000000  00000000  0001874d  2**0
+ 13 .debug_ranges 00000240  00000000  00000000  00017507  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_macro  00003542  00000000  00000000  000189f5  2**0
+ 14 .debug_macro  00003534  00000000  00000000  00017747  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -41,21 +41,21 @@ Disassembly of section .text:
    2:	00 00       	nop
    4:	c6 c0       	rjmp	.+396    	; 0x192 <__bad_interrupt>
    6:	00 00       	nop
-   8:	9c c1       	rjmp	.+824    	; 0x342 <__vector_2>
+   8:	98 c1       	rjmp	.+816    	; 0x33a <__vector_2>
    a:	00 00       	nop
    c:	c2 c0       	rjmp	.+388    	; 0x192 <__bad_interrupt>
    e:	00 00       	nop
   10:	c0 c0       	rjmp	.+384    	; 0x192 <__bad_interrupt>
   12:	00 00       	nop
-  14:	70 c4       	rjmp	.+2272   	; 0x8f6 <__vector_5>
+  14:	59 c4       	rjmp	.+2226   	; 0x8c8 <__vector_5>
   16:	00 00       	nop
-  18:	98 c4       	rjmp	.+2352   	; 0x94a <__vector_6>
+  18:	81 c4       	rjmp	.+2306   	; 0x91c <__vector_6>
   1a:	00 00       	nop
   1c:	ba c0       	rjmp	.+372    	; 0x192 <__bad_interrupt>
   1e:	00 00       	nop
   20:	b8 c0       	rjmp	.+368    	; 0x192 <__bad_interrupt>
   22:	00 00       	nop
-  24:	7f c6       	rjmp	.+3326   	; 0xd24 <__vector_9>
+  24:	6a c6       	rjmp	.+3284   	; 0xcfa <__vector_9>
   26:	00 00       	nop
   28:	b4 c0       	rjmp	.+360    	; 0x192 <__bad_interrupt>
   2a:	00 00       	nop
@@ -79,138 +79,138 @@ Disassembly of section .text:
   4e:	00 00       	nop
   50:	a0 c0       	rjmp	.+320    	; 0x192 <__bad_interrupt>
   52:	00 00       	nop
-  54:	d8 01       	movw	r26, r16
-  56:	de 01       	movw	r26, r28
-  58:	03 02       	muls	r16, r19
-  5a:	03 02       	muls	r16, r19
-  5c:	03 02       	muls	r16, r19
-  5e:	03 02       	muls	r16, r19
-  60:	03 02       	muls	r16, r19
-  62:	03 02       	muls	r16, r19
-  64:	03 02       	muls	r16, r19
-  66:	03 02       	muls	r16, r19
-  68:	f7 01       	movw	r30, r14
-  6a:	f7 01       	movw	r30, r14
-  6c:	03 02       	muls	r16, r19
-  6e:	03 02       	muls	r16, r19
-  70:	03 02       	muls	r16, r19
-  72:	03 02       	muls	r16, r19
-  74:	03 02       	muls	r16, r19
-  76:	03 02       	muls	r16, r19
-  78:	03 02       	muls	r16, r19
-  7a:	03 02       	muls	r16, r19
-  7c:	f7 01       	movw	r30, r14
-  7e:	03 02       	muls	r16, r19
-  80:	f7 01       	movw	r30, r14
-  82:	03 02       	muls	r16, r19
-  84:	f7 01       	movw	r30, r14
-  86:	03 02       	muls	r16, r19
-  88:	03 02       	muls	r16, r19
-  8a:	03 02       	muls	r16, r19
-  8c:	03 02       	muls	r16, r19
-  8e:	03 02       	muls	r16, r19
-  90:	d8 01       	movw	r26, r16
-  92:	03 02       	muls	r16, r19
-  94:	d8 01       	movw	r26, r16
-  96:	03 02       	muls	r16, r19
-  98:	03 02       	muls	r16, r19
-  9a:	03 02       	muls	r16, r19
-  9c:	03 02       	muls	r16, r19
-  9e:	03 02       	muls	r16, r19
-  a0:	03 02       	muls	r16, r19
-  a2:	03 02       	muls	r16, r19
-  a4:	03 02       	muls	r16, r19
-  a6:	03 02       	muls	r16, r19
-  a8:	03 02       	muls	r16, r19
-  aa:	03 02       	muls	r16, r19
-  ac:	03 02       	muls	r16, r19
-  ae:	03 02       	muls	r16, r19
-  b0:	03 02       	muls	r16, r19
-  b2:	03 02       	muls	r16, r19
-  b4:	03 02       	muls	r16, r19
-  b6:	03 02       	muls	r16, r19
-  b8:	03 02       	muls	r16, r19
-  ba:	03 02       	muls	r16, r19
-  bc:	03 02       	muls	r16, r19
-  be:	03 02       	muls	r16, r19
-  c0:	03 02       	muls	r16, r19
-  c2:	03 02       	muls	r16, r19
-  c4:	03 02       	muls	r16, r19
-  c6:	03 02       	muls	r16, r19
-  c8:	03 02       	muls	r16, r19
-  ca:	03 02       	muls	r16, r19
-  cc:	03 02       	muls	r16, r19
-  ce:	03 02       	muls	r16, r19
-  d0:	03 02       	muls	r16, r19
-  d2:	03 02       	muls	r16, r19
-  d4:	03 02       	muls	r16, r19
-  d6:	03 02       	muls	r16, r19
-  d8:	03 02       	muls	r16, r19
-  da:	03 02       	muls	r16, r19
-  dc:	03 02       	muls	r16, r19
-  de:	03 02       	muls	r16, r19
-  e0:	03 02       	muls	r16, r19
-  e2:	03 02       	muls	r16, r19
-  e4:	03 02       	muls	r16, r19
-  e6:	03 02       	muls	r16, r19
-  e8:	03 02       	muls	r16, r19
-  ea:	03 02       	muls	r16, r19
-  ec:	03 02       	muls	r16, r19
-  ee:	03 02       	muls	r16, r19
-  f0:	03 02       	muls	r16, r19
-  f2:	03 02       	muls	r16, r19
-  f4:	03 02       	muls	r16, r19
-  f6:	03 02       	muls	r16, r19
-  f8:	03 02       	muls	r16, r19
-  fa:	03 02       	muls	r16, r19
-  fc:	03 02       	muls	r16, r19
-  fe:	03 02       	muls	r16, r19
- 100:	03 02       	muls	r16, r19
- 102:	03 02       	muls	r16, r19
- 104:	03 02       	muls	r16, r19
- 106:	03 02       	muls	r16, r19
- 108:	03 02       	muls	r16, r19
- 10a:	03 02       	muls	r16, r19
- 10c:	03 02       	muls	r16, r19
- 10e:	03 02       	muls	r16, r19
- 110:	03 02       	muls	r16, r19
- 112:	03 02       	muls	r16, r19
- 114:	03 02       	muls	r16, r19
- 116:	03 02       	muls	r16, r19
- 118:	03 02       	muls	r16, r19
- 11a:	03 02       	muls	r16, r19
- 11c:	fb 01       	movw	r30, r22
- 11e:	ff 01       	movw	r30, r30
- 120:	24 02       	muls	r18, r20
- 122:	76 02       	muls	r23, r22
- 124:	76 02       	muls	r23, r22
- 126:	76 02       	muls	r23, r22
- 128:	76 02       	muls	r23, r22
- 12a:	76 02       	muls	r23, r22
- 12c:	76 02       	muls	r23, r22
- 12e:	76 02       	muls	r23, r22
- 130:	76 02       	muls	r23, r22
- 132:	32 02       	muls	r19, r18
- 134:	32 02       	muls	r19, r18
- 136:	76 02       	muls	r23, r22
- 138:	76 02       	muls	r23, r22
- 13a:	76 02       	muls	r23, r22
- 13c:	76 02       	muls	r23, r22
- 13e:	76 02       	muls	r23, r22
- 140:	76 02       	muls	r23, r22
- 142:	76 02       	muls	r23, r22
- 144:	76 02       	muls	r23, r22
- 146:	32 02       	muls	r19, r18
- 148:	76 02       	muls	r23, r22
- 14a:	32 02       	muls	r19, r18
- 14c:	76 02       	muls	r23, r22
- 14e:	32 02       	muls	r19, r18
- 150:	76 02       	muls	r23, r22
- 152:	76 02       	muls	r23, r22
- 154:	76 02       	muls	r23, r22
- 156:	76 02       	muls	r23, r22
- 158:	76 02       	muls	r23, r22
- 15a:	4b 02       	muls	r20, r27
+  54:	d4 01       	movw	r26, r8
+  56:	da 01       	movw	r26, r20
+  58:	ff 01       	movw	r30, r30
+  5a:	ff 01       	movw	r30, r30
+  5c:	ff 01       	movw	r30, r30
+  5e:	ff 01       	movw	r30, r30
+  60:	ff 01       	movw	r30, r30
+  62:	ff 01       	movw	r30, r30
+  64:	ff 01       	movw	r30, r30
+  66:	ff 01       	movw	r30, r30
+  68:	f3 01       	movw	r30, r6
+  6a:	f3 01       	movw	r30, r6
+  6c:	ff 01       	movw	r30, r30
+  6e:	ff 01       	movw	r30, r30
+  70:	ff 01       	movw	r30, r30
+  72:	ff 01       	movw	r30, r30
+  74:	ff 01       	movw	r30, r30
+  76:	ff 01       	movw	r30, r30
+  78:	ff 01       	movw	r30, r30
+  7a:	ff 01       	movw	r30, r30
+  7c:	f3 01       	movw	r30, r6
+  7e:	ff 01       	movw	r30, r30
+  80:	f3 01       	movw	r30, r6
+  82:	ff 01       	movw	r30, r30
+  84:	f3 01       	movw	r30, r6
+  86:	ff 01       	movw	r30, r30
+  88:	ff 01       	movw	r30, r30
+  8a:	ff 01       	movw	r30, r30
+  8c:	ff 01       	movw	r30, r30
+  8e:	ff 01       	movw	r30, r30
+  90:	d4 01       	movw	r26, r8
+  92:	ff 01       	movw	r30, r30
+  94:	d4 01       	movw	r26, r8
+  96:	ff 01       	movw	r30, r30
+  98:	ff 01       	movw	r30, r30
+  9a:	ff 01       	movw	r30, r30
+  9c:	ff 01       	movw	r30, r30
+  9e:	ff 01       	movw	r30, r30
+  a0:	ff 01       	movw	r30, r30
+  a2:	ff 01       	movw	r30, r30
+  a4:	ff 01       	movw	r30, r30
+  a6:	ff 01       	movw	r30, r30
+  a8:	ff 01       	movw	r30, r30
+  aa:	ff 01       	movw	r30, r30
+  ac:	ff 01       	movw	r30, r30
+  ae:	ff 01       	movw	r30, r30
+  b0:	ff 01       	movw	r30, r30
+  b2:	ff 01       	movw	r30, r30
+  b4:	ff 01       	movw	r30, r30
+  b6:	ff 01       	movw	r30, r30
+  b8:	ff 01       	movw	r30, r30
+  ba:	ff 01       	movw	r30, r30
+  bc:	ff 01       	movw	r30, r30
+  be:	ff 01       	movw	r30, r30
+  c0:	ff 01       	movw	r30, r30
+  c2:	ff 01       	movw	r30, r30
+  c4:	ff 01       	movw	r30, r30
+  c6:	ff 01       	movw	r30, r30
+  c8:	ff 01       	movw	r30, r30
+  ca:	ff 01       	movw	r30, r30
+  cc:	ff 01       	movw	r30, r30
+  ce:	ff 01       	movw	r30, r30
+  d0:	ff 01       	movw	r30, r30
+  d2:	ff 01       	movw	r30, r30
+  d4:	ff 01       	movw	r30, r30
+  d6:	ff 01       	movw	r30, r30
+  d8:	ff 01       	movw	r30, r30
+  da:	ff 01       	movw	r30, r30
+  dc:	ff 01       	movw	r30, r30
+  de:	ff 01       	movw	r30, r30
+  e0:	ff 01       	movw	r30, r30
+  e2:	ff 01       	movw	r30, r30
+  e4:	ff 01       	movw	r30, r30
+  e6:	ff 01       	movw	r30, r30
+  e8:	ff 01       	movw	r30, r30
+  ea:	ff 01       	movw	r30, r30
+  ec:	ff 01       	movw	r30, r30
+  ee:	ff 01       	movw	r30, r30
+  f0:	ff 01       	movw	r30, r30
+  f2:	ff 01       	movw	r30, r30
+  f4:	ff 01       	movw	r30, r30
+  f6:	ff 01       	movw	r30, r30
+  f8:	ff 01       	movw	r30, r30
+  fa:	ff 01       	movw	r30, r30
+  fc:	ff 01       	movw	r30, r30
+  fe:	ff 01       	movw	r30, r30
+ 100:	ff 01       	movw	r30, r30
+ 102:	ff 01       	movw	r30, r30
+ 104:	ff 01       	movw	r30, r30
+ 106:	ff 01       	movw	r30, r30
+ 108:	ff 01       	movw	r30, r30
+ 10a:	ff 01       	movw	r30, r30
+ 10c:	ff 01       	movw	r30, r30
+ 10e:	ff 01       	movw	r30, r30
+ 110:	ff 01       	movw	r30, r30
+ 112:	ff 01       	movw	r30, r30
+ 114:	ff 01       	movw	r30, r30
+ 116:	ff 01       	movw	r30, r30
+ 118:	ff 01       	movw	r30, r30
+ 11a:	ff 01       	movw	r30, r30
+ 11c:	f7 01       	movw	r30, r14
+ 11e:	fb 01       	movw	r30, r22
+ 120:	20 02       	muls	r18, r16
+ 122:	72 02       	muls	r23, r18
+ 124:	72 02       	muls	r23, r18
+ 126:	72 02       	muls	r23, r18
+ 128:	72 02       	muls	r23, r18
+ 12a:	72 02       	muls	r23, r18
+ 12c:	72 02       	muls	r23, r18
+ 12e:	72 02       	muls	r23, r18
+ 130:	72 02       	muls	r23, r18
+ 132:	2e 02       	muls	r18, r30
+ 134:	2e 02       	muls	r18, r30
+ 136:	72 02       	muls	r23, r18
+ 138:	72 02       	muls	r23, r18
+ 13a:	72 02       	muls	r23, r18
+ 13c:	72 02       	muls	r23, r18
+ 13e:	72 02       	muls	r23, r18
+ 140:	72 02       	muls	r23, r18
+ 142:	72 02       	muls	r23, r18
+ 144:	72 02       	muls	r23, r18
+ 146:	2e 02       	muls	r18, r30
+ 148:	72 02       	muls	r23, r18
+ 14a:	2e 02       	muls	r18, r30
+ 14c:	72 02       	muls	r23, r18
+ 14e:	2e 02       	muls	r18, r30
+ 150:	72 02       	muls	r23, r18
+ 152:	72 02       	muls	r23, r18
+ 154:	72 02       	muls	r23, r18
+ 156:	72 02       	muls	r23, r18
+ 158:	72 02       	muls	r23, r18
+ 15a:	47 02       	muls	r20, r23
 
 0000015c <__ctors_end>:
  15c:	11 24       	eor	r1, r1
@@ -224,7 +224,7 @@ Disassembly of section .text:
  168:	10 e0       	ldi	r17, 0x00	; 0
  16a:	a0 e6       	ldi	r26, 0x60	; 96
  16c:	b0 e0       	ldi	r27, 0x00	; 0
- 16e:	ec eb       	ldi	r30, 0xBC	; 188
+ 16e:	e2 e9       	ldi	r30, 0x92	; 146
  170:	ff e0       	ldi	r31, 0x0F	; 15
  172:	02 c0       	rjmp	.+4      	; 0x178 <__do_copy_data+0x10>
  174:	05 90       	lpm	r0, Z+
@@ -246,8 +246,8 @@ Disassembly of section .text:
  188:	a1 3b       	cpi	r26, 0xB1	; 177
  18a:	b2 07       	cpc	r27, r18
  18c:	e1 f7       	brne	.-8      	; 0x186 <.do_clear_bss_loop>
- 18e:	7e d2       	rcall	.+1276   	; 0x68c <main>
- 190:	13 c7       	rjmp	.+3622   	; 0xfb8 <_exit>
+ 18e:	64 d2       	rcall	.+1224   	; 0x658 <main>
+ 190:	fe c6       	rjmp	.+3580   	; 0xf8e <_exit>
 
 00000192 <__bad_interrupt>:
  192:	36 cf       	rjmp	.-404    	; 0x0 <__vectors>
@@ -285,13 +285,13 @@ void sendLocoNetFredAdc( uint16_t raw )
 000001be <KeyTimerAction>:
  1be:	86 b3       	in	r24, 0x16	; 22
  1c0:	8f 73       	andi	r24, 0x3F	; 63
- 1c2:	90 91 62 00 	lds	r25, 0x0062	; 0x800062 <bLastKey.2348>
+ 1c2:	90 91 62 00 	lds	r25, 0x0062	; 0x800062 <bLastKey.2199>
  1c6:	89 17       	cp	r24, r25
  1c8:	99 f0       	breq	.+38     	; 0x1f0 <KeyTimerAction+0x32>
  1ca:	90 91 6e 00 	lds	r25, 0x006E	; 0x80006e <bEvent>
  1ce:	91 60       	ori	r25, 0x01	; 1
  1d0:	90 93 6e 00 	sts	0x006E, r25	; 0x80006e <bEvent>
- 1d4:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <bLastKey.2348>
+ 1d4:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <bLastKey.2199>
  1d8:	90 91 67 00 	lds	r25, 0x0067	; 0x800067 <bCurrentKey>
  1dc:	90 7c       	andi	r25, 0xC0	; 192
  1de:	90 93 67 00 	sts	0x0067, r25	; 0x800067 <bCurrentKey>
@@ -302,13 +302,13 @@ void sendLocoNetFredAdc( uint16_t raw )
  1ec:	80 93 67 00 	sts	0x0067, r24	; 0x800067 <bCurrentKey>
  1f0:	80 b3       	in	r24, 0x10	; 16
  1f2:	80 72       	andi	r24, 0x20	; 32
- 1f4:	90 91 61 00 	lds	r25, 0x0061	; 0x800061 <bLastEncSwitch.2346>
+ 1f4:	90 91 61 00 	lds	r25, 0x0061	; 0x800061 <bLastEncSwitch.2197>
  1f8:	89 17       	cp	r24, r25
  1fa:	a1 f0       	breq	.+40     	; 0x224 <KeyTimerAction+0x66>
  1fc:	90 91 6e 00 	lds	r25, 0x006E	; 0x80006e <bEvent>
  200:	91 60       	ori	r25, 0x01	; 1
  202:	90 93 6e 00 	sts	0x006E, r25	; 0x80006e <bEvent>
- 206:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <bLastEncSwitch.2346>
+ 206:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <bLastEncSwitch.2197>
  20a:	88 23       	and	r24, r24
  20c:	31 f0       	breq	.+12     	; 0x21a <KeyTimerAction+0x5c>
  20e:	80 91 67 00 	lds	r24, 0x0067	; 0x800067 <bCurrentKey>
@@ -343,7 +343,7 @@ void sendLocoNetFredAdc( uint16_t raw )
  260:	90 93 67 00 	sts	0x0067, r25	; 0x800067 <bCurrentKey>
  264:	83 30       	cpi	r24, 0x03	; 3
  266:	09 f4       	brne	.+2      	; 0x26a <KeyTimerAction+0xac>
- 268:	fd d2       	rcall	.+1530   	; 0x864 <potAdcTimerAction>
+ 268:	e6 d2       	rcall	.+1484   	; 0x836 <potAdcTimerAction>
  26a:	8a e0       	ldi	r24, 0x0A	; 10
  26c:	08 95       	ret
 
@@ -354,2487 +354,2472 @@ void sendLocoNetFredAdc( uint16_t raw )
  274:	a4 9a       	sbi	0x14, 4	; 20
  276:	08 95       	ret
 
-00000278 <enableLED1>:
- 278:	d8 9a       	sbi	0x1b, 0	; 27
+00000278 <disableLED4>:
+ 278:	ac 98       	cbi	0x15, 4	; 21
  27a:	08 95       	ret
 
-0000027c <disableLED1>:
- 27c:	d8 98       	cbi	0x1b, 0	; 27
- 27e:	08 95       	ret
-
-00000280 <disableLED4>:
- 280:	ac 98       	cbi	0x15, 4	; 21
- 282:	08 95       	ret
-
-00000284 <initKeys>:
- 284:	0f 93       	push	r16
- 286:	80 91 6f 00 	lds	r24, 0x006F	; 0x80006f <bFrediVersion>
- 28a:	83 30       	cpi	r24, 0x03	; 3
- 28c:	11 f4       	brne	.+4      	; 0x292 <initKeys+0xe>
- 28e:	df d2       	rcall	.+1470   	; 0x84e <potAdcInit>
- 290:	2d c0       	rjmp	.+90     	; 0x2ec <initKeys+0x68>
- 292:	db d2       	rcall	.+1462   	; 0x84a <potAdcPowerOff>
- 294:	10 92 66 00 	sts	0x0066, r1	; 0x800066 <__data_end>
- 298:	00 e0       	ldi	r16, 0x00	; 0
- 29a:	20 e0       	ldi	r18, 0x00	; 0
- 29c:	30 e0       	ldi	r19, 0x00	; 0
- 29e:	4b ed       	ldi	r20, 0xDB	; 219
- 2a0:	50 e0       	ldi	r21, 0x00	; 0
- 2a2:	60 e0       	ldi	r22, 0x00	; 0
- 2a4:	8e e2       	ldi	r24, 0x2E	; 46
- 2a6:	91 e0       	ldi	r25, 0x01	; 1
- 2a8:	7d d5       	rcall	.+2810   	; 0xda4 <addTimerAction>
- 2aa:	81 b3       	in	r24, 0x11	; 17
- 2ac:	83 7f       	andi	r24, 0xF3	; 243
- 2ae:	81 bb       	out	0x11, r24	; 17
- 2b0:	82 b3       	in	r24, 0x12	; 18
- 2b2:	8c 60       	ori	r24, 0x0C	; 12
- 2b4:	82 bb       	out	0x12, r24	; 18
- 2b6:	01 e0       	ldi	r16, 0x01	; 1
- 2b8:	20 e0       	ldi	r18, 0x00	; 0
- 2ba:	30 e0       	ldi	r19, 0x00	; 0
- 2bc:	4a ec       	ldi	r20, 0xCA	; 202
- 2be:	50 e0       	ldi	r21, 0x00	; 0
- 2c0:	60 e0       	ldi	r22, 0x00	; 0
- 2c2:	8a e8       	ldi	r24, 0x8A	; 138
- 2c4:	90 e0       	ldi	r25, 0x00	; 0
- 2c6:	6e d5       	rcall	.+2780   	; 0xda4 <addTimerAction>
- 2c8:	85 b7       	in	r24, 0x35	; 53
- 2ca:	88 60       	ori	r24, 0x08	; 8
- 2cc:	85 bf       	out	0x35, r24	; 53
- 2ce:	83 9b       	sbis	0x10, 3	; 16
- 2d0:	04 c0       	rjmp	.+8      	; 0x2da <initKeys+0x56>
+0000027c <initKeys>:
+ 27c:	0f 93       	push	r16
+ 27e:	80 91 6f 00 	lds	r24, 0x006F	; 0x80006f <bFrediVersion>
+ 282:	83 30       	cpi	r24, 0x03	; 3
+ 284:	11 f4       	brne	.+4      	; 0x28a <initKeys+0xe>
+ 286:	cc d2       	rcall	.+1432   	; 0x820 <potAdcInit>
+ 288:	2d c0       	rjmp	.+90     	; 0x2e4 <initKeys+0x68>
+ 28a:	c8 d2       	rcall	.+1424   	; 0x81c <potAdcPowerOff>
+ 28c:	10 92 66 00 	sts	0x0066, r1	; 0x800066 <__data_end>
+ 290:	00 e0       	ldi	r16, 0x00	; 0
+ 292:	20 e0       	ldi	r18, 0x00	; 0
+ 294:	30 e0       	ldi	r19, 0x00	; 0
+ 296:	4b ed       	ldi	r20, 0xDB	; 219
+ 298:	50 e0       	ldi	r21, 0x00	; 0
+ 29a:	60 e0       	ldi	r22, 0x00	; 0
+ 29c:	8e e2       	ldi	r24, 0x2E	; 46
+ 29e:	91 e0       	ldi	r25, 0x01	; 1
+ 2a0:	6c d5       	rcall	.+2776   	; 0xd7a <addTimerAction>
+ 2a2:	81 b3       	in	r24, 0x11	; 17
+ 2a4:	83 7f       	andi	r24, 0xF3	; 243
+ 2a6:	81 bb       	out	0x11, r24	; 17
+ 2a8:	82 b3       	in	r24, 0x12	; 18
+ 2aa:	8c 60       	ori	r24, 0x0C	; 12
+ 2ac:	82 bb       	out	0x12, r24	; 18
+ 2ae:	01 e0       	ldi	r16, 0x01	; 1
+ 2b0:	20 e0       	ldi	r18, 0x00	; 0
+ 2b2:	30 e0       	ldi	r19, 0x00	; 0
+ 2b4:	4a ec       	ldi	r20, 0xCA	; 202
+ 2b6:	50 e0       	ldi	r21, 0x00	; 0
+ 2b8:	60 e0       	ldi	r22, 0x00	; 0
+ 2ba:	8a e8       	ldi	r24, 0x8A	; 138
+ 2bc:	90 e0       	ldi	r25, 0x00	; 0
+ 2be:	5d d5       	rcall	.+2746   	; 0xd7a <addTimerAction>
+ 2c0:	85 b7       	in	r24, 0x35	; 53
+ 2c2:	88 60       	ori	r24, 0x08	; 8
+ 2c4:	85 bf       	out	0x35, r24	; 53
+ 2c6:	83 9b       	sbis	0x10, 3	; 16
+ 2c8:	04 c0       	rjmp	.+8      	; 0x2d2 <initKeys+0x56>
+ 2ca:	85 b7       	in	r24, 0x35	; 53
+ 2cc:	8b 7f       	andi	r24, 0xFB	; 251
+ 2ce:	85 bf       	out	0x35, r24	; 53
+ 2d0:	03 c0       	rjmp	.+6      	; 0x2d8 <initKeys+0x5c>
  2d2:	85 b7       	in	r24, 0x35	; 53
- 2d4:	8b 7f       	andi	r24, 0xFB	; 251
+ 2d4:	84 60       	ori	r24, 0x04	; 4
  2d6:	85 bf       	out	0x35, r24	; 53
- 2d8:	03 c0       	rjmp	.+6      	; 0x2e0 <initKeys+0x5c>
- 2da:	85 b7       	in	r24, 0x35	; 53
- 2dc:	84 60       	ori	r24, 0x04	; 4
- 2de:	85 bf       	out	0x35, r24	; 53
- 2e0:	8a b7       	in	r24, 0x3a	; 58
- 2e2:	80 68       	ori	r24, 0x80	; 128
- 2e4:	8a bf       	out	0x3a, r24	; 58
- 2e6:	8b b7       	in	r24, 0x3b	; 59
- 2e8:	80 68       	ori	r24, 0x80	; 128
- 2ea:	8b bf       	out	0x3b, r24	; 59
- 2ec:	8d 98       	cbi	0x11, 5	; 17
- 2ee:	95 9a       	sbi	0x12, 5	; 18
- 2f0:	8d 98       	cbi	0x11, 5	; 17
- 2f2:	95 9a       	sbi	0x12, 5	; 18
- 2f4:	a7 98       	cbi	0x14, 7	; 20
- 2f6:	b8 98       	cbi	0x17, 0	; 23
- 2f8:	bc 98       	cbi	0x17, 4	; 23
- 2fa:	d2 98       	cbi	0x1a, 2	; 26
- 2fc:	8b 98       	cbi	0x11, 3	; 17
- 2fe:	8d 98       	cbi	0x11, 5	; 17
- 300:	8e 98       	cbi	0x11, 6	; 17
- 302:	88 b3       	in	r24, 0x18	; 24
- 304:	8f 63       	ori	r24, 0x3F	; 63
- 306:	88 bb       	out	0x18, r24	; 24
- 308:	80 91 6f 00 	lds	r24, 0x006F	; 0x80006f <bFrediVersion>
- 30c:	82 50       	subi	r24, 0x02	; 2
- 30e:	82 30       	cpi	r24, 0x02	; 2
- 310:	28 f4       	brcc	.+10     	; 0x31c <initKeys+0x98>
- 312:	a0 98       	cbi	0x14, 0	; 20
- 314:	d3 98       	cbi	0x1a, 3	; 26
- 316:	a2 98       	cbi	0x14, 2	; 20
- 318:	a1 98       	cbi	0x14, 1	; 20
- 31a:	a9 9a       	sbi	0x15, 1	; 21
- 31c:	01 e0       	ldi	r16, 0x01	; 1
- 31e:	20 e0       	ldi	r18, 0x00	; 0
- 320:	30 e0       	ldi	r19, 0x00	; 0
- 322:	4f ed       	ldi	r20, 0xDF	; 223
- 324:	50 e0       	ldi	r21, 0x00	; 0
- 326:	6a e0       	ldi	r22, 0x0A	; 10
- 328:	89 e9       	ldi	r24, 0x99	; 153
- 32a:	90 e0       	ldi	r25, 0x00	; 0
- 32c:	3b d5       	rcall	.+2678   	; 0xda4 <addTimerAction>
- 32e:	d0 9a       	sbi	0x1a, 0	; 26
- 330:	d8 98       	cbi	0x1b, 0	; 27
- 332:	d1 9a       	sbi	0x1a, 1	; 26
- 334:	d9 98       	cbi	0x1b, 1	; 27
- 336:	a3 9a       	sbi	0x14, 3	; 20
- 338:	ab 98       	cbi	0x15, 3	; 21
- 33a:	a4 9a       	sbi	0x14, 4	; 20
- 33c:	ac 98       	cbi	0x15, 4	; 21
- 33e:	0f 91       	pop	r16
- 340:	08 95       	ret
+ 2d8:	8a b7       	in	r24, 0x3a	; 58
+ 2da:	80 68       	ori	r24, 0x80	; 128
+ 2dc:	8a bf       	out	0x3a, r24	; 58
+ 2de:	8b b7       	in	r24, 0x3b	; 59
+ 2e0:	80 68       	ori	r24, 0x80	; 128
+ 2e2:	8b bf       	out	0x3b, r24	; 59
+ 2e4:	8d 98       	cbi	0x11, 5	; 17
+ 2e6:	95 9a       	sbi	0x12, 5	; 18
+ 2e8:	8d 98       	cbi	0x11, 5	; 17
+ 2ea:	95 9a       	sbi	0x12, 5	; 18
+ 2ec:	a7 98       	cbi	0x14, 7	; 20
+ 2ee:	b8 98       	cbi	0x17, 0	; 23
+ 2f0:	bc 98       	cbi	0x17, 4	; 23
+ 2f2:	d2 98       	cbi	0x1a, 2	; 26
+ 2f4:	8b 98       	cbi	0x11, 3	; 17
+ 2f6:	8d 98       	cbi	0x11, 5	; 17
+ 2f8:	8e 98       	cbi	0x11, 6	; 17
+ 2fa:	88 b3       	in	r24, 0x18	; 24
+ 2fc:	8f 63       	ori	r24, 0x3F	; 63
+ 2fe:	88 bb       	out	0x18, r24	; 24
+ 300:	80 91 6f 00 	lds	r24, 0x006F	; 0x80006f <bFrediVersion>
+ 304:	82 50       	subi	r24, 0x02	; 2
+ 306:	82 30       	cpi	r24, 0x02	; 2
+ 308:	28 f4       	brcc	.+10     	; 0x314 <initKeys+0x98>
+ 30a:	a0 98       	cbi	0x14, 0	; 20
+ 30c:	d3 98       	cbi	0x1a, 3	; 26
+ 30e:	a1 98       	cbi	0x14, 1	; 20
+ 310:	a2 98       	cbi	0x14, 2	; 20
+ 312:	a9 9a       	sbi	0x15, 1	; 21
+ 314:	01 e0       	ldi	r16, 0x01	; 1
+ 316:	20 e0       	ldi	r18, 0x00	; 0
+ 318:	30 e0       	ldi	r19, 0x00	; 0
+ 31a:	4f ed       	ldi	r20, 0xDF	; 223
+ 31c:	50 e0       	ldi	r21, 0x00	; 0
+ 31e:	6a e0       	ldi	r22, 0x0A	; 10
+ 320:	89 e9       	ldi	r24, 0x99	; 153
+ 322:	90 e0       	ldi	r25, 0x00	; 0
+ 324:	2a d5       	rcall	.+2644   	; 0xd7a <addTimerAction>
+ 326:	d0 9a       	sbi	0x1a, 0	; 26
+ 328:	d8 98       	cbi	0x1b, 0	; 27
+ 32a:	d1 9a       	sbi	0x1a, 1	; 26
+ 32c:	d9 98       	cbi	0x1b, 1	; 27
+ 32e:	a3 9a       	sbi	0x14, 3	; 20
+ 330:	ab 98       	cbi	0x15, 3	; 21
+ 332:	a4 9a       	sbi	0x14, 4	; 20
+ 334:	ac 98       	cbi	0x15, 4	; 21
+ 336:	0f 91       	pop	r16
+ 338:	08 95       	ret
 
-00000342 <__vector_2>:
- 342:	1f 92       	push	r1
- 344:	0f 92       	push	r0
- 346:	0f b6       	in	r0, 0x3f	; 63
- 348:	0f 92       	push	r0
- 34a:	11 24       	eor	r1, r1
- 34c:	8f 93       	push	r24
- 34e:	8b b7       	in	r24, 0x3b	; 59
- 350:	8f 77       	andi	r24, 0x7F	; 127
- 352:	8b bf       	out	0x3b, r24	; 59
- 354:	05 b6       	in	r0, 0x35	; 53
- 356:	02 fe       	sbrs	r0, 2
- 358:	0e c0       	rjmp	.+28     	; 0x376 <__vector_2+0x34>
- 35a:	82 9b       	sbis	0x10, 2	; 16
- 35c:	06 c0       	rjmp	.+12     	; 0x36a <__vector_2+0x28>
- 35e:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <sEncDir>
- 362:	81 50       	subi	r24, 0x01	; 1
- 364:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <sEncDir>
- 368:	13 c0       	rjmp	.+38     	; 0x390 <__vector_2+0x4e>
- 36a:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <sEncDir>
- 36e:	8f 5f       	subi	r24, 0xFF	; 255
- 370:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <sEncDir>
- 374:	0d c0       	rjmp	.+26     	; 0x390 <__vector_2+0x4e>
- 376:	82 9b       	sbis	0x10, 2	; 16
- 378:	06 c0       	rjmp	.+12     	; 0x386 <__vector_2+0x44>
- 37a:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <sEncDir>
- 37e:	8f 5f       	subi	r24, 0xFF	; 255
- 380:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <sEncDir>
- 384:	05 c0       	rjmp	.+10     	; 0x390 <__vector_2+0x4e>
- 386:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <sEncDir>
- 38a:	81 50       	subi	r24, 0x01	; 1
- 38c:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <sEncDir>
- 390:	8f 91       	pop	r24
- 392:	0f 90       	pop	r0
- 394:	0f be       	out	0x3f, r0	; 63
- 396:	0f 90       	pop	r0
- 398:	1f 90       	pop	r1
- 39a:	18 95       	reti
+0000033a <__vector_2>:
+ 33a:	1f 92       	push	r1
+ 33c:	0f 92       	push	r0
+ 33e:	0f b6       	in	r0, 0x3f	; 63
+ 340:	0f 92       	push	r0
+ 342:	11 24       	eor	r1, r1
+ 344:	8f 93       	push	r24
+ 346:	8b b7       	in	r24, 0x3b	; 59
+ 348:	8f 77       	andi	r24, 0x7F	; 127
+ 34a:	8b bf       	out	0x3b, r24	; 59
+ 34c:	05 b6       	in	r0, 0x35	; 53
+ 34e:	02 fe       	sbrs	r0, 2
+ 350:	0e c0       	rjmp	.+28     	; 0x36e <__vector_2+0x34>
+ 352:	82 9b       	sbis	0x10, 2	; 16
+ 354:	06 c0       	rjmp	.+12     	; 0x362 <__vector_2+0x28>
+ 356:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <sEncDir>
+ 35a:	81 50       	subi	r24, 0x01	; 1
+ 35c:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <sEncDir>
+ 360:	13 c0       	rjmp	.+38     	; 0x388 <__vector_2+0x4e>
+ 362:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <sEncDir>
+ 366:	8f 5f       	subi	r24, 0xFF	; 255
+ 368:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <sEncDir>
+ 36c:	0d c0       	rjmp	.+26     	; 0x388 <__vector_2+0x4e>
+ 36e:	82 9b       	sbis	0x10, 2	; 16
+ 370:	06 c0       	rjmp	.+12     	; 0x37e <__vector_2+0x44>
+ 372:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <sEncDir>
+ 376:	8f 5f       	subi	r24, 0xFF	; 255
+ 378:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <sEncDir>
+ 37c:	05 c0       	rjmp	.+10     	; 0x388 <__vector_2+0x4e>
+ 37e:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <sEncDir>
+ 382:	81 50       	subi	r24, 0x01	; 1
+ 384:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <sEncDir>
+ 388:	8f 91       	pop	r24
+ 38a:	0f 90       	pop	r0
+ 38c:	0f be       	out	0x3f, r0	; 63
+ 38e:	0f 90       	pop	r0
+ 390:	1f 90       	pop	r1
+ 392:	18 95       	reti
 
-0000039c <vSetState>:
- 39c:	80 93 65 00 	sts	0x0065, r24	; 0x800065 <bThrState>
- 3a0:	90 e0       	ldi	r25, 0x00	; 0
- 3a2:	86 36       	cpi	r24, 0x66	; 102
- 3a4:	91 05       	cpc	r25, r1
- 3a6:	78 f5       	brcc	.+94     	; 0x406 <__LOCK_REGION_LENGTH__+0x6>
- 3a8:	fc 01       	movw	r30, r24
- 3aa:	e6 5d       	subi	r30, 0xD6	; 214
- 3ac:	ff 4f       	sbci	r31, 0xFF	; 255
- 3ae:	e9 c5       	rjmp	.+3026   	; 0xf82 <__tablejump2__>
- 3b0:	aa 98       	cbi	0x15, 2	; 21
- 3b2:	ab 98       	cbi	0x15, 3	; 21
- 3b4:	ac 9a       	sbi	0x15, 4	; 21
- 3b6:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <bLEDReload>
- 3ba:	28 c0       	rjmp	.+80     	; 0x40c <__LOCK_REGION_LENGTH__+0xc>
- 3bc:	fb 01       	movw	r30, r22
- 3be:	86 81       	ldd	r24, Z+6	; 0x06
- 3c0:	85 ff       	sbrs	r24, 5
- 3c2:	03 c0       	rjmp	.+6      	; 0x3ca <vSetState+0x2e>
- 3c4:	aa 98       	cbi	0x15, 2	; 21
- 3c6:	ab 9a       	sbi	0x15, 3	; 21
- 3c8:	02 c0       	rjmp	.+4      	; 0x3ce <vSetState+0x32>
- 3ca:	ab 98       	cbi	0x15, 3	; 21
- 3cc:	aa 9a       	sbi	0x15, 2	; 21
- 3ce:	ac 98       	cbi	0x15, 4	; 21
- 3d0:	80 91 6f 00 	lds	r24, 0x006F	; 0x80006f <bFrediVersion>
- 3d4:	83 30       	cpi	r24, 0x03	; 3
- 3d6:	41 f4       	brne	.+16     	; 0x3e8 <vSetState+0x4c>
- 3d8:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <fSetSpeed>
- 3dc:	81 11       	cpse	r24, r1
- 3de:	04 c0       	rjmp	.+8      	; 0x3e8 <vSetState+0x4c>
- 3e0:	81 e0       	ldi	r24, 0x01	; 1
- 3e2:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <bLEDReload>
- 3e6:	12 c0       	rjmp	.+36     	; 0x40c <__LOCK_REGION_LENGTH__+0xc>
- 3e8:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <bLEDReload>
- 3ec:	0f c0       	rjmp	.+30     	; 0x40c <__LOCK_REGION_LENGTH__+0xc>
- 3ee:	81 e0       	ldi	r24, 0x01	; 1
+00000394 <vSetState>:
+ 394:	80 93 65 00 	sts	0x0065, r24	; 0x800065 <bThrState>
+ 398:	90 e0       	ldi	r25, 0x00	; 0
+ 39a:	86 36       	cpi	r24, 0x66	; 102
+ 39c:	91 05       	cpc	r25, r1
+ 39e:	78 f5       	brcc	.+94     	; 0x3fe <vSetState+0x6a>
+ 3a0:	fc 01       	movw	r30, r24
+ 3a2:	e6 5d       	subi	r30, 0xD6	; 214
+ 3a4:	ff 4f       	sbci	r31, 0xFF	; 255
+ 3a6:	d8 c5       	rjmp	.+2992   	; 0xf58 <__tablejump2__>
+ 3a8:	aa 98       	cbi	0x15, 2	; 21
+ 3aa:	ab 98       	cbi	0x15, 3	; 21
+ 3ac:	ac 9a       	sbi	0x15, 4	; 21
+ 3ae:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <bLEDReload>
+ 3b2:	28 c0       	rjmp	.+80     	; 0x404 <__LOCK_REGION_LENGTH__+0x4>
+ 3b4:	fb 01       	movw	r30, r22
+ 3b6:	86 81       	ldd	r24, Z+6	; 0x06
+ 3b8:	85 ff       	sbrs	r24, 5
+ 3ba:	03 c0       	rjmp	.+6      	; 0x3c2 <vSetState+0x2e>
+ 3bc:	aa 98       	cbi	0x15, 2	; 21
+ 3be:	ab 9a       	sbi	0x15, 3	; 21
+ 3c0:	02 c0       	rjmp	.+4      	; 0x3c6 <vSetState+0x32>
+ 3c2:	ab 98       	cbi	0x15, 3	; 21
+ 3c4:	aa 9a       	sbi	0x15, 2	; 21
+ 3c6:	ac 98       	cbi	0x15, 4	; 21
+ 3c8:	80 91 6f 00 	lds	r24, 0x006F	; 0x80006f <bFrediVersion>
+ 3cc:	83 30       	cpi	r24, 0x03	; 3
+ 3ce:	41 f4       	brne	.+16     	; 0x3e0 <vSetState+0x4c>
+ 3d0:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <fSetSpeed>
+ 3d4:	81 11       	cpse	r24, r1
+ 3d6:	04 c0       	rjmp	.+8      	; 0x3e0 <vSetState+0x4c>
+ 3d8:	81 e0       	ldi	r24, 0x01	; 1
+ 3da:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <bLEDReload>
+ 3de:	12 c0       	rjmp	.+36     	; 0x404 <__LOCK_REGION_LENGTH__+0x4>
+ 3e0:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <bLEDReload>
+ 3e4:	0f c0       	rjmp	.+30     	; 0x404 <__LOCK_REGION_LENGTH__+0x4>
+ 3e6:	81 e0       	ldi	r24, 0x01	; 1
+ 3e8:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <bLEDReload>
+ 3ec:	0b c0       	rjmp	.+22     	; 0x404 <__LOCK_REGION_LENGTH__+0x4>
+ 3ee:	84 e0       	ldi	r24, 0x04	; 4
  3f0:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <bLEDReload>
- 3f4:	0b c0       	rjmp	.+22     	; 0x40c <__LOCK_REGION_LENGTH__+0xc>
- 3f6:	84 e0       	ldi	r24, 0x04	; 4
+ 3f4:	07 c0       	rjmp	.+14     	; 0x404 <__LOCK_REGION_LENGTH__+0x4>
+ 3f6:	81 e0       	ldi	r24, 0x01	; 1
  3f8:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <bLEDReload>
- 3fc:	07 c0       	rjmp	.+14     	; 0x40c <__LOCK_REGION_LENGTH__+0xc>
- 3fe:	81 e0       	ldi	r24, 0x01	; 1
+ 3fc:	03 c0       	rjmp	.+6      	; 0x404 <__LOCK_REGION_LENGTH__+0x4>
+ 3fe:	8a e0       	ldi	r24, 0x0A	; 10
  400:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <bLEDReload>
- 404:	03 c0       	rjmp	.+6      	; 0x40c <__LOCK_REGION_LENGTH__+0xc>
- 406:	8a e0       	ldi	r24, 0x0A	; 10
- 408:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <bLEDReload>
- 40c:	60 91 64 00 	lds	r22, 0x0064	; 0x800064 <bLEDReload>
- 410:	81 e9       	ldi	r24, 0x91	; 145
- 412:	90 e0       	ldi	r25, 0x00	; 0
- 414:	ea c4       	rjmp	.+2516   	; 0xdea <resetTimerAction>
- 416:	08 95       	ret
+ 404:	60 91 64 00 	lds	r22, 0x0064	; 0x800064 <bLEDReload>
+ 408:	81 e9       	ldi	r24, 0x91	; 145
+ 40a:	90 e0       	ldi	r25, 0x00	; 0
+ 40c:	d9 c4       	rjmp	.+2482   	; 0xdc0 <resetTimerAction>
+ 40e:	08 95       	ret
 
-00000418 <MessageTimerAction>:
- 418:	1f 93       	push	r17
- 41a:	cf 93       	push	r28
- 41c:	df 93       	push	r29
- 41e:	cd b7       	in	r28, 0x3d	; 61
- 420:	de b7       	in	r29, 0x3e	; 62
- 422:	66 97       	sbiw	r28, 0x16	; 22
- 424:	0f b6       	in	r0, 0x3f	; 63
- 426:	f8 94       	cli
- 428:	de bf       	out	0x3e, r29	; 62
- 42a:	0f be       	out	0x3f, r0	; 63
- 42c:	cd bf       	out	0x3d, r28	; 61
- 42e:	e0 91 65 00 	lds	r30, 0x0065	; 0x800065 <bThrState>
- 432:	8e 2f       	mov	r24, r30
- 434:	90 e0       	ldi	r25, 0x00	; 0
- 436:	fc 01       	movw	r30, r24
- 438:	31 97       	sbiw	r30, 0x01	; 1
- 43a:	ee 31       	cpi	r30, 0x1E	; 30
- 43c:	f1 05       	cpc	r31, r1
- 43e:	08 f0       	brcs	.+2      	; 0x442 <MessageTimerAction+0x2a>
- 440:	55 c0       	rjmp	.+170    	; 0x4ec <__stack+0x8d>
- 442:	e0 57       	subi	r30, 0x70	; 112
- 444:	ff 4f       	sbci	r31, 0xFF	; 255
- 446:	9d c5       	rjmp	.+2874   	; 0xf82 <__tablejump2__>
- 448:	e0 91 6c 00 	lds	r30, 0x006C	; 0x80006c <slotnumber>
- 44c:	86 e1       	ldi	r24, 0x16	; 22
- 44e:	e8 02       	muls	r30, r24
- 450:	f0 01       	movw	r30, r0
- 452:	11 24       	eor	r1, r1
- 454:	e5 5b       	subi	r30, 0xB5	; 181
- 456:	fe 4f       	sbci	r31, 0xFE	; 254
- 458:	45 81       	ldd	r20, Z+5	; 0x05
- 45a:	62 81       	ldd	r22, Z+2	; 0x02
- 45c:	80 ea       	ldi	r24, 0xA0	; 160
- 45e:	78 d5       	rcall	.+2800   	; 0xf50 <sendLocoNet4BytePacket>
- 460:	8a ef       	ldi	r24, 0xFA	; 250
- 462:	47 c0       	rjmp	.+142    	; 0x4f2 <__stack+0x93>
- 464:	60 91 6c 00 	lds	r22, 0x006C	; 0x80006c <slotnumber>
- 468:	16 e1       	ldi	r17, 0x16	; 22
- 46a:	61 03       	mulsu	r22, r17
- 46c:	b0 01       	movw	r22, r0
- 46e:	11 24       	eor	r1, r1
- 470:	65 5b       	subi	r22, 0xB5	; 181
- 472:	7e 4f       	sbci	r23, 0xFE	; 254
- 474:	84 e1       	ldi	r24, 0x14	; 20
- 476:	92 df       	rcall	.-220    	; 0x39c <vSetState>
- 478:	20 91 6c 00 	lds	r18, 0x006C	; 0x80006c <slotnumber>
- 47c:	21 03       	mulsu	r18, r17
- 47e:	f0 01       	movw	r30, r0
- 480:	11 24       	eor	r1, r1
- 482:	e5 5b       	subi	r30, 0xB5	; 181
- 484:	fe 4f       	sbci	r31, 0xFE	; 254
- 486:	44 81       	ldd	r20, Z+4	; 0x04
- 488:	61 85       	ldd	r22, Z+9	; 0x09
- 48a:	8f eb       	ldi	r24, 0xBF	; 191
- 48c:	61 d5       	rcall	.+2754   	; 0xf50 <sendLocoNet4BytePacket>
- 48e:	83 30       	cpi	r24, 0x03	; 3
- 490:	79 f5       	brne	.+94     	; 0x4f0 <__stack+0x91>
- 492:	84 e1       	ldi	r24, 0x14	; 20
- 494:	2e c0       	rjmp	.+92     	; 0x4f2 <__stack+0x93>
- 496:	8f ee       	ldi	r24, 0xEF	; 239
- 498:	89 83       	std	Y+1, r24	; 0x01
- 49a:	8e e0       	ldi	r24, 0x0E	; 14
- 49c:	8a 83       	std	Y+2, r24	; 0x02
- 49e:	e0 91 6c 00 	lds	r30, 0x006C	; 0x80006c <slotnumber>
- 4a2:	86 e1       	ldi	r24, 0x16	; 22
- 4a4:	e8 02       	muls	r30, r24
- 4a6:	f0 01       	movw	r30, r0
- 4a8:	11 24       	eor	r1, r1
- 4aa:	e5 5b       	subi	r30, 0xB5	; 181
- 4ac:	fe 4f       	sbci	r31, 0xFE	; 254
- 4ae:	82 81       	ldd	r24, Z+2	; 0x02
- 4b0:	8b 83       	std	Y+3, r24	; 0x03
- 4b2:	83 81       	ldd	r24, Z+3	; 0x03
- 4b4:	8c 83       	std	Y+4, r24	; 0x04
- 4b6:	84 81       	ldd	r24, Z+4	; 0x04
- 4b8:	8d 83       	std	Y+5, r24	; 0x05
- 4ba:	85 81       	ldd	r24, Z+5	; 0x05
- 4bc:	8e 83       	std	Y+6, r24	; 0x06
- 4be:	86 81       	ldd	r24, Z+6	; 0x06
- 4c0:	8f 83       	std	Y+7, r24	; 0x07
- 4c2:	87 81       	ldd	r24, Z+7	; 0x07
- 4c4:	88 87       	std	Y+8, r24	; 0x08
- 4c6:	80 85       	ldd	r24, Z+8	; 0x08
- 4c8:	89 87       	std	Y+9, r24	; 0x09
- 4ca:	81 85       	ldd	r24, Z+9	; 0x09
- 4cc:	8a 87       	std	Y+10, r24	; 0x0a
- 4ce:	82 85       	ldd	r24, Z+10	; 0x0a
- 4d0:	8b 87       	std	Y+11, r24	; 0x0b
- 4d2:	83 85       	ldd	r24, Z+11	; 0x0b
- 4d4:	8c 87       	std	Y+12, r24	; 0x0c
- 4d6:	84 85       	ldd	r24, Z+12	; 0x0c
- 4d8:	8d 87       	std	Y+13, r24	; 0x0d
- 4da:	ce 01       	movw	r24, r28
- 4dc:	01 96       	adiw	r24, 0x01	; 1
- 4de:	fe d4       	rcall	.+2556   	; 0xedc <sendLocoNetPacket>
- 4e0:	83 30       	cpi	r24, 0x03	; 3
- 4e2:	11 f4       	brne	.+4      	; 0x4e8 <__stack+0x89>
- 4e4:	84 e1       	ldi	r24, 0x14	; 20
- 4e6:	05 c0       	rjmp	.+10     	; 0x4f2 <__stack+0x93>
+00000410 <MessageTimerAction>:
+ 410:	1f 93       	push	r17
+ 412:	cf 93       	push	r28
+ 414:	df 93       	push	r29
+ 416:	cd b7       	in	r28, 0x3d	; 61
+ 418:	de b7       	in	r29, 0x3e	; 62
+ 41a:	66 97       	sbiw	r28, 0x16	; 22
+ 41c:	0f b6       	in	r0, 0x3f	; 63
+ 41e:	f8 94       	cli
+ 420:	de bf       	out	0x3e, r29	; 62
+ 422:	0f be       	out	0x3f, r0	; 63
+ 424:	cd bf       	out	0x3d, r28	; 61
+ 426:	e0 91 65 00 	lds	r30, 0x0065	; 0x800065 <bThrState>
+ 42a:	8e 2f       	mov	r24, r30
+ 42c:	90 e0       	ldi	r25, 0x00	; 0
+ 42e:	fc 01       	movw	r30, r24
+ 430:	31 97       	sbiw	r30, 0x01	; 1
+ 432:	ee 31       	cpi	r30, 0x1E	; 30
+ 434:	f1 05       	cpc	r31, r1
+ 436:	08 f0       	brcs	.+2      	; 0x43a <MessageTimerAction+0x2a>
+ 438:	55 c0       	rjmp	.+170    	; 0x4e4 <__stack+0x85>
+ 43a:	e0 57       	subi	r30, 0x70	; 112
+ 43c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 43e:	8c c5       	rjmp	.+2840   	; 0xf58 <__tablejump2__>
+ 440:	e0 91 6c 00 	lds	r30, 0x006C	; 0x80006c <slotnumber>
+ 444:	86 e1       	ldi	r24, 0x16	; 22
+ 446:	e8 02       	muls	r30, r24
+ 448:	f0 01       	movw	r30, r0
+ 44a:	11 24       	eor	r1, r1
+ 44c:	e5 5b       	subi	r30, 0xB5	; 181
+ 44e:	fe 4f       	sbci	r31, 0xFE	; 254
+ 450:	45 81       	ldd	r20, Z+5	; 0x05
+ 452:	62 81       	ldd	r22, Z+2	; 0x02
+ 454:	80 ea       	ldi	r24, 0xA0	; 160
+ 456:	67 d5       	rcall	.+2766   	; 0xf26 <sendLocoNet4BytePacket>
+ 458:	8a ef       	ldi	r24, 0xFA	; 250
+ 45a:	47 c0       	rjmp	.+142    	; 0x4ea <__stack+0x8b>
+ 45c:	60 91 6c 00 	lds	r22, 0x006C	; 0x80006c <slotnumber>
+ 460:	16 e1       	ldi	r17, 0x16	; 22
+ 462:	61 03       	mulsu	r22, r17
+ 464:	b0 01       	movw	r22, r0
+ 466:	11 24       	eor	r1, r1
+ 468:	65 5b       	subi	r22, 0xB5	; 181
+ 46a:	7e 4f       	sbci	r23, 0xFE	; 254
+ 46c:	84 e1       	ldi	r24, 0x14	; 20
+ 46e:	92 df       	rcall	.-220    	; 0x394 <vSetState>
+ 470:	20 91 6c 00 	lds	r18, 0x006C	; 0x80006c <slotnumber>
+ 474:	21 03       	mulsu	r18, r17
+ 476:	f0 01       	movw	r30, r0
+ 478:	11 24       	eor	r1, r1
+ 47a:	e5 5b       	subi	r30, 0xB5	; 181
+ 47c:	fe 4f       	sbci	r31, 0xFE	; 254
+ 47e:	44 81       	ldd	r20, Z+4	; 0x04
+ 480:	61 85       	ldd	r22, Z+9	; 0x09
+ 482:	8f eb       	ldi	r24, 0xBF	; 191
+ 484:	50 d5       	rcall	.+2720   	; 0xf26 <sendLocoNet4BytePacket>
+ 486:	83 30       	cpi	r24, 0x03	; 3
+ 488:	79 f5       	brne	.+94     	; 0x4e8 <__stack+0x89>
+ 48a:	84 e1       	ldi	r24, 0x14	; 20
+ 48c:	2e c0       	rjmp	.+92     	; 0x4ea <__stack+0x8b>
+ 48e:	8f ee       	ldi	r24, 0xEF	; 239
+ 490:	89 83       	std	Y+1, r24	; 0x01
+ 492:	8e e0       	ldi	r24, 0x0E	; 14
+ 494:	8a 83       	std	Y+2, r24	; 0x02
+ 496:	e0 91 6c 00 	lds	r30, 0x006C	; 0x80006c <slotnumber>
+ 49a:	86 e1       	ldi	r24, 0x16	; 22
+ 49c:	e8 02       	muls	r30, r24
+ 49e:	f0 01       	movw	r30, r0
+ 4a0:	11 24       	eor	r1, r1
+ 4a2:	e5 5b       	subi	r30, 0xB5	; 181
+ 4a4:	fe 4f       	sbci	r31, 0xFE	; 254
+ 4a6:	82 81       	ldd	r24, Z+2	; 0x02
+ 4a8:	8b 83       	std	Y+3, r24	; 0x03
+ 4aa:	83 81       	ldd	r24, Z+3	; 0x03
+ 4ac:	8c 83       	std	Y+4, r24	; 0x04
+ 4ae:	84 81       	ldd	r24, Z+4	; 0x04
+ 4b0:	8d 83       	std	Y+5, r24	; 0x05
+ 4b2:	85 81       	ldd	r24, Z+5	; 0x05
+ 4b4:	8e 83       	std	Y+6, r24	; 0x06
+ 4b6:	86 81       	ldd	r24, Z+6	; 0x06
+ 4b8:	8f 83       	std	Y+7, r24	; 0x07
+ 4ba:	87 81       	ldd	r24, Z+7	; 0x07
+ 4bc:	88 87       	std	Y+8, r24	; 0x08
+ 4be:	80 85       	ldd	r24, Z+8	; 0x08
+ 4c0:	89 87       	std	Y+9, r24	; 0x09
+ 4c2:	81 85       	ldd	r24, Z+9	; 0x09
+ 4c4:	8a 87       	std	Y+10, r24	; 0x0a
+ 4c6:	82 85       	ldd	r24, Z+10	; 0x0a
+ 4c8:	8b 87       	std	Y+11, r24	; 0x0b
+ 4ca:	83 85       	ldd	r24, Z+11	; 0x0b
+ 4cc:	8c 87       	std	Y+12, r24	; 0x0c
+ 4ce:	84 85       	ldd	r24, Z+12	; 0x0c
+ 4d0:	8d 87       	std	Y+13, r24	; 0x0d
+ 4d2:	ce 01       	movw	r24, r28
+ 4d4:	01 96       	adiw	r24, 0x01	; 1
+ 4d6:	ed d4       	rcall	.+2522   	; 0xeb2 <sendLocoNetPacket>
+ 4d8:	83 30       	cpi	r24, 0x03	; 3
+ 4da:	11 f4       	brne	.+4      	; 0x4e0 <__stack+0x81>
+ 4dc:	84 e1       	ldi	r24, 0x14	; 20
+ 4de:	05 c0       	rjmp	.+10     	; 0x4ea <__stack+0x8b>
+ 4e0:	83 e0       	ldi	r24, 0x03	; 3
+ 4e2:	03 c0       	rjmp	.+6      	; 0x4ea <__stack+0x8b>
+ 4e4:	80 e0       	ldi	r24, 0x00	; 0
+ 4e6:	01 c0       	rjmp	.+2      	; 0x4ea <__stack+0x8b>
  4e8:	83 e0       	ldi	r24, 0x03	; 3
- 4ea:	03 c0       	rjmp	.+6      	; 0x4f2 <__stack+0x93>
- 4ec:	80 e0       	ldi	r24, 0x00	; 0
- 4ee:	01 c0       	rjmp	.+2      	; 0x4f2 <__stack+0x93>
- 4f0:	83 e0       	ldi	r24, 0x03	; 3
- 4f2:	66 96       	adiw	r28, 0x16	; 22
- 4f4:	0f b6       	in	r0, 0x3f	; 63
- 4f6:	f8 94       	cli
- 4f8:	de bf       	out	0x3e, r29	; 62
- 4fa:	0f be       	out	0x3f, r0	; 63
- 4fc:	cd bf       	out	0x3d, r28	; 61
- 4fe:	df 91       	pop	r29
- 500:	cf 91       	pop	r28
- 502:	1f 91       	pop	r17
- 504:	08 95       	ret
+ 4ea:	66 96       	adiw	r28, 0x16	; 22
+ 4ec:	0f b6       	in	r0, 0x3f	; 63
+ 4ee:	f8 94       	cli
+ 4f0:	de bf       	out	0x3e, r29	; 62
+ 4f2:	0f be       	out	0x3f, r0	; 63
+ 4f4:	cd bf       	out	0x3d, r28	; 61
+ 4f6:	df 91       	pop	r29
+ 4f8:	cf 91       	pop	r28
+ 4fa:	1f 91       	pop	r17
+ 4fc:	08 95       	ret
 
-00000506 <initSlots>:
- 506:	fc 01       	movw	r30, r24
- 508:	9f ee       	ldi	r25, 0xEF	; 239
- 50a:	90 83       	st	Z, r25
- 50c:	8e e0       	ldi	r24, 0x0E	; 14
- 50e:	81 83       	std	Z+1, r24	; 0x01
- 510:	12 82       	std	Z+2, r1	; 0x02
- 512:	13 82       	std	Z+3, r1	; 0x03
- 514:	14 82       	std	Z+4, r1	; 0x04
- 516:	15 82       	std	Z+5, r1	; 0x05
- 518:	16 82       	std	Z+6, r1	; 0x06
- 51a:	17 82       	std	Z+7, r1	; 0x07
- 51c:	10 86       	std	Z+8, r1	; 0x08
- 51e:	11 86       	std	Z+9, r1	; 0x09
- 520:	12 86       	std	Z+10, r1	; 0x0a
- 522:	11 8a       	std	Z+17, r1	; 0x11
- 524:	12 8a       	std	Z+18, r1	; 0x12
- 526:	27 e0       	ldi	r18, 0x07	; 7
- 528:	26 87       	std	Z+14, r18	; 0x0e
- 52a:	17 86       	std	Z+15, r1	; 0x0f
- 52c:	10 8a       	std	Z+16, r1	; 0x10
- 52e:	14 8a       	std	Z+20, r1	; 0x14
- 530:	2b b3       	in	r18, 0x1b	; 27
- 532:	25 8b       	std	Z+21, r18	; 0x15
- 534:	96 8b       	std	Z+22, r25	; 0x16
- 536:	87 8b       	std	Z+23, r24	; 0x17
- 538:	10 8e       	std	Z+24, r1	; 0x18
- 53a:	11 8e       	std	Z+25, r1	; 0x19
- 53c:	12 8e       	std	Z+26, r1	; 0x1a
- 53e:	13 8e       	std	Z+27, r1	; 0x1b
- 540:	14 8e       	std	Z+28, r1	; 0x1c
- 542:	15 8e       	std	Z+29, r1	; 0x1d
- 544:	16 8e       	std	Z+30, r1	; 0x1e
- 546:	17 8e       	std	Z+31, r1	; 0x1f
- 548:	10 a2       	std	Z+32, r1	; 0x20
- 54a:	53 e0       	ldi	r21, 0x03	; 3
- 54c:	57 a3       	std	Z+39, r21	; 0x27
- 54e:	10 a6       	std	Z+40, r1	; 0x28
- 550:	14 a2       	std	Z+36, r1	; 0x24
- 552:	15 a2       	std	Z+37, r1	; 0x25
- 554:	16 a2       	std	Z+38, r1	; 0x26
- 556:	41 e0       	ldi	r20, 0x01	; 1
- 558:	42 a7       	std	Z+42, r20	; 0x2a
- 55a:	2b b3       	in	r18, 0x1b	; 27
- 55c:	23 a7       	std	Z+43, r18	; 0x2b
- 55e:	94 a7       	std	Z+44, r25	; 0x2c
- 560:	85 a7       	std	Z+45, r24	; 0x2d
- 562:	16 a6       	std	Z+46, r1	; 0x2e
- 564:	17 a6       	std	Z+47, r1	; 0x2f
- 566:	10 aa       	std	Z+48, r1	; 0x30
- 568:	11 aa       	std	Z+49, r1	; 0x31
- 56a:	12 aa       	std	Z+50, r1	; 0x32
- 56c:	13 aa       	std	Z+51, r1	; 0x33
- 56e:	14 aa       	std	Z+52, r1	; 0x34
- 570:	15 aa       	std	Z+53, r1	; 0x35
- 572:	16 aa       	std	Z+54, r1	; 0x36
- 574:	32 e0       	ldi	r19, 0x02	; 2
- 576:	35 af       	std	Z+61, r19	; 0x3d
- 578:	16 ae       	std	Z+62, r1	; 0x3e
- 57a:	24 e0       	ldi	r18, 0x04	; 4
- 57c:	22 af       	std	Z+58, r18	; 0x3a
- 57e:	13 ae       	std	Z+59, r1	; 0x3b
- 580:	14 ae       	std	Z+60, r1	; 0x3c
- 582:	df 01       	movw	r26, r30
- 584:	a0 5c       	subi	r26, 0xC0	; 192
- 586:	bf 4f       	sbci	r27, 0xFF	; 255
- 588:	5c 93       	st	X, r21
- 58a:	55 b3       	in	r21, 0x15	; 21
- 58c:	11 96       	adiw	r26, 0x01	; 1
- 58e:	5c 93       	st	X, r21
- 590:	ee 5b       	subi	r30, 0xBE	; 190
- 592:	ff 4f       	sbci	r31, 0xFF	; 255
- 594:	90 83       	st	Z, r25
- 596:	81 83       	std	Z+1, r24	; 0x01
- 598:	12 82       	std	Z+2, r1	; 0x02
- 59a:	13 82       	std	Z+3, r1	; 0x03
- 59c:	14 82       	std	Z+4, r1	; 0x04
- 59e:	15 82       	std	Z+5, r1	; 0x05
- 5a0:	16 82       	std	Z+6, r1	; 0x06
- 5a2:	17 82       	std	Z+7, r1	; 0x07
- 5a4:	10 86       	std	Z+8, r1	; 0x08
- 5a6:	11 86       	std	Z+9, r1	; 0x09
- 5a8:	12 86       	std	Z+10, r1	; 0x0a
- 5aa:	41 8b       	std	Z+17, r20	; 0x11
- 5ac:	12 8a       	std	Z+18, r1	; 0x12
- 5ae:	36 87       	std	Z+14, r19	; 0x0e
- 5b0:	17 86       	std	Z+15, r1	; 0x0f
- 5b2:	10 8a       	std	Z+16, r1	; 0x10
- 5b4:	24 8b       	std	Z+20, r18	; 0x14
- 5b6:	85 b3       	in	r24, 0x15	; 21
- 5b8:	85 8b       	std	Z+21, r24	; 0x15
- 5ba:	08 95       	ret
+000004fe <initSlots>:
+ 4fe:	fc 01       	movw	r30, r24
+ 500:	9f ee       	ldi	r25, 0xEF	; 239
+ 502:	90 83       	st	Z, r25
+ 504:	8e e0       	ldi	r24, 0x0E	; 14
+ 506:	81 83       	std	Z+1, r24	; 0x01
+ 508:	12 82       	std	Z+2, r1	; 0x02
+ 50a:	13 82       	std	Z+3, r1	; 0x03
+ 50c:	14 82       	std	Z+4, r1	; 0x04
+ 50e:	15 82       	std	Z+5, r1	; 0x05
+ 510:	16 82       	std	Z+6, r1	; 0x06
+ 512:	17 82       	std	Z+7, r1	; 0x07
+ 514:	10 86       	std	Z+8, r1	; 0x08
+ 516:	11 86       	std	Z+9, r1	; 0x09
+ 518:	12 86       	std	Z+10, r1	; 0x0a
+ 51a:	11 8a       	std	Z+17, r1	; 0x11
+ 51c:	12 8a       	std	Z+18, r1	; 0x12
+ 51e:	27 e0       	ldi	r18, 0x07	; 7
+ 520:	26 87       	std	Z+14, r18	; 0x0e
+ 522:	17 86       	std	Z+15, r1	; 0x0f
+ 524:	10 8a       	std	Z+16, r1	; 0x10
+ 526:	14 8a       	std	Z+20, r1	; 0x14
+ 528:	2b b3       	in	r18, 0x1b	; 27
+ 52a:	25 8b       	std	Z+21, r18	; 0x15
+ 52c:	96 8b       	std	Z+22, r25	; 0x16
+ 52e:	87 8b       	std	Z+23, r24	; 0x17
+ 530:	10 8e       	std	Z+24, r1	; 0x18
+ 532:	11 8e       	std	Z+25, r1	; 0x19
+ 534:	12 8e       	std	Z+26, r1	; 0x1a
+ 536:	13 8e       	std	Z+27, r1	; 0x1b
+ 538:	14 8e       	std	Z+28, r1	; 0x1c
+ 53a:	15 8e       	std	Z+29, r1	; 0x1d
+ 53c:	16 8e       	std	Z+30, r1	; 0x1e
+ 53e:	17 8e       	std	Z+31, r1	; 0x1f
+ 540:	10 a2       	std	Z+32, r1	; 0x20
+ 542:	33 e0       	ldi	r19, 0x03	; 3
+ 544:	37 a3       	std	Z+39, r19	; 0x27
+ 546:	10 a6       	std	Z+40, r1	; 0x28
+ 548:	14 a2       	std	Z+36, r1	; 0x24
+ 54a:	15 a2       	std	Z+37, r1	; 0x25
+ 54c:	16 a2       	std	Z+38, r1	; 0x26
+ 54e:	21 e0       	ldi	r18, 0x01	; 1
+ 550:	22 a7       	std	Z+42, r18	; 0x2a
+ 552:	4b b3       	in	r20, 0x1b	; 27
+ 554:	43 a7       	std	Z+43, r20	; 0x2b
+ 556:	94 a7       	std	Z+44, r25	; 0x2c
+ 558:	85 a7       	std	Z+45, r24	; 0x2d
+ 55a:	16 a6       	std	Z+46, r1	; 0x2e
+ 55c:	17 a6       	std	Z+47, r1	; 0x2f
+ 55e:	10 aa       	std	Z+48, r1	; 0x30
+ 560:	11 aa       	std	Z+49, r1	; 0x31
+ 562:	12 aa       	std	Z+50, r1	; 0x32
+ 564:	13 aa       	std	Z+51, r1	; 0x33
+ 566:	14 aa       	std	Z+52, r1	; 0x34
+ 568:	15 aa       	std	Z+53, r1	; 0x35
+ 56a:	16 aa       	std	Z+54, r1	; 0x36
+ 56c:	25 af       	std	Z+61, r18	; 0x3d
+ 56e:	16 ae       	std	Z+62, r1	; 0x3e
+ 570:	24 e0       	ldi	r18, 0x04	; 4
+ 572:	22 af       	std	Z+58, r18	; 0x3a
+ 574:	13 ae       	std	Z+59, r1	; 0x3b
+ 576:	14 ae       	std	Z+60, r1	; 0x3c
+ 578:	df 01       	movw	r26, r30
+ 57a:	a0 5c       	subi	r26, 0xC0	; 192
+ 57c:	bf 4f       	sbci	r27, 0xFF	; 255
+ 57e:	3c 93       	st	X, r19
+ 580:	35 b3       	in	r19, 0x15	; 21
+ 582:	11 96       	adiw	r26, 0x01	; 1
+ 584:	3c 93       	st	X, r19
+ 586:	ee 5b       	subi	r30, 0xBE	; 190
+ 588:	ff 4f       	sbci	r31, 0xFF	; 255
+ 58a:	90 83       	st	Z, r25
+ 58c:	81 83       	std	Z+1, r24	; 0x01
+ 58e:	12 82       	std	Z+2, r1	; 0x02
+ 590:	13 82       	std	Z+3, r1	; 0x03
+ 592:	14 82       	std	Z+4, r1	; 0x04
+ 594:	15 82       	std	Z+5, r1	; 0x05
+ 596:	16 82       	std	Z+6, r1	; 0x06
+ 598:	17 82       	std	Z+7, r1	; 0x07
+ 59a:	10 86       	std	Z+8, r1	; 0x08
+ 59c:	11 86       	std	Z+9, r1	; 0x09
+ 59e:	12 86       	std	Z+10, r1	; 0x0a
+ 5a0:	82 e0       	ldi	r24, 0x02	; 2
+ 5a2:	81 8b       	std	Z+17, r24	; 0x11
+ 5a4:	12 8a       	std	Z+18, r1	; 0x12
+ 5a6:	86 87       	std	Z+14, r24	; 0x0e
+ 5a8:	17 86       	std	Z+15, r1	; 0x0f
+ 5aa:	10 8a       	std	Z+16, r1	; 0x10
+ 5ac:	24 8b       	std	Z+20, r18	; 0x14
+ 5ae:	85 b3       	in	r24, 0x15	; 21
+ 5b0:	85 8b       	std	Z+21, r24	; 0x15
+ 5b2:	08 95       	ret
 
-000005bc <processValue>:
- 5bc:	88 23       	and	r24, r24
- 5be:	39 f0       	breq	.+14     	; 0x5ce <processValue+0x12>
- 5c0:	80 91 6b 00 	lds	r24, 0x006B	; 0x80006b <value>
- 5c4:	86 95       	lsr	r24
- 5c6:	80 58       	subi	r24, 0x80	; 128
- 5c8:	80 93 6b 00 	sts	0x006B, r24	; 0x80006b <value>
- 5cc:	08 95       	ret
- 5ce:	80 91 6b 00 	lds	r24, 0x006B	; 0x80006b <value>
- 5d2:	86 95       	lsr	r24
- 5d4:	80 93 6b 00 	sts	0x006B, r24	; 0x80006b <value>
- 5d8:	08 95       	ret
+000005b4 <processValue>:
+ 5b4:	81 30       	cpi	r24, 0x01	; 1
+ 5b6:	09 f0       	breq	.+2      	; 0x5ba <processValue+0x6>
+ 5b8:	82 e0       	ldi	r24, 0x02	; 2
+ 5ba:	90 91 6b 00 	lds	r25, 0x006B	; 0x80006b <value>
+ 5be:	96 95       	lsr	r25
+ 5c0:	89 0f       	add	r24, r25
+ 5c2:	80 93 6b 00 	sts	0x006B, r24	; 0x80006b <value>
+ 5c6:	08 95       	ret
 
-000005da <ProcessKeyInputTest8Streak>:
- 5da:	cf 93       	push	r28
- 5dc:	df 93       	push	r29
- 5de:	c8 e0       	ldi	r28, 0x08	; 8
- 5e0:	d0 e0       	ldi	r29, 0x00	; 0
- 5e2:	83 b3       	in	r24, 0x13	; 19
- 5e4:	80 78       	andi	r24, 0x80	; 128
- 5e6:	ea df       	rcall	.-44     	; 0x5bc <processValue>
- 5e8:	21 97       	sbiw	r28, 0x01	; 1
- 5ea:	d9 f7       	brne	.-10     	; 0x5e2 <ProcessKeyInputTest8Streak+0x8>
- 5ec:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <keyStatus>
- 5f0:	81 11       	cpse	r24, r1
- 5f2:	08 c0       	rjmp	.+16     	; 0x604 <ProcessKeyInputTest8Streak+0x2a>
- 5f4:	80 91 6b 00 	lds	r24, 0x006B	; 0x80006b <value>
- 5f8:	81 11       	cpse	r24, r1
- 5fa:	16 c0       	rjmp	.+44     	; 0x628 <ProcessKeyInputTest8Streak+0x4e>
- 5fc:	81 e0       	ldi	r24, 0x01	; 1
- 5fe:	80 93 6a 00 	sts	0x006A, r24	; 0x80006a <keyStatus>
- 602:	12 c0       	rjmp	.+36     	; 0x628 <ProcessKeyInputTest8Streak+0x4e>
- 604:	81 30       	cpi	r24, 0x01	; 1
- 606:	81 f4       	brne	.+32     	; 0x628 <ProcessKeyInputTest8Streak+0x4e>
- 608:	80 91 6b 00 	lds	r24, 0x006B	; 0x80006b <value>
- 60c:	8f 3f       	cpi	r24, 0xFF	; 255
- 60e:	61 f4       	brne	.+24     	; 0x628 <ProcessKeyInputTest8Streak+0x4e>
- 610:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <shiftTimeOut>
- 614:	81 11       	cpse	r24, r1
- 616:	04 c0       	rjmp	.+8      	; 0x620 <ProcessKeyInputTest8Streak+0x46>
- 618:	31 de       	rcall	.-926    	; 0x27c <disableLED1>
- 61a:	10 92 6a 00 	sts	0x006A, r1	; 0x80006a <keyStatus>
- 61e:	04 c0       	rjmp	.+8      	; 0x628 <ProcessKeyInputTest8Streak+0x4e>
- 620:	10 92 69 00 	sts	0x0069, r1	; 0x800069 <shiftTimeOut>
- 624:	10 92 6a 00 	sts	0x006A, r1	; 0x80006a <keyStatus>
- 628:	df 91       	pop	r29
- 62a:	cf 91       	pop	r28
- 62c:	08 95       	ret
+000005c8 <ProcessKeyInput>:
+ 5c8:	83 b3       	in	r24, 0x13	; 19
+ 5ca:	80 78       	andi	r24, 0x80	; 128
+ 5cc:	f3 df       	rcall	.-26     	; 0x5b4 <processValue>
+ 5ce:	80 91 6a 00 	lds	r24, 0x006A	; 0x80006a <keyStatus>
+ 5d2:	81 11       	cpse	r24, r1
+ 5d4:	08 c0       	rjmp	.+16     	; 0x5e6 <ProcessKeyInput+0x1e>
+ 5d6:	80 91 6b 00 	lds	r24, 0x006B	; 0x80006b <value>
+ 5da:	83 30       	cpi	r24, 0x03	; 3
+ 5dc:	29 f5       	brne	.+74     	; 0x628 <ProcessKeyInput+0x60>
+ 5de:	81 e0       	ldi	r24, 0x01	; 1
+ 5e0:	80 93 6a 00 	sts	0x006A, r24	; 0x80006a <keyStatus>
+ 5e4:	08 95       	ret
+ 5e6:	8a 30       	cpi	r24, 0x0A	; 10
+ 5e8:	b4 f0       	brlt	.+44     	; 0x616 <ProcessKeyInput+0x4e>
+ 5ea:	90 91 6b 00 	lds	r25, 0x006B	; 0x80006b <value>
+ 5ee:	91 11       	cpse	r25, r1
+ 5f0:	12 c0       	rjmp	.+36     	; 0x616 <ProcessKeyInput+0x4e>
+ 5f2:	8f 5f       	subi	r24, 0xFF	; 255
+ 5f4:	80 93 6a 00 	sts	0x006A, r24	; 0x80006a <keyStatus>
+ 5f8:	84 31       	cpi	r24, 0x14	; 20
+ 5fa:	b1 f4       	brne	.+44     	; 0x628 <ProcessKeyInput+0x60>
+ 5fc:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <shiftTimeOut>
+ 600:	81 11       	cpse	r24, r1
+ 602:	04 c0       	rjmp	.+8      	; 0x60c <ProcessKeyInput+0x44>
+ 604:	d8 98       	cbi	0x1b, 0	; 27
+ 606:	10 92 6a 00 	sts	0x006A, r1	; 0x80006a <keyStatus>
+ 60a:	08 95       	ret
+ 60c:	10 92 69 00 	sts	0x0069, r1	; 0x800069 <shiftTimeOut>
+ 610:	10 92 6a 00 	sts	0x006A, r1	; 0x80006a <keyStatus>
+ 614:	08 95       	ret
+ 616:	90 91 6b 00 	lds	r25, 0x006B	; 0x80006b <value>
+ 61a:	93 30       	cpi	r25, 0x03	; 3
+ 61c:	29 f4       	brne	.+10     	; 0x628 <ProcessKeyInput+0x60>
+ 61e:	82 30       	cpi	r24, 0x02	; 2
+ 620:	1c f0       	brlt	.+6      	; 0x628 <ProcessKeyInput+0x60>
+ 622:	8f 5f       	subi	r24, 0xFF	; 255
+ 624:	80 93 6a 00 	sts	0x006A, r24	; 0x80006a <keyStatus>
+ 628:	08 95       	ret
 
-0000062e <setPullUps>:
- 62e:	af 9a       	sbi	0x15, 7	; 21
- 630:	c0 9a       	sbi	0x18, 0	; 24
- 632:	c4 9a       	sbi	0x18, 4	; 24
- 634:	da 9a       	sbi	0x1b, 2	; 27
- 636:	a8 9a       	sbi	0x15, 0	; 21
- 638:	db 9a       	sbi	0x1b, 3	; 27
- 63a:	aa 9a       	sbi	0x15, 2	; 21
- 63c:	a9 9a       	sbi	0x15, 1	; 21
- 63e:	93 9a       	sbi	0x12, 3	; 18
- 640:	94 9a       	sbi	0x12, 4	; 18
- 642:	95 9a       	sbi	0x12, 5	; 18
- 644:	96 9a       	sbi	0x12, 6	; 18
- 646:	08 95       	ret
+0000062a <sendLocoNetAdr>:
+ 62a:	fc 01       	movw	r30, r24
+ 62c:	44 81       	ldd	r20, Z+4	; 0x04
+ 62e:	61 85       	ldd	r22, Z+9	; 0x09
+ 630:	8f eb       	ldi	r24, 0xBF	; 191
+ 632:	79 d4       	rcall	.+2290   	; 0xf26 <sendLocoNet4BytePacket>
+ 634:	83 30       	cpi	r24, 0x03	; 3
+ 636:	29 f0       	breq	.+10     	; 0x642 <sendLocoNetAdr+0x18>
+ 638:	63 e0       	ldi	r22, 0x03	; 3
+ 63a:	82 e8       	ldi	r24, 0x82	; 130
+ 63c:	90 e0       	ldi	r25, 0x00	; 0
+ 63e:	c0 c3       	rjmp	.+1920   	; 0xdc0 <resetTimerAction>
+ 640:	08 95       	ret
+ 642:	64 e1       	ldi	r22, 0x14	; 20
+ 644:	82 e8       	ldi	r24, 0x82	; 130
+ 646:	90 e0       	ldi	r25, 0x00	; 0
+ 648:	bb c3       	rjmp	.+1910   	; 0xdc0 <resetTimerAction>
+ 64a:	08 95       	ret
 
-00000648 <_delay_1500ms>:
- 648:	84 e6       	ldi	r24, 0x64	; 100
- 64a:	90 e0       	ldi	r25, 0x00	; 0
- 64c:	ef ef       	ldi	r30, 0xFF	; 255
- 64e:	fb e6       	ldi	r31, 0x6B	; 107
- 650:	31 97       	sbiw	r30, 0x01	; 1
- 652:	f1 f7       	brne	.-4      	; 0x650 <_delay_1500ms+0x8>
- 654:	00 c0       	rjmp	.+0      	; 0x656 <_delay_1500ms+0xe>
- 656:	00 00       	nop
- 658:	01 97       	sbiw	r24, 0x01	; 1
- 65a:	c1 f7       	brne	.-16     	; 0x64c <_delay_1500ms+0x4>
- 65c:	08 95       	ret
-
-0000065e <sendLocoNetAdr>:
- 65e:	fc 01       	movw	r30, r24
- 660:	44 81       	ldd	r20, Z+4	; 0x04
- 662:	61 85       	ldd	r22, Z+9	; 0x09
- 664:	8f eb       	ldi	r24, 0xBF	; 191
- 666:	74 d4       	rcall	.+2280   	; 0xf50 <sendLocoNet4BytePacket>
- 668:	83 30       	cpi	r24, 0x03	; 3
- 66a:	29 f0       	breq	.+10     	; 0x676 <sendLocoNetAdr+0x18>
- 66c:	63 e0       	ldi	r22, 0x03	; 3
- 66e:	82 e8       	ldi	r24, 0x82	; 130
- 670:	90 e0       	ldi	r25, 0x00	; 0
- 672:	bb c3       	rjmp	.+1910   	; 0xdea <resetTimerAction>
- 674:	08 95       	ret
- 676:	64 e1       	ldi	r22, 0x14	; 20
- 678:	82 e8       	ldi	r24, 0x82	; 130
- 67a:	90 e0       	ldi	r25, 0x00	; 0
- 67c:	b6 c3       	rjmp	.+1900   	; 0xdea <resetTimerAction>
- 67e:	08 95       	ret
-
-00000680 <sendLocoNetFredCd>:
+0000064c <sendLocoNetFredCd>:
  * Send button press/release code according to FRED.
  * @param button a code from 1 to 127
  */
 void sendLocoNetFredCd( uint8_t cdTime )
 {
   sendLocoNet4BytePacket( OPC_FRED_BUTTON, 42, 0x7f & cdTime );
- 680:	48 2f       	mov	r20, r24
- 682:	4f 77       	andi	r20, 0x7F	; 127
- 684:	6a e2       	ldi	r22, 0x2A	; 42
- 686:	88 ea       	ldi	r24, 0xA8	; 168
- 688:	63 c4       	rjmp	.+2246   	; 0xf50 <sendLocoNet4BytePacket>
- 68a:	08 95       	ret
+ 64c:	48 2f       	mov	r20, r24
+ 64e:	4f 77       	andi	r20, 0x7F	; 127
+ 650:	6a e2       	ldi	r22, 0x2A	; 42
+ 652:	88 ea       	ldi	r24, 0xA8	; 168
+ 654:	68 c4       	rjmp	.+2256   	; 0xf26 <sendLocoNet4BytePacket>
+ 656:	08 95       	ret
 
-0000068c <main>:
- * RETURN VALUE: int, never reached, cause of endless loop
- * NOTES       :   -
- *******************************************************FunctionHeaderEnd******/
-int main(void)
-{
-  RESET_RESET_SOURCE(); // Clear Reset Status Register (WDRF,BORF,EXTRF,PORF)
- 68c:	14 be       	out	0x34, r1	; 52
-
-  byte bCount = 0;
-  bFrediVersion = FREDI_VERSION_ANALOG;
- 68e:	83 e0       	ldi	r24, 0x03	; 3
- 690:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <bFrediVersion>
-  
-  /***************************************/
-  //  init throttle slot
-  /***************************************/
-
-  bSpdCnt = 0;
- 694:	cc df       	rcall	.-104    	; 0x62e <setPullUps>
- 696:	10 92 6d 00 	sts	0x006D, r1	; 0x80006d <bSpdCnt>
-  
-	
-	initSlots(slotArray);			// initialisierung der vier rSlots.
- 69a:	8b e4       	ldi	r24, 0x4B	; 75
-	//initSlots(&slotArray[0]);		äquivalent zu dem oberen.
-
-  
-   if ((eeprom_read_byte(&abEEPROM[EEPROM_IMAGE]) != EEPROM_IMAGE_DEFAULT))
- 69c:	91 e0       	ldi	r25, 0x01	; 1
- 69e:	33 df       	rcall	.-410    	; 0x506 <initSlots>
- 6a0:	85 e0       	ldi	r24, 0x05	; 5
- 6a2:	90 e0       	ldi	r25, 0x00	; 0
-  {
-    vSetState(THR_STATE_SELFTEST, &slotArray[0]);
- 6a4:	74 d4       	rcall	.+2280   	; 0xf8e <eeprom_read_byte>
- 6a6:	85 35       	cpi	r24, 0x55	; 85
- 6a8:	51 f1       	breq	.+84     	; 0x6fe <main+0x72>
-
-    eeprom_write_byte(&abEEPROM[EEPROM_ADR_LOCO_LB], 0);                 // no loco active at selftest
- 6aa:	6b e4       	ldi	r22, 0x4B	; 75
- 6ac:	71 e0       	ldi	r23, 0x01	; 1
- 6ae:	84 e6       	ldi	r24, 0x64	; 100
- 6b0:	75 de       	rcall	.-790    	; 0x39c <vSetState>
-    eeprom_write_byte(&abEEPROM[EEPROM_ADR_LOCO_HB], 0);
- 6b2:	60 e0       	ldi	r22, 0x00	; 0
- 6b4:	83 e0       	ldi	r24, 0x03	; 3
- 6b6:	90 e0       	ldi	r25, 0x00	; 0
- 6b8:	72 d4       	rcall	.+2276   	; 0xf9e <eeprom_write_byte>
-
-    eeprom_write_byte(&abEEPROM[EEPROM_DECODER_TYPE], EEPROM_DECODER_TYPE_DEFAULT);
- 6ba:	60 e0       	ldi	r22, 0x00	; 0
- 6bc:	82 e0       	ldi	r24, 0x02	; 2
- 6be:	90 e0       	ldi	r25, 0x00	; 0
-
-    eeprom_write_byte(&abEEPROM[EEPROM_SW_INDEX_HB], HIBYTE(SW_INDEX));  // write Version in EEPROM on first startup
- 6c0:	6e d4       	rcall	.+2268   	; 0xf9e <eeprom_write_byte>
- 6c2:	60 e0       	ldi	r22, 0x00	; 0
- 6c4:	84 e0       	ldi	r24, 0x04	; 4
-    eeprom_write_byte(&abEEPROM[EEPROM_SW_INDEX_LB], LOBYTE(SW_INDEX));
- 6c6:	90 e0       	ldi	r25, 0x00	; 0
- 6c8:	6a d4       	rcall	.+2260   	; 0xf9e <eeprom_write_byte>
- 6ca:	61 e0       	ldi	r22, 0x01	; 1
- 6cc:	87 e0       	ldi	r24, 0x07	; 7
-
-    eeprom_write_byte(&abEEPROM[EEPROM_SW_DAY],      SW_DAY);            // write date of SW in EEPROM
- 6ce:	90 e0       	ldi	r25, 0x00	; 0
- 6d0:	66 d4       	rcall	.+2252   	; 0xf9e <eeprom_write_byte>
- 6d2:	66 e0       	ldi	r22, 0x06	; 6
- 6d4:	88 e0       	ldi	r24, 0x08	; 8
-    eeprom_write_byte(&abEEPROM[EEPROM_SW_MONTH],    SW_MONTH);
- 6d6:	90 e0       	ldi	r25, 0x00	; 0
- 6d8:	62 d4       	rcall	.+2244   	; 0xf9e <eeprom_write_byte>
- 6da:	66 e0       	ldi	r22, 0x06	; 6
- 6dc:	89 e0       	ldi	r24, 0x09	; 9
-    eeprom_write_byte(&abEEPROM[EEPROM_SW_YEAR],     SW_YEAR);
- 6de:	90 e0       	ldi	r25, 0x00	; 0
- 6e0:	5e d4       	rcall	.+2236   	; 0xf9e <eeprom_write_byte>
- 6e2:	64 e0       	ldi	r22, 0x04	; 4
- 6e4:	8a e0       	ldi	r24, 0x0A	; 10
-
-    eeprom_write_byte(&abEEPROM[EEPROM_VERSION],     bFrediVersion);     // store detected HW version
- 6e6:	90 e0       	ldi	r25, 0x00	; 0
- 6e8:	5a d4       	rcall	.+2228   	; 0xf9e <eeprom_write_byte>
- 6ea:	60 e1       	ldi	r22, 0x10	; 16
- 6ec:	8b e0       	ldi	r24, 0x0B	; 11
- 6ee:	90 e0       	ldi	r25, 0x00	; 0
-  }
-  else
-  { // selftest was successful before
-    if (  (eeprom_read_byte(&abEEPROM[EEPROM_SW_INDEX_HB]) != HIBYTE(SW_INDEX))
- 6f0:	56 d4       	rcall	.+2220   	; 0xf9e <eeprom_write_byte>
- 6f2:	60 91 6f 00 	lds	r22, 0x006F	; 0x80006f <bFrediVersion>
- 6f6:	86 e0       	ldi	r24, 0x06	; 6
- 6f8:	90 e0       	ldi	r25, 0x00	; 0
-          || (eeprom_read_byte(&abEEPROM[EEPROM_SW_INDEX_LB]) != LOBYTE(SW_INDEX))
- 6fa:	51 d4       	rcall	.+2210   	; 0xf9e <eeprom_write_byte>
- 6fc:	3f c0       	rjmp	.+126    	; 0x77c <main+0xf0>
- 6fe:	87 e0       	ldi	r24, 0x07	; 7
- 700:	90 e0       	ldi	r25, 0x00	; 0
- 702:	45 d4       	rcall	.+2186   	; 0xf8e <eeprom_read_byte>
-          || (eeprom_read_byte(&abEEPROM[EEPROM_SW_DAY])      != SW_DAY)
- 704:	81 30       	cpi	r24, 0x01	; 1
- 706:	a1 f4       	brne	.+40     	; 0x730 <main+0xa4>
- 708:	88 e0       	ldi	r24, 0x08	; 8
- 70a:	90 e0       	ldi	r25, 0x00	; 0
- 70c:	40 d4       	rcall	.+2176   	; 0xf8e <eeprom_read_byte>
-          || (eeprom_read_byte(&abEEPROM[EEPROM_SW_MONTH])    != SW_MONTH)
- 70e:	86 30       	cpi	r24, 0x06	; 6
- 710:	79 f4       	brne	.+30     	; 0x730 <main+0xa4>
- 712:	89 e0       	ldi	r24, 0x09	; 9
- 714:	90 e0       	ldi	r25, 0x00	; 0
-          || (eeprom_read_byte(&abEEPROM[EEPROM_SW_YEAR])     != SW_YEAR))
- 716:	3b d4       	rcall	.+2166   	; 0xf8e <eeprom_read_byte>
- 718:	86 30       	cpi	r24, 0x06	; 6
- 71a:	51 f4       	brne	.+20     	; 0x730 <main+0xa4>
- 71c:	8a e0       	ldi	r24, 0x0A	; 10
- 71e:	90 e0       	ldi	r25, 0x00	; 0
-    { // sw index or date has changed
-      eeprom_write_byte(&abEEPROM[EEPROM_SW_INDEX_HB], HIBYTE(SW_INDEX));// write Version in EEPROM on first startup
- 720:	36 d4       	rcall	.+2156   	; 0xf8e <eeprom_read_byte>
- 722:	84 30       	cpi	r24, 0x04	; 4
- 724:	29 f4       	brne	.+10     	; 0x730 <main+0xa4>
-      eeprom_write_byte(&abEEPROM[EEPROM_SW_INDEX_LB], LOBYTE(SW_INDEX));
- 726:	8b e0       	ldi	r24, 0x0B	; 11
- 728:	90 e0       	ldi	r25, 0x00	; 0
- 72a:	31 d4       	rcall	.+2146   	; 0xf8e <eeprom_read_byte>
-
-      eeprom_write_byte(&abEEPROM[EEPROM_SW_DAY],      SW_DAY);          // write date of SW in EEPROM
- 72c:	80 31       	cpi	r24, 0x10	; 16
- 72e:	a1 f0       	breq	.+40     	; 0x758 <main+0xcc>
- 730:	61 e0       	ldi	r22, 0x01	; 1
- 732:	87 e0       	ldi	r24, 0x07	; 7
-      eeprom_write_byte(&abEEPROM[EEPROM_SW_MONTH],    SW_MONTH);
- 734:	90 e0       	ldi	r25, 0x00	; 0
- 736:	33 d4       	rcall	.+2150   	; 0xf9e <eeprom_write_byte>
- 738:	66 e0       	ldi	r22, 0x06	; 6
- 73a:	88 e0       	ldi	r24, 0x08	; 8
-      eeprom_write_byte(&abEEPROM[EEPROM_SW_YEAR],     SW_YEAR);
- 73c:	90 e0       	ldi	r25, 0x00	; 0
- 73e:	2f d4       	rcall	.+2142   	; 0xf9e <eeprom_write_byte>
- 740:	66 e0       	ldi	r22, 0x06	; 6
- 742:	89 e0       	ldi	r24, 0x09	; 9
-    }
-
-    vSetState(THR_STATE_INIT, &slotArray[0]);
- 744:	90 e0       	ldi	r25, 0x00	; 0
- 746:	2b d4       	rcall	.+2134   	; 0xf9e <eeprom_write_byte>
- 748:	64 e0       	ldi	r22, 0x04	; 4
- 74a:	8a e0       	ldi	r24, 0x0A	; 10
-    slotArray[0].adr   = eeprom_read_byte(&abEEPROM[EEPROM_ADR_LOCO_LB]);
- 74c:	90 e0       	ldi	r25, 0x00	; 0
- 74e:	27 d4       	rcall	.+2126   	; 0xf9e <eeprom_write_byte>
- 750:	60 e1       	ldi	r22, 0x10	; 16
- 752:	8b e0       	ldi	r24, 0x0B	; 11
-    slotArray[0].adr2  = eeprom_read_byte(&abEEPROM[EEPROM_ADR_LOCO_HB]);
- 754:	90 e0       	ldi	r25, 0x00	; 0
- 756:	23 d4       	rcall	.+2118   	; 0xf9e <eeprom_write_byte>
- 758:	6b e4       	ldi	r22, 0x4B	; 75
- 75a:	71 e0       	ldi	r23, 0x01	; 1
- 75c:	80 e0       	ldi	r24, 0x00	; 0
-    slotArray[0].stat  = eeprom_read_byte(&abEEPROM[EEPROM_DECODER_TYPE]);
- 75e:	1e de       	rcall	.-964    	; 0x39c <vSetState>
- 760:	83 e0       	ldi	r24, 0x03	; 3
- 762:	90 e0       	ldi	r25, 0x00	; 0
- 764:	14 d4       	rcall	.+2088   	; 0xf8e <eeprom_read_byte>
-  }
-
-	 slotArray[0].id1   = eeprom_read_byte(&abEEPROM[EEPROM_ID1]); // get ID from EEPROM
- 766:	cb e4       	ldi	r28, 0x4B	; 75
- 768:	d1 e0       	ldi	r29, 0x01	; 1
- 76a:	8c 83       	std	Y+4, r24	; 0x04
- 76c:	82 e0       	ldi	r24, 0x02	; 2
- 76e:	90 e0       	ldi	r25, 0x00	; 0
- 770:	0e d4       	rcall	.+2076   	; 0xf8e <eeprom_read_byte>
- 772:	89 87       	std	Y+9, r24	; 0x09
-	 slotArray[0].id2   = eeprom_read_byte(&abEEPROM[EEPROM_ID2]);
- 774:	84 e0       	ldi	r24, 0x04	; 4
- 776:	90 e0       	ldi	r25, 0x00	; 0
- 778:	0a d4       	rcall	.+2068   	; 0xf8e <eeprom_read_byte>
- 77a:	8b 83       	std	Y+3, r24	; 0x03
- 77c:	81 e0       	ldi	r24, 0x01	; 1
-
-  /***************************************/
-  //  init loconet
-  /***************************************/
-
-  initLocoNet(&RxBuffer) ;
- 77e:	90 e0       	ldi	r25, 0x00	; 0
- 780:	06 d4       	rcall	.+2060   	; 0xf8e <eeprom_read_byte>
- 782:	cb e4       	ldi	r28, 0x4B	; 75
-
-  /***************************************/
-  //  init keys and timer
-  /***************************************/
-
-  initKeys();
- 784:	d1 e0       	ldi	r29, 0x01	; 1
-  initTimer();
- 786:	8b 87       	std	Y+11, r24	; 0x0b
- 
-  addTimerAction(&MessageTimer, 0, MessageTimerAction, 0, TIMER_SLOW) ;
- 788:	80 e0       	ldi	r24, 0x00	; 0
- 78a:	90 e0       	ldi	r25, 0x00	; 0
- 78c:	00 d4       	rcall	.+2048   	; 0xf8e <eeprom_read_byte>
- 78e:	8c 87       	std	Y+12, r24	; 0x0c
- 790:	82 ea       	ldi	r24, 0xA2	; 162
- 792:	90 e0       	ldi	r25, 0x00	; 0
- 794:	9d d3       	rcall	.+1850   	; 0xed0 <initLocoNet>
-
-  /***************************************/
-  //  set state and start interrupts
-  /***************************************/
-
-  sei();
- 796:	76 dd       	rcall	.-1300   	; 0x284 <initKeys>
-
-  if (bThrState < THR_STATE_SELFTEST)
- 798:	f8 d2       	rcall	.+1520   	; 0xd8a <initTimer>
- 79a:	00 e0       	ldi	r16, 0x00	; 0
- 79c:	20 e0       	ldi	r18, 0x00	; 0
- 79e:	30 e0       	ldi	r19, 0x00	; 0
-  {
-    // if a address for a loco is available, show blinking state
-    if ((slotArray[0].adr != 0) || (slotArray[0].adr2 != 0))
- 7a0:	4c e0       	ldi	r20, 0x0C	; 12
- 7a2:	52 e0       	ldi	r21, 0x02	; 2
- 7a4:	60 e0       	ldi	r22, 0x00	; 0
- 7a6:	82 e8       	ldi	r24, 0x82	; 130
- 7a8:	90 e0       	ldi	r25, 0x00	; 0
- 7aa:	fc d2       	rcall	.+1528   	; 0xda4 <addTimerAction>
-    {
-      vSetState(THR_STATE_RECONNECT_GET_SLOT, &slotArray[0]);
- 7ac:	78 94       	sei
- 7ae:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <bThrState>
- 7b2:	84 36       	cpi	r24, 0x64	; 100
- 7b4:	88 f5       	brcc	.+98     	; 0x818 <main+0x18c>
-    }
-    else
-    {
-      vSetState(THR_STATE_UNCONNECTED, &slotArray[0]);
- 7b6:	80 91 4f 01 	lds	r24, 0x014F	; 0x80014f <slotArray+0x4>
-    }
-
-    while (bit_is_clear(ACSR, ACO))     // wait for start of loconet
- 7ba:	81 11       	cpse	r24, r1
- 7bc:	04 c0       	rjmp	.+8      	; 0x7c6 <main+0x13a>
-    {
-      processTimerActions();
- 7be:	80 91 54 01 	lds	r24, 0x0154	; 0x800154 <slotArray+0x9>
-    }
-    // loconet is available, now
-    for (bCount =0;bCount < 50;bCount++)
-    {
-      delayTimer( 10 );                 // wait a little bit longer
- 7c2:	88 23       	and	r24, r24
-      processTimerActions();
- 7c4:	29 f0       	breq	.+10     	; 0x7d0 <main+0x144>
- 7c6:	6b e4       	ldi	r22, 0x4B	; 75
- 7c8:	71 e0       	ldi	r23, 0x01	; 1
-    }
-
-    if (slotArray[0].adr)                      // wait for a pseudo random time
- 7ca:	84 e1       	ldi	r24, 0x14	; 20
- 7cc:	e7 dd       	rcall	.-1074   	; 0x39c <vSetState>
-    {
-      delayTimer(slotArray[0].adr);
- 7ce:	04 c0       	rjmp	.+8      	; 0x7d8 <main+0x14c>
- 7d0:	6b e4       	ldi	r22, 0x4B	; 75
- 7d2:	71 e0       	ldi	r23, 0x01	; 1
-    }
-
-    if (slotArray[0].adr2)
- 7d4:	80 e2       	ldi	r24, 0x20	; 32
- 7d6:	e2 dd       	rcall	.-1084   	; 0x39c <vSetState>
- 7d8:	45 99       	sbic	0x08, 5	; 8
- 7da:	35 c0       	rjmp	.+106    	; 0x846 <main+0x1ba>
-    {
-      delayTimer(slotArray[0].adr2);
- 7dc:	14 d3       	rcall	.+1576   	; 0xe06 <processTimerActions>
- 7de:	45 9b       	sbis	0x08, 5	; 8
- 7e0:	fd cf       	rjmp	.-6      	; 0x7dc <main+0x150>
-    }
-
-    // if a address for a loco is available, try to reconnect
-    if (bThrState == THR_STATE_RECONNECT_GET_SLOT)
- 7e2:	31 c0       	rjmp	.+98     	; 0x846 <main+0x1ba>
- 7e4:	8a e0       	ldi	r24, 0x0A	; 10
- 7e6:	90 e0       	ldi	r25, 0x00	; 0
- 7e8:	03 d3       	rcall	.+1542   	; 0xdf0 <delayTimer>
-    {
-      sendLocoNetAdr(&slotArray[0]);
- 7ea:	0d d3       	rcall	.+1562   	; 0xe06 <processTimerActions>
- 7ec:	c1 50       	subi	r28, 0x01	; 1
- 7ee:	d1 f7       	brne	.-12     	; 0x7e4 <main+0x158>
- 7f0:	80 91 4f 01 	lds	r24, 0x014F	; 0x80014f <slotArray+0x4>
-    }
-  }
-  else
-  {
-    sendLocoNetFredCd( bCount );
- 7f4:	88 23       	and	r24, r24
- 7f6:	11 f0       	breq	.+4      	; 0x7fc <main+0x170>
- 7f8:	90 e0       	ldi	r25, 0x00	; 0
-  }  
-
-/******************************************************************************/
-// main endless loop 
-/******************************************************************************/
-			setLEDasOutput();
- 7fa:	fa d2       	rcall	.+1524   	; 0xdf0 <delayTimer>
- 7fc:	80 91 54 01 	lds	r24, 0x0154	; 0x800154 <slotArray+0x9>
-			PORTA &= ~(1<<LED2);
-			PORTC &= ~(1<<LED3);
-			PORTC &= ~(1<<LED4); */
-		// alle LED anschalten
-			PORTA |= (1<<LED1);
-			PORTA |= (1<<LED2);
- 800:	88 23       	and	r24, r24
-			PORTC |= (1<<LED3);
- 802:	11 f0       	breq	.+4      	; 0x808 <main+0x17c>
-			disableLED4();
- 804:	90 e0       	ldi	r25, 0x00	; 0
- 806:	f4 d2       	rcall	.+1512   	; 0xdf0 <delayTimer>
-			
-		  ADCSRA = 0<< ADEN;		//ADC ausschalten
- 808:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <bThrState>
-	byte testPort = PORTC;
-	int8_t shiftedKeyStatus = 0;
-	byte new_val = 0;
-
-	byte pressed = 0;
-	disableLED1();
- 80c:	84 31       	cpi	r24, 0x14	; 20
- 80e:	31 f4       	brne	.+12     	; 0x81c <main+0x190>
-	_delay_1500ms();
- 810:	8b e4       	ldi	r24, 0x4B	; 75
- 812:	91 e0       	ldi	r25, 0x01	; 1
-	enableLED1();
- 814:	24 df       	rcall	.-440    	; 0x65e <sendLocoNetAdr>
- 816:	02 c0       	rjmp	.+4      	; 0x81c <main+0x190>
-	_delay_1500ms();
- 818:	80 e0       	ldi	r24, 0x00	; 0
- 81a:	32 df       	rcall	.-412    	; 0x680 <sendLocoNetFredCd>
-	PORTC |= 0x80; //Pullup von Taste1 anschalten
- 81c:	28 dd       	rcall	.-1456   	; 0x26e <setLEDasOutput>
-				//enableLED4();
-			//}
-		 //}
-		//
-		
-		ProcessKeyInputTest8Streak(2, 3);
- 81e:	d8 9a       	sbi	0x1b, 0	; 27
- 820:	d9 9a       	sbi	0x1b, 1	; 27
- 822:	ab 9a       	sbi	0x15, 3	; 21
- 824:	2d dd       	rcall	.-1446   	; 0x280 <disableLED4>
- 826:	16 b8       	out	0x06, r1	; 6
- 828:	85 b3       	in	r24, 0x15	; 21
-		if (bit_is_clear(PINC, ERW_FUNKEY1)) {
- 82a:	28 dd       	rcall	.-1456   	; 0x27c <disableLED1>
- 82c:	0d df       	rcall	.-486    	; 0x648 <_delay_1500ms>
-			enableLED1();
- 82e:	24 dd       	rcall	.-1464   	; 0x278 <enableLED1>
- 830:	0b df       	rcall	.-490    	; 0x648 <_delay_1500ms>
- 832:	af 9a       	sbi	0x15, 7	; 21
+00000658 <main>:
  * ARGUMENTS   : none
  * RETURN VALUE: int, never reached, cause of endless loop
  * NOTES       :   -
  *******************************************************FunctionHeaderEnd******/
 int main(void)
 {
- 834:	63 e0       	ldi	r22, 0x03	; 3
- 836:	70 e0       	ldi	r23, 0x00	; 0
- 838:	82 e0       	ldi	r24, 0x02	; 2
- 83a:	90 e0       	ldi	r25, 0x00	; 0
- 83c:	ce de       	rcall	.-612    	; 0x5da <ProcessKeyInputTest8Streak>
- 83e:	9b 99       	sbic	0x13, 3	; 19
- 840:	f9 cf       	rjmp	.-14     	; 0x834 <main+0x1a8>
- 842:	1a dd       	rcall	.-1484   	; 0x278 <enableLED1>
- 844:	f7 cf       	rjmp	.-18     	; 0x834 <main+0x1a8>
- 846:	c2 e3       	ldi	r28, 0x32	; 50
- 848:	cd cf       	rjmp	.-102    	; 0x7e4 <main+0x158>
+ 658:	cf 93       	push	r28
+ 65a:	df 93       	push	r29
+ 65c:	1f 92       	push	r1
+ 65e:	cd b7       	in	r28, 0x3d	; 61
+ 660:	de b7       	in	r29, 0x3e	; 62
+  RESET_RESET_SOURCE(); // Clear Reset Status Register (WDRF,BORF,EXTRF,PORF)
+ 662:	14 be       	out	0x34, r1	; 52
 
-0000084a <potAdcPowerOff>:
+  byte bCount = 0;
+  bFrediVersion = FREDI_VERSION_ANALOG;
+ 664:	83 e0       	ldi	r24, 0x03	; 3
+ 666:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <bFrediVersion>
+  
+  /***************************************/
+  //  init throttle slot
+  /***************************************/
+
+  bSpdCnt = 0;
+ 66a:	10 92 6d 00 	sts	0x006D, r1	; 0x80006d <bSpdCnt>
+  
+	
+	initSlots(slotArray);			// initialisierung der vier rSlots.
+ 66e:	8b e4       	ldi	r24, 0x4B	; 75
+ 670:	91 e0       	ldi	r25, 0x01	; 1
+ 672:	45 df       	rcall	.-374    	; 0x4fe <initSlots>
+	//initSlots(&slotArray[0]);		äquivalent zu dem oberen.
+
+  
+   if ((eeprom_read_byte(&abEEPROM[EEPROM_IMAGE]) != EEPROM_IMAGE_DEFAULT))
+ 674:	85 e0       	ldi	r24, 0x05	; 5
+ 676:	90 e0       	ldi	r25, 0x00	; 0
+ 678:	75 d4       	rcall	.+2282   	; 0xf64 <eeprom_read_byte>
+ 67a:	85 35       	cpi	r24, 0x55	; 85
+ 67c:	51 f1       	breq	.+84     	; 0x6d2 <main+0x7a>
+  {
+    vSetState(THR_STATE_SELFTEST, &slotArray[0]);
+ 67e:	6b e4       	ldi	r22, 0x4B	; 75
+ 680:	71 e0       	ldi	r23, 0x01	; 1
+ 682:	84 e6       	ldi	r24, 0x64	; 100
+ 684:	87 de       	rcall	.-754    	; 0x394 <vSetState>
+
+    eeprom_write_byte(&abEEPROM[EEPROM_ADR_LOCO_LB], 0);                 // no loco active at selftest
+ 686:	60 e0       	ldi	r22, 0x00	; 0
+ 688:	83 e0       	ldi	r24, 0x03	; 3
+ 68a:	90 e0       	ldi	r25, 0x00	; 0
+ 68c:	73 d4       	rcall	.+2278   	; 0xf74 <eeprom_write_byte>
+    eeprom_write_byte(&abEEPROM[EEPROM_ADR_LOCO_HB], 0);
+ 68e:	60 e0       	ldi	r22, 0x00	; 0
+ 690:	82 e0       	ldi	r24, 0x02	; 2
+ 692:	90 e0       	ldi	r25, 0x00	; 0
+ 694:	6f d4       	rcall	.+2270   	; 0xf74 <eeprom_write_byte>
+
+    eeprom_write_byte(&abEEPROM[EEPROM_DECODER_TYPE], EEPROM_DECODER_TYPE_DEFAULT);
+ 696:	60 e0       	ldi	r22, 0x00	; 0
+ 698:	84 e0       	ldi	r24, 0x04	; 4
+ 69a:	90 e0       	ldi	r25, 0x00	; 0
+ 69c:	6b d4       	rcall	.+2262   	; 0xf74 <eeprom_write_byte>
+
+    eeprom_write_byte(&abEEPROM[EEPROM_SW_INDEX_HB], HIBYTE(SW_INDEX));  // write Version in EEPROM on first startup
+ 69e:	61 e0       	ldi	r22, 0x01	; 1
+ 6a0:	87 e0       	ldi	r24, 0x07	; 7
+ 6a2:	90 e0       	ldi	r25, 0x00	; 0
+ 6a4:	67 d4       	rcall	.+2254   	; 0xf74 <eeprom_write_byte>
+    eeprom_write_byte(&abEEPROM[EEPROM_SW_INDEX_LB], LOBYTE(SW_INDEX));
+ 6a6:	66 e0       	ldi	r22, 0x06	; 6
+ 6a8:	88 e0       	ldi	r24, 0x08	; 8
+ 6aa:	90 e0       	ldi	r25, 0x00	; 0
+ 6ac:	63 d4       	rcall	.+2246   	; 0xf74 <eeprom_write_byte>
+
+    eeprom_write_byte(&abEEPROM[EEPROM_SW_DAY],      SW_DAY);            // write date of SW in EEPROM
+ 6ae:	66 e0       	ldi	r22, 0x06	; 6
+ 6b0:	89 e0       	ldi	r24, 0x09	; 9
+ 6b2:	90 e0       	ldi	r25, 0x00	; 0
+ 6b4:	5f d4       	rcall	.+2238   	; 0xf74 <eeprom_write_byte>
+    eeprom_write_byte(&abEEPROM[EEPROM_SW_MONTH],    SW_MONTH);
+ 6b6:	64 e0       	ldi	r22, 0x04	; 4
+ 6b8:	8a e0       	ldi	r24, 0x0A	; 10
+ 6ba:	90 e0       	ldi	r25, 0x00	; 0
+ 6bc:	5b d4       	rcall	.+2230   	; 0xf74 <eeprom_write_byte>
+    eeprom_write_byte(&abEEPROM[EEPROM_SW_YEAR],     SW_YEAR);
+ 6be:	60 e1       	ldi	r22, 0x10	; 16
+ 6c0:	8b e0       	ldi	r24, 0x0B	; 11
+ 6c2:	90 e0       	ldi	r25, 0x00	; 0
+ 6c4:	57 d4       	rcall	.+2222   	; 0xf74 <eeprom_write_byte>
+
+    eeprom_write_byte(&abEEPROM[EEPROM_VERSION],     bFrediVersion);     // store detected HW version
+ 6c6:	60 91 6f 00 	lds	r22, 0x006F	; 0x80006f <bFrediVersion>
+ 6ca:	86 e0       	ldi	r24, 0x06	; 6
+ 6cc:	90 e0       	ldi	r25, 0x00	; 0
+ 6ce:	52 d4       	rcall	.+2212   	; 0xf74 <eeprom_write_byte>
+ 6d0:	42 c0       	rjmp	.+132    	; 0x756 <main+0xfe>
+  }
+  else
+  { // selftest was successful before
+    if (  (eeprom_read_byte(&abEEPROM[EEPROM_SW_INDEX_HB]) != HIBYTE(SW_INDEX))
+ 6d2:	87 e0       	ldi	r24, 0x07	; 7
+ 6d4:	90 e0       	ldi	r25, 0x00	; 0
+ 6d6:	46 d4       	rcall	.+2188   	; 0xf64 <eeprom_read_byte>
+ 6d8:	81 30       	cpi	r24, 0x01	; 1
+ 6da:	a1 f4       	brne	.+40     	; 0x704 <main+0xac>
+          || (eeprom_read_byte(&abEEPROM[EEPROM_SW_INDEX_LB]) != LOBYTE(SW_INDEX))
+ 6dc:	88 e0       	ldi	r24, 0x08	; 8
+ 6de:	90 e0       	ldi	r25, 0x00	; 0
+ 6e0:	41 d4       	rcall	.+2178   	; 0xf64 <eeprom_read_byte>
+ 6e2:	86 30       	cpi	r24, 0x06	; 6
+ 6e4:	79 f4       	brne	.+30     	; 0x704 <main+0xac>
+          || (eeprom_read_byte(&abEEPROM[EEPROM_SW_DAY])      != SW_DAY)
+ 6e6:	89 e0       	ldi	r24, 0x09	; 9
+ 6e8:	90 e0       	ldi	r25, 0x00	; 0
+ 6ea:	3c d4       	rcall	.+2168   	; 0xf64 <eeprom_read_byte>
+ 6ec:	86 30       	cpi	r24, 0x06	; 6
+ 6ee:	51 f4       	brne	.+20     	; 0x704 <main+0xac>
+          || (eeprom_read_byte(&abEEPROM[EEPROM_SW_MONTH])    != SW_MONTH)
+ 6f0:	8a e0       	ldi	r24, 0x0A	; 10
+ 6f2:	90 e0       	ldi	r25, 0x00	; 0
+ 6f4:	37 d4       	rcall	.+2158   	; 0xf64 <eeprom_read_byte>
+ 6f6:	84 30       	cpi	r24, 0x04	; 4
+ 6f8:	29 f4       	brne	.+10     	; 0x704 <main+0xac>
+          || (eeprom_read_byte(&abEEPROM[EEPROM_SW_YEAR])     != SW_YEAR))
+ 6fa:	8b e0       	ldi	r24, 0x0B	; 11
+ 6fc:	90 e0       	ldi	r25, 0x00	; 0
+ 6fe:	32 d4       	rcall	.+2148   	; 0xf64 <eeprom_read_byte>
+ 700:	80 31       	cpi	r24, 0x10	; 16
+ 702:	a1 f0       	breq	.+40     	; 0x72c <main+0xd4>
+    { // sw index or date has changed
+      eeprom_write_byte(&abEEPROM[EEPROM_SW_INDEX_HB], HIBYTE(SW_INDEX));// write Version in EEPROM on first startup
+ 704:	61 e0       	ldi	r22, 0x01	; 1
+ 706:	87 e0       	ldi	r24, 0x07	; 7
+ 708:	90 e0       	ldi	r25, 0x00	; 0
+ 70a:	34 d4       	rcall	.+2152   	; 0xf74 <eeprom_write_byte>
+      eeprom_write_byte(&abEEPROM[EEPROM_SW_INDEX_LB], LOBYTE(SW_INDEX));
+ 70c:	66 e0       	ldi	r22, 0x06	; 6
+ 70e:	88 e0       	ldi	r24, 0x08	; 8
+ 710:	90 e0       	ldi	r25, 0x00	; 0
+ 712:	30 d4       	rcall	.+2144   	; 0xf74 <eeprom_write_byte>
+
+      eeprom_write_byte(&abEEPROM[EEPROM_SW_DAY],      SW_DAY);          // write date of SW in EEPROM
+ 714:	66 e0       	ldi	r22, 0x06	; 6
+ 716:	89 e0       	ldi	r24, 0x09	; 9
+ 718:	90 e0       	ldi	r25, 0x00	; 0
+ 71a:	2c d4       	rcall	.+2136   	; 0xf74 <eeprom_write_byte>
+      eeprom_write_byte(&abEEPROM[EEPROM_SW_MONTH],    SW_MONTH);
+ 71c:	64 e0       	ldi	r22, 0x04	; 4
+ 71e:	8a e0       	ldi	r24, 0x0A	; 10
+ 720:	90 e0       	ldi	r25, 0x00	; 0
+ 722:	28 d4       	rcall	.+2128   	; 0xf74 <eeprom_write_byte>
+      eeprom_write_byte(&abEEPROM[EEPROM_SW_YEAR],     SW_YEAR);
+ 724:	60 e1       	ldi	r22, 0x10	; 16
+ 726:	8b e0       	ldi	r24, 0x0B	; 11
+ 728:	90 e0       	ldi	r25, 0x00	; 0
+ 72a:	24 d4       	rcall	.+2120   	; 0xf74 <eeprom_write_byte>
+    }
+
+    vSetState(THR_STATE_INIT, &slotArray[0]);
+ 72c:	6b e4       	ldi	r22, 0x4B	; 75
+ 72e:	71 e0       	ldi	r23, 0x01	; 1
+ 730:	80 e0       	ldi	r24, 0x00	; 0
+ 732:	30 de       	rcall	.-928    	; 0x394 <vSetState>
+    slotArray[0].adr   = eeprom_read_byte(&abEEPROM[EEPROM_ADR_LOCO_LB]);
+ 734:	83 e0       	ldi	r24, 0x03	; 3
+ 736:	90 e0       	ldi	r25, 0x00	; 0
+ 738:	15 d4       	rcall	.+2090   	; 0xf64 <eeprom_read_byte>
+ 73a:	0b e4       	ldi	r16, 0x4B	; 75
+ 73c:	11 e0       	ldi	r17, 0x01	; 1
+ 73e:	f8 01       	movw	r30, r16
+ 740:	84 83       	std	Z+4, r24	; 0x04
+    slotArray[0].adr2  = eeprom_read_byte(&abEEPROM[EEPROM_ADR_LOCO_HB]);
+ 742:	82 e0       	ldi	r24, 0x02	; 2
+ 744:	90 e0       	ldi	r25, 0x00	; 0
+ 746:	0e d4       	rcall	.+2076   	; 0xf64 <eeprom_read_byte>
+ 748:	f8 01       	movw	r30, r16
+ 74a:	81 87       	std	Z+9, r24	; 0x09
+    slotArray[0].stat  = eeprom_read_byte(&abEEPROM[EEPROM_DECODER_TYPE]);
+ 74c:	84 e0       	ldi	r24, 0x04	; 4
+ 74e:	90 e0       	ldi	r25, 0x00	; 0
+ 750:	09 d4       	rcall	.+2066   	; 0xf64 <eeprom_read_byte>
+ 752:	f8 01       	movw	r30, r16
+ 754:	83 83       	std	Z+3, r24	; 0x03
+  }
+
+	 slotArray[0].id1   = eeprom_read_byte(&abEEPROM[EEPROM_ID1]); // get ID from EEPROM
+ 756:	81 e0       	ldi	r24, 0x01	; 1
+ 758:	90 e0       	ldi	r25, 0x00	; 0
+ 75a:	04 d4       	rcall	.+2056   	; 0xf64 <eeprom_read_byte>
+ 75c:	0b e4       	ldi	r16, 0x4B	; 75
+ 75e:	11 e0       	ldi	r17, 0x01	; 1
+ 760:	f8 01       	movw	r30, r16
+ 762:	83 87       	std	Z+11, r24	; 0x0b
+	 slotArray[0].id2   = eeprom_read_byte(&abEEPROM[EEPROM_ID2]);
+ 764:	80 e0       	ldi	r24, 0x00	; 0
+ 766:	90 e0       	ldi	r25, 0x00	; 0
+ 768:	fd d3       	rcall	.+2042   	; 0xf64 <eeprom_read_byte>
+ 76a:	f8 01       	movw	r30, r16
+ 76c:	84 87       	std	Z+12, r24	; 0x0c
+
+  /***************************************/
+  //  init loconet
+  /***************************************/
+
+  initLocoNet(&RxBuffer) ;
+ 76e:	82 ea       	ldi	r24, 0xA2	; 162
+ 770:	90 e0       	ldi	r25, 0x00	; 0
+ 772:	99 d3       	rcall	.+1842   	; 0xea6 <initLocoNet>
+
+  /***************************************/
+  //  init keys and timer
+  /***************************************/
+
+  initKeys();
+ 774:	83 dd       	rcall	.-1274   	; 0x27c <initKeys>
+  initTimer();
+ 776:	f4 d2       	rcall	.+1512   	; 0xd60 <initTimer>
+ 
+  addTimerAction(&MessageTimer, 0, MessageTimerAction, 0, TIMER_SLOW) ;
+ 778:	00 e0       	ldi	r16, 0x00	; 0
+ 77a:	20 e0       	ldi	r18, 0x00	; 0
+ 77c:	30 e0       	ldi	r19, 0x00	; 0
+ 77e:	48 e0       	ldi	r20, 0x08	; 8
+ 780:	52 e0       	ldi	r21, 0x02	; 2
+ 782:	60 e0       	ldi	r22, 0x00	; 0
+ 784:	82 e8       	ldi	r24, 0x82	; 130
+ 786:	90 e0       	ldi	r25, 0x00	; 0
+ 788:	f8 d2       	rcall	.+1520   	; 0xd7a <addTimerAction>
+
+  /***************************************/
+  //  set state and start interrupts
+  /***************************************/
+
+  sei();
+ 78a:	78 94       	sei
+
+  if (bThrState < THR_STATE_SELFTEST)
+ 78c:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <bThrState>
+ 790:	84 36       	cpi	r24, 0x64	; 100
+ 792:	88 f5       	brcc	.+98     	; 0x7f6 <main+0x19e>
+  {
+    // if a address for a loco is available, show blinking state
+    if ((slotArray[0].adr != 0) || (slotArray[0].adr2 != 0))
+ 794:	80 91 4f 01 	lds	r24, 0x014F	; 0x80014f <slotArray+0x4>
+ 798:	81 11       	cpse	r24, r1
+ 79a:	04 c0       	rjmp	.+8      	; 0x7a4 <main+0x14c>
+ 79c:	80 91 54 01 	lds	r24, 0x0154	; 0x800154 <slotArray+0x9>
+ 7a0:	88 23       	and	r24, r24
+ 7a2:	29 f0       	breq	.+10     	; 0x7ae <main+0x156>
+    {
+      vSetState(THR_STATE_RECONNECT_GET_SLOT, &slotArray[0]);
+ 7a4:	6b e4       	ldi	r22, 0x4B	; 75
+ 7a6:	71 e0       	ldi	r23, 0x01	; 1
+ 7a8:	84 e1       	ldi	r24, 0x14	; 20
+ 7aa:	f4 dd       	rcall	.-1048   	; 0x394 <vSetState>
+ 7ac:	04 c0       	rjmp	.+8      	; 0x7b6 <main+0x15e>
+    }
+    else
+    {
+      vSetState(THR_STATE_UNCONNECTED, &slotArray[0]);
+ 7ae:	6b e4       	ldi	r22, 0x4B	; 75
+ 7b0:	71 e0       	ldi	r23, 0x01	; 1
+ 7b2:	80 e2       	ldi	r24, 0x20	; 32
+ 7b4:	ef dd       	rcall	.-1058   	; 0x394 <vSetState>
+    }
+
+    while (bit_is_clear(ACSR, ACO))     // wait for start of loconet
+ 7b6:	45 99       	sbic	0x08, 5	; 8
+ 7b8:	2f c0       	rjmp	.+94     	; 0x818 <main+0x1c0>
+    {
+      processTimerActions();
+ 7ba:	10 d3       	rcall	.+1568   	; 0xddc <processTimerActions>
+    else
+    {
+      vSetState(THR_STATE_UNCONNECTED, &slotArray[0]);
+    }
+
+    while (bit_is_clear(ACSR, ACO))     // wait for start of loconet
+ 7bc:	45 9b       	sbis	0x08, 5	; 8
+ 7be:	fd cf       	rjmp	.-6      	; 0x7ba <main+0x162>
+ 7c0:	2b c0       	rjmp	.+86     	; 0x818 <main+0x1c0>
+      processTimerActions();
+    }
+    // loconet is available, now
+    for (bCount =0;bCount < 50;bCount++)
+    {
+      delayTimer( 10 );                 // wait a little bit longer
+ 7c2:	8a e0       	ldi	r24, 0x0A	; 10
+ 7c4:	90 e0       	ldi	r25, 0x00	; 0
+ 7c6:	ff d2       	rcall	.+1534   	; 0xdc6 <delayTimer>
+      processTimerActions();
+ 7c8:	09 d3       	rcall	.+1554   	; 0xddc <processTimerActions>
+ 7ca:	11 50       	subi	r17, 0x01	; 1
+    while (bit_is_clear(ACSR, ACO))     // wait for start of loconet
+    {
+      processTimerActions();
+    }
+    // loconet is available, now
+    for (bCount =0;bCount < 50;bCount++)
+ 7cc:	d1 f7       	brne	.-12     	; 0x7c2 <main+0x16a>
+    {
+      delayTimer( 10 );                 // wait a little bit longer
+      processTimerActions();
+    }
+
+    if (slotArray[0].adr)                      // wait for a pseudo random time
+ 7ce:	80 91 4f 01 	lds	r24, 0x014F	; 0x80014f <slotArray+0x4>
+ 7d2:	88 23       	and	r24, r24
+ 7d4:	11 f0       	breq	.+4      	; 0x7da <main+0x182>
+    {
+      delayTimer(slotArray[0].adr);
+ 7d6:	90 e0       	ldi	r25, 0x00	; 0
+ 7d8:	f6 d2       	rcall	.+1516   	; 0xdc6 <delayTimer>
+    }
+
+    if (slotArray[0].adr2)
+ 7da:	80 91 54 01 	lds	r24, 0x0154	; 0x800154 <slotArray+0x9>
+ 7de:	88 23       	and	r24, r24
+ 7e0:	11 f0       	breq	.+4      	; 0x7e6 <main+0x18e>
+    {
+      delayTimer(slotArray[0].adr2);
+ 7e2:	90 e0       	ldi	r25, 0x00	; 0
+ 7e4:	f0 d2       	rcall	.+1504   	; 0xdc6 <delayTimer>
+    }
+
+    // if a address for a loco is available, try to reconnect
+    if (bThrState == THR_STATE_RECONNECT_GET_SLOT)
+ 7e6:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <bThrState>
+ 7ea:	84 31       	cpi	r24, 0x14	; 20
+ 7ec:	31 f4       	brne	.+12     	; 0x7fa <main+0x1a2>
+    {
+      sendLocoNetAdr(&slotArray[0]);
+ 7ee:	8b e4       	ldi	r24, 0x4B	; 75
+ 7f0:	91 e0       	ldi	r25, 0x01	; 1
+ 7f2:	1b df       	rcall	.-458    	; 0x62a <sendLocoNetAdr>
+ 7f4:	02 c0       	rjmp	.+4      	; 0x7fa <main+0x1a2>
+    }
+  }
+  else
+  {
+    sendLocoNetFredCd( bCount );
+ 7f6:	80 e0       	ldi	r24, 0x00	; 0
+ 7f8:	29 df       	rcall	.-430    	; 0x64c <sendLocoNetFredCd>
+  }  
+
+/******************************************************************************/
+// main endless loop 
+/******************************************************************************/
+			setLEDasOutput();
+ 7fa:	39 dd       	rcall	.-1422   	; 0x26e <setLEDasOutput>
+		/*	PORTA &= ~(1<<LED1);
+			PORTA &= ~(1<<LED2);
+			PORTC &= ~(1<<LED3);
+			PORTC &= ~(1<<LED4); */
+		// alle LED anschalten
+			PORTA |= (1<<LED1);
+ 7fc:	d8 9a       	sbi	0x1b, 0	; 27
+			PORTA |= (1<<LED2);
+ 7fe:	d9 9a       	sbi	0x1b, 1	; 27
+			PORTC |= (1<<LED3);
+ 800:	ab 9a       	sbi	0x15, 3	; 21
+			disableLED4();
+ 802:	3a dd       	rcall	.-1420   	; 0x278 <disableLED4>
+			
+		  ADCSRA = 0<< ADEN;		//ADC ausschalten
+ 804:	16 b8       	out	0x06, r1	; 6
+		  
+	byte testPort = PORTC;
+ 806:	85 b3       	in	r24, 0x15	; 21
+ 808:	89 83       	std	Y+1, r24	; 0x01
+
+	byte pressed = 0;
+  while (1)
+  {
+		
+		ProcessKeyInput(&slotArray[0].funKey, &testPort);
+ 80a:	be 01       	movw	r22, r28
+ 80c:	6f 5f       	subi	r22, 0xFF	; 255
+ 80e:	7f 4f       	sbci	r23, 0xFF	; 255
+ 810:	89 e5       	ldi	r24, 0x59	; 89
+ 812:	91 e0       	ldi	r25, 0x01	; 1
+ 814:	d9 de       	rcall	.-590    	; 0x5c8 <ProcessKeyInput>
+			vProcessEncoder(&slotArray[i]);
+		}
+		vProcessRxLoconetMessage(&slotArray[i]);
+		processTimerActions();
+	} */ //end of for
+  } // end of while(1)
+ 816:	f9 cf       	rjmp	.-14     	; 0x80a <main+0x1b2>
+ * ARGUMENTS   : none
+ * RETURN VALUE: int, never reached, cause of endless loop
+ * NOTES       :   -
+ *******************************************************FunctionHeaderEnd******/
+int main(void)
+{
+ 818:	12 e3       	ldi	r17, 0x32	; 50
+ 81a:	d3 cf       	rjmp	.-90     	; 0x7c2 <main+0x16a>
+
+0000081c <potAdcPowerOff>:
 }
 
 // functions -------------------------------------------------------------------
 
 void potAdcPowerOff(void) {
   ADCSRA = (0<<ADEN); // disable ADC
- 84a:	16 b8       	out	0x06, r1	; 6
- 84c:	08 95       	ret
+ 81c:	16 b8       	out	0x06, r1	; 6
+ 81e:	08 95       	ret
 
-0000084e <potAdcInit>:
+00000820 <potAdcInit>:
     PRR   &= ~(1<<PRADC); // enable ADC in Power Reduction Register.
     DIDR0 |= (1<<ADC0D);  // disable digital input buffer to reduce
                           // power consumption
   #endif
 
   ADMUX  = (0<<REFS1) | (1<<REFS0) // AVCC pin as reference
- 84e:	86 e4       	ldi	r24, 0x46	; 70
- 850:	87 b9       	out	0x07, r24	; 7
+ 820:	86 e4       	ldi	r24, 0x46	; 70
+ 822:	87 b9       	out	0x07, r24	; 7
     | defined(__AVR_ATmega48P__) | defined(__AVR_ATmega88__)   \
     | defined(__AVR_ATmega88A__) | defined(__AVR_ATmega88P__)  \
     | defined(__AVR_ATmega168__) | defined(__AVR_ATmega168A__) \
     | defined(__AVR_ATmega168P__)| defined(__AVR_ATmega328__)  \
     | defined(__AVR_ATmega328P__) | defined(__AVR_ATmega16__)
     ADCSRA = (1<<ADEN)  // Enable ADC
- 852:	86 ec       	ldi	r24, 0xC6	; 198
- 854:	86 b9       	out	0x06, r24	; 6
+ 824:	86 ec       	ldi	r24, 0xC6	; 198
+ 826:	86 b9       	out	0x06, r24	; 6
            | ADPS;      // ADC precaler selection
   #else
     #error "unknown mcu"
   #endif
 
   while (bit_is_set(ADCSRA, ADSC)); // wait for measurement
- 856:	36 99       	sbic	0x06, 6	; 6
- 858:	fe cf       	rjmp	.-4      	; 0x856 <potAdcInit+0x8>
+ 828:	36 99       	sbic	0x06, 6	; 6
+ 82a:	fe cf       	rjmp	.-4      	; 0x828 <potAdcInit+0x8>
   ADCH;                             // throw away first analog value
- 85a:	85 b1       	in	r24, 0x05	; 5
+ 82c:	85 b1       	in	r24, 0x05	; 5
   potAdcSpeedValue = 0;             // ignore first analog value
- 85c:	10 92 76 00 	sts	0x0076, r1	; 0x800076 <potAdcSpeedValue>
+ 82e:	10 92 76 00 	sts	0x0076, r1	; 0x800076 <potAdcSpeedValue>
   ADCSRA      |= _BV(ADSC);         // start new measurement
- 860:	36 9a       	sbi	0x06, 6	; 6
- 862:	08 95       	ret
+ 832:	36 9a       	sbi	0x06, 6	; 6
+ 834:	08 95       	ret
 
-00000864 <potAdcTimerAction>:
+00000836 <potAdcTimerAction>:
   #define NB_SAMPLES_LOG2 0 // log to basis 2 of number of samples
                             // 3: take arithmetic mean of 8 samples
                             // 2: four samples
                             // 0: single sample
 
   if (bit_is_clear(ADCSRA, ADSC)) // measurement done
- 864:	36 99       	sbic	0x06, 6	; 6
- 866:	46 c0       	rjmp	.+140    	; 0x8f4 <potAdcTimerAction+0x90>
+ 836:	36 99       	sbic	0x06, 6	; 6
+ 838:	46 c0       	rjmp	.+140    	; 0x8c6 <potAdcTimerAction+0x90>
   {
     potAdcRawValue = ADCW;
- 868:	84 b1       	in	r24, 0x04	; 4
- 86a:	95 b1       	in	r25, 0x05	; 5
- 86c:	90 93 75 00 	sts	0x0075, r25	; 0x800075 <potAdcRawValue+0x1>
- 870:	80 93 74 00 	sts	0x0074, r24	; 0x800074 <potAdcRawValue>
+ 83a:	84 b1       	in	r24, 0x04	; 4
+ 83c:	95 b1       	in	r25, 0x05	; 5
+ 83e:	90 93 75 00 	sts	0x0075, r25	; 0x800075 <potAdcRawValue+0x1>
+ 842:	80 93 74 00 	sts	0x0074, r24	; 0x800074 <potAdcRawValue>
     ADCSRA |= _BV(ADSC);          // start new measurement
- 874:	36 9a       	sbi	0x06, 6	; 6
+ 846:	36 9a       	sbi	0x06, 6	; 6
 
     #if NB_SAMPLES_LOG2 == 0
 
       potAdcSpeedValue
                 = timeFilter( mapSpeedVal( deltaFilter( potAdcRawValue ) ) );
- 876:	40 91 74 00 	lds	r20, 0x0074	; 0x800074 <potAdcRawValue>
- 87a:	50 91 75 00 	lds	r21, 0x0075	; 0x800075 <potAdcRawValue+0x1>
+ 848:	40 91 74 00 	lds	r20, 0x0074	; 0x800074 <potAdcRawValue>
+ 84c:	50 91 75 00 	lds	r21, 0x0075	; 0x800075 <potAdcRawValue+0x1>
+  #define FILTER_DELTA 3    // testing shows that 1 should be ok
                             // 0: disable filter (for testing)
 
   static uint16_t deltaFilterState = 0;
 
   int16_t delta = abs( (int16_t)deltaFilterState - (int16_t)adcVal);
+ 850:	80 91 72 00 	lds	r24, 0x0072	; 0x800072 <deltaFilterState.1667>
+ 854:	90 91 73 00 	lds	r25, 0x0073	; 0x800073 <deltaFilterState.1667+0x1>
+ 858:	84 1b       	sub	r24, r20
+ 85a:	95 0b       	sbc	r25, r21
+ 85c:	9c 01       	movw	r18, r24
+ 85e:	22 f4       	brpl	.+8      	; 0x868 <potAdcTimerAction+0x32>
+ 860:	22 27       	eor	r18, r18
+ 862:	33 27       	eor	r19, r19
+ 864:	28 1b       	sub	r18, r24
+ 866:	39 0b       	sbc	r19, r25
   if( delta >= FILTER_DELTA ) {
- 87e:	80 91 72 00 	lds	r24, 0x0072	; 0x800072 <deltaFilterState.1786>
- 882:	90 91 73 00 	lds	r25, 0x0073	; 0x800073 <deltaFilterState.1786+0x1>
- 886:	84 1b       	sub	r24, r20
- 888:	95 0b       	sbc	r25, r21
- 88a:	9c 01       	movw	r18, r24
- 88c:	22 f4       	brpl	.+8      	; 0x896 <potAdcTimerAction+0x32>
- 88e:	22 27       	eor	r18, r18
- 890:	33 27       	eor	r19, r19
- 892:	28 1b       	sub	r18, r24
- 894:	39 0b       	sbc	r19, r25
- 896:	23 30       	cpi	r18, 0x03	; 3
- 898:	31 05       	cpc	r19, r1
- 89a:	24 f0       	brlt	.+8      	; 0x8a4 <potAdcTimerAction+0x40>
+ 868:	23 30       	cpi	r18, 0x03	; 3
+ 86a:	31 05       	cpc	r19, r1
+ 86c:	24 f0       	brlt	.+8      	; 0x876 <potAdcTimerAction+0x40>
     deltaFilterState = adcVal;
- 89c:	50 93 73 00 	sts	0x0073, r21	; 0x800073 <deltaFilterState.1786+0x1>
- 8a0:	40 93 72 00 	sts	0x0072, r20	; 0x800072 <deltaFilterState.1786>
+ 86e:	50 93 73 00 	sts	0x0073, r21	; 0x800073 <deltaFilterState.1667+0x1>
+ 872:	40 93 72 00 	sts	0x0072, r20	; 0x800072 <deltaFilterState.1667>
  * Map pot values 0..1023 to dcc/loconet speed 0,2..126
  * @param speed
  * @return
  */
 static inline uint8_t mapSpeedVal( uint16_t adcValue ) {
   uint8_t speedVal = (uint8_t) (adcValue >> 3);
- 8a4:	20 91 72 00 	lds	r18, 0x0072	; 0x800072 <deltaFilterState.1786>
- 8a8:	30 91 73 00 	lds	r19, 0x0073	; 0x800073 <deltaFilterState.1786+0x1>
- 8ac:	36 95       	lsr	r19
- 8ae:	27 95       	ror	r18
- 8b0:	36 95       	lsr	r19
- 8b2:	27 95       	ror	r18
- 8b4:	36 95       	lsr	r19
- 8b6:	27 95       	ror	r18
- 8b8:	82 2f       	mov	r24, r18
+ 876:	20 91 72 00 	lds	r18, 0x0072	; 0x800072 <deltaFilterState.1667>
+ 87a:	30 91 73 00 	lds	r19, 0x0073	; 0x800073 <deltaFilterState.1667+0x1>
+ 87e:	36 95       	lsr	r19
+ 880:	27 95       	ror	r18
+ 882:	36 95       	lsr	r19
+ 884:	27 95       	ror	r18
+ 886:	36 95       	lsr	r19
+ 888:	27 95       	ror	r18
+ 88a:	82 2f       	mov	r24, r18
   if( speedVal > 0 ) {
- 8ba:	22 23       	and	r18, r18
- 8bc:	11 f0       	breq	.+4      	; 0x8c2 <potAdcTimerAction+0x5e>
+ 88c:	22 23       	and	r18, r18
+ 88e:	11 f0       	breq	.+4      	; 0x894 <potAdcTimerAction+0x5e>
     speedVal++; //skip E_STOP
- 8be:	81 e0       	ldi	r24, 0x01	; 1
- 8c0:	82 0f       	add	r24, r18
+ 890:	81 e0       	ldi	r24, 0x01	; 1
+ 892:	82 0f       	add	r24, r18
                          // time. potAdcTimerAction() is called every
                          // KEY_POLL_TIME ms. (-> sysdef.h)
 
   static uint8_t timeFilterState = 0;
   static uint8_t count = 0;
   if( count > 0 ) {
- 8c2:	90 91 71 00 	lds	r25, 0x0071	; 0x800071 <count.1796>
- 8c6:	99 23       	and	r25, r25
- 8c8:	29 f0       	breq	.+10     	; 0x8d4 <potAdcTimerAction+0x70>
+ 894:	90 91 71 00 	lds	r25, 0x0071	; 0x800071 <count.1677>
+ 898:	99 23       	and	r25, r25
+ 89a:	29 f0       	breq	.+10     	; 0x8a6 <potAdcTimerAction+0x70>
     count--;
- 8ca:	91 50       	subi	r25, 0x01	; 1
- 8cc:	90 93 71 00 	sts	0x0071, r25	; 0x800071 <count.1796>
+ 89c:	91 50       	subi	r25, 0x01	; 1
+ 89e:	90 93 71 00 	sts	0x0071, r25	; 0x800071 <count.1677>
   }
   if( count == 0 && speedVal != timeFilterState ) {
- 8d0:	91 11       	cpse	r25, r1
- 8d2:	0c c0       	rjmp	.+24     	; 0x8ec <potAdcTimerAction+0x88>
- 8d4:	8f 37       	cpi	r24, 0x7F	; 127
- 8d6:	08 f0       	brcs	.+2      	; 0x8da <potAdcTimerAction+0x76>
- 8d8:	8e e7       	ldi	r24, 0x7E	; 126
- 8da:	90 91 70 00 	lds	r25, 0x0070	; 0x800070 <timeFilterState.1795>
- 8de:	98 17       	cp	r25, r24
- 8e0:	29 f0       	breq	.+10     	; 0x8ec <potAdcTimerAction+0x88>
+ 8a2:	91 11       	cpse	r25, r1
+ 8a4:	0c c0       	rjmp	.+24     	; 0x8be <potAdcTimerAction+0x88>
+ 8a6:	8f 37       	cpi	r24, 0x7F	; 127
+ 8a8:	08 f0       	brcs	.+2      	; 0x8ac <potAdcTimerAction+0x76>
+ 8aa:	8e e7       	ldi	r24, 0x7E	; 126
+ 8ac:	90 91 70 00 	lds	r25, 0x0070	; 0x800070 <timeFilterState.1676>
+ 8b0:	98 17       	cp	r25, r24
+ 8b2:	29 f0       	breq	.+10     	; 0x8be <potAdcTimerAction+0x88>
     timeFilterState = speedVal;
- 8e2:	80 93 70 00 	sts	0x0070, r24	; 0x800070 <timeFilterState.1795>
+ 8b4:	80 93 70 00 	sts	0x0070, r24	; 0x800070 <timeFilterState.1676>
     count = FILTER_TIME;
- 8e6:	8a e0       	ldi	r24, 0x0A	; 10
- 8e8:	80 93 71 00 	sts	0x0071, r24	; 0x800071 <count.1796>
+ 8b8:	8a e0       	ldi	r24, 0x0A	; 10
+ 8ba:	80 93 71 00 	sts	0x0071, r24	; 0x800071 <count.1677>
   }
   return timeFilterState;
- 8ec:	80 91 70 00 	lds	r24, 0x0070	; 0x800070 <timeFilterState.1795>
+ 8be:	80 91 70 00 	lds	r24, 0x0070	; 0x800070 <timeFilterState.1676>
     ADCSRA |= _BV(ADSC);          // start new measurement
 
     #if NB_SAMPLES_LOG2 == 0
 
       potAdcSpeedValue
                 = timeFilter( mapSpeedVal( deltaFilter( potAdcRawValue ) ) );
- 8f0:	80 93 76 00 	sts	0x0076, r24	; 0x800076 <potAdcSpeedValue>
- 8f4:	08 95       	ret
+ 8c2:	80 93 76 00 	sts	0x0076, r24	; 0x800076 <potAdcSpeedValue>
+ 8c6:	08 95       	ret
 
-000008f6 <__vector_5>:
+000008c8 <__vector_5>:
 * incoming data.
 *
 **************************************************************************/
 
 ISR(LN_SB_SIGNAL)
 {
- 8f6:	1f 92       	push	r1
- 8f8:	0f 92       	push	r0
- 8fa:	0f b6       	in	r0, 0x3f	; 63
- 8fc:	0f 92       	push	r0
- 8fe:	11 24       	eor	r1, r1
- 900:	8f 93       	push	r24
- 902:	9f 93       	push	r25
+ 8c8:	1f 92       	push	r1
+ 8ca:	0f 92       	push	r0
+ 8cc:	0f b6       	in	r0, 0x3f	; 63
+ 8ce:	0f 92       	push	r0
+ 8d0:	11 24       	eor	r1, r1
+ 8d2:	8f 93       	push	r24
+ 8d4:	9f 93       	push	r25
     // Disable the Input Comparator Interrupt
   cbi( LN_SB_INT_ENABLE_REG, LN_SB_INT_ENABLE_BIT );     
- 904:	89 b7       	in	r24, 0x39	; 57
- 906:	8f 7d       	andi	r24, 0xDF	; 223
- 908:	89 bf       	out	0x39, r24	; 57
+ 8d6:	89 b7       	in	r24, 0x39	; 57
+ 8d8:	8f 7d       	andi	r24, 0xDF	; 223
+ 8da:	89 bf       	out	0x39, r24	; 57
 #ifdef RX_MONITOR
   cbi(PORTD, PD1);
 #endif
 
     // Get the Current Timer1 Count and Add the offset for the Compare target
   lnCompareTarget = LN_TMR_INP_CAPT_REG + LN_TIMER_RX_START_PERIOD ;
- 90a:	86 b5       	in	r24, 0x26	; 38
- 90c:	97 b5       	in	r25, 0x27	; 39
- 90e:	89 56       	subi	r24, 0x69	; 105
- 910:	9d 4f       	sbci	r25, 0xFD	; 253
- 912:	90 93 aa 01 	sts	0x01AA, r25	; 0x8001aa <lnCompareTarget+0x1>
- 916:	80 93 a9 01 	sts	0x01A9, r24	; 0x8001a9 <lnCompareTarget>
+ 8dc:	86 b5       	in	r24, 0x26	; 38
+ 8de:	97 b5       	in	r25, 0x27	; 39
+ 8e0:	89 56       	subi	r24, 0x69	; 105
+ 8e2:	9d 4f       	sbci	r25, 0xFD	; 253
+ 8e4:	90 93 aa 01 	sts	0x01AA, r25	; 0x8001aa <lnCompareTarget+0x1>
+ 8e8:	80 93 a9 01 	sts	0x01A9, r24	; 0x8001a9 <lnCompareTarget>
   LN_TMR_OUTP_CAPT_REG = lnCompareTarget ;
- 91a:	80 91 a9 01 	lds	r24, 0x01A9	; 0x8001a9 <lnCompareTarget>
- 91e:	90 91 aa 01 	lds	r25, 0x01AA	; 0x8001aa <lnCompareTarget+0x1>
- 922:	9b bd       	out	0x2b, r25	; 43
- 924:	8a bd       	out	0x2a, r24	; 42
+ 8ec:	80 91 a9 01 	lds	r24, 0x01A9	; 0x8001a9 <lnCompareTarget>
+ 8f0:	90 91 aa 01 	lds	r25, 0x01AA	; 0x8001aa <lnCompareTarget+0x1>
+ 8f4:	9b bd       	out	0x2b, r25	; 43
+ 8f6:	8a bd       	out	0x2a, r24	; 42
 
     // Clear the current Compare interrupt status bit and enable the Compare interrupt
   sbi(LN_TMR_INT_STATUS_REG, LN_TMR_INT_STATUS_BIT) ;
- 926:	88 b7       	in	r24, 0x38	; 56
- 928:	80 61       	ori	r24, 0x10	; 16
- 92a:	88 bf       	out	0x38, r24	; 56
+ 8f8:	88 b7       	in	r24, 0x38	; 56
+ 8fa:	80 61       	ori	r24, 0x10	; 16
+ 8fc:	88 bf       	out	0x38, r24	; 56
   sbi(LN_TMR_INT_ENABLE_REG, LN_TMR_INT_ENABLE_BIT) ; 
- 92c:	89 b7       	in	r24, 0x39	; 57
- 92e:	80 61       	ori	r24, 0x10	; 16
- 930:	89 bf       	out	0x39, r24	; 57
+ 8fe:	89 b7       	in	r24, 0x39	; 57
+ 900:	80 61       	ori	r24, 0x10	; 16
+ 902:	89 bf       	out	0x39, r24	; 57
 
     // Set the State to indicate that we have begun to Receive
   lnState = LN_ST_RX ;
- 932:	84 e0       	ldi	r24, 0x04	; 4
- 934:	80 93 ad 01 	sts	0x01AD, r24	; 0x8001ad <lnState>
+ 904:	84 e0       	ldi	r24, 0x04	; 4
+ 906:	80 93 ad 01 	sts	0x01AD, r24	; 0x8001ad <lnState>
 
     // Reset the bit counter so that on first increment it is on 0
   lnBitCount = 0;
- 938:	10 92 ae 01 	sts	0x01AE, r1	; 0x8001ae <lnBitCount>
+ 90a:	10 92 ae 01 	sts	0x01AE, r1	; 0x8001ae <lnBitCount>
 }
- 93c:	9f 91       	pop	r25
- 93e:	8f 91       	pop	r24
- 940:	0f 90       	pop	r0
- 942:	0f be       	out	0x3f, r0	; 63
- 944:	0f 90       	pop	r0
- 946:	1f 90       	pop	r1
- 948:	18 95       	reti
+ 90e:	9f 91       	pop	r25
+ 910:	8f 91       	pop	r24
+ 912:	0f 90       	pop	r0
+ 914:	0f be       	out	0x3f, r0	; 63
+ 916:	0f 90       	pop	r0
+ 918:	1f 90       	pop	r1
+ 91a:	18 95       	reti
 
-0000094a <__vector_6>:
+0000091c <__vector_6>:
 * it samples the bit and shifts it into the buffer.
 *
 **************************************************************************/
 
 ISR(LN_TMR_SIGNAL)     /* signal handler for timer0 overflow */
 {
- 94a:	1f 92       	push	r1
- 94c:	0f 92       	push	r0
- 94e:	0f b6       	in	r0, 0x3f	; 63
- 950:	0f 92       	push	r0
- 952:	11 24       	eor	r1, r1
- 954:	0f 93       	push	r16
- 956:	1f 93       	push	r17
- 958:	2f 93       	push	r18
- 95a:	3f 93       	push	r19
- 95c:	4f 93       	push	r20
- 95e:	5f 93       	push	r21
- 960:	6f 93       	push	r22
- 962:	7f 93       	push	r23
- 964:	8f 93       	push	r24
- 966:	9f 93       	push	r25
- 968:	af 93       	push	r26
- 96a:	bf 93       	push	r27
- 96c:	cf 93       	push	r28
- 96e:	df 93       	push	r29
- 970:	ef 93       	push	r30
- 972:	ff 93       	push	r31
+ 91c:	1f 92       	push	r1
+ 91e:	0f 92       	push	r0
+ 920:	0f b6       	in	r0, 0x3f	; 63
+ 922:	0f 92       	push	r0
+ 924:	11 24       	eor	r1, r1
+ 926:	0f 93       	push	r16
+ 928:	1f 93       	push	r17
+ 92a:	2f 93       	push	r18
+ 92c:	3f 93       	push	r19
+ 92e:	4f 93       	push	r20
+ 930:	5f 93       	push	r21
+ 932:	6f 93       	push	r22
+ 934:	7f 93       	push	r23
+ 936:	8f 93       	push	r24
+ 938:	9f 93       	push	r25
+ 93a:	af 93       	push	r26
+ 93c:	bf 93       	push	r27
+ 93e:	cf 93       	push	r28
+ 940:	df 93       	push	r29
+ 942:	ef 93       	push	r30
+ 944:	ff 93       	push	r31
     // Advance the Compare Target
   lnCompareTarget += LN_TIMER_RX_RELOAD_PERIOD ;
- 974:	80 91 a9 01 	lds	r24, 0x01A9	; 0x8001a9 <lnCompareTarget>
- 978:	90 91 aa 01 	lds	r25, 0x01AA	; 0x8001aa <lnCompareTarget+0x1>
- 97c:	86 54       	subi	r24, 0x46	; 70
- 97e:	9e 4f       	sbci	r25, 0xFE	; 254
- 980:	90 93 aa 01 	sts	0x01AA, r25	; 0x8001aa <lnCompareTarget+0x1>
- 984:	80 93 a9 01 	sts	0x01A9, r24	; 0x8001a9 <lnCompareTarget>
+ 946:	80 91 a9 01 	lds	r24, 0x01A9	; 0x8001a9 <lnCompareTarget>
+ 94a:	90 91 aa 01 	lds	r25, 0x01AA	; 0x8001aa <lnCompareTarget+0x1>
+ 94e:	86 54       	subi	r24, 0x46	; 70
+ 950:	9e 4f       	sbci	r25, 0xFE	; 254
+ 952:	90 93 aa 01 	sts	0x01AA, r25	; 0x8001aa <lnCompareTarget+0x1>
+ 956:	80 93 a9 01 	sts	0x01A9, r24	; 0x8001a9 <lnCompareTarget>
   LN_TMR_OUTP_CAPT_REG = lnCompareTarget ;
- 988:	80 91 a9 01 	lds	r24, 0x01A9	; 0x8001a9 <lnCompareTarget>
- 98c:	90 91 aa 01 	lds	r25, 0x01AA	; 0x8001aa <lnCompareTarget+0x1>
- 990:	9b bd       	out	0x2b, r25	; 43
- 992:	8a bd       	out	0x2a, r24	; 42
+ 95a:	80 91 a9 01 	lds	r24, 0x01A9	; 0x8001a9 <lnCompareTarget>
+ 95e:	90 91 aa 01 	lds	r25, 0x01AA	; 0x8001aa <lnCompareTarget+0x1>
+ 962:	9b bd       	out	0x2b, r25	; 43
+ 964:	8a bd       	out	0x2a, r24	; 42
 
   lnBitCount++;                         //Increment bit_counter
- 994:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
- 998:	8f 5f       	subi	r24, 0xFF	; 255
- 99a:	80 93 ae 01 	sts	0x01AE, r24	; 0x8001ae <lnBitCount>
+ 966:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
+ 96a:	8f 5f       	subi	r24, 0xFF	; 255
+ 96c:	80 93 ae 01 	sts	0x01AE, r24	; 0x8001ae <lnBitCount>
 
     // Are we in the RX State
   if( lnState == LN_ST_RX )                // Are we in RX mode
- 99e:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
- 9a2:	84 30       	cpi	r24, 0x04	; 4
- 9a4:	09 f0       	breq	.+2      	; 0x9a8 <__vector_6+0x5e>
- 9a6:	3f c0       	rjmp	.+126    	; 0xa26 <__vector_6+0xdc>
+ 970:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
+ 974:	84 30       	cpi	r24, 0x04	; 4
+ 976:	09 f0       	breq	.+2      	; 0x97a <__vector_6+0x5e>
+ 978:	3f c0       	rjmp	.+126    	; 0x9f8 <__vector_6+0xdc>
   {
     if( lnBitCount < 9)               // Are we in the Stop Bits phase
- 9a8:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
- 9ac:	89 30       	cpi	r24, 0x09	; 9
- 9ae:	68 f4       	brcc	.+26     	; 0x9ca <__vector_6+0x80>
+ 97a:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
+ 97e:	89 30       	cpi	r24, 0x09	; 9
+ 980:	68 f4       	brcc	.+26     	; 0x99c <__vector_6+0x80>
     {
       lnCurrentByte >>= 1;
- 9b0:	80 91 a8 01 	lds	r24, 0x01A8	; 0x8001a8 <lnCurrentByte>
- 9b4:	86 95       	lsr	r24
- 9b6:	80 93 a8 01 	sts	0x01A8, r24	; 0x8001a8 <lnCurrentByte>
+ 982:	80 91 a8 01 	lds	r24, 0x01A8	; 0x8001a8 <lnCurrentByte>
+ 986:	86 95       	lsr	r24
+ 988:	80 93 a8 01 	sts	0x01A8, r24	; 0x8001a8 <lnCurrentByte>
 #ifdef LN_SW_UART_RX_INVERTED
       if( bit_is_clear(LN_RX_PORT, LN_RX_BIT))
 #else
       if( bit_is_set(LN_RX_PORT, LN_RX_BIT))
- 9ba:	45 9b       	sbis	0x08, 5	; 8
- 9bc:	eb c0       	rjmp	.+470    	; 0xb94 <__vector_6+0x24a>
+ 98c:	45 9b       	sbis	0x08, 5	; 8
+ 98e:	ed c0       	rjmp	.+474    	; 0xb6a <__vector_6+0x24e>
 #endif
 
         lnCurrentByte |= 0x80;
- 9be:	80 91 a8 01 	lds	r24, 0x01A8	; 0x8001a8 <lnCurrentByte>
- 9c2:	80 68       	ori	r24, 0x80	; 128
- 9c4:	80 93 a8 01 	sts	0x01A8, r24	; 0x8001a8 <lnCurrentByte>
- 9c8:	e5 c0       	rjmp	.+458    	; 0xb94 <__vector_6+0x24a>
+ 990:	80 91 a8 01 	lds	r24, 0x01A8	; 0x8001a8 <lnCurrentByte>
+ 994:	80 68       	ori	r24, 0x80	; 128
+ 996:	80 93 a8 01 	sts	0x01A8, r24	; 0x8001a8 <lnCurrentByte>
+ 99a:	e7 c0       	rjmp	.+462    	; 0xb6a <__vector_6+0x24e>
       return ;
     }
 
       // Clear the Start Bit Interrupt Status Flag and Enable ready to 
       // detect the next Start Bit
     sbi( LN_SB_INT_STATUS_REG, LN_SB_INT_STATUS_BIT ) ;
- 9ca:	88 b7       	in	r24, 0x38	; 56
- 9cc:	80 62       	ori	r24, 0x20	; 32
- 9ce:	88 bf       	out	0x38, r24	; 56
+ 99c:	88 b7       	in	r24, 0x38	; 56
+ 99e:	80 62       	ori	r24, 0x20	; 32
+ 9a0:	88 bf       	out	0x38, r24	; 56
     sbi( LN_SB_INT_ENABLE_REG, LN_SB_INT_ENABLE_BIT ) ;
- 9d0:	89 b7       	in	r24, 0x39	; 57
- 9d2:	80 62       	ori	r24, 0x20	; 32
- 9d4:	89 bf       	out	0x39, r24	; 57
+ 9a2:	89 b7       	in	r24, 0x39	; 57
+ 9a4:	80 62       	ori	r24, 0x20	; 32
+ 9a6:	89 bf       	out	0x39, r24	; 57
 
       // If the Stop bit is not Set then we have a Framing Error
 #ifdef LN_SW_UART_RX_INVERTED
     if( bit_is_set(LN_RX_PORT,LN_RX_BIT) )
 #else
     if( bit_is_clear(LN_RX_PORT,LN_RX_BIT) )
- 9d6:	45 99       	sbic	0x08, 5	; 8
- 9d8:	0a c0       	rjmp	.+20     	; 0x9ee <__vector_6+0xa4>
+ 9a8:	45 99       	sbic	0x08, 5	; 8
+ 9aa:	0a c0       	rjmp	.+20     	; 0x9c0 <__vector_6+0xa4>
 #endif
       lnRxBuffer->Stats.RxErrors++ ;
- 9da:	e0 91 ab 01 	lds	r30, 0x01AB	; 0x8001ab <lnRxBuffer>
- 9de:	f0 91 ac 01 	lds	r31, 0x01AC	; 0x8001ac <lnRxBuffer+0x1>
- 9e2:	e9 57       	subi	r30, 0x79	; 121
- 9e4:	ff 4f       	sbci	r31, 0xFF	; 255
- 9e6:	80 81       	ld	r24, Z
- 9e8:	8f 5f       	subi	r24, 0xFF	; 255
- 9ea:	80 83       	st	Z, r24
- 9ec:	17 c0       	rjmp	.+46     	; 0xa1c <__vector_6+0xd2>
+ 9ac:	e0 91 ab 01 	lds	r30, 0x01AB	; 0x8001ab <lnRxBuffer>
+ 9b0:	f0 91 ac 01 	lds	r31, 0x01AC	; 0x8001ac <lnRxBuffer+0x1>
+ 9b4:	e9 57       	subi	r30, 0x79	; 121
+ 9b6:	ff 4f       	sbci	r31, 0xFF	; 255
+ 9b8:	80 81       	ld	r24, Z
+ 9ba:	8f 5f       	subi	r24, 0xFF	; 255
+ 9bc:	80 83       	st	Z, r24
+ 9be:	17 c0       	rjmp	.+46     	; 0x9ee <__vector_6+0xd2>
 
     else
         // Put the received byte in the buffer
       addByteLnBuf( lnRxBuffer, lnCurrentByte ) ;
- 9ee:	40 91 a8 01 	lds	r20, 0x01A8	; 0x8001a8 <lnCurrentByte>
- 9f2:	80 91 ab 01 	lds	r24, 0x01AB	; 0x8001ab <lnRxBuffer>
- 9f6:	90 91 ac 01 	lds	r25, 0x01AC	; 0x8001ac <lnRxBuffer+0x1>
+ 9c0:	40 91 a8 01 	lds	r20, 0x01A8	; 0x8001a8 <lnCurrentByte>
+ 9c4:	80 91 ab 01 	lds	r24, 0x01AB	; 0x8001ab <lnRxBuffer>
+ 9c8:	90 91 ac 01 	lds	r25, 0x01AC	; 0x8001ac <lnRxBuffer+0x1>
 void addByteLnBuf( LnBuf *Buffer, byte newByte );
 void addMsgLnBuf( LnBuf *Buffer, volatile lnMsg * newMsg );
 #else
 static inline void addByteLnBuf( LnBuf *Buffer, byte newByte )
 {
 	Buffer->Buf[ Buffer->WriteIndex++ ] = newByte ;
- 9fa:	fc 01       	movw	r30, r24
- 9fc:	e0 58       	subi	r30, 0x80	; 128
- 9fe:	ff 4f       	sbci	r31, 0xFF	; 255
- a00:	30 81       	ld	r19, Z
- a02:	21 e0       	ldi	r18, 0x01	; 1
- a04:	23 0f       	add	r18, r19
- a06:	20 83       	st	Z, r18
- a08:	fc 01       	movw	r30, r24
- a0a:	e3 0f       	add	r30, r19
- a0c:	f1 1d       	adc	r31, r1
- a0e:	40 83       	st	Z, r20
+ 9cc:	fc 01       	movw	r30, r24
+ 9ce:	e0 58       	subi	r30, 0x80	; 128
+ 9d0:	ff 4f       	sbci	r31, 0xFF	; 255
+ 9d2:	30 81       	ld	r19, Z
+ 9d4:	21 e0       	ldi	r18, 0x01	; 1
+ 9d6:	23 0f       	add	r18, r19
+ 9d8:	20 83       	st	Z, r18
+ 9da:	fc 01       	movw	r30, r24
+ 9dc:	e3 0f       	add	r30, r19
+ 9de:	f1 1d       	adc	r31, r1
+ 9e0:	40 83       	st	Z, r20
 	if( Buffer->WriteIndex >= LN_BUF_SIZE )
- a10:	22 23       	and	r18, r18
- a12:	24 f4       	brge	.+8      	; 0xa1c <__vector_6+0xd2>
+ 9e2:	22 23       	and	r18, r18
+ 9e4:	24 f4       	brge	.+8      	; 0x9ee <__vector_6+0xd2>
 		Buffer->WriteIndex = 0 ;
- a14:	fc 01       	movw	r30, r24
- a16:	e0 58       	subi	r30, 0x80	; 128
- a18:	ff 4f       	sbci	r31, 0xFF	; 255
- a1a:	10 82       	st	Z, r1
+ 9e6:	fc 01       	movw	r30, r24
+ 9e8:	e0 58       	subi	r30, 0x80	; 128
+ 9ea:	ff 4f       	sbci	r31, 0xFF	; 255
+ 9ec:	10 82       	st	Z, r1
 
     lnBitCount = 0 ;
- a1c:	10 92 ae 01 	sts	0x01AE, r1	; 0x8001ae <lnBitCount>
+ 9ee:	10 92 ae 01 	sts	0x01AE, r1	; 0x8001ae <lnBitCount>
     lnState = LN_ST_CD_BACKOFF ;
- a20:	81 e0       	ldi	r24, 0x01	; 1
- a22:	80 93 ad 01 	sts	0x01AD, r24	; 0x8001ad <lnState>
+ 9f2:	81 e0       	ldi	r24, 0x01	; 1
+ 9f4:	80 93 ad 01 	sts	0x01AD, r24	; 0x8001ad <lnState>
   }
 
 
     // Are we in the TX State
   if( lnState == LN_ST_TX )
- a26:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
- a2a:	83 30       	cpi	r24, 0x03	; 3
- a2c:	09 f0       	breq	.+2      	; 0xa30 <__vector_6+0xe6>
- a2e:	7d c0       	rjmp	.+250    	; 0xb2a <__vector_6+0x1e0>
+ 9f8:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
+ 9fc:	83 30       	cpi	r24, 0x03	; 3
+ 9fe:	09 f0       	breq	.+2      	; 0xa02 <__vector_6+0xe6>
+ a00:	7f c0       	rjmp	.+254    	; 0xb00 <__vector_6+0x1e4>
   #endif
 #else  // inverted is the normal case, just a NPN between TX pin and LN:
   #ifdef LN_SW_UART_RX_INVERTED
     if( ( ( LN_TX_PORT >> LN_TX_BIT ) & 0x01 ) != ( ( LN_RX_PORT >> LN_RX_BIT ) & 0x01 ) )
   #else
     if( ( ( LN_TX_PORT >> LN_TX_BIT ) & 0x01 ) == ( ( LN_RX_PORT >> LN_RX_BIT ) & 0x01 ) )
- a30:	98 b3       	in	r25, 0x18	; 24
- a32:	88 b1       	in	r24, 0x08	; 8
- a34:	96 95       	lsr	r25
- a36:	82 95       	swap	r24
- a38:	86 95       	lsr	r24
- a3a:	87 70       	andi	r24, 0x07	; 7
- a3c:	89 27       	eor	r24, r25
- a3e:	80 fd       	sbrc	r24, 0
- a40:	06 c0       	rjmp	.+12     	; 0xa4e <__vector_6+0x104>
+ a02:	82 b3       	in	r24, 0x12	; 18
+ a04:	98 b1       	in	r25, 0x08	; 8
+ a06:	92 95       	swap	r25
+ a08:	96 95       	lsr	r25
+ a0a:	97 70       	andi	r25, 0x07	; 7
+ a0c:	82 95       	swap	r24
+ a0e:	8f 70       	andi	r24, 0x0F	; 15
+ a10:	89 27       	eor	r24, r25
+ a12:	80 fd       	sbrc	r24, 0
+ a14:	06 c0       	rjmp	.+12     	; 0xa22 <__vector_6+0x106>
   #endif
 #endif
     {
       lnBitCount = 0 ;
- a42:	10 92 ae 01 	sts	0x01AE, r1	; 0x8001ae <lnBitCount>
+ a16:	10 92 ae 01 	sts	0x01AE, r1	; 0x8001ae <lnBitCount>
       lnState = LN_ST_TX_COLLISION ;
- a46:	82 e0       	ldi	r24, 0x02	; 2
- a48:	80 93 ad 01 	sts	0x01AD, r24	; 0x8001ad <lnState>
- a4c:	6e c0       	rjmp	.+220    	; 0xb2a <__vector_6+0x1e0>
+ a1a:	82 e0       	ldi	r24, 0x02	; 2
+ a1c:	80 93 ad 01 	sts	0x01AD, r24	; 0x8001ad <lnState>
+ a20:	6f c0       	rjmp	.+222    	; 0xb00 <__vector_6+0x1e4>
     }
       // Send each Bit
     else if( lnBitCount < 9)
- a4e:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
- a52:	89 30       	cpi	r24, 0x09	; 9
- a54:	68 f4       	brcc	.+26     	; 0xa70 <__vector_6+0x126>
+ a22:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
+ a26:	89 30       	cpi	r24, 0x09	; 9
+ a28:	68 f4       	brcc	.+26     	; 0xa44 <__vector_6+0x128>
     {
 #ifdef TX_START_MEASUREMENT
 			cbi(TX_MEASUREMENT_PORT, TX_MEASUREMENT_PIN);
 #endif
 			
       if( lnCurrentByte & 0x01 )
- a56:	80 91 a8 01 	lds	r24, 0x01A8	; 0x8001a8 <lnCurrentByte>
- a5a:	80 ff       	sbrs	r24, 0
- a5c:	02 c0       	rjmp	.+4      	; 0xa62 <__vector_6+0x118>
+ a2a:	80 91 a8 01 	lds	r24, 0x01A8	; 0x8001a8 <lnCurrentByte>
+ a2e:	80 ff       	sbrs	r24, 0
+ a30:	02 c0       	rjmp	.+4      	; 0xa36 <__vector_6+0x11a>
         LN_SW_UART_SET_TX_HIGH
- a5e:	c1 98       	cbi	0x18, 1	; 24
- a60:	01 c0       	rjmp	.+2      	; 0xa64 <__vector_6+0x11a>
+ a32:	94 98       	cbi	0x12, 4	; 18
+ a34:	01 c0       	rjmp	.+2      	; 0xa38 <__vector_6+0x11c>
 
       else
         LN_SW_UART_SET_TX_LOW
- a62:	c1 9a       	sbi	0x18, 1	; 24
+ a36:	94 9a       	sbi	0x12, 4	; 18
 
       lnCurrentByte >>= 1;
- a64:	80 91 a8 01 	lds	r24, 0x01A8	; 0x8001a8 <lnCurrentByte>
- a68:	86 95       	lsr	r24
- a6a:	80 93 a8 01 	sts	0x01A8, r24	; 0x8001a8 <lnCurrentByte>
- a6e:	5d c0       	rjmp	.+186    	; 0xb2a <__vector_6+0x1e0>
+ a38:	80 91 a8 01 	lds	r24, 0x01A8	; 0x8001a8 <lnCurrentByte>
+ a3c:	86 95       	lsr	r24
+ a3e:	80 93 a8 01 	sts	0x01A8, r24	; 0x8001a8 <lnCurrentByte>
+ a42:	5e c0       	rjmp	.+188    	; 0xb00 <__vector_6+0x1e4>
     }
       // When the Data Bits are done, generate stop-bit
     else if( lnBitCount ==  9)
- a70:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
- a74:	89 30       	cpi	r24, 0x09	; 9
- a76:	11 f4       	brne	.+4      	; 0xa7c <__vector_6+0x132>
+ a44:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
+ a48:	89 30       	cpi	r24, 0x09	; 9
+ a4a:	11 f4       	brne	.+4      	; 0xa50 <__vector_6+0x134>
       LN_SW_UART_SET_TX_HIGH
- a78:	c1 98       	cbi	0x18, 1	; 24
- a7a:	57 c0       	rjmp	.+174    	; 0xb2a <__vector_6+0x1e0>
+ a4c:	94 98       	cbi	0x12, 4	; 18
+ a4e:	58 c0       	rjmp	.+176    	; 0xb00 <__vector_6+0x1e4>
 
       // Any more bytes in buffer
     else if( ++lnTxIndex < lnTxLength )
- a7c:	80 91 a6 01 	lds	r24, 0x01A6	; 0x8001a6 <lnTxIndex>
- a80:	8f 5f       	subi	r24, 0xFF	; 255
- a82:	80 93 a6 01 	sts	0x01A6, r24	; 0x8001a6 <lnTxIndex>
- a86:	90 91 a7 01 	lds	r25, 0x01A7	; 0x8001a7 <lnTxLength>
- a8a:	89 17       	cp	r24, r25
- a8c:	e8 f4       	brcc	.+58     	; 0xac8 <__vector_6+0x17e>
+ a50:	80 91 a6 01 	lds	r24, 0x01A6	; 0x8001a6 <lnTxIndex>
+ a54:	8f 5f       	subi	r24, 0xFF	; 255
+ a56:	80 93 a6 01 	sts	0x01A6, r24	; 0x8001a6 <lnTxIndex>
+ a5a:	90 91 a7 01 	lds	r25, 0x01A7	; 0x8001a7 <lnTxLength>
+ a5e:	89 17       	cp	r24, r25
+ a60:	e8 f4       	brcc	.+58     	; 0xa9c <__vector_6+0x180>
     {
         // Setup for the next byte
       lnBitCount = 0 ;
- a8e:	10 92 ae 01 	sts	0x01AE, r1	; 0x8001ae <lnBitCount>
+ a62:	10 92 ae 01 	sts	0x01AE, r1	; 0x8001ae <lnBitCount>
       lnCurrentByte = lnTxData->data[ lnTxIndex ] ;
- a92:	e0 91 af 01 	lds	r30, 0x01AF	; 0x8001af <lnTxData>
- a96:	f0 91 b0 01 	lds	r31, 0x01B0	; 0x8001b0 <lnTxData+0x1>
- a9a:	80 91 a6 01 	lds	r24, 0x01A6	; 0x8001a6 <lnTxIndex>
- a9e:	e8 0f       	add	r30, r24
- aa0:	f1 1d       	adc	r31, r1
- aa2:	80 81       	ld	r24, Z
- aa4:	80 93 a8 01 	sts	0x01A8, r24	; 0x8001a8 <lnCurrentByte>
+ a66:	e0 91 af 01 	lds	r30, 0x01AF	; 0x8001af <lnTxData>
+ a6a:	f0 91 b0 01 	lds	r31, 0x01B0	; 0x8001b0 <lnTxData+0x1>
+ a6e:	80 91 a6 01 	lds	r24, 0x01A6	; 0x8001a6 <lnTxIndex>
+ a72:	e8 0f       	add	r30, r24
+ a74:	f1 1d       	adc	r31, r1
+ a76:	80 81       	ld	r24, Z
+ a78:	80 93 a8 01 	sts	0x01A8, r24	; 0x8001a8 <lnCurrentByte>
 
         // Begin the Start Bit
       LN_SW_UART_SET_TX_LOW
- aa8:	c1 9a       	sbi	0x18, 1	; 24
+ a7c:	94 9a       	sbi	0x12, 4	; 18
 			sbi(TX_MEASUREMENT_PORT, TX_MEASUREMENT_PIN);
 #endif
 
         // Get the Current Timer1 Count and Add the offset for the Compare target
         // added adjustment value for bugfix (Olaf Funke)
       lnCompareTarget = LN_TMR_COUNT_REG + LN_TIMER_TX_RELOAD_PERIOD - LN_TIMER_TX_RELOAD_ADJUST; 
- aaa:	8c b5       	in	r24, 0x2c	; 44
- aac:	9d b5       	in	r25, 0x2d	; 45
- aae:	88 5a       	subi	r24, 0xA8	; 168
- ab0:	9e 4f       	sbci	r25, 0xFE	; 254
- ab2:	90 93 aa 01 	sts	0x01AA, r25	; 0x8001aa <lnCompareTarget+0x1>
- ab6:	80 93 a9 01 	sts	0x01A9, r24	; 0x8001a9 <lnCompareTarget>
+ a7e:	8c b5       	in	r24, 0x2c	; 44
+ a80:	9d b5       	in	r25, 0x2d	; 45
+ a82:	88 5a       	subi	r24, 0xA8	; 168
+ a84:	9e 4f       	sbci	r25, 0xFE	; 254
+ a86:	90 93 aa 01 	sts	0x01AA, r25	; 0x8001aa <lnCompareTarget+0x1>
+ a8a:	80 93 a9 01 	sts	0x01A9, r24	; 0x8001a9 <lnCompareTarget>
       LN_TMR_OUTP_CAPT_REG = lnCompareTarget ;
- aba:	80 91 a9 01 	lds	r24, 0x01A9	; 0x8001a9 <lnCompareTarget>
- abe:	90 91 aa 01 	lds	r25, 0x01AA	; 0x8001aa <lnCompareTarget+0x1>
- ac2:	9b bd       	out	0x2b, r25	; 43
- ac4:	8a bd       	out	0x2a, r24	; 42
- ac6:	31 c0       	rjmp	.+98     	; 0xb2a <__vector_6+0x1e0>
+ a8e:	80 91 a9 01 	lds	r24, 0x01A9	; 0x8001a9 <lnCompareTarget>
+ a92:	90 91 aa 01 	lds	r25, 0x01AA	; 0x8001aa <lnCompareTarget+0x1>
+ a96:	9b bd       	out	0x2b, r25	; 43
+ a98:	8a bd       	out	0x2a, r24	; 42
+ a9a:	32 c0       	rjmp	.+100    	; 0xb00 <__vector_6+0x1e4>
     }
     else
     {
         // Successfully Sent all bytes in the buffer
         // so set the Packet Status to Done
       lnTxSuccess = 1 ;
- ac8:	81 e0       	ldi	r24, 0x01	; 1
- aca:	80 93 a5 01 	sts	0x01A5, r24	; 0x8001a5 <lnTxSuccess>
+ a9c:	81 e0       	ldi	r24, 0x01	; 1
+ a9e:	80 93 a5 01 	sts	0x01A5, r24	; 0x8001a5 <lnTxSuccess>
 
         // Now copy the TX Packet into the RX Buffer
       addMsgLnBuf( lnRxBuffer, lnTxData );
- ace:	c0 91 af 01 	lds	r28, 0x01AF	; 0x8001af <lnTxData>
- ad2:	d0 91 b0 01 	lds	r29, 0x01B0	; 0x8001b0 <lnTxData+0x1>
- ad6:	00 91 ab 01 	lds	r16, 0x01AB	; 0x8001ab <lnRxBuffer>
- ada:	10 91 ac 01 	lds	r17, 0x01AC	; 0x8001ac <lnRxBuffer+0x1>
+ aa2:	c0 91 af 01 	lds	r28, 0x01AF	; 0x8001af <lnTxData>
+ aa6:	d0 91 b0 01 	lds	r29, 0x01B0	; 0x8001b0 <lnTxData+0x1>
+ aaa:	00 91 ab 01 	lds	r16, 0x01AB	; 0x8001ab <lnRxBuffer>
+ aae:	10 91 ac 01 	lds	r17, 0x01AC	; 0x8001ac <lnRxBuffer+0x1>
 static inline void addMsgLnBuf( LnBuf *Buffer, volatile lnMsg * newMsg )
 {
 	byte	Index ;
 	byte 	Length ;
 
 	Length = getLnMsgSize( newMsg ) ;
- ade:	ce 01       	movw	r24, r28
- ae0:	ea d1       	rcall	.+980    	; 0xeb6 <getLnMsgSize>
+ ab2:	ce 01       	movw	r24, r28
+ ab4:	eb d1       	rcall	.+982    	; 0xe8c <getLnMsgSize>
 	for( Index = 0; Index < Length; Index++ )
- ae2:	88 23       	and	r24, r24
- ae4:	e9 f0       	breq	.+58     	; 0xb20 <__vector_6+0x1d6>
- ae6:	81 50       	subi	r24, 0x01	; 1
- ae8:	68 2f       	mov	r22, r24
- aea:	70 e0       	ldi	r23, 0x00	; 0
- aec:	6f 5f       	subi	r22, 0xFF	; 255
- aee:	7f 4f       	sbci	r23, 0xFF	; 255
- af0:	80 e0       	ldi	r24, 0x00	; 0
- af2:	90 e0       	ldi	r25, 0x00	; 0
+ ab6:	88 23       	and	r24, r24
+ ab8:	f1 f0       	breq	.+60     	; 0xaf6 <__vector_6+0x1da>
+ aba:	81 50       	subi	r24, 0x01	; 1
+ abc:	68 2f       	mov	r22, r24
+ abe:	70 e0       	ldi	r23, 0x00	; 0
+ ac0:	6f 5f       	subi	r22, 0xFF	; 255
+ ac2:	7f 4f       	sbci	r23, 0xFF	; 255
+ ac4:	20 e0       	ldi	r18, 0x00	; 0
+ ac6:	30 e0       	ldi	r19, 0x00	; 0
 void addByteLnBuf( LnBuf *Buffer, byte newByte );
 void addMsgLnBuf( LnBuf *Buffer, volatile lnMsg * newMsg );
 #else
 static inline void addByteLnBuf( LnBuf *Buffer, byte newByte )
 {
 	Buffer->Buf[ Buffer->WriteIndex++ ] = newByte ;
- af4:	f8 01       	movw	r30, r16
- af6:	e0 58       	subi	r30, 0x80	; 128
- af8:	ff 4f       	sbci	r31, 0xFF	; 255
+ ac8:	f8 01       	movw	r30, r16
+ aca:	e0 58       	subi	r30, 0x80	; 128
+ acc:	ff 4f       	sbci	r31, 0xFF	; 255
 	byte	Index ;
 	byte 	Length ;
 
 	Length = getLnMsgSize( newMsg ) ;
 	for( Index = 0; Index < Length; Index++ )
 		addByteLnBuf(Buffer, newMsg->data[ Index ] ) ;
- afa:	de 01       	movw	r26, r28
- afc:	a8 0f       	add	r26, r24
- afe:	b9 1f       	adc	r27, r25
- b00:	4c 91       	ld	r20, X
+ ace:	de 01       	movw	r26, r28
+ ad0:	a2 0f       	add	r26, r18
+ ad2:	b3 1f       	adc	r27, r19
+ ad4:	8c 91       	ld	r24, X
 void addByteLnBuf( LnBuf *Buffer, byte newByte );
 void addMsgLnBuf( LnBuf *Buffer, volatile lnMsg * newMsg );
 #else
 static inline void addByteLnBuf( LnBuf *Buffer, byte newByte )
 {
 	Buffer->Buf[ Buffer->WriteIndex++ ] = newByte ;
- b02:	30 81       	ld	r19, Z
- b04:	21 e0       	ldi	r18, 0x01	; 1
- b06:	23 0f       	add	r18, r19
- b08:	20 83       	st	Z, r18
- b0a:	d8 01       	movw	r26, r16
- b0c:	a3 0f       	add	r26, r19
- b0e:	b1 1d       	adc	r27, r1
- b10:	4c 93       	st	X, r20
+ ad6:	40 81       	ld	r20, Z
+ ad8:	91 e0       	ldi	r25, 0x01	; 1
+ ada:	94 0f       	add	r25, r20
+ adc:	90 83       	st	Z, r25
+ ade:	d8 01       	movw	r26, r16
+ ae0:	a4 0f       	add	r26, r20
+ ae2:	b1 1d       	adc	r27, r1
+ ae4:	8c 93       	st	X, r24
 	if( Buffer->WriteIndex >= LN_BUF_SIZE )
- b12:	22 23       	and	r18, r18
- b14:	0c f4       	brge	.+2      	; 0xb18 <__vector_6+0x1ce>
+ ae6:	99 23       	and	r25, r25
+ ae8:	0c f4       	brge	.+2      	; 0xaec <__vector_6+0x1d0>
 		Buffer->WriteIndex = 0 ;
- b16:	10 82       	st	Z, r1
- b18:	01 96       	adiw	r24, 0x01	; 1
+ aea:	10 82       	st	Z, r1
+ aec:	2f 5f       	subi	r18, 0xFF	; 255
+ aee:	3f 4f       	sbci	r19, 0xFF	; 255
 {
 	byte	Index ;
 	byte 	Length ;
 
 	Length = getLnMsgSize( newMsg ) ;
 	for( Index = 0; Index < Length; Index++ )
- b1a:	86 17       	cp	r24, r22
- b1c:	97 07       	cpc	r25, r23
- b1e:	69 f7       	brne	.-38     	; 0xafa <__vector_6+0x1b0>
+ af0:	26 17       	cp	r18, r22
+ af2:	37 07       	cpc	r19, r23
+ af4:	61 f7       	brne	.-40     	; 0xace <__vector_6+0x1b2>
 
         // Begin CD Backoff state
       lnBitCount = 0 ;
- b20:	10 92 ae 01 	sts	0x01AE, r1	; 0x8001ae <lnBitCount>
+ af6:	10 92 ae 01 	sts	0x01AE, r1	; 0x8001ae <lnBitCount>
       lnState = LN_ST_CD_BACKOFF ;      
- b24:	81 e0       	ldi	r24, 0x01	; 1
- b26:	80 93 ad 01 	sts	0x01AD, r24	; 0x8001ad <lnState>
+ afa:	81 e0       	ldi	r24, 0x01	; 1
+ afc:	80 93 ad 01 	sts	0x01AD, r24	; 0x8001ad <lnState>
     }
   }
 
     // Note we may have got here from a failed TX cycle, if so BitCount will be 0
   if( lnState == LN_ST_TX_COLLISION )
- b2a:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
- b2e:	82 30       	cpi	r24, 0x02	; 2
- b30:	c9 f4       	brne	.+50     	; 0xb64 <__vector_6+0x21a>
+ b00:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
+ b04:	82 30       	cpi	r24, 0x02	; 2
+ b06:	c9 f4       	brne	.+50     	; 0xb3a <__vector_6+0x21e>
   {
     if( lnBitCount == 0 )
- b32:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
- b36:	81 11       	cpse	r24, r1
- b38:	02 c0       	rjmp	.+4      	; 0xb3e <__vector_6+0x1f4>
+ b08:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
+ b0c:	81 11       	cpse	r24, r1
+ b0e:	02 c0       	rjmp	.+4      	; 0xb14 <__vector_6+0x1f8>
     {
         // Pull the TX Line low to indicate Collision
       LN_SW_UART_SET_TX_LOW
- b3a:	c1 9a       	sbi	0x18, 1	; 24
- b3c:	13 c0       	rjmp	.+38     	; 0xb64 <__vector_6+0x21a>
+ b10:	94 9a       	sbi	0x12, 4	; 18
+ b12:	13 c0       	rjmp	.+38     	; 0xb3a <__vector_6+0x21e>
 #ifdef COLLISION_MONITOR
       cbi( COLLISION_MONITOR_PORT,COLLISION_MONITOR_BIT ) ;
 #endif
     }
     else if( lnBitCount >= LN_COLLISION_TICKS )
- b3e:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
- b42:	8f 30       	cpi	r24, 0x0F	; 15
- b44:	78 f0       	brcs	.+30     	; 0xb64 <__vector_6+0x21a>
+ b14:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
+ b18:	8f 30       	cpi	r24, 0x0F	; 15
+ b1a:	78 f0       	brcs	.+30     	; 0xb3a <__vector_6+0x21e>
     {
         // Release the TX Line
       LN_SW_UART_SET_TX_HIGH
- b46:	c1 98       	cbi	0x18, 1	; 24
+ b1c:	94 98       	cbi	0x12, 4	; 18
 #ifdef COLLISION_MONITOR
       sbi( COLLISION_MONITOR_PORT,COLLISION_MONITOR_BIT ) ;
 #endif
 
       lnBitCount = 0 ;
- b48:	10 92 ae 01 	sts	0x01AE, r1	; 0x8001ae <lnBitCount>
+ b1e:	10 92 ae 01 	sts	0x01AE, r1	; 0x8001ae <lnBitCount>
       lnState = LN_ST_CD_BACKOFF ;
- b4c:	81 e0       	ldi	r24, 0x01	; 1
- b4e:	80 93 ad 01 	sts	0x01AD, r24	; 0x8001ad <lnState>
+ b22:	81 e0       	ldi	r24, 0x01	; 1
+ b24:	80 93 ad 01 	sts	0x01AD, r24	; 0x8001ad <lnState>
 
       lnRxBuffer->Stats.Collisions++ ;
- b52:	e0 91 ab 01 	lds	r30, 0x01AB	; 0x8001ab <lnRxBuffer>
- b56:	f0 91 ac 01 	lds	r31, 0x01AC	; 0x8001ac <lnRxBuffer+0x1>
- b5a:	e5 57       	subi	r30, 0x75	; 117
- b5c:	ff 4f       	sbci	r31, 0xFF	; 255
- b5e:	80 81       	ld	r24, Z
- b60:	8f 5f       	subi	r24, 0xFF	; 255
- b62:	80 83       	st	Z, r24
+ b28:	e0 91 ab 01 	lds	r30, 0x01AB	; 0x8001ab <lnRxBuffer>
+ b2c:	f0 91 ac 01 	lds	r31, 0x01AC	; 0x8001ac <lnRxBuffer+0x1>
+ b30:	e5 57       	subi	r30, 0x75	; 117
+ b32:	ff 4f       	sbci	r31, 0xFF	; 255
+ b34:	80 81       	ld	r24, Z
+ b36:	8f 5f       	subi	r24, 0xFF	; 255
+ b38:	80 83       	st	Z, r24
     }
   }
 
   if( lnState == LN_ST_CD_BACKOFF )
- b64:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
- b68:	81 30       	cpi	r24, 0x01	; 1
- b6a:	a1 f4       	brne	.+40     	; 0xb94 <__vector_6+0x24a>
+ b3a:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
+ b3e:	81 30       	cpi	r24, 0x01	; 1
+ b40:	a1 f4       	brne	.+40     	; 0xb6a <__vector_6+0x24e>
   {
     if( lnBitCount == 0 )
- b6c:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
- b70:	81 11       	cpse	r24, r1
- b72:	07 c0       	rjmp	.+14     	; 0xb82 <__vector_6+0x238>
+ b42:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
+ b46:	81 11       	cpse	r24, r1
+ b48:	07 c0       	rjmp	.+14     	; 0xb58 <__vector_6+0x23c>
     {
         // Even though we are waiting, other nodes may try and transmit early
         // so Clear the Start Bit Interrupt Status Flag and Enable ready to 
         // detect the next Start Bit
       sbi( LN_SB_INT_STATUS_REG, LN_SB_INT_STATUS_BIT ) ;
- b74:	88 b7       	in	r24, 0x38	; 56
- b76:	80 62       	ori	r24, 0x20	; 32
- b78:	88 bf       	out	0x38, r24	; 56
+ b4a:	88 b7       	in	r24, 0x38	; 56
+ b4c:	80 62       	ori	r24, 0x20	; 32
+ b4e:	88 bf       	out	0x38, r24	; 56
       sbi( LN_SB_INT_ENABLE_REG, LN_SB_INT_ENABLE_BIT ) ;
- b7a:	89 b7       	in	r24, 0x39	; 57
- b7c:	80 62       	ori	r24, 0x20	; 32
- b7e:	89 bf       	out	0x39, r24	; 57
- b80:	09 c0       	rjmp	.+18     	; 0xb94 <__vector_6+0x24a>
+ b50:	89 b7       	in	r24, 0x39	; 57
+ b52:	80 62       	ori	r24, 0x20	; 32
+ b54:	89 bf       	out	0x39, r24	; 57
+ b56:	09 c0       	rjmp	.+18     	; 0xb6a <__vector_6+0x24e>
     }
     else if( lnBitCount >= LN_BACKOFF_MAX )
- b82:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
- b86:	88 33       	cpi	r24, 0x38	; 56
- b88:	28 f0       	brcs	.+10     	; 0xb94 <__vector_6+0x24a>
+ b58:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
+ b5c:	88 33       	cpi	r24, 0x38	; 56
+ b5e:	28 f0       	brcs	.+10     	; 0xb6a <__vector_6+0x24e>
     { // declare network to free after maximum backoff delay
       lnState = LN_ST_IDLE ;
- b8a:	10 92 ad 01 	sts	0x01AD, r1	; 0x8001ad <lnState>
+ b60:	10 92 ad 01 	sts	0x01AD, r1	; 0x8001ad <lnState>
       cbi( LN_TMR_INT_ENABLE_REG, LN_TMR_INT_ENABLE_BIT ) ;
- b8e:	89 b7       	in	r24, 0x39	; 57
- b90:	8f 7e       	andi	r24, 0xEF	; 239
- b92:	89 bf       	out	0x39, r24	; 57
+ b64:	89 b7       	in	r24, 0x39	; 57
+ b66:	8f 7e       	andi	r24, 0xEF	; 239
+ b68:	89 bf       	out	0x39, r24	; 57
     }
   }
 }
- b94:	ff 91       	pop	r31
- b96:	ef 91       	pop	r30
- b98:	df 91       	pop	r29
- b9a:	cf 91       	pop	r28
- b9c:	bf 91       	pop	r27
- b9e:	af 91       	pop	r26
- ba0:	9f 91       	pop	r25
- ba2:	8f 91       	pop	r24
- ba4:	7f 91       	pop	r23
- ba6:	6f 91       	pop	r22
- ba8:	5f 91       	pop	r21
- baa:	4f 91       	pop	r20
- bac:	3f 91       	pop	r19
- bae:	2f 91       	pop	r18
- bb0:	1f 91       	pop	r17
- bb2:	0f 91       	pop	r16
- bb4:	0f 90       	pop	r0
- bb6:	0f be       	out	0x3f, r0	; 63
- bb8:	0f 90       	pop	r0
- bba:	1f 90       	pop	r1
- bbc:	18 95       	reti
+ b6a:	ff 91       	pop	r31
+ b6c:	ef 91       	pop	r30
+ b6e:	df 91       	pop	r29
+ b70:	cf 91       	pop	r28
+ b72:	bf 91       	pop	r27
+ b74:	af 91       	pop	r26
+ b76:	9f 91       	pop	r25
+ b78:	8f 91       	pop	r24
+ b7a:	7f 91       	pop	r23
+ b7c:	6f 91       	pop	r22
+ b7e:	5f 91       	pop	r21
+ b80:	4f 91       	pop	r20
+ b82:	3f 91       	pop	r19
+ b84:	2f 91       	pop	r18
+ b86:	1f 91       	pop	r17
+ b88:	0f 91       	pop	r16
+ b8a:	0f 90       	pop	r0
+ b8c:	0f be       	out	0x3f, r0	; 63
+ b8e:	0f 90       	pop	r0
+ b90:	1f 90       	pop	r1
+ b92:	18 95       	reti
 
-00000bbe <initLocoNetHardware>:
+00000b94 <initLocoNetHardware>:
   sbi(TX_MEASUREMENT_DDR, TX_MEASUREMENT_PIN);
   cbi(TX_MEASUREMENT_PORT, TX_MEASUREMENT_PIN);
 #endif
 
 	
 	lnRxBuffer = RxBuffer ;
- bbe:	90 93 ac 01 	sts	0x01AC, r25	; 0x8001ac <lnRxBuffer+0x1>
- bc2:	80 93 ab 01 	sts	0x01AB, r24	; 0x8001ab <lnRxBuffer>
+ b94:	90 93 ac 01 	sts	0x01AC, r25	; 0x8001ac <lnRxBuffer+0x1>
+ b98:	80 93 ab 01 	sts	0x01AB, r24	; 0x8001ab <lnRxBuffer>
 
     // Set the TX line to Inactive
   LN_SW_UART_SET_TX_HIGH
- bc6:	c1 98       	cbi	0x18, 1	; 24
+ b9c:	94 98       	cbi	0x12, 4	; 18
   sbi( LN_TX_DDR, LN_TX_BIT ) ;
- bc8:	b9 9a       	sbi	0x17, 1	; 23
+ b9e:	8c 9a       	sbi	0x11, 4	; 17
 	ACSR |= (1<<ACBG)|(1<<ACO)|(1<<ACIC);	// turn on comparitor, bandgap, output, input capture
 	ADMUX |= (1<<REFS0)|(1<<REFS1)|1;		//choose internal 2.56V source and Chl 1
 	TCCR1B = (TCCR1B & 0xF8) | (1<<ICES1) | LN_TMR_PRESCALER ;    		// Set Rising Edge and Timer Clock Source 
 #elif (defined wBOARD_FREDI || defined LN_SW_USE_AC_AS_IN_FREDI)
 	// Enable Analog Comparator to Trigger the Input Capture unit
 	ACSR = (1<<ACI) | (1<<ACIS1) | (1<<ACIS0) | (1<<ACIC) ;
- bca:	87 e1       	ldi	r24, 0x17	; 23
- bcc:	88 b9       	out	0x08, r24	; 8
+ ba0:	87 e1       	ldi	r24, 0x17	; 23
+ ba2:	88 b9       	out	0x08, r24	; 8
     ACSR = 1<<ACD ;
   #endif
 //	TCCR1B |= (1<<ICNC1) ;    		// Enable Noise Canceller 
 #endif
 
   lnState = LN_ST_IDLE ;
- bce:	10 92 ad 01 	sts	0x01AD, r1	; 0x8001ad <lnState>
+ ba4:	10 92 ad 01 	sts	0x01AD, r1	; 0x8001ad <lnState>
 
     //Clear StartBit Interrupt flag
   sbi( LN_SB_INT_STATUS_REG, LN_SB_INT_STATUS_BIT ) ;
- bd2:	88 b7       	in	r24, 0x38	; 56
- bd4:	80 62       	ori	r24, 0x20	; 32
- bd6:	88 bf       	out	0x38, r24	; 56
+ ba8:	88 b7       	in	r24, 0x38	; 56
+ baa:	80 62       	ori	r24, 0x20	; 32
+ bac:	88 bf       	out	0x38, r24	; 56
 
     //Enable StartBit Interrupt
   sbi( LN_SB_INT_ENABLE_REG, LN_SB_INT_ENABLE_BIT ) ;
- bd8:	89 b7       	in	r24, 0x39	; 57
- bda:	80 62       	ori	r24, 0x20	; 32
- bdc:	89 bf       	out	0x39, r24	; 57
+ bae:	89 b7       	in	r24, 0x39	; 57
+ bb0:	80 62       	ori	r24, 0x20	; 32
+ bb2:	89 bf       	out	0x39, r24	; 57
 
     // Set Timer Clock Source 
   LN_TMR_CONTROL_REG = (LN_TMR_CONTROL_REG & 0xF8) | LN_TMR_PRESCALER ;
- bde:	8e b5       	in	r24, 0x2e	; 46
- be0:	88 7f       	andi	r24, 0xF8	; 248
- be2:	81 60       	ori	r24, 0x01	; 1
- be4:	8e bd       	out	0x2e, r24	; 46
- be6:	08 95       	ret
+ bb4:	8e b5       	in	r24, 0x2e	; 46
+ bb6:	88 7f       	andi	r24, 0xF8	; 248
+ bb8:	81 60       	ori	r24, 0x01	; 1
+ bba:	8e bd       	out	0x2e, r24	; 46
+ bbc:	08 95       	ret
 
-00000be8 <sendLocoNetPacketTry>:
+00000bbe <sendLocoNetPacketTry>:
 }
 
 
 LN_STATUS sendLocoNetPacketTry(lnMsg *TxData, unsigned char ucPrioDelay)
 {
- be8:	1f 93       	push	r17
- bea:	cf 93       	push	r28
- bec:	df 93       	push	r29
- bee:	ec 01       	movw	r28, r24
+ bbe:	1f 93       	push	r17
+ bc0:	cf 93       	push	r28
+ bc2:	df 93       	push	r29
+ bc4:	ec 01       	movw	r28, r24
+ bc6:	16 2f       	mov	r17, r22
   byte  CheckSum ;
   byte  CheckLength ;
 
   lnTxLength = getLnMsgSize( TxData ) ;
- bf0:	16 2f       	mov	r17, r22
- bf2:	61 d1       	rcall	.+706    	; 0xeb6 <getLnMsgSize>
- bf4:	80 93 a7 01 	sts	0x01A7, r24	; 0x8001a7 <lnTxLength>
+ bc8:	61 d1       	rcall	.+706    	; 0xe8c <getLnMsgSize>
+ bca:	80 93 a7 01 	sts	0x01A7, r24	; 0x8001a7 <lnTxLength>
 
   // First calculate the checksum as it may not have been done
   CheckLength = lnTxLength - 1 ;
- bf8:	20 91 a7 01 	lds	r18, 0x01A7	; 0x8001a7 <lnTxLength>
+ bce:	80 91 a7 01 	lds	r24, 0x01A7	; 0x8001a7 <lnTxLength>
+ bd2:	81 50       	subi	r24, 0x01	; 1
   CheckSum = 0xFF ;
 
   for( lnTxIndex = 0; lnTxIndex < CheckLength; lnTxIndex++ )
- bfc:	21 50       	subi	r18, 0x01	; 1
- bfe:	10 92 a6 01 	sts	0x01A6, r1	; 0x8001a6 <lnTxIndex>
- c02:	80 91 a6 01 	lds	r24, 0x01A6	; 0x8001a6 <lnTxIndex>
- c06:	82 17       	cp	r24, r18
- c08:	90 f4       	brcc	.+36     	; 0xc2e <sendLocoNetPacketTry+0x46>
+ bd4:	10 92 a6 01 	sts	0x01A6, r1	; 0x8001a6 <lnTxIndex>
+ bd8:	90 91 a6 01 	lds	r25, 0x01A6	; 0x8001a6 <lnTxIndex>
+ bdc:	98 17       	cp	r25, r24
+ bde:	90 f4       	brcc	.+36     	; 0xc04 <sendLocoNetPacketTry+0x46>
+ be0:	2f ef       	ldi	r18, 0xFF	; 255
       CheckSum ^= TxData->data[ lnTxIndex ] ;
- c0a:	9f ef       	ldi	r25, 0xFF	; 255
- c0c:	80 91 a6 01 	lds	r24, 0x01A6	; 0x8001a6 <lnTxIndex>
- c10:	fe 01       	movw	r30, r28
- c12:	e8 0f       	add	r30, r24
- c14:	f1 1d       	adc	r31, r1
- c16:	80 81       	ld	r24, Z
+ be2:	90 91 a6 01 	lds	r25, 0x01A6	; 0x8001a6 <lnTxIndex>
+ be6:	fe 01       	movw	r30, r28
+ be8:	e9 0f       	add	r30, r25
+ bea:	f1 1d       	adc	r31, r1
+ bec:	90 81       	ld	r25, Z
+ bee:	29 27       	eor	r18, r25
 
   // First calculate the checksum as it may not have been done
   CheckLength = lnTxLength - 1 ;
   CheckSum = 0xFF ;
 
   for( lnTxIndex = 0; lnTxIndex < CheckLength; lnTxIndex++ )
- c18:	98 27       	eor	r25, r24
- c1a:	80 91 a6 01 	lds	r24, 0x01A6	; 0x8001a6 <lnTxIndex>
- c1e:	8f 5f       	subi	r24, 0xFF	; 255
- c20:	80 93 a6 01 	sts	0x01A6, r24	; 0x8001a6 <lnTxIndex>
- c24:	80 91 a6 01 	lds	r24, 0x01A6	; 0x8001a6 <lnTxIndex>
- c28:	82 17       	cp	r24, r18
- c2a:	80 f3       	brcs	.-32     	; 0xc0c <sendLocoNetPacketTry+0x24>
+ bf0:	90 91 a6 01 	lds	r25, 0x01A6	; 0x8001a6 <lnTxIndex>
+ bf4:	9f 5f       	subi	r25, 0xFF	; 255
+ bf6:	90 93 a6 01 	sts	0x01A6, r25	; 0x8001a6 <lnTxIndex>
+ bfa:	90 91 a6 01 	lds	r25, 0x01A6	; 0x8001a6 <lnTxIndex>
+ bfe:	98 17       	cp	r25, r24
+ c00:	80 f3       	brcs	.-32     	; 0xbe2 <sendLocoNetPacketTry+0x24>
+ c02:	01 c0       	rjmp	.+2      	; 0xc06 <sendLocoNetPacketTry+0x48>
 
   lnTxLength = getLnMsgSize( TxData ) ;
 
   // First calculate the checksum as it may not have been done
   CheckLength = lnTxLength - 1 ;
   CheckSum = 0xFF ;
- c2c:	01 c0       	rjmp	.+2      	; 0xc30 <sendLocoNetPacketTry+0x48>
+ c04:	2f ef       	ldi	r18, 0xFF	; 255
 
   for( lnTxIndex = 0; lnTxIndex < CheckLength; lnTxIndex++ )
       CheckSum ^= TxData->data[ lnTxIndex ] ;
   
   TxData->data[ CheckLength ] = CheckSum ; 
- c2e:	9f ef       	ldi	r25, 0xFF	; 255
- c30:	fe 01       	movw	r30, r28
- c32:	e2 0f       	add	r30, r18
- c34:	f1 1d       	adc	r31, r1
+ c06:	fe 01       	movw	r30, r28
+ c08:	e8 0f       	add	r30, r24
+ c0a:	f1 1d       	adc	r31, r1
+ c0c:	20 83       	st	Z, r18
   // clip maximum prio delay
   if (ucPrioDelay > LN_BACKOFF_MAX)
     ucPrioDelay = LN_BACKOFF_MAX;
 
   // if priority delay was waited now, declare net as free for this try
   cli();  // disabling interrupt to avoid confusion by ISR changing lnState while we want to do it
- c36:	90 83       	st	Z, r25
+ c0e:	f8 94       	cli
   if (lnState == LN_ST_CD_BACKOFF)
- c38:	f8 94       	cli
- c3a:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
- c3e:	81 30       	cpi	r24, 0x01	; 1
+ c10:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
+ c14:	81 30       	cpi	r24, 0x01	; 1
+ c16:	61 f4       	brne	.+24     	; 0xc30 <sendLocoNetPacketTry+0x72>
   {
     if (lnBitCount >= ucPrioDelay)  // Likely we don't want to wait as long as
- c40:	61 f4       	brne	.+24     	; 0xc5a <sendLocoNetPacketTry+0x72>
- c42:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
- c46:	19 33       	cpi	r17, 0x39	; 57
- c48:	08 f0       	brcs	.+2      	; 0xc4c <sendLocoNetPacketTry+0x64>
- c4a:	18 e3       	ldi	r17, 0x38	; 56
- c4c:	81 17       	cp	r24, r17
+ c18:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <lnBitCount>
+ c1c:	19 33       	cpi	r17, 0x39	; 57
+ c1e:	08 f0       	brcs	.+2      	; 0xc22 <sendLocoNetPacketTry+0x64>
+ c20:	18 e3       	ldi	r17, 0x38	; 56
+ c22:	81 17       	cp	r24, r17
+ c24:	28 f0       	brcs	.+10     	; 0xc30 <sendLocoNetPacketTry+0x72>
     {                               // the timer ISR waits its maximum delay.
       lnState = LN_ST_IDLE ;
- c4e:	28 f0       	brcs	.+10     	; 0xc5a <sendLocoNetPacketTry+0x72>
- c50:	10 92 ad 01 	sts	0x01AD, r1	; 0x8001ad <lnState>
+ c26:	10 92 ad 01 	sts	0x01AD, r1	; 0x8001ad <lnState>
       cbi( LN_TMR_INT_ENABLE_REG, LN_TMR_INT_ENABLE_BIT ) ;
- c54:	89 b7       	in	r24, 0x39	; 57
- c56:	8f 7e       	andi	r24, 0xEF	; 239
+ c2a:	89 b7       	in	r24, 0x39	; 57
+ c2c:	8f 7e       	andi	r24, 0xEF	; 239
+ c2e:	89 bf       	out	0x39, r24	; 57
     }
   }
   sei();  // a delayed start bit interrupt will happen now,
- c58:	89 bf       	out	0x39, r24	; 57
+ c30:	78 94       	sei
           // a delayed timer interrupt was stalled
 
   // If the Network is not Idle, don't start the packet
   if (lnState == LN_ST_CD_BACKOFF)
- c5a:	78 94       	sei
- c5c:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
- c60:	81 30       	cpi	r24, 0x01	; 1
+ c32:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
+ c36:	81 30       	cpi	r24, 0x01	; 1
+ c38:	39 f4       	brne	.+14     	; 0xc48 <sendLocoNetPacketTry+0x8a>
   {
     if (lnBitCount < LN_CARRIER_TICKS)   // in carrier detect timer?
- c62:	39 f4       	brne	.+14     	; 0xc72 <sendLocoNetPacketTry+0x8a>
- c64:	90 91 ae 01 	lds	r25, 0x01AE	; 0x8001ae <lnBitCount>
+ c3a:	90 91 ae 01 	lds	r25, 0x01AE	; 0x8001ae <lnBitCount>
+ c3e:	94 31       	cpi	r25, 0x14	; 20
+ c40:	08 f0       	brcs	.+2      	; 0xc44 <sendLocoNetPacketTry+0x86>
+ c42:	57 c0       	rjmp	.+174    	; 0xcf2 <sendLocoNetPacketTry+0x134>
+ c44:	80 e0       	ldi	r24, 0x00	; 0
+ c46:	55 c0       	rjmp	.+170    	; 0xcf2 <sendLocoNetPacketTry+0x134>
       return LN_CD_BACKOFF;
- c68:	94 31       	cpi	r25, 0x14	; 20
- c6a:	08 f0       	brcs	.+2      	; 0xc6e <sendLocoNetPacketTry+0x86>
- c6c:	57 c0       	rjmp	.+174    	; 0xd1c <sendLocoNetPacketTry+0x134>
- c6e:	80 e0       	ldi	r24, 0x00	; 0
     else
       return LN_PRIO_BACKOFF;
   }
 
   if( lnState != LN_ST_IDLE )
- c70:	55 c0       	rjmp	.+170    	; 0xd1c <sendLocoNetPacketTry+0x134>
- c72:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
- c76:	81 11       	cpse	r24, r1
+ c48:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
+ c4c:	81 11       	cpse	r24, r1
+ c4e:	4e c0       	rjmp	.+156    	; 0xcec <sendLocoNetPacketTry+0x12e>
     return LN_NETWORK_BUSY;  // neither idle nor backoff -> busy
 
   // We need to do this with interrupts off.
   // The last time we check for free net until sending our start bit
   // must be as short as possible, not interrupted.
   cli() ;
- c78:	4e c0       	rjmp	.+156    	; 0xd16 <sendLocoNetPacketTry+0x12e>
+ c50:	f8 94       	cli
   // Before we do anything else - Disable StartBit Interrupt
   cbi( LN_SB_INT_ENABLE_REG, LN_SB_INT_ENABLE_BIT ) ;
- c7a:	f8 94       	cli
- c7c:	89 b7       	in	r24, 0x39	; 57
- c7e:	8f 7d       	andi	r24, 0xDF	; 223
+ c52:	89 b7       	in	r24, 0x39	; 57
+ c54:	8f 7d       	andi	r24, 0xDF	; 223
+ c56:	89 bf       	out	0x39, r24	; 57
   if (bit_is_set(LN_SB_INT_STATUS_REG, LN_SB_INT_STATUS_BIT))
- c80:	89 bf       	out	0x39, r24	; 57
- c82:	08 b6       	in	r0, 0x38	; 56
- c84:	05 fe       	sbrs	r0, 5
+ c58:	08 b6       	in	r0, 0x38	; 56
+ c5a:	05 fe       	sbrs	r0, 5
+ c5c:	06 c0       	rjmp	.+12     	; 0xc6a <sendLocoNetPacketTry+0xac>
   {
     // first we disabled it, than before sending the start bit, we found out
     // that somebody was faster by examining the start bit interrupt request flag
     sbi( LN_SB_INT_ENABLE_REG, LN_SB_INT_ENABLE_BIT ) ;
- c86:	06 c0       	rjmp	.+12     	; 0xc94 <sendLocoNetPacketTry+0xac>
- c88:	89 b7       	in	r24, 0x39	; 57
- c8a:	80 62       	ori	r24, 0x20	; 32
+ c5e:	89 b7       	in	r24, 0x39	; 57
+ c60:	80 62       	ori	r24, 0x20	; 32
+ c62:	89 bf       	out	0x39, r24	; 57
     sei() ;  // receive now what our rival is sending
- c8c:	89 bf       	out	0x39, r24	; 57
+ c64:	78 94       	sei
     return LN_NETWORK_BUSY;
- c8e:	78 94       	sei
- c90:	82 e0       	ldi	r24, 0x02	; 2
+ c66:	82 e0       	ldi	r24, 0x02	; 2
+ c68:	44 c0       	rjmp	.+136    	; 0xcf2 <sendLocoNetPacketTry+0x134>
   }
 
   LN_SW_UART_SET_TX_LOW        // Begin the Start Bit
- c92:	44 c0       	rjmp	.+136    	; 0xd1c <sendLocoNetPacketTry+0x134>
+ c6a:	94 9a       	sbi	0x12, 4	; 18
   // added adjustment value for bugfix (Olaf Funke)
 #ifdef TX_START_MEASUREMENT
 	sbi(TX_MEASUREMENT_PORT, TX_MEASUREMENT_PIN);
 #endif
 	
   lnCompareTarget = LN_TMR_COUNT_REG + LN_TIMER_TX_RELOAD_PERIOD - LN_TIMER_TX_RELOAD_ADJUST;
- c94:	c1 9a       	sbi	0x18, 1	; 24
- c96:	8c b5       	in	r24, 0x2c	; 44
- c98:	9d b5       	in	r25, 0x2d	; 45
- c9a:	88 5a       	subi	r24, 0xA8	; 168
- c9c:	9e 4f       	sbci	r25, 0xFE	; 254
- c9e:	90 93 aa 01 	sts	0x01AA, r25	; 0x8001aa <lnCompareTarget+0x1>
- ca2:	80 93 a9 01 	sts	0x01A9, r24	; 0x8001a9 <lnCompareTarget>
+ c6c:	8c b5       	in	r24, 0x2c	; 44
+ c6e:	9d b5       	in	r25, 0x2d	; 45
+ c70:	88 5a       	subi	r24, 0xA8	; 168
+ c72:	9e 4f       	sbci	r25, 0xFE	; 254
+ c74:	90 93 aa 01 	sts	0x01AA, r25	; 0x8001aa <lnCompareTarget+0x1>
+ c78:	80 93 a9 01 	sts	0x01A9, r24	; 0x8001a9 <lnCompareTarget>
   LN_TMR_OUTP_CAPT_REG = lnCompareTarget ;
- ca6:	80 91 a9 01 	lds	r24, 0x01A9	; 0x8001a9 <lnCompareTarget>
- caa:	90 91 aa 01 	lds	r25, 0x01AA	; 0x8001aa <lnCompareTarget+0x1>
- cae:	9b bd       	out	0x2b, r25	; 43
+ c7c:	80 91 a9 01 	lds	r24, 0x01A9	; 0x8001a9 <lnCompareTarget>
+ c80:	90 91 aa 01 	lds	r25, 0x01AA	; 0x8001aa <lnCompareTarget+0x1>
+ c84:	9b bd       	out	0x2b, r25	; 43
+ c86:	8a bd       	out	0x2a, r24	; 42
 
   sei() ;
- cb0:	8a bd       	out	0x2a, r24	; 42
+ c88:	78 94       	sei
 
   lnTxData = TxData ;
- cb2:	78 94       	sei
- cb4:	d0 93 b0 01 	sts	0x01B0, r29	; 0x8001b0 <lnTxData+0x1>
- cb8:	c0 93 af 01 	sts	0x01AF, r28	; 0x8001af <lnTxData>
+ c8a:	d0 93 b0 01 	sts	0x01B0, r29	; 0x8001b0 <lnTxData+0x1>
+ c8e:	c0 93 af 01 	sts	0x01AF, r28	; 0x8001af <lnTxData>
   lnTxIndex = 0 ;
- cbc:	10 92 a6 01 	sts	0x01A6, r1	; 0x8001a6 <lnTxIndex>
+ c92:	10 92 a6 01 	sts	0x01A6, r1	; 0x8001a6 <lnTxIndex>
   lnTxSuccess = 0 ;
- cc0:	10 92 a5 01 	sts	0x01A5, r1	; 0x8001a5 <lnTxSuccess>
+ c96:	10 92 a5 01 	sts	0x01A5, r1	; 0x8001a5 <lnTxSuccess>
 
     // Load the first Byte
   lnCurrentByte = TxData->data[ 0 ] ;
- cc4:	88 81       	ld	r24, Y
- cc6:	80 93 a8 01 	sts	0x01A8, r24	; 0x8001a8 <lnCurrentByte>
+ c9a:	88 81       	ld	r24, Y
+ c9c:	80 93 a8 01 	sts	0x01A8, r24	; 0x8001a8 <lnCurrentByte>
 
     // Set the State to Transmit
   lnState = LN_ST_TX ;                      
- cca:	83 e0       	ldi	r24, 0x03	; 3
- ccc:	80 93 ad 01 	sts	0x01AD, r24	; 0x8001ad <lnState>
+ ca0:	83 e0       	ldi	r24, 0x03	; 3
+ ca2:	80 93 ad 01 	sts	0x01AD, r24	; 0x8001ad <lnState>
 
     // Reset the bit counter
   lnBitCount = 0 ;                          
- cd0:	10 92 ae 01 	sts	0x01AE, r1	; 0x8001ae <lnBitCount>
+ ca6:	10 92 ae 01 	sts	0x01AE, r1	; 0x8001ae <lnBitCount>
 
     // Clear the current Compare interrupt status bit and enable the Compare interrupt
   sbi(LN_TMR_INT_STATUS_REG, LN_TMR_INT_STATUS_BIT) ;
- cd4:	88 b7       	in	r24, 0x38	; 56
- cd6:	80 61       	ori	r24, 0x10	; 16
+ caa:	88 b7       	in	r24, 0x38	; 56
+ cac:	80 61       	ori	r24, 0x10	; 16
+ cae:	88 bf       	out	0x38, r24	; 56
   sbi(LN_TMR_INT_ENABLE_REG, LN_TMR_INT_ENABLE_BIT) ; 
- cd8:	88 bf       	out	0x38, r24	; 56
- cda:	89 b7       	in	r24, 0x39	; 57
- cdc:	80 61       	ori	r24, 0x10	; 16
+ cb0:	89 b7       	in	r24, 0x39	; 57
+ cb2:	80 61       	ori	r24, 0x10	; 16
+ cb4:	89 bf       	out	0x39, r24	; 57
 
   // now busy waiting until the interrupts did the rest
   while (lnState == LN_ST_TX) {}
- cde:	89 bf       	out	0x39, r24	; 57
- ce0:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
- ce4:	83 30       	cpi	r24, 0x03	; 3
+ cb6:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
+ cba:	83 30       	cpi	r24, 0x03	; 3
+ cbc:	e1 f3       	breq	.-8      	; 0xcb6 <sendLocoNetPacketTry+0xf8>
 
   if (lnTxSuccess)
- ce6:	e1 f3       	breq	.-8      	; 0xce0 <sendLocoNetPacketTry+0xf8>
- ce8:	80 91 a5 01 	lds	r24, 0x01A5	; 0x8001a5 <lnTxSuccess>
- cec:	88 23       	and	r24, r24
+ cbe:	80 91 a5 01 	lds	r24, 0x01A5	; 0x8001a5 <lnTxSuccess>
+ cc2:	88 23       	and	r24, r24
+ cc4:	69 f0       	breq	.+26     	; 0xce0 <sendLocoNetPacketTry+0x122>
   {
     lnRxBuffer->Stats.TxPackets++ ;
- cee:	69 f0       	breq	.+26     	; 0xd0a <sendLocoNetPacketTry+0x122>
- cf0:	e0 91 ab 01 	lds	r30, 0x01AB	; 0x8001ab <lnRxBuffer>
- cf4:	f0 91 ac 01 	lds	r31, 0x01AC	; 0x8001ac <lnRxBuffer+0x1>
- cf8:	e8 57       	subi	r30, 0x78	; 120
- cfa:	ff 4f       	sbci	r31, 0xFF	; 255
- cfc:	80 81       	ld	r24, Z
- cfe:	91 81       	ldd	r25, Z+1	; 0x01
- d00:	01 96       	adiw	r24, 0x01	; 1
- d02:	91 83       	std	Z+1, r25	; 0x01
+ cc6:	e0 91 ab 01 	lds	r30, 0x01AB	; 0x8001ab <lnRxBuffer>
+ cca:	f0 91 ac 01 	lds	r31, 0x01AC	; 0x8001ac <lnRxBuffer+0x1>
+ cce:	e8 57       	subi	r30, 0x78	; 120
+ cd0:	ff 4f       	sbci	r31, 0xFF	; 255
+ cd2:	80 81       	ld	r24, Z
+ cd4:	91 81       	ldd	r25, Z+1	; 0x01
+ cd6:	01 96       	adiw	r24, 0x01	; 1
+ cd8:	91 83       	std	Z+1, r25	; 0x01
+ cda:	80 83       	st	Z, r24
     return LN_DONE;
- d04:	80 83       	st	Z, r24
- d06:	83 e0       	ldi	r24, 0x03	; 3
+ cdc:	83 e0       	ldi	r24, 0x03	; 3
+ cde:	09 c0       	rjmp	.+18     	; 0xcf2 <sendLocoNetPacketTry+0x134>
   }
 
   if (lnState == LN_ST_TX_COLLISION)
- d08:	09 c0       	rjmp	.+18     	; 0xd1c <sendLocoNetPacketTry+0x134>
- d0a:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
- d0e:	82 30       	cpi	r24, 0x02	; 2
+ ce0:	80 91 ad 01 	lds	r24, 0x01AD	; 0x8001ad <lnState>
+ ce4:	82 30       	cpi	r24, 0x02	; 2
+ ce6:	21 f0       	breq	.+8      	; 0xcf0 <sendLocoNetPacketTry+0x132>
   {
     return LN_COLLISION;
   }
 
   return LN_UNKNOWN_ERROR; // everything else is an error
- d10:	21 f0       	breq	.+8      	; 0xd1a <sendLocoNetPacketTry+0x132>
- d12:	85 e0       	ldi	r24, 0x05	; 5
+ ce8:	85 e0       	ldi	r24, 0x05	; 5
+ cea:	03 c0       	rjmp	.+6      	; 0xcf2 <sendLocoNetPacketTry+0x134>
     else
       return LN_PRIO_BACKOFF;
   }
 
   if( lnState != LN_ST_IDLE )
     return LN_NETWORK_BUSY;  // neither idle nor backoff -> busy
- d14:	03 c0       	rjmp	.+6      	; 0xd1c <sendLocoNetPacketTry+0x134>
- d16:	82 e0       	ldi	r24, 0x02	; 2
+ cec:	82 e0       	ldi	r24, 0x02	; 2
+ cee:	01 c0       	rjmp	.+2      	; 0xcf2 <sendLocoNetPacketTry+0x134>
     return LN_DONE;
   }
 
   if (lnState == LN_ST_TX_COLLISION)
   {
     return LN_COLLISION;
- d18:	01 c0       	rjmp	.+2      	; 0xd1c <sendLocoNetPacketTry+0x134>
+ cf0:	84 e0       	ldi	r24, 0x04	; 4
   }
 
   return LN_UNKNOWN_ERROR; // everything else is an error
 }
- d1a:	84 e0       	ldi	r24, 0x04	; 4
- d1c:	df 91       	pop	r29
- d1e:	cf 91       	pop	r28
- d20:	1f 91       	pop	r17
- d22:	08 95       	ret
+ cf2:	df 91       	pop	r29
+ cf4:	cf 91       	pop	r28
+ cf6:	1f 91       	pop	r17
+ cf8:	08 95       	ret
 
-00000d24 <__vector_9>:
+00000cfa <__vector_9>:
 volatile byte SlowTimerTicks = 0 ;
 volatile byte FastTimerTicks = 0 ;
 volatile word DelayTimerTicks = 0 ;
 
 ISR(TIMER0_OVF_vect)
 {
- d24:	1f 92       	push	r1
- d26:	0f 92       	push	r0
- d28:	0f b6       	in	r0, 0x3f	; 63
- d2a:	0f 92       	push	r0
- d2c:	11 24       	eor	r1, r1
- d2e:	8f 93       	push	r24
- d30:	9f 93       	push	r25
+ cfa:	1f 92       	push	r1
+ cfc:	0f 92       	push	r0
+ cfe:	0f b6       	in	r0, 0x3f	; 63
+ d00:	0f 92       	push	r0
+ d02:	11 24       	eor	r1, r1
+ d04:	8f 93       	push	r24
+ d06:	9f 93       	push	r25
   TCNT0 = (byte) TICK_RELOAD ;
- d32:	84 ee       	ldi	r24, 0xE4	; 228
- d34:	82 bf       	out	0x32, r24	; 50
+ d08:	84 ee       	ldi	r24, 0xE4	; 228
+ d0a:	82 bf       	out	0x32, r24	; 50
 
   FastTimerTicks++;
- d36:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <FastTimerTicks>
- d3a:	8f 5f       	subi	r24, 0xFF	; 255
- d3c:	80 93 79 00 	sts	0x0079, r24	; 0x800079 <FastTimerTicks>
+ d0c:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <FastTimerTicks>
+ d10:	8f 5f       	subi	r24, 0xFF	; 255
+ d12:	80 93 79 00 	sts	0x0079, r24	; 0x800079 <FastTimerTicks>
 
   if( ++SlowTimerAccumulator >= 100 )
- d40:	80 91 7b 00 	lds	r24, 0x007B	; 0x80007b <SlowTimerAccumulator>
- d44:	8f 5f       	subi	r24, 0xFF	; 255
- d46:	84 36       	cpi	r24, 0x64	; 100
- d48:	18 f4       	brcc	.+6      	; 0xd50 <__vector_9+0x2c>
- d4a:	80 93 7b 00 	sts	0x007B, r24	; 0x80007b <SlowTimerAccumulator>
- d4e:	07 c0       	rjmp	.+14     	; 0xd5e <__vector_9+0x3a>
+ d16:	80 91 7b 00 	lds	r24, 0x007B	; 0x80007b <SlowTimerAccumulator>
+ d1a:	8f 5f       	subi	r24, 0xFF	; 255
+ d1c:	84 36       	cpi	r24, 0x64	; 100
+ d1e:	18 f4       	brcc	.+6      	; 0xd26 <__vector_9+0x2c>
+ d20:	80 93 7b 00 	sts	0x007B, r24	; 0x80007b <SlowTimerAccumulator>
+ d24:	07 c0       	rjmp	.+14     	; 0xd34 <__vector_9+0x3a>
   {
     SlowTimerAccumulator = 0 ;
- d50:	10 92 7b 00 	sts	0x007B, r1	; 0x80007b <SlowTimerAccumulator>
+ d26:	10 92 7b 00 	sts	0x007B, r1	; 0x80007b <SlowTimerAccumulator>
 
     SlowTimerTicks++;
- d54:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <SlowTimerTicks>
- d58:	8f 5f       	subi	r24, 0xFF	; 255
- d5a:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <SlowTimerTicks>
+ d2a:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <SlowTimerTicks>
+ d2e:	8f 5f       	subi	r24, 0xFF	; 255
+ d30:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <SlowTimerTicks>
   }
 	
 	if( DelayTimerTicks )
- d5e:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <DelayTimerTicks>
- d62:	90 91 78 00 	lds	r25, 0x0078	; 0x800078 <DelayTimerTicks+0x1>
- d66:	89 2b       	or	r24, r25
- d68:	49 f0       	breq	.+18     	; 0xd7c <__vector_9+0x58>
+ d34:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <DelayTimerTicks>
+ d38:	90 91 78 00 	lds	r25, 0x0078	; 0x800078 <DelayTimerTicks+0x1>
+ d3c:	89 2b       	or	r24, r25
+ d3e:	49 f0       	breq	.+18     	; 0xd52 <__vector_9+0x58>
 		DelayTimerTicks--;
- d6a:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <DelayTimerTicks>
- d6e:	90 91 78 00 	lds	r25, 0x0078	; 0x800078 <DelayTimerTicks+0x1>
- d72:	01 97       	sbiw	r24, 0x01	; 1
- d74:	90 93 78 00 	sts	0x0078, r25	; 0x800078 <DelayTimerTicks+0x1>
- d78:	80 93 77 00 	sts	0x0077, r24	; 0x800077 <DelayTimerTicks>
+ d40:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <DelayTimerTicks>
+ d44:	90 91 78 00 	lds	r25, 0x0078	; 0x800078 <DelayTimerTicks+0x1>
+ d48:	01 97       	sbiw	r24, 0x01	; 1
+ d4a:	90 93 78 00 	sts	0x0078, r25	; 0x800078 <DelayTimerTicks+0x1>
+ d4e:	80 93 77 00 	sts	0x0077, r24	; 0x800077 <DelayTimerTicks>
 }
- d7c:	9f 91       	pop	r25
- d7e:	8f 91       	pop	r24
- d80:	0f 90       	pop	r0
- d82:	0f be       	out	0x3f, r0	; 63
- d84:	0f 90       	pop	r0
- d86:	1f 90       	pop	r1
- d88:	18 95       	reti
+ d52:	9f 91       	pop	r25
+ d54:	8f 91       	pop	r24
+ d56:	0f 90       	pop	r0
+ d58:	0f be       	out	0x3f, r0	; 63
+ d5a:	0f 90       	pop	r0
+ d5c:	1f 90       	pop	r1
+ d5e:	18 95       	reti
 
-00000d8a <initTimer>:
+00000d60 <initTimer>:
 void initTimer()
 {
 	#if defined (__AVR_ATmega16__)
 	
 	    // Get the Current Timer1 Count and Add the offset for the Compare target
 	  TCNT0 = (byte) TICK_RELOAD ;
- d8a:	84 ee       	ldi	r24, 0xE4	; 228
- d8c:	82 bf       	out	0x32, r24	; 50
+ d60:	84 ee       	ldi	r24, 0xE4	; 228
+ d62:	82 bf       	out	0x32, r24	; 50
 	
 	    // Clear the Overflow interrupt status bit and enable the overflow interrupt
 	  sbi(TIFR, TOV0) ;
- d8e:	88 b7       	in	r24, 0x38	; 56
- d90:	81 60       	ori	r24, 0x01	; 1
- d92:	88 bf       	out	0x38, r24	; 56
+ d64:	88 b7       	in	r24, 0x38	; 56
+ d66:	81 60       	ori	r24, 0x01	; 1
+ d68:	88 bf       	out	0x38, r24	; 56
 	  sbi(TIMSK, TOIE0) ; 
- d94:	89 b7       	in	r24, 0x39	; 57
- d96:	81 60       	ori	r24, 0x01	; 1
- d98:	89 bf       	out	0x39, r24	; 57
+ d6a:	89 b7       	in	r24, 0x39	; 57
+ d6c:	81 60       	ori	r24, 0x01	; 1
+ d6e:	89 bf       	out	0x39, r24	; 57
 	
 	    // Set Timer Clock Source 
 	  TCCR0 = (TCCR0 & 0xF8) | TIMER_PRESCALER_CODE ;
- d9a:	83 b7       	in	r24, 0x33	; 51
- d9c:	88 7f       	andi	r24, 0xF8	; 248
- d9e:	84 60       	ori	r24, 0x04	; 4
- da0:	83 bf       	out	0x33, r24	; 51
- da2:	08 95       	ret
+ d70:	83 b7       	in	r24, 0x33	; 51
+ d72:	88 7f       	andi	r24, 0xF8	; 248
+ d74:	84 60       	ori	r24, 0x04	; 4
+ d76:	83 bf       	out	0x33, r24	; 51
+ d78:	08 95       	ret
 
-00000da4 <addTimerAction>:
+00000d7a <addTimerAction>:
 	#endif	  
 	  
 }
 
 void addTimerAction( TimerAction *pAction, byte Ticks, byte (*TickAction) (void *UserPointer), void *UserPointer, byte Fast )
 {
- da4:	0f 93       	push	r16
- da6:	fc 01       	movw	r30, r24
+ d7a:	0f 93       	push	r16
+ d7c:	fc 01       	movw	r30, r24
   byte  StatusReg ;
 
     // This needs to be done with Interrupts off, save Status reg,
     // disable interrupts and then restore the previous Status reg
     // to enable interrupts again if they were off 
   StatusReg = SREG ;
- da8:	8f b7       	in	r24, 0x3f	; 63
+ d7e:	8f b7       	in	r24, 0x3f	; 63
   cli() ;
- daa:	f8 94       	cli
+ d80:	f8 94       	cli
 
   if(Fast)
- dac:	00 23       	and	r16, r16
- dae:	59 f0       	breq	.+22     	; 0xdc6 <addTimerAction+0x22>
+ d82:	00 23       	and	r16, r16
+ d84:	59 f0       	breq	.+22     	; 0xd9c <addTimerAction+0x22>
   {
     pAction->Next = FastTimerActionList ;
- db0:	a0 91 7c 00 	lds	r26, 0x007C	; 0x80007c <FastTimerActionList>
- db4:	b0 91 7d 00 	lds	r27, 0x007D	; 0x80007d <FastTimerActionList+0x1>
- db8:	b6 83       	std	Z+6, r27	; 0x06
- dba:	a5 83       	std	Z+5, r26	; 0x05
+ d86:	a0 91 7c 00 	lds	r26, 0x007C	; 0x80007c <FastTimerActionList>
+ d8a:	b0 91 7d 00 	lds	r27, 0x007D	; 0x80007d <FastTimerActionList+0x1>
+ d8e:	b6 83       	std	Z+6, r27	; 0x06
+ d90:	a5 83       	std	Z+5, r26	; 0x05
     FastTimerActionList = pAction ;
- dbc:	f0 93 7d 00 	sts	0x007D, r31	; 0x80007d <FastTimerActionList+0x1>
- dc0:	e0 93 7c 00 	sts	0x007C, r30	; 0x80007c <FastTimerActionList>
- dc4:	0a c0       	rjmp	.+20     	; 0xdda <addTimerAction+0x36>
+ d92:	f0 93 7d 00 	sts	0x007D, r31	; 0x80007d <FastTimerActionList+0x1>
+ d96:	e0 93 7c 00 	sts	0x007C, r30	; 0x80007c <FastTimerActionList>
+ d9a:	0a c0       	rjmp	.+20     	; 0xdb0 <addTimerAction+0x36>
   }
   else
   {
     pAction->Next = SlowTimerActionList ;
- dc6:	a0 91 7e 00 	lds	r26, 0x007E	; 0x80007e <SlowTimerActionList>
- dca:	b0 91 7f 00 	lds	r27, 0x007F	; 0x80007f <SlowTimerActionList+0x1>
- dce:	b6 83       	std	Z+6, r27	; 0x06
- dd0:	a5 83       	std	Z+5, r26	; 0x05
+ d9c:	a0 91 7e 00 	lds	r26, 0x007E	; 0x80007e <SlowTimerActionList>
+ da0:	b0 91 7f 00 	lds	r27, 0x007F	; 0x80007f <SlowTimerActionList+0x1>
+ da4:	b6 83       	std	Z+6, r27	; 0x06
+ da6:	a5 83       	std	Z+5, r26	; 0x05
     SlowTimerActionList = pAction ;
- dd2:	f0 93 7f 00 	sts	0x007F, r31	; 0x80007f <SlowTimerActionList+0x1>
- dd6:	e0 93 7e 00 	sts	0x007E, r30	; 0x80007e <SlowTimerActionList>
+ da8:	f0 93 7f 00 	sts	0x007F, r31	; 0x80007f <SlowTimerActionList+0x1>
+ dac:	e0 93 7e 00 	sts	0x007E, r30	; 0x80007e <SlowTimerActionList>
   }
 
   pAction->Ticks = Ticks ;
- dda:	60 83       	st	Z, r22
+ db0:	60 83       	st	Z, r22
   pAction->TickAction = TickAction ;
- ddc:	54 83       	std	Z+4, r21	; 0x04
- dde:	43 83       	std	Z+3, r20	; 0x03
+ db2:	54 83       	std	Z+4, r21	; 0x04
+ db4:	43 83       	std	Z+3, r20	; 0x03
   pAction->UserPointer = UserPointer ;
- de0:	32 83       	std	Z+2, r19	; 0x02
- de2:	21 83       	std	Z+1, r18	; 0x01
+ db6:	32 83       	std	Z+2, r19	; 0x02
+ db8:	21 83       	std	Z+1, r18	; 0x01
   
     // Enable Interrupts if they were on to start with
   SREG = StatusReg ;
- de4:	8f bf       	out	0x3f, r24	; 63
+ dba:	8f bf       	out	0x3f, r24	; 63
 }
- de6:	0f 91       	pop	r16
- de8:	08 95       	ret
+ dbc:	0f 91       	pop	r16
+ dbe:	08 95       	ret
 
-00000dea <resetTimerAction>:
+00000dc0 <resetTimerAction>:
 
 
 
 void resetTimerAction( TimerAction *pAction, byte Ticks )
 {
   pAction->Ticks = Ticks ;
- dea:	fc 01       	movw	r30, r24
- dec:	60 83       	st	Z, r22
- dee:	08 95       	ret
+ dc0:	fc 01       	movw	r30, r24
+ dc2:	60 83       	st	Z, r22
+ dc4:	08 95       	ret
 
-00000df0 <delayTimer>:
+00000dc6 <delayTimer>:
 }
 
 void delayTimer( word delayTicks )
 {
 	DelayTimerTicks = delayTicks ;
- df0:	90 93 78 00 	sts	0x0078, r25	; 0x800078 <DelayTimerTicks+0x1>
- df4:	80 93 77 00 	sts	0x0077, r24	; 0x800077 <DelayTimerTicks>
+ dc6:	90 93 78 00 	sts	0x0078, r25	; 0x800078 <DelayTimerTicks+0x1>
+ dca:	80 93 77 00 	sts	0x0077, r24	; 0x800077 <DelayTimerTicks>
 	
 	while( DelayTimerTicks )
- df8:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <DelayTimerTicks>
- dfc:	90 91 78 00 	lds	r25, 0x0078	; 0x800078 <DelayTimerTicks+0x1>
- e00:	89 2b       	or	r24, r25
- e02:	d1 f7       	brne	.-12     	; 0xdf8 <delayTimer+0x8>
+ dce:	80 91 77 00 	lds	r24, 0x0077	; 0x800077 <DelayTimerTicks>
+ dd2:	90 91 78 00 	lds	r25, 0x0078	; 0x800078 <DelayTimerTicks+0x1>
+ dd6:	89 2b       	or	r24, r25
+ dd8:	d1 f7       	brne	.-12     	; 0xdce <delayTimer+0x8>
 		; // Sit and wait for the interrupt handler to decrement the ticks to 0
 }
- e04:	08 95       	ret
+ dda:	08 95       	ret
 
-00000e06 <processTimerActions>:
+00000ddc <processTimerActions>:
 
 void processTimerActions(void)
 {
- e06:	0f 93       	push	r16
- e08:	1f 93       	push	r17
- e0a:	cf 93       	push	r28
- e0c:	df 93       	push	r29
+ ddc:	0f 93       	push	r16
+ dde:	1f 93       	push	r17
+ de0:	cf 93       	push	r28
+ de2:	df 93       	push	r29
   byte SlowTicks ;
   
     // This needs to be done with Interrupts off, save Status reg,
     // disable interrupts and then restore the previous Status reg
     // to enable interrupts again if they were off 
   StatusReg = SREG ;
- e0e:	8f b7       	in	r24, 0x3f	; 63
+ de4:	8f b7       	in	r24, 0x3f	; 63
   cli() ;
- e10:	f8 94       	cli
+ de6:	f8 94       	cli
 
   FastTicks = FastTimerTicks ;   
- e12:	00 91 79 00 	lds	r16, 0x0079	; 0x800079 <FastTimerTicks>
+ de8:	00 91 79 00 	lds	r16, 0x0079	; 0x800079 <FastTimerTicks>
   FastTimerTicks = 0 ;
- e16:	10 92 79 00 	sts	0x0079, r1	; 0x800079 <FastTimerTicks>
+ dec:	10 92 79 00 	sts	0x0079, r1	; 0x800079 <FastTimerTicks>
 
   SlowTicks = SlowTimerTicks ;   
- e1a:	10 91 7a 00 	lds	r17, 0x007A	; 0x80007a <SlowTimerTicks>
+ df0:	10 91 7a 00 	lds	r17, 0x007A	; 0x80007a <SlowTimerTicks>
   SlowTimerTicks = 0 ;
- e1e:	10 92 7a 00 	sts	0x007A, r1	; 0x80007a <SlowTimerTicks>
+ df4:	10 92 7a 00 	sts	0x007A, r1	; 0x80007a <SlowTimerTicks>
 
     // Enable Interrupts if they were on to start with
   SREG = StatusReg ;
- e22:	8f bf       	out	0x3f, r24	; 63
+ df8:	8f bf       	out	0x3f, r24	; 63
 
   if( FastTicks && FastTimerActionList )
- e24:	00 23       	and	r16, r16
- e26:	01 f1       	breq	.+64     	; 0xe68 <processTimerActions+0x62>
- e28:	80 91 7c 00 	lds	r24, 0x007C	; 0x80007c <FastTimerActionList>
- e2c:	90 91 7d 00 	lds	r25, 0x007D	; 0x80007d <FastTimerActionList+0x1>
- e30:	89 2b       	or	r24, r25
- e32:	d1 f0       	breq	.+52     	; 0xe68 <processTimerActions+0x62>
+ dfa:	00 23       	and	r16, r16
+ dfc:	01 f1       	breq	.+64     	; 0xe3e <processTimerActions+0x62>
+ dfe:	80 91 7c 00 	lds	r24, 0x007C	; 0x80007c <FastTimerActionList>
+ e02:	90 91 7d 00 	lds	r25, 0x007D	; 0x80007d <FastTimerActionList+0x1>
+ e06:	89 2b       	or	r24, r25
+ e08:	d1 f0       	breq	.+52     	; 0xe3e <processTimerActions+0x62>
   {
     while( FastTicks-- )
     {
       pAction = FastTimerActionList ;
- e34:	c0 91 7c 00 	lds	r28, 0x007C	; 0x80007c <FastTimerActionList>
- e38:	d0 91 7d 00 	lds	r29, 0x007D	; 0x80007d <FastTimerActionList+0x1>
+ e0a:	c0 91 7c 00 	lds	r28, 0x007C	; 0x80007c <FastTimerActionList>
+ e0e:	d0 91 7d 00 	lds	r29, 0x007D	; 0x80007d <FastTimerActionList+0x1>
 
       while( pAction )
- e3c:	20 97       	sbiw	r28, 0x00	; 0
- e3e:	91 f0       	breq	.+36     	; 0xe64 <processTimerActions+0x5e>
+ e12:	20 97       	sbiw	r28, 0x00	; 0
+ e14:	91 f0       	breq	.+36     	; 0xe3a <processTimerActions+0x5e>
       {
         if( pAction->Ticks )
- e40:	88 81       	ld	r24, Y
- e42:	88 23       	and	r24, r24
- e44:	51 f0       	breq	.+20     	; 0xe5a <processTimerActions+0x54>
+ e16:	88 81       	ld	r24, Y
+ e18:	88 23       	and	r24, r24
+ e1a:	51 f0       	breq	.+20     	; 0xe30 <processTimerActions+0x54>
         {
            pAction->Ticks--;
- e46:	81 50       	subi	r24, 0x01	; 1
- e48:	88 83       	st	Y, r24
+ e1c:	81 50       	subi	r24, 0x01	; 1
+ e1e:	88 83       	st	Y, r24
           // If we have gone from > 0 to 0 then set done and possibly reload
           if( !pAction->Ticks )
- e4a:	81 11       	cpse	r24, r1
- e4c:	06 c0       	rjmp	.+12     	; 0xe5a <processTimerActions+0x54>
+ e20:	81 11       	cpse	r24, r1
+ e22:	06 c0       	rjmp	.+12     	; 0xe30 <processTimerActions+0x54>
             pAction->Ticks = (*pAction->TickAction) ( pAction->UserPointer ) ;
- e4e:	eb 81       	ldd	r30, Y+3	; 0x03
- e50:	fc 81       	ldd	r31, Y+4	; 0x04
- e52:	89 81       	ldd	r24, Y+1	; 0x01
- e54:	9a 81       	ldd	r25, Y+2	; 0x02
- e56:	09 95       	icall
- e58:	88 83       	st	Y, r24
+ e24:	eb 81       	ldd	r30, Y+3	; 0x03
+ e26:	fc 81       	ldd	r31, Y+4	; 0x04
+ e28:	89 81       	ldd	r24, Y+1	; 0x01
+ e2a:	9a 81       	ldd	r25, Y+2	; 0x02
+ e2c:	09 95       	icall
+ e2e:	88 83       	st	Y, r24
         }
 
         pAction = pAction->Next ;
- e5a:	0d 80       	ldd	r0, Y+5	; 0x05
- e5c:	de 81       	ldd	r29, Y+6	; 0x06
- e5e:	c0 2d       	mov	r28, r0
+ e30:	0d 80       	ldd	r0, Y+5	; 0x05
+ e32:	de 81       	ldd	r29, Y+6	; 0x06
+ e34:	c0 2d       	mov	r28, r0
   {
     while( FastTicks-- )
     {
       pAction = FastTimerActionList ;
 
       while( pAction )
- e60:	20 97       	sbiw	r28, 0x00	; 0
- e62:	71 f7       	brne	.-36     	; 0xe40 <processTimerActions+0x3a>
- e64:	01 50       	subi	r16, 0x01	; 1
+ e36:	20 97       	sbiw	r28, 0x00	; 0
+ e38:	71 f7       	brne	.-36     	; 0xe16 <processTimerActions+0x3a>
+ e3a:	01 50       	subi	r16, 0x01	; 1
     // Enable Interrupts if they were on to start with
   SREG = StatusReg ;
 
   if( FastTicks && FastTimerActionList )
   {
     while( FastTicks-- )
- e66:	31 f7       	brne	.-52     	; 0xe34 <processTimerActions+0x2e>
+ e3c:	31 f7       	brne	.-52     	; 0xe0a <processTimerActions+0x2e>
         pAction = pAction->Next ;
       }
     }
   }
 
   if( SlowTicks && SlowTimerActionList )
- e68:	11 23       	and	r17, r17
- e6a:	01 f1       	breq	.+64     	; 0xeac <processTimerActions+0xa6>
- e6c:	80 91 7e 00 	lds	r24, 0x007E	; 0x80007e <SlowTimerActionList>
- e70:	90 91 7f 00 	lds	r25, 0x007F	; 0x80007f <SlowTimerActionList+0x1>
- e74:	89 2b       	or	r24, r25
- e76:	d1 f0       	breq	.+52     	; 0xeac <processTimerActions+0xa6>
+ e3e:	11 23       	and	r17, r17
+ e40:	01 f1       	breq	.+64     	; 0xe82 <processTimerActions+0xa6>
+ e42:	80 91 7e 00 	lds	r24, 0x007E	; 0x80007e <SlowTimerActionList>
+ e46:	90 91 7f 00 	lds	r25, 0x007F	; 0x80007f <SlowTimerActionList+0x1>
+ e4a:	89 2b       	or	r24, r25
+ e4c:	d1 f0       	breq	.+52     	; 0xe82 <processTimerActions+0xa6>
   {
     while( SlowTicks-- )
     {
       pAction = SlowTimerActionList ;
- e78:	c0 91 7e 00 	lds	r28, 0x007E	; 0x80007e <SlowTimerActionList>
- e7c:	d0 91 7f 00 	lds	r29, 0x007F	; 0x80007f <SlowTimerActionList+0x1>
+ e4e:	c0 91 7e 00 	lds	r28, 0x007E	; 0x80007e <SlowTimerActionList>
+ e52:	d0 91 7f 00 	lds	r29, 0x007F	; 0x80007f <SlowTimerActionList+0x1>
 
       while( pAction )
- e80:	20 97       	sbiw	r28, 0x00	; 0
- e82:	91 f0       	breq	.+36     	; 0xea8 <processTimerActions+0xa2>
+ e56:	20 97       	sbiw	r28, 0x00	; 0
+ e58:	91 f0       	breq	.+36     	; 0xe7e <processTimerActions+0xa2>
       {
         if( pAction->Ticks )
- e84:	88 81       	ld	r24, Y
- e86:	88 23       	and	r24, r24
- e88:	51 f0       	breq	.+20     	; 0xe9e <processTimerActions+0x98>
+ e5a:	88 81       	ld	r24, Y
+ e5c:	88 23       	and	r24, r24
+ e5e:	51 f0       	breq	.+20     	; 0xe74 <processTimerActions+0x98>
         {
            pAction->Ticks--;
- e8a:	81 50       	subi	r24, 0x01	; 1
- e8c:	88 83       	st	Y, r24
+ e60:	81 50       	subi	r24, 0x01	; 1
+ e62:	88 83       	st	Y, r24
           // If we have gone from > 0 to 0 then set done and possibly reload
           if( !pAction->Ticks )
- e8e:	81 11       	cpse	r24, r1
- e90:	06 c0       	rjmp	.+12     	; 0xe9e <processTimerActions+0x98>
+ e64:	81 11       	cpse	r24, r1
+ e66:	06 c0       	rjmp	.+12     	; 0xe74 <processTimerActions+0x98>
             pAction->Ticks = (*pAction->TickAction) ( pAction->UserPointer ) ;
- e92:	eb 81       	ldd	r30, Y+3	; 0x03
- e94:	fc 81       	ldd	r31, Y+4	; 0x04
- e96:	89 81       	ldd	r24, Y+1	; 0x01
- e98:	9a 81       	ldd	r25, Y+2	; 0x02
- e9a:	09 95       	icall
- e9c:	88 83       	st	Y, r24
+ e68:	eb 81       	ldd	r30, Y+3	; 0x03
+ e6a:	fc 81       	ldd	r31, Y+4	; 0x04
+ e6c:	89 81       	ldd	r24, Y+1	; 0x01
+ e6e:	9a 81       	ldd	r25, Y+2	; 0x02
+ e70:	09 95       	icall
+ e72:	88 83       	st	Y, r24
         }
 
         pAction = pAction->Next ;
- e9e:	0d 80       	ldd	r0, Y+5	; 0x05
- ea0:	de 81       	ldd	r29, Y+6	; 0x06
- ea2:	c0 2d       	mov	r28, r0
+ e74:	0d 80       	ldd	r0, Y+5	; 0x05
+ e76:	de 81       	ldd	r29, Y+6	; 0x06
+ e78:	c0 2d       	mov	r28, r0
   {
     while( SlowTicks-- )
     {
       pAction = SlowTimerActionList ;
 
       while( pAction )
- ea4:	20 97       	sbiw	r28, 0x00	; 0
- ea6:	71 f7       	brne	.-36     	; 0xe84 <processTimerActions+0x7e>
- ea8:	11 50       	subi	r17, 0x01	; 1
+ e7a:	20 97       	sbiw	r28, 0x00	; 0
+ e7c:	71 f7       	brne	.-36     	; 0xe5a <processTimerActions+0x7e>
+ e7e:	11 50       	subi	r17, 0x01	; 1
     }
   }
 
   if( SlowTicks && SlowTimerActionList )
   {
     while( SlowTicks-- )
- eaa:	31 f7       	brne	.-52     	; 0xe78 <processTimerActions+0x72>
+ e80:	31 f7       	brne	.-52     	; 0xe4e <processTimerActions+0x72>
 
         pAction = pAction->Next ;
       }
     }
   }
 }                                                                                                                 
- eac:	df 91       	pop	r29
- eae:	cf 91       	pop	r28
- eb0:	1f 91       	pop	r17
- eb2:	0f 91       	pop	r16
- eb4:	08 95       	ret
+ e82:	df 91       	pop	r29
+ e84:	cf 91       	pop	r28
+ e86:	1f 91       	pop	r17
+ e88:	0f 91       	pop	r16
+ e8a:	08 95       	ret
 
-00000eb6 <getLnMsgSize>:
+00000e8c <getLnMsgSize>:
 {
 	return 0 ;
 }
 
 byte getLnMsgSize( volatile lnMsg * Msg )
 {
- eb6:	fc 01       	movw	r30, r24
+ e8c:	fc 01       	movw	r30, r24
 	return ( ( Msg->sz.command & (byte)0x60 ) == (byte)0x60 ) ? Msg->sz.mesg_size : ( ( Msg->sz.command & (byte)0x60 ) >> (byte)4 ) + 2 ;
- eb8:	90 81       	ld	r25, Z
- eba:	90 76       	andi	r25, 0x60	; 96
- ebc:	90 36       	cpi	r25, 0x60	; 96
- ebe:	11 f4       	brne	.+4      	; 0xec4 <getLnMsgSize+0xe>
- ec0:	81 81       	ldd	r24, Z+1	; 0x01
- ec2:	08 95       	ret
- ec4:	80 81       	ld	r24, Z
- ec6:	80 76       	andi	r24, 0x60	; 96
- ec8:	82 95       	swap	r24
- eca:	8f 70       	andi	r24, 0x0F	; 15
- ecc:	8e 5f       	subi	r24, 0xFE	; 254
+ e8e:	90 81       	ld	r25, Z
+ e90:	90 76       	andi	r25, 0x60	; 96
+ e92:	90 36       	cpi	r25, 0x60	; 96
+ e94:	11 f4       	brne	.+4      	; 0xe9a <getLnMsgSize+0xe>
+ e96:	81 81       	ldd	r24, Z+1	; 0x01
+ e98:	08 95       	ret
+ e9a:	80 81       	ld	r24, Z
+ e9c:	80 76       	andi	r24, 0x60	; 96
+ e9e:	82 95       	swap	r24
+ ea0:	8f 70       	andi	r24, 0x0F	; 15
+ ea2:	8e 5f       	subi	r24, 0xFE	; 254
 }
- ece:	08 95       	ret
+ ea4:	08 95       	ret
 
-00000ed0 <initLocoNet>:
+00000ea6 <initLocoNet>:
 
 
 lnMsg * recvLocoNetPacket( void )
 {
 	return recvLnMsg(pstLnRxBuffer);
 }
- ed0:	90 93 81 00 	sts	0x0081, r25	; 0x800081 <pstLnRxBuffer+0x1>
- ed4:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <pstLnRxBuffer>
- ed8:	72 ce       	rjmp	.-796    	; 0xbbe <initLocoNetHardware>
- eda:	08 95       	ret
+ ea6:	90 93 81 00 	sts	0x0081, r25	; 0x800081 <pstLnRxBuffer+0x1>
+ eaa:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <pstLnRxBuffer>
+ eae:	72 ce       	rjmp	.-796    	; 0xb94 <initLocoNetHardware>
+ eb0:	08 95       	ret
 
-00000edc <sendLocoNetPacket>:
+00000eb2 <sendLocoNetPacket>:
 
 
 #define   LN_TX_RETRIES_MAX  25
 // this function should be moved to a hardware independant module
 LN_STATUS sendLocoNetPacket( lnMsg *punTxData )
 {
- edc:	df 92       	push	r13
- ede:	ef 92       	push	r14
- ee0:	ff 92       	push	r15
- ee2:	0f 93       	push	r16
- ee4:	1f 93       	push	r17
- ee6:	cf 93       	push	r28
- ee8:	df 93       	push	r29
- eea:	8c 01       	movw	r16, r24
+ eb2:	df 92       	push	r13
+ eb4:	ef 92       	push	r14
+ eb6:	ff 92       	push	r15
+ eb8:	0f 93       	push	r16
+ eba:	1f 93       	push	r17
+ ebc:	cf 93       	push	r28
+ ebe:	df 93       	push	r29
+ ec0:	8c 01       	movw	r16, r24
 
       if (enReturn == LN_DONE)  // success?
         return LN_DONE;
 
       if (enReturn == LN_PRIO_BACKOFF)
         ucWaitForEnterBackoff = 0; // now entered backoff -> next state != LN_BACKOFF is worth incrementing the try counter
- eec:	0f 2e       	mov	r0, r31
- eee:	f9 e1       	ldi	r31, 0x19	; 25
- ef0:	ef 2e       	mov	r14, r31
- ef2:	f0 2d       	mov	r31, r0
+ ec2:	0f 2e       	mov	r0, r31
+ ec4:	f9 e1       	ldi	r31, 0x19	; 25
+ ec6:	ef 2e       	mov	r14, r31
+ ec8:	f0 2d       	mov	r31, r0
 #define   LN_TX_RETRIES_MAX  25
 // this function should be moved to a hardware independant module
 LN_STATUS sendLocoNetPacket( lnMsg *punTxData )
 {
   unsigned char ucTry;
   unsigned char ucPrioDelay = LN_BACKOFF_INITIAL;
- ef4:	ce e2       	ldi	r28, 0x2E	; 46
+ eca:	ce e2       	ldi	r28, 0x2E	; 46
 
       if (enReturn == LN_DONE)  // success?
         return LN_DONE;
 
       if (enReturn == LN_PRIO_BACKOFF)
         ucWaitForEnterBackoff = 0; // now entered backoff -> next state != LN_BACKOFF is worth incrementing the try counter
- ef6:	dd 24       	eor	r13, r13
- ef8:	d3 94       	inc	r13
- efa:	f1 2c       	mov	r15, r1
- efc:	13 c0       	rjmp	.+38     	; 0xf24 <sendLocoNetPacket+0x48>
- efe:	df 2d       	mov	r29, r15
+ ecc:	dd 24       	eor	r13, r13
+ ece:	d3 94       	inc	r13
+ ed0:	f1 2c       	mov	r15, r1
+ ed2:	13 c0       	rjmp	.+38     	; 0xefa <sendLocoNetPacket+0x48>
+ ed4:	df 2d       	mov	r29, r15
 
     // wait previous traffic and than prio delay and than try tx
     ucWaitForEnterBackoff = 1;  // don't want to abort do/while loop before
     do                          // we did not see the backoff state once
     {
       enReturn = sendLocoNetPacketTry(punTxData, ucPrioDelay);
- f00:	6c 2f       	mov	r22, r28
- f02:	c8 01       	movw	r24, r16
- f04:	71 de       	rcall	.-798    	; 0xbe8 <sendLocoNetPacketTry>
+ ed6:	6c 2f       	mov	r22, r28
+ ed8:	c8 01       	movw	r24, r16
+ eda:	71 de       	rcall	.-798    	; 0xbbe <sendLocoNetPacketTry>
 
       if (enReturn == LN_DONE)  // success?
- f06:	83 30       	cpi	r24, 0x03	; 3
- f08:	d1 f0       	breq	.+52     	; 0xf3e <sendLocoNetPacket+0x62>
+ edc:	83 30       	cpi	r24, 0x03	; 3
+ ede:	d1 f0       	breq	.+52     	; 0xf14 <sendLocoNetPacket+0x62>
         return LN_DONE;
 
       if (enReturn == LN_PRIO_BACKOFF)
- f0a:	81 30       	cpi	r24, 0x01	; 1
- f0c:	c1 f3       	breq	.-16     	; 0xefe <sendLocoNetPacket+0x22>
+ ee0:	81 30       	cpi	r24, 0x01	; 1
+ ee2:	c1 f3       	breq	.-16     	; 0xed4 <sendLocoNetPacket+0x22>
         ucWaitForEnterBackoff = 0; // now entered backoff -> next state != LN_BACKOFF is worth incrementing the try counter
     }
     while ((enReturn == LN_CD_BACKOFF) ||                             // waiting CD backoff
            (enReturn == LN_PRIO_BACKOFF) ||                           // waiting master+prio backoff
            ((enReturn == LN_NETWORK_BUSY) && ucWaitForEnterBackoff)); // or within any traffic unfinished
- f0e:	c0 f3       	brcs	.-16     	; 0xf00 <sendLocoNetPacket+0x24>
+ ee4:	c0 f3       	brcs	.-16     	; 0xed6 <sendLocoNetPacket+0x24>
 
       if (enReturn == LN_PRIO_BACKOFF)
         ucWaitForEnterBackoff = 0; // now entered backoff -> next state != LN_BACKOFF is worth incrementing the try counter
     }
     while ((enReturn == LN_CD_BACKOFF) ||                             // waiting CD backoff
            (enReturn == LN_PRIO_BACKOFF) ||                           // waiting master+prio backoff
- f10:	82 30       	cpi	r24, 0x02	; 2
- f12:	11 f4       	brne	.+4      	; 0xf18 <sendLocoNetPacket+0x3c>
+ ee6:	82 30       	cpi	r24, 0x02	; 2
+ ee8:	11 f4       	brne	.+4      	; 0xeee <sendLocoNetPacket+0x3c>
            ((enReturn == LN_NETWORK_BUSY) && ucWaitForEnterBackoff)); // or within any traffic unfinished
- f14:	d1 11       	cpse	r29, r1
- f16:	f4 cf       	rjmp	.-24     	; 0xf00 <sendLocoNetPacket+0x24>
+ eea:	d1 11       	cpse	r29, r1
+ eec:	f4 cf       	rjmp	.-24     	; 0xed6 <sendLocoNetPacket+0x24>
     // failed -> next try going to higher prio = smaller prio delay
     if (ucPrioDelay > LN_BACKOFF_MIN)
- f18:	cb 31       	cpi	r28, 0x1B	; 27
- f1a:	08 f0       	brcs	.+2      	; 0xf1e <sendLocoNetPacket+0x42>
+ eee:	cb 31       	cpi	r28, 0x1B	; 27
+ ef0:	08 f0       	brcs	.+2      	; 0xef4 <sendLocoNetPacket+0x42>
       ucPrioDelay--;
- f1c:	c1 50       	subi	r28, 0x01	; 1
- f1e:	ea 94       	dec	r14
+ ef2:	c1 50       	subi	r28, 0x01	; 1
+ ef4:	ea 94       	dec	r14
   unsigned char ucTry;
   unsigned char ucPrioDelay = LN_BACKOFF_INITIAL;
   LN_STATUS enReturn;
   unsigned char ucWaitForEnterBackoff;
 
   for (ucTry = 0; ucTry < LN_TX_RETRIES_MAX; ucTry++)
- f20:	ee 20       	and	r14, r14
- f22:	11 f0       	breq	.+4      	; 0xf28 <sendLocoNetPacket+0x4c>
+ ef6:	ee 20       	and	r14, r14
+ ef8:	11 f0       	breq	.+4      	; 0xefe <sendLocoNetPacket+0x4c>
 
       if (enReturn == LN_DONE)  // success?
         return LN_DONE;
 
       if (enReturn == LN_PRIO_BACKOFF)
         ucWaitForEnterBackoff = 0; // now entered backoff -> next state != LN_BACKOFF is worth incrementing the try counter
- f24:	dd 2d       	mov	r29, r13
- f26:	ec cf       	rjmp	.-40     	; 0xf00 <sendLocoNetPacket+0x24>
+ efa:	dd 2d       	mov	r29, r13
+ efc:	ec cf       	rjmp	.-40     	; 0xed6 <sendLocoNetPacket+0x24>
            ((enReturn == LN_NETWORK_BUSY) && ucWaitForEnterBackoff)); // or within any traffic unfinished
     // failed -> next try going to higher prio = smaller prio delay
     if (ucPrioDelay > LN_BACKOFF_MIN)
       ucPrioDelay--;
   }
   pstLnRxBuffer->Stats.TxError++ ;
- f28:	e0 91 80 00 	lds	r30, 0x0080	; 0x800080 <pstLnRxBuffer>
- f2c:	f0 91 81 00 	lds	r31, 0x0081	; 0x800081 <pstLnRxBuffer+0x1>
- f30:	e6 57       	subi	r30, 0x76	; 118
- f32:	ff 4f       	sbci	r31, 0xFF	; 255
- f34:	80 81       	ld	r24, Z
- f36:	8f 5f       	subi	r24, 0xFF	; 255
- f38:	80 83       	st	Z, r24
+ efe:	e0 91 80 00 	lds	r30, 0x0080	; 0x800080 <pstLnRxBuffer>
+ f02:	f0 91 81 00 	lds	r31, 0x0081	; 0x800081 <pstLnRxBuffer+0x1>
+ f06:	e6 57       	subi	r30, 0x76	; 118
+ f08:	ff 4f       	sbci	r31, 0xFF	; 255
+ f0a:	80 81       	ld	r24, Z
+ f0c:	8f 5f       	subi	r24, 0xFF	; 255
+ f0e:	80 83       	st	Z, r24
   return LN_RETRY_ERROR;
- f3a:	86 e0       	ldi	r24, 0x06	; 6
- f3c:	01 c0       	rjmp	.+2      	; 0xf40 <sendLocoNetPacket+0x64>
+ f10:	86 e0       	ldi	r24, 0x06	; 6
+ f12:	01 c0       	rjmp	.+2      	; 0xf16 <sendLocoNetPacket+0x64>
     do                          // we did not see the backoff state once
     {
       enReturn = sendLocoNetPacketTry(punTxData, ucPrioDelay);
 
       if (enReturn == LN_DONE)  // success?
         return LN_DONE;
- f3e:	83 e0       	ldi	r24, 0x03	; 3
+ f14:	83 e0       	ldi	r24, 0x03	; 3
     if (ucPrioDelay > LN_BACKOFF_MIN)
       ucPrioDelay--;
   }
   pstLnRxBuffer->Stats.TxError++ ;
   return LN_RETRY_ERROR;
 }
- f40:	df 91       	pop	r29
- f42:	cf 91       	pop	r28
- f44:	1f 91       	pop	r17
- f46:	0f 91       	pop	r16
- f48:	ff 90       	pop	r15
- f4a:	ef 90       	pop	r14
- f4c:	df 90       	pop	r13
- f4e:	08 95       	ret
+ f16:	df 91       	pop	r29
+ f18:	cf 91       	pop	r28
+ f1a:	1f 91       	pop	r17
+ f1c:	0f 91       	pop	r16
+ f1e:	ff 90       	pop	r15
+ f20:	ef 90       	pop	r14
+ f22:	df 90       	pop	r13
+ f24:	08 95       	ret
 
-00000f50 <sendLocoNet4BytePacket>:
+00000f26 <sendLocoNet4BytePacket>:
 
 
 LN_STATUS sendLocoNet4BytePacket( byte OpCode, byte Data1, byte Data2 )
 {
- f50:	cf 93       	push	r28
- f52:	df 93       	push	r29
- f54:	cd b7       	in	r28, 0x3d	; 61
- f56:	de b7       	in	r29, 0x3e	; 62
- f58:	66 97       	sbiw	r28, 0x16	; 22
- f5a:	0f b6       	in	r0, 0x3f	; 63
- f5c:	f8 94       	cli
- f5e:	de bf       	out	0x3e, r29	; 62
- f60:	0f be       	out	0x3f, r0	; 63
- f62:	cd bf       	out	0x3d, r28	; 61
+ f26:	cf 93       	push	r28
+ f28:	df 93       	push	r29
+ f2a:	cd b7       	in	r28, 0x3d	; 61
+ f2c:	de b7       	in	r29, 0x3e	; 62
+ f2e:	66 97       	sbiw	r28, 0x16	; 22
+ f30:	0f b6       	in	r0, 0x3f	; 63
+ f32:	f8 94       	cli
+ f34:	de bf       	out	0x3e, r29	; 62
+ f36:	0f be       	out	0x3f, r0	; 63
+ f38:	cd bf       	out	0x3d, r28	; 61
   lnMsg SendPacket ;
 
   SendPacket.data[ 0 ] = OpCode ;
- f64:	89 83       	std	Y+1, r24	; 0x01
+ f3a:	89 83       	std	Y+1, r24	; 0x01
   SendPacket.data[ 1 ] = Data1 ;
- f66:	6a 83       	std	Y+2, r22	; 0x02
+ f3c:	6a 83       	std	Y+2, r22	; 0x02
   SendPacket.data[ 2 ] = Data2 ;
- f68:	4b 83       	std	Y+3, r20	; 0x03
+ f3e:	4b 83       	std	Y+3, r20	; 0x03
 
   return sendLocoNetPacket( &SendPacket ) ;
- f6a:	ce 01       	movw	r24, r28
- f6c:	01 96       	adiw	r24, 0x01	; 1
- f6e:	b6 df       	rcall	.-148    	; 0xedc <sendLocoNetPacket>
+ f40:	ce 01       	movw	r24, r28
+ f42:	01 96       	adiw	r24, 0x01	; 1
+ f44:	b6 df       	rcall	.-148    	; 0xeb2 <sendLocoNetPacket>
 }
- f70:	66 96       	adiw	r28, 0x16	; 22
- f72:	0f b6       	in	r0, 0x3f	; 63
- f74:	f8 94       	cli
- f76:	de bf       	out	0x3e, r29	; 62
- f78:	0f be       	out	0x3f, r0	; 63
- f7a:	cd bf       	out	0x3d, r28	; 61
- f7c:	df 91       	pop	r29
- f7e:	cf 91       	pop	r28
- f80:	08 95       	ret
+ f46:	66 96       	adiw	r28, 0x16	; 22
+ f48:	0f b6       	in	r0, 0x3f	; 63
+ f4a:	f8 94       	cli
+ f4c:	de bf       	out	0x3e, r29	; 62
+ f4e:	0f be       	out	0x3f, r0	; 63
+ f50:	cd bf       	out	0x3d, r28	; 61
+ f52:	df 91       	pop	r29
+ f54:	cf 91       	pop	r28
+ f56:	08 95       	ret
 
-00000f82 <__tablejump2__>:
- f82:	ee 0f       	add	r30, r30
- f84:	ff 1f       	adc	r31, r31
- f86:	05 90       	lpm	r0, Z+
- f88:	f4 91       	lpm	r31, Z
- f8a:	e0 2d       	mov	r30, r0
- f8c:	09 94       	ijmp
+00000f58 <__tablejump2__>:
+ f58:	ee 0f       	add	r30, r30
+ f5a:	ff 1f       	adc	r31, r31
+ f5c:	05 90       	lpm	r0, Z+
+ f5e:	f4 91       	lpm	r31, Z
+ f60:	e0 2d       	mov	r30, r0
+ f62:	09 94       	ijmp
 
-00000f8e <eeprom_read_byte>:
- f8e:	e1 99       	sbic	0x1c, 1	; 28
- f90:	fe cf       	rjmp	.-4      	; 0xf8e <eeprom_read_byte>
- f92:	9f bb       	out	0x1f, r25	; 31
- f94:	8e bb       	out	0x1e, r24	; 30
- f96:	e0 9a       	sbi	0x1c, 0	; 28
- f98:	99 27       	eor	r25, r25
- f9a:	8d b3       	in	r24, 0x1d	; 29
- f9c:	08 95       	ret
+00000f64 <eeprom_read_byte>:
+ f64:	e1 99       	sbic	0x1c, 1	; 28
+ f66:	fe cf       	rjmp	.-4      	; 0xf64 <eeprom_read_byte>
+ f68:	9f bb       	out	0x1f, r25	; 31
+ f6a:	8e bb       	out	0x1e, r24	; 30
+ f6c:	e0 9a       	sbi	0x1c, 0	; 28
+ f6e:	99 27       	eor	r25, r25
+ f70:	8d b3       	in	r24, 0x1d	; 29
+ f72:	08 95       	ret
 
-00000f9e <eeprom_write_byte>:
- f9e:	26 2f       	mov	r18, r22
+00000f74 <eeprom_write_byte>:
+ f74:	26 2f       	mov	r18, r22
 
-00000fa0 <eeprom_write_r18>:
- fa0:	e1 99       	sbic	0x1c, 1	; 28
- fa2:	fe cf       	rjmp	.-4      	; 0xfa0 <eeprom_write_r18>
- fa4:	9f bb       	out	0x1f, r25	; 31
- fa6:	8e bb       	out	0x1e, r24	; 30
- fa8:	2d bb       	out	0x1d, r18	; 29
- faa:	0f b6       	in	r0, 0x3f	; 63
- fac:	f8 94       	cli
- fae:	e2 9a       	sbi	0x1c, 2	; 28
- fb0:	e1 9a       	sbi	0x1c, 1	; 28
- fb2:	0f be       	out	0x3f, r0	; 63
- fb4:	01 96       	adiw	r24, 0x01	; 1
- fb6:	08 95       	ret
+00000f76 <eeprom_write_r18>:
+ f76:	e1 99       	sbic	0x1c, 1	; 28
+ f78:	fe cf       	rjmp	.-4      	; 0xf76 <eeprom_write_r18>
+ f7a:	9f bb       	out	0x1f, r25	; 31
+ f7c:	8e bb       	out	0x1e, r24	; 30
+ f7e:	2d bb       	out	0x1d, r18	; 29
+ f80:	0f b6       	in	r0, 0x3f	; 63
+ f82:	f8 94       	cli
+ f84:	e2 9a       	sbi	0x1c, 2	; 28
+ f86:	e1 9a       	sbi	0x1c, 1	; 28
+ f88:	0f be       	out	0x3f, r0	; 63
+ f8a:	01 96       	adiw	r24, 0x01	; 1
+ f8c:	08 95       	ret
 
-00000fb8 <_exit>:
- fb8:	f8 94       	cli
+00000f8e <_exit>:
+ f8e:	f8 94       	cli
 
-00000fba <__stop_program>:
- fba:	ff cf       	rjmp	.-2      	; 0xfba <__stop_program>
+00000f90 <__stop_program>:
+ f90:	ff cf       	rjmp	.-2      	; 0xf90 <__stop_program>
