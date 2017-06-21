@@ -91,7 +91,7 @@
 /******************************************************************************/
 
 #ifndef F_CPU
-  #define F_CPU                     7372800    // Fredi
+  #define F_CPU                     16000000    // Fredi
 #endif
 
 #if defined(__AVR_ATmega48__)  | defined(__AVR_ATmega48A__)  \
@@ -104,7 +104,7 @@
                                           // on ATmega328P or ATmega168
                                           // avr-gcc (WinAVR 20100110) 4.3.3
 #elif defined(__AVR_ATmega16__)
-  #define LN_TIMER_TX_RELOAD_ADJUST    98 // 13.3 us delay for FREDI an ATmega8
+  #define LN_TIMER_TX_RELOAD_ADJUST    0 // 13.3 us delay for FREDI an ATmega8
                                           // avr-gcc (WinAVR 20100110) 4.3.3
 #else
   #error "unknown mcu"
@@ -193,10 +193,10 @@
   #error unsupported MCU value (for now)
 #endif
 
-#define LN_TX_PORT            PORTD
-#define LN_TX_DDR             DDRD
+#define LN_TX_PORT            PORTB
+#define LN_TX_DDR             DDRB
 
-#define LN_TX_BIT             PD4
+#define LN_TX_BIT             PB1
 
 
 
@@ -266,18 +266,18 @@
 //Regler 3
 //insert Schieberegler hier
 #define LED3		PC3 //PINC
-#define DIRKEY3		PC1 //PINC, Funktioniert nach mehreren Tastendrücken nichtmehr (Funktionswiederherstellung tum Teil durch Drücken anderer Taste)
-#define FUNKEY3		PB4 // PINB
+#define DIRKEY3		PC2 //PINC, Funktioniert nach mehreren Tastendrücken nichtmehr (Funktionswiederherstellung tum Teil durch Drücken anderer Taste)
+#define FUNKEY3		PC5 // PINC
 
 //Regler 4
 //insert Schieberegler hier
 #define LED4		PC4 //PINC
-#define DIRKEY4		PC2 //PINC, Scheinbar Kurzschluss zu LED2, Wenn im Code benutzt leuchtet LED1 dauerhaft??
+#define DIRKEY4		PC1 //PINC, Scheinbar Kurzschluss zu LED2, Wenn im Code benutzt leuchtet LED1 dauerhaft??
 #define FUNKEY4		PA2 //PINA
 
 //Erweiterte Funktionstasten (Nummeriert von oben nach unten)
 #define ERW_FUNKEY1		PD3 //PIND
-#define ERW_FUNKEY2		PD4 //PIND
+#define ERW_FUNKEY2		PD4 //PINDgibt dauerhaft 1 aus
 #define ERW_FUNKEY3		PD5 //PIND
 #define ERW_FUNKEY4		PD6 //PIND
 // encoder interrupt

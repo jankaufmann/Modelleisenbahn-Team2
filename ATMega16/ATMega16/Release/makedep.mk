@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+src\apps\Fredi\keys.c
+
 src\apps\Fredi\fredi.c
 
 src\apps\Fredi\fuses.c

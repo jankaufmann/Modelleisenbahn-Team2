@@ -1,16 +1,20 @@
 /****************************************************************************
     Copyright (C) 2006, 2011 Olaf Funke, Martin Pischky
+
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
     License as published by the Free Software Foundation; either
     version 2.1 of the License, or (at your option) any later version.
+
     This library is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
     Lesser General Public License for more details.
+
     You should have received a copy of the GNU Lesser General Public
     License along with this library; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
     $Id: fredi.c,v 1.13 2011/07/31 15:54:12 pischky Exp $
 ******************************************************************************/
 
@@ -105,6 +109,7 @@
 //#include "throttle.h"
 #include "systimer.h"
 
+#include "keys.h"
 #include "processor.h"
 #include "potadc.h"         // potAdcSpeedValue, potAdcRawValue
                             // potAdcPowerOff(), potAdcInit(),
@@ -152,9 +157,22 @@ void disableLED1(void);			//Ausschalten LED 1
 void disableLED2(void);			//Ausschalten LED 2
 void disableLED3(void);			//Ausschalten LED 3
 void disableLED4(void);			//Ausschalten LED 4
+void toggleLED1(void);			//Toggle LED 1
+void toggleLED2(void);			//Toggle LED2
+void toggleLED3(void);			//Toggle LED3
+void toggleLED4(void);			//Toggle LED4
 void ProcessKeyInput (byte *pin, byte *port);
-void ProcessShiftedKeyInput (byte *pin, byte *port);
+
+//int ProcessKeyInput8Streak (keydata *key);
+void ProcessDirKeyInput8Streak (byte pin, byte port, int8_t keyNumber, rwSlotDataMsg *currentSlot);
+void ProcessShiftKeyInput8StreakFun (byte *pin, byte *port);
+void ProcessShiftKeyInput8Streak (byte pin, int8_t port, int8_t keyNumber);
+void ProcessFunKeyInput8StreakFun (byte *pin, byte *port);
+void ProcessFunKeyInput8Streak (byte pin, int8_t port, int8_t keyNumber, rwSlotDataMsg *currentSlot);
+void transmitInputLoco(rwSlotDataMsg *currentSlot, int8_t currentNumber);
+LN_STATUS testLoco (byte opc, byte data);
 void processValue(int8_t);
+void setPullUps (void);
 void entprellen_druecken(byte new_val, byte val);
 void entprellen_loslassen(byte new_val, byte val);
 
@@ -259,9 +277,24 @@ int8_t		slotnumber = 0;
 uint8_t value = 0;
 byte old_value = 0; //war 1 bei Jan
 byte entprell = 0;
-int8_t keyStatus = 0;
+long keyStatus = 0;
+
+uint8_t shiftKeyCounter[NUMBER_OF_SLOTS];
+uint8_t funKeyCounter[NUMBER_OF_SLOTS];
+uint8_t dirKeyCounter[NUMBER_OF_SLOTS];
+int8_t shiftedKeyStatus = 0;
+int8_t shiftStatustwo[2]; // [0] = Nummer des Reglers für den shift Freigeschaltet ist, [1] = Funktionen 0-4 (1) oder Funktionen 5-8 Freigeschaltet
+byte dirfSCopy[2];
 int8_t shiftStatus = 0;
+uint8_t funkeyStatus = 0;
+uint8_t dirKeyStatus = 0;
+uint8_t dirfKeyStatus[NUMBER_OF_SLOTS];
+uint8_t potiStatus = 0;
+LN_STATUS sendStatus;
+unsigned long shiftPressed = 0;
 int8_t shiftTimeOut = 0;
+
+
 
 //TMT Variables
 unsigned long int streak = 0;
@@ -309,15 +342,15 @@ void setLEDasOutput() {
 }
 
 void enableLED1(){
-	PORTA &= ~(_BV(LED1));
+	PORTA |= _BV(LED1);
 }
 
 void enableLED2(){
-	PORTA &= ~(_BV(LED2));
+	PORTA |= _BV(LED2);
 }
 
 void enableLED3(){
-	PORTC &= ~(_BV(LED3));
+	PORTC |= _BV(LED3);
 }
 
 void enableLED4(){
@@ -325,19 +358,51 @@ void enableLED4(){
 }
 
 void disableLED1(){
-	PORTA |= (_BV(LED1));
+	PORTA &= ~(_BV(LED1));
 }
 
 void disableLED2(){
-	PORTA |= (_BV(LED2));
+	PORTA &= ~(_BV(LED2));
 }
 
 void disableLED3(){
-	PORTC |= (_BV(LED3));
+	PORTC &= ~(_BV(LED3));
 }
 
 void disableLED4(){
 	PORTC &= ~(_BV(LED4));
+}
+
+void toggleLED1() {
+	if (bit_is_set(PORTA, LED1)) {
+		PORTA &= ~(_BV(LED1));
+	} else {
+		PORTA |= _BV(LED1);
+	}
+}
+
+void toggleLED2() {
+	if (bit_is_set(PORTA, LED2)) {
+		PORTA &= ~(_BV(LED2));
+		} else {
+		PORTA |= _BV(LED2);
+	}
+}
+
+void toggleLED3() {
+	if (bit_is_set(PORTC, LED3)) {
+		PORTC &= ~(_BV(LED3));
+		} else {
+		PORTC |= _BV(LED3);
+	}
+}
+
+void toggleLED4() {
+	if (bit_is_set(PORTC, LED4)) {
+		PORTC &= ~(_BV(LED4));
+		} else {
+		PORTC |= _BV(LED4);
+	}
 }
 
 
@@ -721,16 +786,16 @@ void initKeys( void )
   /***************************************/
 
   // set data direction register for encoder
- // ENC_DDR &= ~( _BV(ENC_SWITCH) ) ;
+  ENC_DDR &= ~( _BV(ENC_SWITCH) ) ;
 
   // Enable the pull-ups
-  //ENC_PORT |= ( _BV(ENC_SWITCH) ) ;
+  ENC_PORT |= ( _BV(ENC_SWITCH) ) ;
 
   // set data direction register for encoder
-  //ENC_DDR &= ~( _BV(ENC_SWITCH) ) ;
+  ENC_DDR &= ~( _BV(ENC_SWITCH) ) ;
 
   // Enable the pull-ups
-  //ENC_PORT |= ( _BV(ENC_SWITCH) ) ;
+  ENC_PORT |= ( _BV(ENC_SWITCH) ) ;
 
   // set data direction register for keys
  // KEYPIN_DDR  &= ~KEYPIN_ALL ;
@@ -740,21 +805,11 @@ void initKeys( void )
   DDRA		&= ~(_BV(FUNKEY4));
   //-------------------erweiterte Funktionstasten
   DDRD		&= ~(_BV(ERW_FUNKEY1));
-  DDRD		&= ~(_BV(ERW_FUNKEY2));
+//  DDRD		&= ~(_BV(ERW_FUNKEY2));
   DDRD		&= ~(_BV(ERW_FUNKEY3));
   DDRD		&= ~(_BV(ERW_FUNKEY4));
   // Enable the pull-ups
-  //KEYPIN_PORT |=  KEYPIN_ALL ;
-  PORTC		|= _BV(FUNKEY1);
-  PORTB		|= _BV(FUNKEY2);
-  PORTB		|= _BV(FUNKEY3);
-  PORTA		|= _BV(FUNKEY4);
-  //erweiterte Funktionstasten
-  PORTD		|= _BV(ERW_FUNKEY1);
-  PORTD		|= _BV(ERW_FUNKEY2);
-  PORTD		|= _BV(ERW_FUNKEY3);
-  PORTD		|= _BV(ERW_FUNKEY4);
-  
+  KEYPIN_PORT |=  KEYPIN_ALL ;
 
   if (  (bFrediVersion == FREDI_VERSION_INCREMENT_SWITCH)
         || (bFrediVersion == FREDI_VERSION_ANALOG          ))
@@ -767,11 +822,8 @@ void initKeys( void )
 		DDRC		&= ~(_BV(DIRKEY4));
 		
     // Enable the pull-up
-    //DIRSWITCH_PORT  |=  ( _BV(DIRSWITCH) );
-	PORTC			|= _BV(DIRKEY1);
-	PORTA			|= _BV(DIRKEY2);
-	PORTC			|= _BV(DIRKEY3);
-	PORTC			|= _BV(DIRKEY4);
+    DIRSWITCH_PORT  |=  ( _BV(DIRSWITCH) );
+	//????????????? Widerstände auch setzen?
   }
 
   addTimerAction(&KeyTimer, KEY_POLL_TIME, KeyTimerAction, 0, TIMER_FAST ) ;
@@ -781,22 +833,22 @@ void initKeys( void )
   /***************************************/
 
   DDRA	   |= (_BV(LED1));
-  PORTA	   |= (_BV(LED1));		//ausgeschaltet (rot)
+  PORTA		&= ~(_BV(LED1));
 //  LED_DDR  |=  _BV(LED_GREEN_L); 
 //  LED_PORT &= ~_BV(LED_GREEN_L); 
 
   DDRA	   |= (_BV(LED2));
-  PORTA	   |= (_BV(LED2));		//ausgeschaltet (rot)
+  PORTA	   &= ~(_BV(LED2));
   //LED_DDR  |=  _BV(LED_GREEN_R); 
   //LED_PORT &= ~_BV(LED_GREEN_R); 
 
   DDRC	   |= (_BV(LED3));
-  PORTC	   |= (_BV(LED3));		//ausgeschaltet (rot)
+  PORTC	   &= ~(_BV(LED3));
   //LED_DDR  |=  _BV(LED_RED); 
-  //LED_PORT |= _BV(LED_RED);
+  //LED_PORT |= _BV(LED_RED);       // set red LED at startup
   
   DDRC	   |= (_BV(LED4));
-  PORTC	   &= ~(_BV(LED4));		//ausgeschaltet (rot)
+  PORTC	   &= ~(_BV(LED4));
 
  // addTimerAction(&LEDTimer, LED_BLINK_TIME, LEDTimerAction, 0, TIMER_SLOW ) ;
 }
@@ -1018,6 +1070,7 @@ int main(void)
 
   byte bCount = 0;
   bFrediVersion = FREDI_VERSION_ANALOG;
+  setPullUps();
   /***************************************/
   //  init analog input for getting 
   //  FrediVersion
@@ -1025,6 +1078,7 @@ int main(void)
 
 /*	 DDRC  &= ~_BV(DDC5); // set version detector to tristate to get kind of fredi
 	 PORTC |=  _BV(PC5);
+
   if (bit_is_set(PINC, PINC5))
   {
     bFrediVersion = FREDI_VERSION_ANALOG;
@@ -1203,16 +1257,118 @@ int main(void)
 /******************************************************************************/
 // main endless loop 
 /******************************************************************************/
+			setLEDasOutput();
+		  //alle LEDS ausschalten
+		/*	PORTA &= ~(1<<LED1);
+			PORTA &= ~(1<<LED2);
+			PORTC &= ~(1<<LED3);
+			PORTC &= ~(1<<LED4); */
+		// alle LED anschalten
+			PORTA |= (1<<LED1);
+			PORTA |= (1<<LED2);
+			PORTC |= (1<<LED3);
+			disableLED4();
+			
+		  ADCSRA = 0<< ADEN;		//ADC ausschalten
 		  
 	byte testPort = PORTC;
 	int8_t shiftedKeyStatus = 0;
 	byte new_val = 0;
 
 	byte pressed = 0;
-
+	disableLED1();
+	_delay_1500ms();
+	enableLED1();
+	_delay_1500ms();
+	PORTC |= 0x80; //Pullup von Taste1 anschalten
+	int8_t pull_ups = 1;
+	for (int i = 0; i < 100; i++) {
+		sendLocoNet4BytePacketTry(0xA0, 05, 0x14, 0x1A);
+		_delay_ms(25);
+	}
+	shiftStatustwo[1] = 0;
   while (1)
   {
-		//testFalseSignalStreakIsClear(PINC, FUNKEY1, 35000L, 75L);
+	  
+	   //delay
+	   //alle leds ausschalten
+		//Pullups testen Funkeys
+		//if (pull_ups == 1) {
+			//if (bit_is_set(PORTC, 7)) {
+				//disableLED1();
+			//}
+			//if (bit_is_set(PORTB, 0)) {
+				//disableLED2();
+			//}
+			//if (bit_is_set(PORTB, 4)) {
+				//disableLED3();
+			//}
+			//if (bit_is_set(PORTA, 2)) {
+				//enableLED4();
+			//}
+		//}
+		//
+		 ///* Pullups DIRKEY */
+		//if (pull_ups == 2) {
+			//if (bit_is_set(PORTC, 0)) {
+				//disableLED1();
+			//}
+			//if (bit_is_set(PORTA, 3)) {
+				//disableLED2();
+			//}
+			//if (bit_is_set(PORTC, 2)) {
+				//disableLED3();
+			//}
+			//if (bit_is_set(PORTC, 1)) {
+				//enableLED4();
+			//}
+		//}
+		//
+		 ///* Pullups ERW_FUNKEY */
+		 //if (pull_ups == 3) {
+			//if (bit_is_set(PORTD, 3)) {
+				//disableLED1();
+			//}
+			//if (bit_is_set(PORTD, 4)) {
+				//disableLED2();
+			//}
+			//if (bit_is_set(PORTD, 5)) {
+				//disableLED3();
+			//}
+			//if (bit_is_set(PORTD, 6)) {
+				//enableLED4();
+			//}
+		 //}
+		//
+	
+		
+		//ProcessShiftKeyInput8Streak(PINC, FUNKEY1, 1);
+		//ProcessShiftKeyInput8Streak(PINB, FUNKEY2, 2);
+		//ProcessShiftKeyInput8Streak(PINB, FUNKEY3, 3);
+		//ProcessShiftKeyInput8Streak(PINA, FUNKEY4, 4);
+		//ProcessFunKeyInput8Streak(PIND, ERW_FUNKEY1, 1);
+		//ProcessFunKeyInput8Streak(PIND, ERW_FUNKEY2, 2);
+		//ProcessFunKeyInput8Streak(PIND, ERW_FUNKEY3, 3);
+		//ProcessFunKeyInput8Streak(PIND, ERW_FUNKEY4, 4);
+	
+		//for (int i = 0; i < 8; i++) {
+			//processValue(bit_is_set(PINC, FUNKEY1));
+		//}
+		//if (value == 255) {
+			//shiftPressed++;
+		//}
+		//if (shiftPressed > 0) {
+			//disableLED1();
+		//}
+		
+		//if (bit_is_clear(PIND, ERW_FUNKEY3)) {
+			//enableLED2();
+		//}
+		//if (shiftStatus) {
+			//enableLED4();
+		//} else {
+			//disableLED4();
+		//}
 		//testKeySignal(PINC, DIRKEY4);
 		//ProcessKeyInput(&slotArray[0].funKey, &testPort);
 		//ProcessShiftedKeyInput(&slotArray[0].funKey, &testPort);
@@ -1238,32 +1394,75 @@ int main(void)
 				//pressed = 0;		
 			//} 
 	  	  
-		  if(potAdcSpeedValue == 126) {		//Regler 4 ausgewertet
-			  enableLED1();
-		  }
-		  else {
-			disableLED1();
-		  }
-		enableLED2();
-		processTimerActions();
 
+			
+	/*	potAdcTimerAction();
+			
+			if (potAdcSpeedValue < 64) {
+				PORTA &=  ~1<<LED2;
+			}
+			
+			if (potAdcSpeedValue >= 64) {
+				PORTA |= 1<<LED2;
+			} */
+			
+			
+	  	  
+		  
+	  /*	  if (PINA & ( 1<<DIRKEY2 )) {	//wenn richtungstaste 3 gedrückt, dann LED 2 anschalten
+		  	  //PORTC |= (1<<PC3);
+			  PORTA |= 1<<LED2;				
+				//_delay_ms(10);
+	  	  }
+	  	  
+	  	  if (!(PINA & ( 1<<DIRKEY2 ))) { //wenn richtungstaste3 nicht gedrückt, dann LED 2 aus
+		  	  //PORTC &= ~(1<<PC3);
+			  PORTA &= ~(1<<LED2);				
+	  	  } */
 	  
 		
 	  
-/*	for (int i = 0; i < NUMBER_OF_SLOTS; i++) {  
-		vProcessRxLoconetMessage(&slotArray[i]);
-		vProcessKey(&slotArray[i]);
-		vProcessRxLoconetMessage(&slotArray[i]);
-		if (bFrediVersion == FREDI_VERSION_ANALOG) {
-			vProcessPoti(&slotArray[i]);
+	for (int i = 0; i < NUMBER_OF_SLOTS; i++) {  
+		//vProcessRxLoconetMessage(&slotArray[i]);
+		//vProcessKey(&slotArray[i]);
+		//vProcessRxLoconetMessage(&slotArray[i]);
+//
+		//if (bFrediVersion == FREDI_VERSION_ANALOG) {
+			//vProcessPoti(&slotArray[i]);
+		//}
+		//else
+		//{
+			//vProcessEncoder(&slotArray[i]);
+		//}
+		//vProcessRxLoconetMessage(&slotArray[i]);
+		//processTimerActions();
+		//Main loop final
+		ProcessDirKeyInput8Streak(PINC, DIRKEY1,  1, &slotArray[0]);
+		ProcessDirKeyInput8Streak(PINA, DIRKEY2,  2, &slotArray[1]);
+		ProcessDirKeyInput8Streak(PINC, DIRKEY3,  3, &slotArray[2]);
+		ProcessDirKeyInput8Streak(PINC, DIRKEY4,  4, &slotArray[3]);
+		
+		ProcessShiftKeyInput8Streak(PINC, FUNKEY1, 1);
+		ProcessShiftKeyInput8Streak(PINB, FUNKEY2, 2);
+		ProcessShiftKeyInput8Streak(PINC, FUNKEY3, 3);
+		ProcessShiftKeyInput8Streak(PINA, FUNKEY4, 4);
+		if (shiftStatustwo[0] - 1 == i) {
+			ProcessFunKeyInput8Streak(PIND, ERW_FUNKEY1, 1, &slotArray[i]);
+			ProcessFunKeyInput8Streak(PIND, ERW_FUNKEY2, 2, &slotArray[i]);
+			ProcessFunKeyInput8Streak(PIND, ERW_FUNKEY3, 3, &slotArray[i]);
+			ProcessFunKeyInput8Streak(PIND, ERW_FUNKEY4, 4, &slotArray[i]);
 		}
-		else
-		{
-			vProcessEncoder(&slotArray[i]);
-		}
-		vProcessRxLoconetMessage(&slotArray[i]);
-		processTimerActions();
-	} */ //end of for
+		
+		
+	    //Wenn ein Zug zugewiesen1 ist
+		transmitInputLoco(&slotArray[i], i);
+		
+		//} else if (i == shiftStatustwo[0]) {
+			//Versuchen eine Lok zu bekommen
+		//}
+		
+		
+	}  //end of for
   } // end of while(1)
 } // end of main
 
@@ -1681,53 +1880,274 @@ die abfrage ist dafür, dass die fuktionstaste nichts auslöst wenn sie nur als sh
 losgelassen wird
 */
 void ProcessKeyInput (byte *pin, byte *port) {
-	processValue(bit_is_set(PINC, FUNKEY1));
-	if (keyStatus == 0 && value == 3) {
+	for (int i = 0; i < 8; i++) {
+		processValue(bit_is_set(PINC, FUNKEY1));
+	}
+	if (keyStatus == 0 && value == 0) {
 		keyStatus = 1;
-	} else if (keyStatus >=10 && value == 0) {
+	} else if (keyStatus >=10 && value == 255) {
 		keyStatus++;
-		if (keyStatus == 20 && shiftTimeOut == 0) { //siehe kommentar oben
+		if (keyStatus >= 20 && shiftTimeOut == 0) { //siehe kommentar oben
 		//hier info in locoinfo schreiben/tastenevent
-			PORTA &= ~(1<<LED1);
+			disableLED1();
 			//PORTA &= ~(1<<LED1);
 			keyStatus = 0;
-	} else if (keyStatus == 20) {
+		} else if (keyStatus >= 20) {
 			shiftTimeOut = 0;
 			keyStatus = 0;
-	}
-	
-	} else if (value == 3 && keyStatus > 0) {
+		}
+	} else if (value == 0 && keyStatus > 0) {
 		keyStatus++;
 	}
-	
+}
+
+
+
+void ProcessDirKeyInput8Streak (byte pin, byte port, int8_t keyNumber, rwSlotDataMsg *currentSlot) {
+	for (int i = 0; i < 8; i++) {
+		processValue(bit_is_set(pin, port));
+	}
+	if (dirKeyCounter[keyNumber - 1] < 6 && value == 255) {
+		dirKeyCounter[keyNumber - 1]++;
+	} else if (value == 0 && dirKeyCounter[keyNumber - 1] >= 5) {
+			dirKeyCounter[keyNumber - 1] = 0;
+			//Tastenevent hier einfügen
+			currentSlot->lastDir &= 0x00;
+			currentSlot->lastDir |= currentSlot->dirf;
+			currentSlot->lastDir &= 0b00100000;
+			currentSlot->dirf ^= 0b00100000; //Toggle dirKeyStatus
+						
+			
+			toggleLED2();
+			if (port == DIRKEY1) {
+			
+			} else if (port == DIRKEY2) {
+			
+			} else if (port == DIRKEY3) {
+			
+			} else if (port == DIRKEY4) {
+			
+			}
+	}
+}
+
+
+void ProcessShiftKeyInput8StreakFun (byte *pin, byte *port) {
+	for (int i = 0; i < 8; i++) {
+		processValue(bit_is_set(PINB, FUNKEY2));
+	}
+	if (value == 0 && keyStatus >= 0) {
+		keyStatus++;
+		if (keyStatus > 30000L) {
+			keyStatus = -1;
+			if (shiftStatus) {
+				shiftStatus = 0;
+				//disableLED4();
+			} else {
+				shiftStatus = 1;
+				//enableLED4();
+			}
+		}
+	} else if (value == 255 && (keyStatus >= 5 || keyStatus == -1)) {
+		//siehe kommentar oben
+		//hier info in locoinfo schreiben/tastenevent
+		
+		if (keyStatus >= 5 && shiftStatus == 0) {
+			disableLED1();
+			keyStatus = 0;
+		} else {
+			keyStatus = 0;
+		}
+	} else if (value == 255 && shiftPressed) {
+		shiftStatus = 0;
+		shiftPressed = 0;
+	}
+}
+
+
+void ProcessShiftKeyInput8Streak (byte pin, int8_t port, int8_t keyNumber) {
+	for (int i = 0; i < 8; i++) {
+		processValue(bit_is_set(pin, port));
+	}
+	if (shiftKeyCounter[keyNumber - 1] < 5 && value == 255) {
+		shiftKeyCounter[keyNumber - 1]++;
+	} else if (value == 0 && shiftKeyCounter[keyNumber - 1] >= 5) {
+		shiftKeyCounter[keyNumber - 1] = 0;
+		//Tastenevent hier einfügen
+		if (shiftStatustwo[0] == keyNumber) {
+			shiftStatustwo[1] ^= 0x01;
+		} else {
+			shiftStatustwo[1] = 0;
+		}
+		shiftStatustwo[0] = keyNumber;
+		toggleLED1();
+	} 
 }
 
 
 
 
-void ProcessShiftedKeyInput (byte *pin, byte *port) {
+
+void ProcessFunKeyInput8StreakFun (byte *pin, byte *port) {
 	if (shiftStatus) {
-		if (bit_is_set(PIND, ERW_FUNKEY1)) {
-			keyStatus = 1;
-		} else if (keyStatus++) {
+		for (int i = 0; i < 8; i++) {
+			processValue(bit_is_set(PIND, ERW_FUNKEY2));
+		}
+		if (value == 0) {
+			shiftedKeyStatus = 1;
+		} else if (shiftedKeyStatus == 1 && value == 255) {
 			// *keyStatus++;
-			if (keyStatus == 20) {
-				shiftTimeOut = 1;
-				keyStatus = 0;
-				//hier info in locoinfo schreiben/tastenevent
-			    PORTA |= 1<<LED1;
-				//PORTA |= 1<<LED1;
-			}
+			
+			
+			shiftedKeyStatus = 0;
+			shiftPressed++;
+			//hier info in locoinfo schreiben/tastenevent
+			  disableLED2();
+			  //disableLED4();
+			//PORTA |= 1<<LED1;
 		}
 	}
+	
+}
+
+
+void ProcessFunKeyInput8Streak (byte pin, int8_t port, int8_t keyNumber, rwSlotDataMsg *currentSlot) {
+	
+		for (int i = 0; i < 8; i++) {
+			processValue(bit_is_set(pin, port));
+		}
+		if (funKeyCounter[keyNumber -1] < 5 && value == 255) {		//Bis 6 hochzählen falls der Tastenstatus 8 mal 1 hintereinander war (Taste nicht gedrückt)
+			funKeyCounter[keyNumber - 1]++;
+		} else if (funKeyCounter[keyNumber - 1] >= 5 && value == 0) {		//Falls der Zähler >= 5 ist und der Tastenstatus 8 mal hintereinander 0 (Taste gedrückt) ist, führe Tastenevent aus
+			funKeyCounter[keyNumber - 1] = 0;								//Setze Zähler auf -20, damit erst wieder etwas Zeit vergehen muss damit der Zähler >= 5 ist und somit bereit auf ein Drücken zu reagieren
+			//Tastenevent hier einfügen
+			
+			
+			if (shiftStatustwo[1] == 0) { //Wenn Funtkionen F0-F5 aktiv sind
+				if (keyNumber == 1) {	  //Wenn die 1. Taste gedrückt ist
+					currentSlot->dirf |= 1 << (4); //Setze das 5. Bit (F0) Funktion)
+				} else {
+					currentSlot->dirf |= 1 << (keyNumber - 2);
+				} 
+			} else if (shiftStatustwo[1] == 1) {
+				if (!(keyNumber == 1)) {
+					currentSlot->snd |= 1 << (keyNumber - 2);
+				} else {
+					currentSlot->dirf |= 1 << (3); //Setze das 4. bit (F4) Funktion)
+				}
+			}
+			if (shiftStatustwo[0] == 1) {
+				//currentSlot[shiftStatus].noch_einfügen
+				toggleLED1();
+			} else if (shiftStatustwo[0] == 2) {
+				toggleLED2();
+			} else if (shiftStatustwo[0] == 3) {
+				toggleLED3();
+			} else if (shiftStatustwo[0] == 4) {
+				toggleLED4();
+			}
+		}
+}
+
+void transmitInputLoco (rwSlotDataMsg *currentSlot, int8_t currentNumber) {
+	if (((potiStatus) & (1<<(currentNumber)))) { //Wenn bit gesetzt ist senden
+		if (sendStatus == LN_DONE) {
+			potiStatus &= ~(1 << currentNumber); //Clear bit wenn Senden erfolgreich war (sendstatus == LN_Done)
+		}
+	}
+	if(currentSlot->dirf & 0x00011111 || ((currentSlot->dirf & 0b00100000)^currentSlot->lastDir)) { //Ausführen falls Funktionstasten 0-4 || Richtungstaste gedrückt wurde
+		//loconet senden (dirf, also direction + f0-f5 bits)
+		//sendLocoNetDirf(&currentSlot);
+		if (((currentSlot->dirf & 0b00100000)^(currentSlot->lastDir & 0b00100000 ))) {
+			toggleLED4();
+		}
+		sendStatus = testLoco(0xA1, currentSlot->dirf);
+		if (sendStatus == LN_DONE) {
+			currentSlot->dirf &= 0b00100000; //Alle bits löschen außer direction bit
+			currentSlot->lastDir &= 0x00;
+			currentSlot->lastDir |= currentSlot->dirf;
+		}
+		
+		
+		//if (sendStatus == LN_DONE) {
+			//currentSlot->dirf &= 0x00;
+		//}
+	}
+	if (currentSlot->snd) { //Ausführen falls Funktionstasten 5-7 gedrückt wurden
+		//Funktionen 6-8 senden
+		//sendStatus = funktionnen6-8 senden
+		sendStatus = testLoco(0xA2, currentSlot->snd);
+		if (sendStatus == LN_DONE) {
+		currentSlot->snd &= 0x00;
+		}
+	}
+		
+	
+	
+	//Ab hier in Zukunft unnötig
+	//if (shiftStatus == currentNumber) { //Sind die Funktionstasten für diesen Zug freigegeben?
+		////Funktionen sind (F0-F4) A1 (dirf opcode), und (F5-F8) A2, zusaätzlichen State einführen der 0 oder 1 ist und zum byte 0xA1 dazuaddiert wird
+		////Da direction auch auf funktion 0-5 liegt nur eine Abfrage für die funktionstasten
+		////if (Zug auf den Slot zugewiesen)
+			//if(((funkeyStatus) & (1<<(0)))) {
+				////Funkey Senden mit shiftstatus
+				//sendStatus = testLoco(currentNumber + 5);
+				//
+					//funkeyStatus &= ~(1 << 0);
+				//
+			//}
+			//if(((funkeyStatus) & (1<<(1)))) {
+				//sendStatus = testLoco(currentNumber + 6);
+				//
+					//funkeyStatus &= ~(1 << 1);
+				//
+			//}
+			//if(((funkeyStatus) & (1<<(2)))) {
+				//sendStatus = testLoco(currentNumber + 7);
+				//
+					//funkeyStatus &= ~(1 << 2);
+				//
+			//}
+			//if(((funkeyStatus) & (1<<(3)))) {
+				//sendStatus = testLoco(currentNumber);
+				//
+					//funkeyStatus &= ~(1 << 3);
+				//
+			//}
+			//if (sendStatus == LN_DONE) {
+				//toggleLED1();
+			//}
+			//sendStatus = LN_COLLISION;
+		//// else, also wenn kein Zug zugewiesen
+		//// Zug anfordern
+	//}
+}
+
+LN_STATUS testLoco (byte opc, byte data) {
+	return sendLocoNet4BytePacketTry(opc, 0x06, data, 0x1A);
 }
 
 void processValue (int8_t new_value) {
 	if (new_value) {
-		value = (value / 2) + 2;
+		value = (value / 2) + 128;
 	} else {
 		value = value / 2;
 	}
+}
+
+void setPullUps (void) {
+	PORTC |= (1<<FUNKEY1);
+	PORTB |= (1<<FUNKEY2);
+	PORTC |= (1<<FUNKEY3);
+	PORTA |= (1<<FUNKEY4);
+	PORTC |= (1<<DIRKEY1);
+	PORTA |= (1<<DIRKEY2);
+	PORTC |= (1<<DIRKEY3);
+	PORTC |= (1<<DIRKEY4);
+	PORTD |= (1<<ERW_FUNKEY1);
+	PORTD |= (1<<ERW_FUNKEY2);
+	PORTD |= (1<<ERW_FUNKEY3);
+	PORTD |= (1<<ERW_FUNKEY4);
 } 
 
 
@@ -1991,7 +2411,7 @@ void vProcessPoti(rwSlotDataMsg *currentSlot)
  *******************************************************FunctionHeaderEnd******/
 void sendLocoNetSpd(rwSlotDataMsg *currentSlot)
 {
-  sendLocoNet4BytePacket(OPC_LOCO_SPD,currentSlot->slot,currentSlot->spd);
+  sendStatus = sendLocoNet4BytePacket(OPC_LOCO_SPD,currentSlot->slot,currentSlot->spd); // sendstatus = hinzugefügt 10.6.2017
   resetTimerAction(&MessageTimer, SPEED_TIME);
 }
 
@@ -2006,7 +2426,7 @@ void sendLocoNetSpd(rwSlotDataMsg *currentSlot)
  *******************************************************FunctionHeaderEnd******/
 void sendLocoNetDirf(rwSlotDataMsg *currentSlot)
 {
-  sendLocoNet4BytePacket(OPC_LOCO_DIRF,currentSlot->slot,currentSlot->dirf);
+  sendStatus = sendLocoNet4BytePacket(OPC_LOCO_DIRF,currentSlot->slot,currentSlot->dirf); // sendstatus = hinzugefügt 10.6.2017
 }
 
 /******************************************************FunctionHeaderBegin******
@@ -2020,7 +2440,7 @@ void sendLocoNetDirf(rwSlotDataMsg *currentSlot)
  *******************************************************FunctionHeaderEnd******/
 void sendLocoNetSnd(rwSlotDataMsg *currentSlot)
 {
-  sendLocoNet4BytePacket(OPC_LOCO_SND,currentSlot->slot,currentSlot->snd);
+  sendStatus = sendLocoNet4BytePacket(OPC_LOCO_SND,currentSlot->slot,currentSlot->snd); // sendstatus = hinzugefügt 10.6.2017
 }
 
 /******************************************************FunctionHeaderBegin******
@@ -2301,3 +2721,5 @@ void vSetUnconnected(rwSlotDataMsg *currentSlot)
 
   vSetState(THR_STATE_UNCONNECTED, currentSlot);
 }
+
+

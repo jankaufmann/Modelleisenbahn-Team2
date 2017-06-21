@@ -448,6 +448,8 @@ typedef struct rwslotdata_t {
     byte adr;           /* loco address                                         */
     byte spd;           /* command speed                                        */
     byte dirf;          /* direction and F0-F4 bits                             */
+	byte lastDir;        /* last direction, to check if it changed               */
+	byte dirfS[2];      /* direction and F0-F4 [0] and F5-F8 [1]                */
     byte trk;           /* track status                                         */
     byte ss2;           /* slot status 2 (tells how to use ID1/ID2 & ADV Consist*/
     byte adr2;          /* loco address high                                    */

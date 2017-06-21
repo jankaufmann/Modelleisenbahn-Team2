@@ -1,16 +1,16 @@
 Archive member included to satisfy reference by file (symbol)
 
-c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
-                              C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o (exit)
-c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                              E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o (exit)
+e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
                               src/apps/Fredi/fredi.o (__do_copy_data)
-c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
-                              src/apps/Fredi/fredi.o (__do_clear_bss)
-c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(memcpy.o)
+e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+                              src/apps/Fredi/keys.o (__do_clear_bss)
+e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(memcpy.o)
                               src/loconet/ln_buf.o (memcpy)
-C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
+E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
                               src/apps/Fredi/fredi.o (eeprom_read_byte)
-C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
+E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
                               src/apps/Fredi/fredi.o (eeprom_write_byte)
 
 Allocating common symbols
@@ -19,11 +19,16 @@ Common symbol       size              file
 lnTxSuccess         0x1               src/avr-base/ln_sw_uart.o
 lnTxIndex           0x1               src/avr-base/ln_sw_uart.o
 lnTxLength          0x1               src/avr-base/ln_sw_uart.o
+funKeyCounter       0x4               src/apps/Fredi/fredi.o
 MessageTimer        0x7               src/apps/Fredi/fredi.o
+dirfKeyStatus       0x4               src/apps/Fredi/fredi.o
+sendStatus          0x1               src/apps/Fredi/fredi.o
 bERWFunKey2Status   0x1               src/apps/Fredi/fredi.o
+shiftKeyCounter     0x4               src/apps/Fredi/fredi.o
 IncrementTimer      0x7               src/apps/Fredi/fredi.o
 lnCurrentByte       0x1               src/avr-base/ln_sw_uart.o
 LEDTimer            0x7               src/apps/Fredi/fredi.o
+shiftStatustwo      0x2               src/apps/Fredi/fredi.o
 bERWFunKey4Status   0x1               src/apps/Fredi/fredi.o
 KeyTimer            0x7               src/apps/Fredi/fredi.o
 lnCompareTarget     0x2               src/avr-base/ln_sw_uart.o
@@ -31,25 +36,34 @@ lnRxBuffer          0x2               src/avr-base/ln_sw_uart.o
 RxPacket            0x2               src/apps/Fredi/fredi.o
 RxBuffer            0x8c              src/apps/Fredi/fredi.o
 ReleaseStopTimer    0x7               src/apps/Fredi/fredi.o
+dirfSCopy           0x2               src/apps/Fredi/fredi.o
 lnState             0x1               src/avr-base/ln_sw_uart.o
-TxPacket            0x16              src/apps/Fredi/fredi.o
-slotArray           0x58              src/apps/Fredi/fredi.o
+TxPacket            0x19              src/apps/Fredi/fredi.o
+slotArray           0x64              src/apps/Fredi/fredi.o
 bERWFunKey3Status   0x1               src/apps/Fredi/fredi.o
 lnBitCount          0x1               src/avr-base/ln_sw_uart.o
 lnTxData            0x2               src/avr-base/ln_sw_uart.o
+dirKeyCounter       0x4               src/apps/Fredi/fredi.o
 bERWFunKey1Status   0x1               src/apps/Fredi/fredi.o
 
 Discarded input sections
 
- .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
- .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
+ .data          0x00000000        0x0 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
+ .bss           0x00000000        0x0 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
+ .text          0x00000000        0x0 src/apps/Fredi/keys.o
+ .data          0x00000000        0x0 src/apps/Fredi/keys.o
+ .bss           0x00000000        0x0 src/apps/Fredi/keys.o
+ .text.ProcessKeyInput8Streak
+                0x00000000       0x5c src/apps/Fredi/keys.o
+ .comment       0x00000000       0x31 src/apps/Fredi/keys.o
+ COMMON         0x00000000        0x0 src/apps/Fredi/keys.o
  .text          0x00000000        0x0 src/apps/Fredi/fredi.o
  .data          0x00000000        0x0 src/apps/Fredi/fredi.o
  .bss           0x00000000        0x0 src/apps/Fredi/fredi.o
  .text.GET_SPDCNT_BY_SLOTSPD
                 0x00000000       0x28 src/apps/Fredi/fredi.o
- .text.setLEDasOutput
-                0x00000000        0xa src/apps/Fredi/fredi.o
+ .text.enableLED2
+                0x00000000        0x4 src/apps/Fredi/fredi.o
  .text.enableLED3
                 0x00000000        0x4 src/apps/Fredi/fredi.o
  .text.enableLED4
@@ -58,34 +72,30 @@ Discarded input sections
                 0x00000000        0x4 src/apps/Fredi/fredi.o
  .text.disableLED3
                 0x00000000        0x4 src/apps/Fredi/fredi.o
- .text.disableLED4
-                0x00000000        0x4 src/apps/Fredi/fredi.o
  .text.LEDTimerAction
                 0x00000000       0x84 src/apps/Fredi/fredi.o
  .text.entprellen_druecken
                 0x00000000       0x26 src/apps/Fredi/fredi.o
- .text.ProcessShiftedKeyInput
-                0x00000000       0x32 src/apps/Fredi/fredi.o
- .text.processValue
-                0x00000000       0x10 src/apps/Fredi/fredi.o
  .text.ProcessKeyInput
-                0x00000000       0x54 src/apps/Fredi/fredi.o
+                0x00000000       0xb8 src/apps/Fredi/fredi.o
+ .text.ProcessShiftKeyInput8StreakFun
+                0x00000000       0xfa src/apps/Fredi/fredi.o
+ .text.ProcessFunKeyInput8StreakFun
+                0x00000000       0x70 src/apps/Fredi/fredi.o
  .text.testFalseSignalStreakIsSet
-                0x00000000      0x1dc src/apps/Fredi/fredi.o
+                0x00000000      0x1d6 src/apps/Fredi/fredi.o
  .text.testFalseSignalStreakIsClear
                 0x00000000      0x13e src/apps/Fredi/fredi.o
  .text.testKeySignal
                 0x00000000       0x30 src/apps/Fredi/fredi.o
- .text._delay_1500ms
-                0x00000000       0x16 src/apps/Fredi/fredi.o
  .text.testSignalRatio
-                0x00000000      0x1e2 src/apps/Fredi/fredi.o
+                0x00000000      0x1c8 src/apps/Fredi/fredi.o
  .text.sendLocoNetSpd
-                0x00000000       0x16 src/apps/Fredi/fredi.o
+                0x00000000       0x1a src/apps/Fredi/fredi.o
  .text.sendLocoNetDirf
-                0x00000000        0xc src/apps/Fredi/fredi.o
+                0x00000000       0x12 src/apps/Fredi/fredi.o
  .text.sendLocoNetSnd
-                0x00000000        0xc src/apps/Fredi/fredi.o
+                0x00000000       0x12 src/apps/Fredi/fredi.o
  .text.sendLocoNetWriteSlotData
                 0x00000000       0xa6 src/apps/Fredi/fredi.o
  .text.sendLocoNetMove
@@ -108,9 +118,9 @@ Discarded input sections
                 0x00000000       0x34 src/apps/Fredi/fredi.o
  .text.vProcessRxLoconetMessage
                 0x00000000      0x1ec src/apps/Fredi/fredi.o
- .data.bOldValue.2412
+ .data.bOldValue.2658
                 0x00000000        0x2 src/apps/Fredi/fredi.o
- .bss.bLastCurrentkey.2317
+ .bss.bLastCurrentkey.2507
                 0x00000000        0x1 src/apps/Fredi/fredi.o
  .bss.wSelfTest
                 0x00000000        0x2 src/apps/Fredi/fredi.o
@@ -125,14 +135,21 @@ Discarded input sections
  .bss.streak    0x00000000        0x4 src/apps/Fredi/fredi.o
  .bss.shiftTimeOut
                 0x00000000        0x1 src/apps/Fredi/fredi.o
+ .bss.shiftPressed
+                0x00000000        0x4 src/apps/Fredi/fredi.o
+ .bss.dirKeyStatus
+                0x00000000        0x1 src/apps/Fredi/fredi.o
+ .bss.funkeyStatus
+                0x00000000        0x1 src/apps/Fredi/fredi.o
  .bss.shiftStatus
                 0x00000000        0x1 src/apps/Fredi/fredi.o
- .bss.keyStatus
+ .bss.shiftedKeyStatus
                 0x00000000        0x1 src/apps/Fredi/fredi.o
+ .bss.keyStatus
+                0x00000000        0x4 src/apps/Fredi/fredi.o
  .bss.entprell  0x00000000        0x1 src/apps/Fredi/fredi.o
  .bss.old_value
                 0x00000000        0x1 src/apps/Fredi/fredi.o
- .bss.value     0x00000000        0x1 src/apps/Fredi/fredi.o
  .rodata.abSpd  0x00000000       0x25 src/apps/Fredi/fredi.o
  .bss.bNewState
                 0x00000000        0x1 src/apps/Fredi/fredi.o
@@ -157,7 +174,7 @@ Discarded input sections
  .text.initLnBuf
                 0x00000000        0xc src/loconet/ln_buf.o
  .text.recvLnMsg
-                0x00000000      0x1fc src/loconet/ln_buf.o
+                0x00000000      0x206 src/loconet/ln_buf.o
  .text.getLnBufStats
                 0x00000000        0x6 src/loconet/ln_buf.o
  .text          0x00000000        0x0 src/loconet/ln_interface.o
@@ -165,15 +182,13 @@ Discarded input sections
  .bss           0x00000000        0x0 src/loconet/ln_interface.o
  .text.recvLocoNetPacket
                 0x00000000        0xc src/loconet/ln_interface.o
- .text.sendLocoNet4BytePacketTry
-                0x00000000       0x36 src/loconet/ln_interface.o
  .text          0x00000000        0x0 src/loconet/utils.o
  .data          0x00000000        0x0 src/loconet/utils.o
  .bss           0x00000000        0x0 src/loconet/utils.o
  .text.decodePeerData
-                0x00000000       0x46 src/loconet/utils.o
+                0x00000000       0x48 src/loconet/utils.o
  .text.encodePeerData
-                0x00000000       0x64 src/loconet/utils.o
+                0x00000000       0x62 src/loconet/utils.o
  .comment       0x00000000       0x31 src/loconet/utils.o
  .text          0x00000000        0x0 src/ASF/mega/boards/stk600/rcx_x/init.o
  .data          0x00000000        0x0 src/ASF/mega/boards/stk600/rcx_x/init.o
@@ -181,65 +196,65 @@ Discarded input sections
  .text.board_init
                 0x00000000        0x2 src/ASF/mega/boards/stk600/rcx_x/init.o
  .comment       0x00000000       0x31 src/ASF/mega/boards/stk600/rcx_x/init.o
- .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
- .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
- .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .text          0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .data          0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .bss           0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.mul
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.div
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.prologue
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.builtins
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.fmul
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.fixed
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
- .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
- .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
- .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .text          0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .data          0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .bss           0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.mul
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.div
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.prologue
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.builtins
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.fmul
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.fixed
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
- .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
- .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
- .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+ .text          0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .data          0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .bss           0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
  .text.libgcc.mul
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
  .text.libgcc.div
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
- .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
  .text.libgcc.prologue
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
  .text.libgcc.builtins
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
  .text.libgcc.fmul
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
  .text.libgcc.fixed
-                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
- .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(memcpy.o)
- .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(memcpy.o)
- .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(memcpy.o)
+                0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+ .text          0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(memcpy.o)
+ .data          0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(memcpy.o)
+ .bss           0x00000000        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(memcpy.o)
  .text.avr-libc
-                0x00000000       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(memcpy.o)
- .text          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
- .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
- .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
- .text          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
- .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
- .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
+                0x00000000       0x12 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(memcpy.o)
+ .text          0x00000000        0x0 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
+ .data          0x00000000        0x0 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
+ .bss           0x00000000        0x0 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
+ .text          0x00000000        0x0 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
+ .data          0x00000000        0x0 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
+ .bss           0x00000000        0x0 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
 
 Memory Configuration
 
@@ -255,7 +270,8 @@ user_signatures  0x00850000         0x00000400         rw !x
 
 Linker script and memory map
 
-LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
+LOAD E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
+LOAD src/apps/Fredi/keys.o
 LOAD src/apps/Fredi/fredi.o
 LOAD src/apps/Fredi/fuses.o
 LOAD src/apps/Fredi/potAdc.o
@@ -266,13 +282,13 @@ LOAD src/loconet/ln_interface.o
 LOAD src/loconet/utils.o
 LOAD src/ASF/mega/boards/stk600/rcx_x/init.o
 START GROUP
-LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a
+LOAD e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a
 END GROUP
 START GROUP
-LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a
-LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a
-LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a
-LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a
+LOAD e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a
+LOAD e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a
+LOAD e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a
+LOAD E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a
 END GROUP
                 0x00020000                __TEXT_REGION_LENGTH__ = DEFINED (__TEXT_REGION_LENGTH__)?__TEXT_REGION_LENGTH__:0x20000
                 0x0000ffa0                __DATA_REGION_LENGTH__ = DEFINED (__DATA_REGION_LENGTH__)?__DATA_REGION_LENGTH__:0xffa0
@@ -372,9 +388,9 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xd90
+.text           0x00000000     0x11a6
  *(.vectors)
- .vectors       0x00000000       0x54 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
+ .vectors       0x00000000       0x54 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
                 0x00000000                __vector_default
                 0x00000000                __vectors
  *(.vectors)
@@ -402,20 +418,20 @@ END GROUP
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x00000054        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
+ .init0         0x00000054        0x0 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
                 0x00000054                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x00000054        0xc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
+ .init2         0x00000054        0xc E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x00000060       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
+ .init4         0x00000060       0x16 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
                 0x00000060                __do_copy_data
- .init4         0x00000076       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
+ .init4         0x00000076       0x10 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
                 0x00000076                __do_clear_bss
  *(.init4)
  *(.init5)
@@ -427,134 +443,176 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x00000086        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
+ .init9         0x00000086        0x6 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
  *(.init9)
  *(.text)
- .text          0x0000008a        0x2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
-                0x0000008a                __vector_1
-                0x0000008a                __vector_12
-                0x0000008a                __bad_interrupt
-                0x0000008a                __vector_3
-                0x0000008a                __vector_11
-                0x0000008a                __vector_13
-                0x0000008a                __vector_17
-                0x0000008a                __vector_19
-                0x0000008a                __vector_7
-                0x0000008a                __vector_4
-                0x0000008a                __vector_15
-                0x0000008a                __vector_8
-                0x0000008a                __vector_14
-                0x0000008a                __vector_10
-                0x0000008a                __vector_16
-                0x0000008a                __vector_18
-                0x0000008a                __vector_20
-                0x0000008c                . = ALIGN (0x2)
+ .text          0x0000008c        0x2 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
+                0x0000008c                __vector_1
+                0x0000008c                __vector_12
+                0x0000008c                __bad_interrupt
+                0x0000008c                __vector_3
+                0x0000008c                __vector_11
+                0x0000008c                __vector_13
+                0x0000008c                __vector_17
+                0x0000008c                __vector_19
+                0x0000008c                __vector_7
+                0x0000008c                __vector_4
+                0x0000008c                __vector_15
+                0x0000008c                __vector_8
+                0x0000008c                __vector_14
+                0x0000008c                __vector_10
+                0x0000008c                __vector_16
+                0x0000008c                __vector_18
+                0x0000008c                __vector_20
+                0x0000008e                . = ALIGN (0x2)
  *(.text.*)
  .text.IncrementTimerAction
-                0x0000008c       0x20 src/apps/Fredi/fredi.o
-                0x0000008c                IncrementTimerAction
+                0x0000008e       0x20 src/apps/Fredi/fredi.o
+                0x0000008e                IncrementTimerAction
  .text.ReleaseStopTimerAction
-                0x000000ac        0x8 src/apps/Fredi/fredi.o
-                0x000000ac                ReleaseStopTimerAction
+                0x000000ae        0x8 src/apps/Fredi/fredi.o
+                0x000000ae                ReleaseStopTimerAction
  .text.KeyTimerAction
-                0x000000b4       0xa8 src/apps/Fredi/fredi.o
-                0x000000b4                KeyTimerAction
+                0x000000b6       0xa8 src/apps/Fredi/fredi.o
+                0x000000b6                KeyTimerAction
+ .text.setLEDasOutput
+                0x0000015e        0xa src/apps/Fredi/fredi.o
+                0x0000015e                setLEDasOutput
  .text.enableLED1
-                0x0000015c        0x4 src/apps/Fredi/fredi.o
-                0x0000015c                enableLED1
- .text.enableLED2
-                0x00000160        0x4 src/apps/Fredi/fredi.o
-                0x00000160                enableLED2
+                0x00000168        0x4 src/apps/Fredi/fredi.o
+                0x00000168                enableLED1
  .text.disableLED1
-                0x00000164        0x4 src/apps/Fredi/fredi.o
-                0x00000164                disableLED1
+                0x0000016c        0x4 src/apps/Fredi/fredi.o
+                0x0000016c                disableLED1
+ .text.disableLED4
+                0x00000170        0x4 src/apps/Fredi/fredi.o
+                0x00000170                disableLED4
+ .text.toggleLED1
+                0x00000174        0xc src/apps/Fredi/fredi.o
+                0x00000174                toggleLED1
+ .text.toggleLED2
+                0x00000180        0xc src/apps/Fredi/fredi.o
+                0x00000180                toggleLED2
+ .text.toggleLED3
+                0x0000018c        0xc src/apps/Fredi/fredi.o
+                0x0000018c                toggleLED3
+ .text.toggleLED4
+                0x00000198        0xc src/apps/Fredi/fredi.o
+                0x00000198                toggleLED4
  .text.initKeys
-                0x00000168       0xc6 src/apps/Fredi/fredi.o
-                0x00000168                initKeys
+                0x000001a4       0xbc src/apps/Fredi/fredi.o
+                0x000001a4                initKeys
  .text.__vector_2
-                0x0000022e       0x40 src/apps/Fredi/fredi.o
-                0x0000022e                __vector_2
+                0x00000260       0x40 src/apps/Fredi/fredi.o
+                0x00000260                __vector_2
  .text.vSetState
-                0x0000026e       0x86 src/apps/Fredi/fredi.o
-                0x0000026e                vSetState
+                0x000002a0       0x86 src/apps/Fredi/fredi.o
+                0x000002a0                vSetState
  .text.MessageTimerAction
-                0x000002f4       0xf6 src/apps/Fredi/fredi.o
-                0x000002f4                MessageTimerAction
+                0x00000326       0xf6 src/apps/Fredi/fredi.o
+                0x00000326                MessageTimerAction
  .text.initSlots
-                0x000003ea       0xb6 src/apps/Fredi/fredi.o
-                0x000003ea                initSlots
+                0x0000041c       0xc2 src/apps/Fredi/fredi.o
+                0x0000041c                initSlots
+ .text.testLoco
+                0x000004de        0x8 src/apps/Fredi/fredi.o
+                0x000004de                testLoco
+ .text.transmitInputLoco
+                0x000004e6       0x84 src/apps/Fredi/fredi.o
+                0x000004e6                transmitInputLoco
+ .text.processValue
+                0x0000056a       0x10 src/apps/Fredi/fredi.o
+                0x0000056a                processValue
+ .text.ProcessDirKeyInput8Streak
+                0x0000057a       0x88 src/apps/Fredi/fredi.o
+                0x0000057a                ProcessDirKeyInput8Streak
+ .text.ProcessShiftKeyInput8Streak
+                0x00000602       0x8e src/apps/Fredi/fredi.o
+                0x00000602                ProcessShiftKeyInput8Streak
+ .text.ProcessFunKeyInput8Streak
+                0x00000690       0xfe src/apps/Fredi/fredi.o
+                0x00000690                ProcessFunKeyInput8Streak
+ .text.setPullUps
+                0x0000078e       0x1a src/apps/Fredi/fredi.o
+                0x0000078e                setPullUps
+ .text._delay_1500ms
+                0x000007a8       0x16 src/apps/Fredi/fredi.o
+                0x000007a8                _delay_1500ms
  .text.sendLocoNetAdr
-                0x000004a0       0x1a src/apps/Fredi/fredi.o
-                0x000004a0                sendLocoNetAdr
+                0x000007be       0x1a src/apps/Fredi/fredi.o
+                0x000007be                sendLocoNetAdr
  .text.sendLocoNetFredCd
-                0x000004ba        0xa src/apps/Fredi/fredi.o
-                0x000004ba                sendLocoNetFredCd
+                0x000007d8        0xa src/apps/Fredi/fredi.o
+                0x000007d8                sendLocoNetFredCd
  .text.startup.main
-                0x000004c4      0x19e src/apps/Fredi/fredi.o
-                0x000004c4                main
+                0x000007e2      0x272 src/apps/Fredi/fredi.o
+                0x000007e2                main
  .text.potAdcPowerOff
-                0x00000662        0x4 src/apps/Fredi/potAdc.o
-                0x00000662                potAdcPowerOff
+                0x00000a54        0x4 src/apps/Fredi/potAdc.o
+                0x00000a54                potAdcPowerOff
  .text.potAdcInit
-                0x00000666       0x16 src/apps/Fredi/potAdc.o
-                0x00000666                potAdcInit
+                0x00000a58       0x16 src/apps/Fredi/potAdc.o
+                0x00000a58                potAdcInit
  .text.potAdcTimerAction
-                0x0000067c       0x90 src/apps/Fredi/potAdc.o
-                0x0000067c                potAdcTimerAction
+                0x00000a6e       0x90 src/apps/Fredi/potAdc.o
+                0x00000a6e                potAdcTimerAction
  .text.__vector_5
-                0x0000070c       0x54 src/avr-base/ln_sw_uart.o
-                0x0000070c                __vector_5
+                0x00000afe       0x54 src/avr-base/ln_sw_uart.o
+                0x00000afe                __vector_5
  .text.__vector_6
-                0x00000760      0x252 src/avr-base/ln_sw_uart.o
-                0x00000760                __vector_6
+                0x00000b52      0x250 src/avr-base/ln_sw_uart.o
+                0x00000b52                __vector_6
  .text.initLocoNetHardware
-                0x000009b2       0x2a src/avr-base/ln_sw_uart.o
-                0x000009b2                initLocoNetHardware
+                0x00000da2       0x2a src/avr-base/ln_sw_uart.o
+                0x00000da2                initLocoNetHardware
  .text.sendLocoNetPacketTry
-                0x000009dc      0x140 src/avr-base/ln_sw_uart.o
-                0x000009dc                sendLocoNetPacketTry
+                0x00000dcc      0x132 src/avr-base/ln_sw_uart.o
+                0x00000dcc                sendLocoNetPacketTry
  .text.__vector_9
-                0x00000b1c       0x66 src/avr-base/systimer.o
-                0x00000b1c                __vector_9
+                0x00000efe       0x66 src/avr-base/systimer.o
+                0x00000efe                __vector_9
  .text.initTimer
-                0x00000b82       0x1a src/avr-base/systimer.o
-                0x00000b82                initTimer
+                0x00000f64       0x1a src/avr-base/systimer.o
+                0x00000f64                initTimer
  .text.addTimerAction
-                0x00000b9c       0x46 src/avr-base/systimer.o
-                0x00000b9c                addTimerAction
+                0x00000f7e       0x46 src/avr-base/systimer.o
+                0x00000f7e                addTimerAction
  .text.resetTimerAction
-                0x00000be2        0x6 src/avr-base/systimer.o
-                0x00000be2                resetTimerAction
+                0x00000fc4        0x6 src/avr-base/systimer.o
+                0x00000fc4                resetTimerAction
  .text.delayTimer
-                0x00000be8       0x16 src/avr-base/systimer.o
-                0x00000be8                delayTimer
+                0x00000fca       0x16 src/avr-base/systimer.o
+                0x00000fca                delayTimer
  .text.processTimerActions
-                0x00000bfe       0xb0 src/avr-base/systimer.o
-                0x00000bfe                processTimerActions
+                0x00000fe0       0xb0 src/avr-base/systimer.o
+                0x00000fe0                processTimerActions
  .text.getLnMsgSize
-                0x00000cae       0x1a src/loconet/ln_buf.o
-                0x00000cae                getLnMsgSize
+                0x00001090       0x1a src/loconet/ln_buf.o
+                0x00001090                getLnMsgSize
  .text.initLocoNet
-                0x00000cc8        0xa src/loconet/ln_interface.o
-                0x00000cc8                initLocoNet
+                0x000010aa        0xa src/loconet/ln_interface.o
+                0x000010aa                initLocoNet
  .text.sendLocoNetPacket
-                0x00000cd2       0x5e src/loconet/ln_interface.o
-                0x00000cd2                sendLocoNetPacket
+                0x000010b4       0x5e src/loconet/ln_interface.o
+                0x000010b4                sendLocoNetPacket
  .text.sendLocoNet4BytePacket
-                0x00000d30       0x32 src/loconet/ln_interface.o
-                0x00000d30                sendLocoNet4BytePacket
+                0x00001112       0x32 src/loconet/ln_interface.o
+                0x00001112                sendLocoNet4BytePacket
+ .text.sendLocoNet4BytePacketTry
+                0x00001144       0x34 src/loconet/ln_interface.o
+                0x00001144                sendLocoNet4BytePacketTry
  .text.avr-libc
-                0x00000d62       0x10 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
-                0x00000d62                eeprom_read_byte
+                0x00001178       0x10 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
+                0x00001178                eeprom_read_byte
  .text.avr-libc
-                0x00000d72       0x1a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
-                0x00000d72                eeprom_write_byte
-                0x00000d74                eeprom_write_r18
-                0x00000d8c                . = ALIGN (0x2)
+                0x00001188       0x1a E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
+                0x00001188                eeprom_write_byte
+                0x0000118a                eeprom_write_r18
+                0x000011a2                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000d8c        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
-                0x00000d8c                _exit
-                0x00000d8c                exit
+ .fini9         0x000011a2        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x000011a2                _exit
+                0x000011a2                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -573,19 +631,19 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000d8c        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .fini0         0x000011a2        0x4 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000d90                _etext = .
+                0x000011a6                _etext = .
 
-.data           0x00800060        0x6 load address 0x00000d90
+.data           0x00800060        0x6 load address 0x000011a6
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
- .data.bLastDirSwitch.2226
+ .data.bLastDirSwitch.2407
                 0x00800060        0x1 src/apps/Fredi/fredi.o
- .data.bLastEncSwitch.2222
+ .data.bLastEncSwitch.2403
                 0x00800061        0x1 src/apps/Fredi/fredi.o
- .data.bLastKey.2224
+ .data.bLastKey.2405
                 0x00800062        0x1 src/apps/Fredi/fredi.o
  .data.fSetSpeed
                 0x00800063        0x1 src/apps/Fredi/fredi.o
@@ -602,7 +660,7 @@ END GROUP
                 0x00800066                _edata = .
                 0x00800066                PROVIDE (__data_end, .)
 
-.bss            0x00800066      0x148
+.bss            0x00800066      0x16e
                 0x00800066                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
@@ -611,79 +669,91 @@ END GROUP
  .bss.bCurrentKey
                 0x00800067        0x1 src/apps/Fredi/fredi.o
  .bss.sEncDir   0x00800068        0x1 src/apps/Fredi/fredi.o
- .bss.slotnumber
+ .bss.potiStatus
                 0x00800069        0x1 src/apps/Fredi/fredi.o
-                0x00800069                slotnumber
- .bss.bSpdCnt   0x0080006a        0x1 src/apps/Fredi/fredi.o
- .bss.bEvent    0x0080006b        0x1 src/apps/Fredi/fredi.o
-                0x0080006b                bEvent
+                0x00800069                potiStatus
+ .bss.value     0x0080006a        0x1 src/apps/Fredi/fredi.o
+                0x0080006a                value
+ .bss.slotnumber
+                0x0080006b        0x1 src/apps/Fredi/fredi.o
+                0x0080006b                slotnumber
+ .bss.bSpdCnt   0x0080006c        0x1 src/apps/Fredi/fredi.o
+ .bss.bEvent    0x0080006d        0x1 src/apps/Fredi/fredi.o
+                0x0080006d                bEvent
  .bss.bFrediVersion
-                0x0080006c        0x1 src/apps/Fredi/fredi.o
-                0x0080006c                bFrediVersion
- .bss.timeFilterState.1676
-                0x0080006d        0x1 src/apps/Fredi/potAdc.o
- .bss.count.1677
-                0x0080006e        0x1 src/apps/Fredi/potAdc.o
- .bss.deltaFilterState.1667
-                0x0080006f        0x2 src/apps/Fredi/potAdc.o
- .bss.potAdcRawValue
+                0x0080006e        0x1 src/apps/Fredi/fredi.o
+                0x0080006e                bFrediVersion
+ .bss.timeFilterState.1795
+                0x0080006f        0x1 src/apps/Fredi/potAdc.o
+ .bss.count.1796
+                0x00800070        0x1 src/apps/Fredi/potAdc.o
+ .bss.deltaFilterState.1786
                 0x00800071        0x2 src/apps/Fredi/potAdc.o
-                0x00800071                potAdcRawValue
+ .bss.potAdcRawValue
+                0x00800073        0x2 src/apps/Fredi/potAdc.o
+                0x00800073                potAdcRawValue
  .bss.potAdcSpeedValue
-                0x00800073        0x1 src/apps/Fredi/potAdc.o
-                0x00800073                potAdcSpeedValue
+                0x00800075        0x1 src/apps/Fredi/potAdc.o
+                0x00800075                potAdcSpeedValue
  .bss.DelayTimerTicks
-                0x00800074        0x2 src/avr-base/systimer.o
-                0x00800074                DelayTimerTicks
+                0x00800076        0x2 src/avr-base/systimer.o
+                0x00800076                DelayTimerTicks
  .bss.FastTimerTicks
-                0x00800076        0x1 src/avr-base/systimer.o
-                0x00800076                FastTimerTicks
- .bss.SlowTimerTicks
-                0x00800077        0x1 src/avr-base/systimer.o
-                0x00800077                SlowTimerTicks
- .bss.SlowTimerAccumulator
                 0x00800078        0x1 src/avr-base/systimer.o
-                0x00800078                SlowTimerAccumulator
+                0x00800078                FastTimerTicks
+ .bss.SlowTimerTicks
+                0x00800079        0x1 src/avr-base/systimer.o
+                0x00800079                SlowTimerTicks
+ .bss.SlowTimerAccumulator
+                0x0080007a        0x1 src/avr-base/systimer.o
+                0x0080007a                SlowTimerAccumulator
  .bss.FastTimerActionList
-                0x00800079        0x2 src/avr-base/systimer.o
- .bss.SlowTimerActionList
                 0x0080007b        0x2 src/avr-base/systimer.o
+ .bss.SlowTimerActionList
+                0x0080007d        0x2 src/avr-base/systimer.o
  .bss.pstLnRxBuffer
-                0x0080007d        0x2 src/loconet/ln_interface.o
+                0x0080007f        0x2 src/loconet/ln_interface.o
  *(COMMON)
- COMMON         0x0080007f      0x123 src/apps/Fredi/fredi.o
-                0x0080007f                MessageTimer
-                0x00800086                bERWFunKey2Status
-                0x00800087                IncrementTimer
-                0x0080008e                LEDTimer
-                0x00800095                bERWFunKey4Status
-                0x00800096                KeyTimer
-                0x0080009d                RxPacket
-                0x0080009f                RxBuffer
-                0x0080012b                ReleaseStopTimer
-                0x00800132                TxPacket
-                0x00800148                slotArray
-                0x008001a0                bERWFunKey3Status
-                0x008001a1                bERWFunKey1Status
- COMMON         0x008001a2        0xc src/avr-base/ln_sw_uart.o
-                0x008001a2                lnTxSuccess
-                0x008001a3                lnTxIndex
-                0x008001a4                lnTxLength
-                0x008001a5                lnCurrentByte
-                0x008001a6                lnCompareTarget
-                0x008001a8                lnRxBuffer
-                0x008001aa                lnState
-                0x008001ab                lnBitCount
-                0x008001ac                lnTxData
-                0x008001ae                PROVIDE (__bss_end, .)
-                0x00000d90                __data_load_start = LOADADDR (.data)
-                0x00000d96                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800081      0x147 src/apps/Fredi/fredi.o
+                0x00800081                funKeyCounter
+                0x00800085                MessageTimer
+                0x0080008c                dirfKeyStatus
+                0x00800090                sendStatus
+                0x00800091                bERWFunKey2Status
+                0x00800092                shiftKeyCounter
+                0x00800096                IncrementTimer
+                0x0080009d                LEDTimer
+                0x008000a4                shiftStatustwo
+                0x008000a6                bERWFunKey4Status
+                0x008000a7                KeyTimer
+                0x008000ae                RxPacket
+                0x008000b0                RxBuffer
+                0x0080013c                ReleaseStopTimer
+                0x00800143                dirfSCopy
+                0x00800145                TxPacket
+                0x0080015e                slotArray
+                0x008001c2                bERWFunKey3Status
+                0x008001c3                dirKeyCounter
+                0x008001c7                bERWFunKey1Status
+ COMMON         0x008001c8        0xc src/avr-base/ln_sw_uart.o
+                0x008001c8                lnTxSuccess
+                0x008001c9                lnTxIndex
+                0x008001ca                lnTxLength
+                0x008001cb                lnCurrentByte
+                0x008001cc                lnCompareTarget
+                0x008001ce                lnRxBuffer
+                0x008001d0                lnState
+                0x008001d1                lnBitCount
+                0x008001d2                lnTxData
+                0x008001d4                PROVIDE (__bss_end, .)
+                0x000011a6                __data_load_start = LOADADDR (.data)
+                0x000011ac                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008001ae        0x0
+.noinit         0x008001d4        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008001ae                _end = .
+                0x008001d4                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0xc
@@ -738,7 +808,7 @@ END GROUP
 .note.gnu.avr.deviceinfo
                 0x00000000       0x3c
  .note.gnu.avr.deviceinfo
-                0x00000000       0x3c C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
+                0x00000000       0x3c E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
 
 .note.gnu.build-id
  *(.note.gnu.build-id)
@@ -758,37 +828,37 @@ END GROUP
 .debug_aranges  0x00000000       0x40
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x20 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
+                0x00000000       0x20 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
  .debug_aranges
-                0x00000020       0x20 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
+                0x00000020       0x20 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
 .debug_info     0x00000000      0x682
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x52e C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
- .debug_info    0x0000052e       0xaa C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
- .debug_info    0x000005d8       0xaa C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
+ .debug_info    0x00000000      0x52e E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
+ .debug_info    0x0000052e       0xaa E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
+ .debug_info    0x000005d8       0xaa E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
 
 .debug_abbrev   0x00000000      0x50f
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x4e7 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
- .debug_abbrev  0x000004e7       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
- .debug_abbrev  0x000004fb       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
+ .debug_abbrev  0x00000000      0x4e7 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
+ .debug_abbrev  0x000004e7       0x14 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
+ .debug_abbrev  0x000004fb       0x14 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
 
 .debug_line     0x00000000      0x227
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x115 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
- .debug_line    0x00000115       0x7a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
- .debug_line    0x0000018f       0x98 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
+ .debug_line    0x00000000      0x115 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
+ .debug_line    0x00000115       0x7a E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
+ .debug_line    0x0000018f       0x98 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
 
 .debug_frame
  *(.debug_frame)
 
 .debug_str      0x00000000      0x1af
  *(.debug_str)
- .debug_str     0x00000000      0x1af C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
+ .debug_str     0x00000000      0x1af E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
 
 .debug_loc
  *(.debug_loc)

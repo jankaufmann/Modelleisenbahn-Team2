@@ -125,9 +125,20 @@ void potAdcPowerOff(void) {
 }
 
 void potAdcInit(void) {
+  #if defined(__AVR_ATmega48__)  | defined(__AVR_ATmega48A__)  \
+    | defined(__AVR_ATmega48P__) | defined(__AVR_ATmega88__)   \
+    | defined(__AVR_ATmega88A__) | defined(__AVR_ATmega88P__)  \
+    | defined(__AVR_ATmega168__) | defined(__AVR_ATmega168A__) \
+    | defined(__AVR_ATmega168P__)| defined(__AVR_ATmega328__)  \
+    | defined(__AVR_ATmega328P__)
+    PRR   &= ~(1<<PRADC); // enable ADC in Power Reduction Register.
+    DIDR0 |= (1<<ADC0D);  // disable digital input buffer to reduce
+                          // power consumption
+  #endif
 
-
-
+  ADMUX  = (0<<REFS1) | (1<<REFS0) // AVCC pin as reference
+         | (0<<ADLAR)              // 0 = left adjust, 1 = right adjust
+         | (0<<MUX3)  | (1<<MUX2)  | (1<<MUX1)  | (0<<MUX0); // select ADC6 pin PA6 benötigt
 
   #if defined(__AVR_ATmega48__)  | defined(__AVR_ATmega48A__)  \
     | defined(__AVR_ATmega48P__) | defined(__AVR_ATmega88__)   \
@@ -142,16 +153,16 @@ void potAdcInit(void) {
            | (0<<ADIE)  // disable interrupt
            | ADPS;      // ADC precaler selection
     // ADATE is 0 here, so we do not care about ADTS[2:0] in ADCSRB
+  #elif defined(__AVR_ATmega8__)
+    ADCSRA = (1<<ADEN)  // Enable ADC
+           | (1<<ADSC)  // Start single conversion
+           | (0<<ADFR)  // deselect ADC Free Running Mode
+           | (0<<ADIF)  // do not modify interrupt flag
+           | (0<<ADIE)  // disable interrupt
+           | ADPS;      // ADC precaler selection
   #else
     #error "unknown mcu"
   #endif
-
-  ADMUX  = (0<<REFS1) | (1<<REFS0) // AVCC pin as reference
-			 | (0<<ADLAR)              // 0 = left adjust, 1 = right adjust
-      //   | (0<<MUX3)  | (1<<MUX2)  | (1<<MUX1)  | (0<<MUX0); // select ADC6 pin PA6 benötigt (Regler 1)
-     //   | (0<<MUX3)  | (1<<MUX2)  | (1<<MUX1)  | (1<<MUX0); // select ADC7 pin PA7 benötigt (Regler 2)
-    //     | (0<<MUX3)  | (1<<MUX2)  | (0<<MUX1)  | (1<<MUX0); // select ADC5 pin PA5 benötigt (Regler 3)
-	  | (0<<MUX3)  | (1<<MUX2)  | (0<<MUX1)  | (0<<MUX0); // select ADC4 pin PA4 benötigt (Regler 4)
 
   while (bit_is_set(ADCSRA, ADSC)); // wait for measurement
   ADCH;                             // throw away first analog value
