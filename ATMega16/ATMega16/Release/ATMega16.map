@@ -388,7 +388,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x11a6
+.text           0x00000000     0x119c
  *(.vectors)
  .vectors       0x00000000       0x54 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5/crtatmega16.o
                 0x00000000                __vector_default
@@ -518,101 +518,101 @@ END GROUP
                 0x000004de        0x8 src/apps/Fredi/fredi.o
                 0x000004de                testLoco
  .text.transmitInputLoco
-                0x000004e6       0x84 src/apps/Fredi/fredi.o
+                0x000004e6       0x7a src/apps/Fredi/fredi.o
                 0x000004e6                transmitInputLoco
  .text.processValue
-                0x0000056a       0x10 src/apps/Fredi/fredi.o
-                0x0000056a                processValue
+                0x00000560       0x10 src/apps/Fredi/fredi.o
+                0x00000560                processValue
  .text.ProcessDirKeyInput8Streak
-                0x0000057a       0x88 src/apps/Fredi/fredi.o
-                0x0000057a                ProcessDirKeyInput8Streak
+                0x00000570       0x88 src/apps/Fredi/fredi.o
+                0x00000570                ProcessDirKeyInput8Streak
  .text.ProcessShiftKeyInput8Streak
-                0x00000602       0x8e src/apps/Fredi/fredi.o
-                0x00000602                ProcessShiftKeyInput8Streak
+                0x000005f8       0x8e src/apps/Fredi/fredi.o
+                0x000005f8                ProcessShiftKeyInput8Streak
  .text.ProcessFunKeyInput8Streak
-                0x00000690       0xfe src/apps/Fredi/fredi.o
-                0x00000690                ProcessFunKeyInput8Streak
+                0x00000686       0xfe src/apps/Fredi/fredi.o
+                0x00000686                ProcessFunKeyInput8Streak
  .text.setPullUps
-                0x0000078e       0x1a src/apps/Fredi/fredi.o
-                0x0000078e                setPullUps
+                0x00000784       0x1a src/apps/Fredi/fredi.o
+                0x00000784                setPullUps
  .text._delay_1500ms
-                0x000007a8       0x16 src/apps/Fredi/fredi.o
-                0x000007a8                _delay_1500ms
+                0x0000079e       0x16 src/apps/Fredi/fredi.o
+                0x0000079e                _delay_1500ms
  .text.sendLocoNetAdr
-                0x000007be       0x1a src/apps/Fredi/fredi.o
-                0x000007be                sendLocoNetAdr
+                0x000007b4       0x1a src/apps/Fredi/fredi.o
+                0x000007b4                sendLocoNetAdr
  .text.sendLocoNetFredCd
-                0x000007d8        0xa src/apps/Fredi/fredi.o
-                0x000007d8                sendLocoNetFredCd
+                0x000007ce        0xa src/apps/Fredi/fredi.o
+                0x000007ce                sendLocoNetFredCd
  .text.startup.main
-                0x000007e2      0x272 src/apps/Fredi/fredi.o
-                0x000007e2                main
+                0x000007d8      0x272 src/apps/Fredi/fredi.o
+                0x000007d8                main
  .text.potAdcPowerOff
-                0x00000a54        0x4 src/apps/Fredi/potAdc.o
-                0x00000a54                potAdcPowerOff
+                0x00000a4a        0x4 src/apps/Fredi/potAdc.o
+                0x00000a4a                potAdcPowerOff
  .text.potAdcInit
-                0x00000a58       0x16 src/apps/Fredi/potAdc.o
-                0x00000a58                potAdcInit
+                0x00000a4e       0x16 src/apps/Fredi/potAdc.o
+                0x00000a4e                potAdcInit
  .text.potAdcTimerAction
-                0x00000a6e       0x90 src/apps/Fredi/potAdc.o
-                0x00000a6e                potAdcTimerAction
+                0x00000a64       0x90 src/apps/Fredi/potAdc.o
+                0x00000a64                potAdcTimerAction
  .text.__vector_5
-                0x00000afe       0x54 src/avr-base/ln_sw_uart.o
-                0x00000afe                __vector_5
+                0x00000af4       0x54 src/avr-base/ln_sw_uart.o
+                0x00000af4                __vector_5
  .text.__vector_6
-                0x00000b52      0x250 src/avr-base/ln_sw_uart.o
-                0x00000b52                __vector_6
+                0x00000b48      0x250 src/avr-base/ln_sw_uart.o
+                0x00000b48                __vector_6
  .text.initLocoNetHardware
-                0x00000da2       0x2a src/avr-base/ln_sw_uart.o
-                0x00000da2                initLocoNetHardware
+                0x00000d98       0x2a src/avr-base/ln_sw_uart.o
+                0x00000d98                initLocoNetHardware
  .text.sendLocoNetPacketTry
-                0x00000dcc      0x132 src/avr-base/ln_sw_uart.o
-                0x00000dcc                sendLocoNetPacketTry
+                0x00000dc2      0x132 src/avr-base/ln_sw_uart.o
+                0x00000dc2                sendLocoNetPacketTry
  .text.__vector_9
-                0x00000efe       0x66 src/avr-base/systimer.o
-                0x00000efe                __vector_9
+                0x00000ef4       0x66 src/avr-base/systimer.o
+                0x00000ef4                __vector_9
  .text.initTimer
-                0x00000f64       0x1a src/avr-base/systimer.o
-                0x00000f64                initTimer
+                0x00000f5a       0x1a src/avr-base/systimer.o
+                0x00000f5a                initTimer
  .text.addTimerAction
-                0x00000f7e       0x46 src/avr-base/systimer.o
-                0x00000f7e                addTimerAction
+                0x00000f74       0x46 src/avr-base/systimer.o
+                0x00000f74                addTimerAction
  .text.resetTimerAction
-                0x00000fc4        0x6 src/avr-base/systimer.o
-                0x00000fc4                resetTimerAction
+                0x00000fba        0x6 src/avr-base/systimer.o
+                0x00000fba                resetTimerAction
  .text.delayTimer
-                0x00000fca       0x16 src/avr-base/systimer.o
-                0x00000fca                delayTimer
+                0x00000fc0       0x16 src/avr-base/systimer.o
+                0x00000fc0                delayTimer
  .text.processTimerActions
-                0x00000fe0       0xb0 src/avr-base/systimer.o
-                0x00000fe0                processTimerActions
+                0x00000fd6       0xb0 src/avr-base/systimer.o
+                0x00000fd6                processTimerActions
  .text.getLnMsgSize
-                0x00001090       0x1a src/loconet/ln_buf.o
-                0x00001090                getLnMsgSize
+                0x00001086       0x1a src/loconet/ln_buf.o
+                0x00001086                getLnMsgSize
  .text.initLocoNet
-                0x000010aa        0xa src/loconet/ln_interface.o
-                0x000010aa                initLocoNet
+                0x000010a0        0xa src/loconet/ln_interface.o
+                0x000010a0                initLocoNet
  .text.sendLocoNetPacket
-                0x000010b4       0x5e src/loconet/ln_interface.o
-                0x000010b4                sendLocoNetPacket
+                0x000010aa       0x5e src/loconet/ln_interface.o
+                0x000010aa                sendLocoNetPacket
  .text.sendLocoNet4BytePacket
-                0x00001112       0x32 src/loconet/ln_interface.o
-                0x00001112                sendLocoNet4BytePacket
+                0x00001108       0x32 src/loconet/ln_interface.o
+                0x00001108                sendLocoNet4BytePacket
  .text.sendLocoNet4BytePacketTry
-                0x00001144       0x34 src/loconet/ln_interface.o
-                0x00001144                sendLocoNet4BytePacketTry
+                0x0000113a       0x34 src/loconet/ln_interface.o
+                0x0000113a                sendLocoNet4BytePacketTry
  .text.avr-libc
-                0x00001178       0x10 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
-                0x00001178                eeprom_read_byte
+                0x0000116e       0x10 E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eerd_byte.o)
+                0x0000116e                eeprom_read_byte
  .text.avr-libc
-                0x00001188       0x1a E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
-                0x00001188                eeprom_write_byte
-                0x0000118a                eeprom_write_r18
-                0x000011a2                . = ALIGN (0x2)
+                0x0000117e       0x1a E:/Uni/Programme/Atmel Studio/7.0/Packs/atmel/ATmega_DFP/1.2.132/gcc/dev/atmega16/avr5\libatmega16.a(eewr_byte.o)
+                0x0000117e                eeprom_write_byte
+                0x00001180                eeprom_write_r18
+                0x00001198                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000011a2        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x000011a2                _exit
-                0x000011a2                exit
+ .fini9         0x00001198        0x0 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00001198                _exit
+                0x00001198                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -631,11 +631,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000011a2        0x4 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00001198        0x4 e:/uni/programme/atmel studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000011a6                _etext = .
+                0x0000119c                _etext = .
 
-.data           0x00800060        0x6 load address 0x000011a6
+.data           0x00800060        0x6 load address 0x0000119c
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -746,8 +746,8 @@ END GROUP
                 0x008001d1                lnBitCount
                 0x008001d2                lnTxData
                 0x008001d4                PROVIDE (__bss_end, .)
-                0x000011a6                __data_load_start = LOADADDR (.data)
-                0x000011ac                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000119c                __data_load_start = LOADADDR (.data)
+                0x000011a2                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x008001d4        0x0
                 [!provide]                PROVIDE (__noinit_start, .)

@@ -1605,9 +1605,7 @@ void vProcessRxLoconetMessage(rwSlotDataMsg *currentSlot)
 //  Set Slot Direction and F0 to F4
 /***************************************/
     case OPC_LOCO_DIRF:
-      if (  (bThrState         == THR_STATE_CONNECTED)
-         && (RxPacket->data[1] == currentSlot->slot         ))
-      {
+      if (  (bThrState         == THR_STATE_CONNECTED) && (RxPacket->data[1] == currentSlot->slot         )) {
 
         if (  (bFrediVersion == FREDI_VERSION_INCREMENT_SWITCH)
               || (bFrediVersion == FREDI_VERSION_ANALOG          ))
@@ -2055,12 +2053,10 @@ void transmitInputLoco (rwSlotDataMsg *currentSlot, int8_t currentNumber) {
 			potiStatus &= ~(1 << currentNumber); //Clear bit wenn Senden erfolgreich war (sendstatus == LN_Done)
 		}
 	}
-	if(currentSlot->dirf & 0x00011111 || ((currentSlot->dirf & 0b00100000)^currentSlot->lastDir)) { //Ausführen falls Funktionstasten 0-4 || Richtungstaste gedrückt wurde
+	if(currentSlot->dirf & 0b00011111 || ((currentSlot->dirf & 0b00100000)^currentSlot->lastDir)) { //Ausführen falls Funktionstasten 0-4 || Richtungstaste gedrückt wurde
 		//loconet senden (dirf, also direction + f0-f5 bits)
 		//sendLocoNetDirf(&currentSlot);
-		if (((currentSlot->dirf & 0b00100000)^(currentSlot->lastDir & 0b00100000 ))) {
-			toggleLED4();
-		}
+		
 		sendStatus = testLoco(0xA1, currentSlot->dirf);
 		if (sendStatus == LN_DONE) {
 			currentSlot->dirf &= 0b00100000; //Alle bits löschen außer direction bit
