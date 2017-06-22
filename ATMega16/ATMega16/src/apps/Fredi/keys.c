@@ -16,6 +16,11 @@ typedef struct keydata_t {
 	uint8_t counter;			//Counter zum Entprellen
 } keydata;
 
+typedef struct leddata_t {		//Struktur für 2-Farbige LED
+
+	
+} leddata;
+
 int ProcessKeyInput8Streak (keydata *key);
 
 
@@ -41,4 +46,20 @@ int ProcessKeyInput8Streak (keydata *key) {
 	}
 	return 0;
 }
+
+/*void setLEDStatus (leddata *LED, int8_t status) {
+	if (status == 0) {
+		if (LED->ledStatus & 0x01) {
+			
+		} else {
+			
+		}
+	} else {
+		if (LED->ledStatus & 0x02) {
+			
+		} else {
+
+		}
+	}
+}*/
 

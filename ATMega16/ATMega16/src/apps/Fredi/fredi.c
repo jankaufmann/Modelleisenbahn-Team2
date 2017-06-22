@@ -139,6 +139,9 @@ void sendLocoNetFredAdc( uint16_t raw );
 void sendLocoNetFredCd( uint8_t cdTime );
 void sendLocoNetFredButton( uint8_t button );
 
+uint8_t adcCount = 0;
+
+void processADC(void);
 void GET_SPDCNT_BY_SLOTSPD (rwSlotDataMsg *currentSlot);
 byte IncrementTimerAction( void *UserPointer);
 byte LEDTimerAction( void *UserPointer);
@@ -274,6 +277,7 @@ lnMsg TxPacket;
 #define NUMBER_OF_SLOTS 4 //number of slots to be managed by the device
 struct rwslotdata_t slotArray[NUMBER_OF_SLOTS];
 int8_t		slotnumber = 0;
+int neuerADCwert[NUMBER_OF_SLOTS];
 uint8_t value = 0;
 byte old_value = 0; //war 1 bei Jan
 byte entprell = 0;
@@ -1282,146 +1286,33 @@ int main(void)
 	_delay_1500ms();
 	PORTC |= 0x80; //Pullup von Taste1 anschalten
 	int8_t pull_ups = 1;
-	for (int i = 0; i < 100; i++) {
+	/*for (int i = 0; i < 100; i++) {
 		sendLocoNet4BytePacketTry(0xA0, 05, 0x14, 0x1A);
 		_delay_ms(25);
-	}
+	}*/
 	shiftStatustwo[1] = 0;
+//-----------------------------------------------------ADC vorbereiten------------------------------------
+neuerADCwert[0] = 15;
+ADCSRA |= (1<<ADEN | 1<< REFS0 | 0 << REFS1 |1<<ADPS0|1<<ADPS1|1<<ADPS2);
+
+
+cbi(ADMUX,MUX0);								//setze ADMUX Channel 4
+cbi(ADMUX,MUX1);
+sbi(ADMUX,MUX2);
+cbi(ADMUX,MUX3);
+cbi(ADMUX,MUX4);
+sbi(ADCSRA,ADSC);								//starte Messung
+_delay_ms(500);
+byte sendLoco = 1;
+
+	//slotArray[0].slot = 1;
+	//slotArray[1].slot = 2;
+	//slotArray[2].slot = 3;
+	//slotArray[3].slot = 4;
+
+//------------------------------------------------ADC vorbereiten ENDE-----------------------------------------
   while (1)
   {
-	  
-	   //delay
-	   //alle leds ausschalten
-		//Pullups testen Funkeys
-		//if (pull_ups == 1) {
-			//if (bit_is_set(PORTC, 7)) {
-				//disableLED1();
-			//}
-			//if (bit_is_set(PORTB, 0)) {
-				//disableLED2();
-			//}
-			//if (bit_is_set(PORTB, 4)) {
-				//disableLED3();
-			//}
-			//if (bit_is_set(PORTA, 2)) {
-				//enableLED4();
-			//}
-		//}
-		//
-		 ///* Pullups DIRKEY */
-		//if (pull_ups == 2) {
-			//if (bit_is_set(PORTC, 0)) {
-				//disableLED1();
-			//}
-			//if (bit_is_set(PORTA, 3)) {
-				//disableLED2();
-			//}
-			//if (bit_is_set(PORTC, 2)) {
-				//disableLED3();
-			//}
-			//if (bit_is_set(PORTC, 1)) {
-				//enableLED4();
-			//}
-		//}
-		//
-		 ///* Pullups ERW_FUNKEY */
-		 //if (pull_ups == 3) {
-			//if (bit_is_set(PORTD, 3)) {
-				//disableLED1();
-			//}
-			//if (bit_is_set(PORTD, 4)) {
-				//disableLED2();
-			//}
-			//if (bit_is_set(PORTD, 5)) {
-				//disableLED3();
-			//}
-			//if (bit_is_set(PORTD, 6)) {
-				//enableLED4();
-			//}
-		 //}
-		//
-	
-		
-		//ProcessShiftKeyInput8Streak(PINC, FUNKEY1, 1);
-		//ProcessShiftKeyInput8Streak(PINB, FUNKEY2, 2);
-		//ProcessShiftKeyInput8Streak(PINB, FUNKEY3, 3);
-		//ProcessShiftKeyInput8Streak(PINA, FUNKEY4, 4);
-		//ProcessFunKeyInput8Streak(PIND, ERW_FUNKEY1, 1);
-		//ProcessFunKeyInput8Streak(PIND, ERW_FUNKEY2, 2);
-		//ProcessFunKeyInput8Streak(PIND, ERW_FUNKEY3, 3);
-		//ProcessFunKeyInput8Streak(PIND, ERW_FUNKEY4, 4);
-	
-		//for (int i = 0; i < 8; i++) {
-			//processValue(bit_is_set(PINC, FUNKEY1));
-		//}
-		//if (value == 255) {
-			//shiftPressed++;
-		//}
-		//if (shiftPressed > 0) {
-			//disableLED1();
-		//}
-		
-		//if (bit_is_clear(PIND, ERW_FUNKEY3)) {
-			//enableLED2();
-		//}
-		//if (shiftStatus) {
-			//enableLED4();
-		//} else {
-			//disableLED4();
-		//}
-		//testKeySignal(PINC, DIRKEY4);
-		//ProcessKeyInput(&slotArray[0].funKey, &testPort);
-		//ProcessShiftedKeyInput(&slotArray[0].funKey, &testPort);
-	   //if (PINA & ( 1<<DIRKEY2 )) {  
-		   //new_val = bit_is_set(PINA, DIRKEY2); //Rückgabewert ist die Wertigkeit des abgefragten Bits, also 1 für Bit0, 2 für Bit1, 4 für Bit2 etc.
-		   //if (new_val > 0) {
-			   //new_val = 1;
-		   //}
-	   //}
-		//else {
-		    //new_val = 0;
-		//}
-			//entprellen_druecken(new_val, value);	//entprellen läuft immer durch, entprellt das drücken und loslassen der Taste.
-			//
-			//if ((value == 0) && (old_value == 1)) {		//Wenn Taste gerdückt wird und wieder losgelassen, LED anschalten
-				//PORTA |= 1<<LED2;
-				//old_value = 0;
-				//pressed = 1;
-			//}
-			//if ((value == 0) && (old_value == 1) && (pressed == 1)) { //Wenn Taste gedrückt wird und wieder losgelassen UND LED an, dann LED ausschalten
-				//PORTA &= ~(1<<LED2);
-				//old_value = 0;		
-				//pressed = 0;		
-			//} 
-	  	  
-
-			
-	/*	potAdcTimerAction();
-			
-			if (potAdcSpeedValue < 64) {
-				PORTA &=  ~1<<LED2;
-			}
-			
-			if (potAdcSpeedValue >= 64) {
-				PORTA |= 1<<LED2;
-			} */
-			
-			
-	  	  
-		  
-	  /*	  if (PINA & ( 1<<DIRKEY2 )) {	//wenn richtungstaste 3 gedrückt, dann LED 2 anschalten
-		  	  //PORTC |= (1<<PC3);
-			  PORTA |= 1<<LED2;				
-				//_delay_ms(10);
-	  	  }
-	  	  
-	  	  if (!(PINA & ( 1<<DIRKEY2 ))) { //wenn richtungstaste3 nicht gedrückt, dann LED 2 aus
-		  	  //PORTC &= ~(1<<PC3);
-			  PORTA &= ~(1<<LED2);				
-	  	  } */
-	  
-		
-	  
 	for (int i = 0; i < NUMBER_OF_SLOTS; i++) {  
 		//vProcessRxLoconetMessage(&slotArray[i]);
 		//vProcessKey(&slotArray[i]);
@@ -1442,6 +1333,8 @@ int main(void)
 		ProcessDirKeyInput8Streak(PINC, DIRKEY3,  3, &slotArray[2]);
 		ProcessDirKeyInput8Streak(PINC, DIRKEY4,  4, &slotArray[3]);
 		
+		
+		
 		ProcessShiftKeyInput8Streak(PINC, FUNKEY1, 1);
 		ProcessShiftKeyInput8Streak(PINB, FUNKEY2, 2);
 		ProcessShiftKeyInput8Streak(PINC, FUNKEY3, 3);
@@ -1452,10 +1345,23 @@ int main(void)
 			ProcessFunKeyInput8Streak(PIND, ERW_FUNKEY3, 3, &slotArray[i]);
 			ProcessFunKeyInput8Streak(PIND, ERW_FUNKEY4, 4, &slotArray[i]);
 		}
+		processADC();
+		vProcessRxLoconetMessage(&slotArray[i]);
 		
 		
 	    //Wenn ein Zug zugewiesen1 ist
-		transmitInputLoco(&slotArray[i], i);
+		if (shiftStatustwo[0] - 1 == i && slotArray[i].adr == 0) {
+			slotArray[i].spd ^= slotArray[i].spd;
+			slotArray[i].dirf ^= slotArray[i].dirf;
+			slotArray[i].snd ^= slotArray[i].snd;
+			vSetState(THR_STATE_ACQUIRE_LOCO_GET,&slotArray[i]);
+			sendLocoNetMove(0, 0, &slotArray[i]);
+			while (slotArray[i].adr == 0) {
+				vProcessRxLoconetMessage(&slotArray[i]);
+			}
+		} else {
+			transmitInputLoco(&slotArray[i], i);
+		}
 		
 		//} else if (i == shiftStatustwo[0]) {
 			//Versuchen eine Lok zu bekommen
@@ -1466,6 +1372,80 @@ int main(void)
   } // end of while(1)
 } // end of main
 
+void processADC(void){
+	if(bit_is_clear(ADCSRA,ADSC)) {
+		
+		//neuerADCwert[0] = ADCW / 8;
+		//sbi(ADCSRA,ADSC);
+		//if(neuerADCwert[0] != slotArray[0].spd || 1) {
+		//slotArray[0].spd = neuerADCwert[0];
+		//sendLocoNetSpd(&slotArray[0]);
+		//}
+		
+		
+		
+		if(adcCount != 0){
+			
+			neuerADCwert[adcCount-1] = ADCW / 8;
+			
+			if(neuerADCwert[adcCount-1] != slotArray[adcCount-1].spd){
+				slotArray[adcCount-1].spd = neuerADCwert[adcCount-1];
+				sendLocoNetSpd(&slotArray[adcCount-1]);
+			}
+			
+		}
+		else {
+			neuerADCwert[3] = ADCW / 8;
+			
+			if(neuerADCwert[3] != slotArray[3].spd) {
+				slotArray[3].spd = neuerADCwert[3];
+				sendLocoNetSpd(&slotArray[3]);
+
+			}
+		}
+		
+		if (adcCount == 0) {
+			cbi(ADMUX,MUX0);								// setze ADMUX Channel 6
+			sbi(ADMUX,MUX1);
+			sbi(ADMUX,MUX2);
+			cbi(ADMUX,MUX3);
+			cbi(ADMUX,MUX4);
+			
+			sbi(ADCSRA,ADSC);								//starte Messung
+			adcCount = 1;
+		}
+		else if (adcCount == 1) {
+			sbi(ADMUX,MUX0);								// setze ADMUX Channel 7
+			sbi(ADMUX,MUX1);
+			sbi(ADMUX,MUX2);
+			cbi(ADMUX,MUX3);
+			cbi(ADMUX,MUX4);
+			
+			sbi(ADCSRA,ADSC);								//starte Messung
+			adcCount = 2;
+		}
+		else if (adcCount == 2) {
+			sbi(ADMUX,MUX0);								// setze ADMUX Channel 5
+			cbi(ADMUX,MUX1);
+			sbi(ADMUX,MUX2);
+			cbi(ADMUX,MUX3);
+			cbi(ADMUX,MUX4);
+			
+			sbi(ADCSRA,ADSC);								//starte Messung
+			adcCount = 3;
+		}
+		else if (adcCount == 3) {
+			cbi(ADMUX,MUX0);								// setze ADMUX Channel 4
+			cbi(ADMUX,MUX1);
+			sbi(ADMUX,MUX2);
+			cbi(ADMUX,MUX3);
+			cbi(ADMUX,MUX4);
+			
+			sbi(ADCSRA,ADSC);								//starte Messung
+			adcCount = 0;
+		}
+	}
+}
 
 void entprellen_druecken (byte new_value, byte val) {
 	if ((new_value != val) && (entprell < 60)) { // 60x gleiches signal hinterneinander
@@ -2057,7 +2037,7 @@ void transmitInputLoco (rwSlotDataMsg *currentSlot, int8_t currentNumber) {
 		//loconet senden (dirf, also direction + f0-f5 bits)
 		//sendLocoNetDirf(&currentSlot);
 		
-		sendStatus = testLoco(0xA1, currentSlot->dirf);
+		sendStatus = sendLocoNet4BytePacketTry(0xA1,currentSlot->slot, currentSlot->dirf, 0x1A);
 		if (sendStatus == LN_DONE) {
 			currentSlot->dirf &= 0b00100000; //Alle bits löschen außer direction bit
 			currentSlot->lastDir &= 0x00;
@@ -2072,7 +2052,7 @@ void transmitInputLoco (rwSlotDataMsg *currentSlot, int8_t currentNumber) {
 	if (currentSlot->snd) { //Ausführen falls Funktionstasten 5-7 gedrückt wurden
 		//Funktionen 6-8 senden
 		//sendStatus = funktionnen6-8 senden
-		sendStatus = testLoco(0xA2, currentSlot->snd);
+		sendStatus = sendLocoNet4BytePacketTry(0xA2,currentSlot->slot, currentSlot->snd, 0x1A);
 		if (sendStatus == LN_DONE) {
 		currentSlot->snd &= 0x00;
 		}

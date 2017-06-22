@@ -16,6 +16,11 @@ typedef struct keydata_t {
 	uint8_t counter;			//Counter zum Entprellen
 } keydata;
 
+typedef struct leddata_t {
+
+	
+} leddata;
+
 int ProcessKeyInput8Streak (keydata *key);
 
 #endif /* INCFILE1_H_ */
