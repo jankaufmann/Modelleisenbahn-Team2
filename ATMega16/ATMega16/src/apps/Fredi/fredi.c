@@ -149,7 +149,7 @@ byte KeyTimerAction( void *UserPointer);
 byte MessageTimerAction( void *UserPointer);
 byte ReleaseStopTimerAction( void *UserPointer);
 void initKeys( void );
-void initSlots(struct rwslotdata_t *slotArray);
+void initSlots(struct rwslotdata_t *slotArray, struct leddata_t *array);
 //LED Funktionen
 void setLEDasOutput(void);		//setzt Port A Bit 0,1 und Port C Bit 3,4 als Ausgang
 void enableLED1(void);			//Einschalten LED 1
@@ -160,10 +160,13 @@ void disableLED1(void);			//Ausschalten LED 1
 void disableLED2(void);			//Ausschalten LED 2
 void disableLED3(void);			//Ausschalten LED 3
 void disableLED4(void);			//Ausschalten LED 4
-void toggleLED1(void);			//Toggle LED 1
+void enableLED(int8_t number);
+void disableLED(int8_t number);
+void toggleLED1(void);			//Toggle LED1
 void toggleLED2(void);			//Toggle LED2
 void toggleLED3(void);			//Toggle LED3
 void toggleLED4(void);			//Toggle LED4
+void toggleLED(int8_t number);
 void ProcessKeyInput (byte *pin, byte *port);
 
 //int ProcessKeyInput8Streak (keydata *key);
@@ -275,7 +278,9 @@ lnMsg *RxPacket;
 //word      RxMsgCount ;
 lnMsg TxPacket;
 #define NUMBER_OF_SLOTS 4 //number of slots to be managed by the device
+#define NUMBER_OF_LEDS 4  //number of LEDS to be managed
 struct rwslotdata_t slotArray[NUMBER_OF_SLOTS];
+struct leddata_t ledArray[NUMBER_OF_LEDS];
 int8_t		slotnumber = 0;
 int neuerADCwert[NUMBER_OF_SLOTS];
 uint8_t value = 0;
@@ -346,15 +351,15 @@ void setLEDasOutput() {
 }
 
 void enableLED1(){
-	PORTA |= _BV(LED1);
+	PORTA &= ~(_BV(LED1));
 }
 
 void enableLED2(){
-	PORTA |= _BV(LED2);
+	PORTA &= ~(_BV(LED2));
 }
 
 void enableLED3(){
-	PORTC |= _BV(LED3);
+	PORTC &= ~(_BV(LED3));
 }
 
 void enableLED4(){
@@ -362,20 +367,57 @@ void enableLED4(){
 }
 
 void disableLED1(){
-	PORTA &= ~(_BV(LED1));
+	PORTA |= _BV(LED1);
 }
 
 void disableLED2(){
-	PORTA &= ~(_BV(LED2));
+	PORTA |= _BV(LED2);
 }
 
 void disableLED3(){
-	PORTC &= ~(_BV(LED3));
+	PORTC |= _BV(LED3);
 }
 
 void disableLED4(){
 	PORTC &= ~(_BV(LED4));
 }
+
+void disableLED (int8_t number) {
+	switch (number)
+	{
+	case (1): 
+		disableLED1();
+		break;
+	case (2): 
+		disableLED2();
+		break;
+	case (3): 
+		disableLED3();
+		break;
+	case (4): 
+		disableLED4();
+		break;
+	}
+}
+
+void enableLED (int8_t number) {
+	switch (number)
+	{
+		case (1): 
+			enableLED1();
+			break;
+		case (2): 
+			enableLED2();
+			break;
+		case (3): 
+			enableLED3();
+			break;
+		case (4): 
+			enableLED4();
+			break;
+	}
+}
+
 
 void toggleLED1() {
 	if (bit_is_set(PORTA, LED1)) {
@@ -406,6 +448,24 @@ void toggleLED4() {
 		PORTC &= ~(_BV(LED4));
 		} else {
 		PORTC |= _BV(LED4);
+	}
+}
+
+void toggleLED (int8_t number) {
+	switch (number)
+	{
+		case (1): 
+			toggleLED1();
+			break;
+		case (2): 
+			toggleLED2();
+			break;
+		case (3): 
+			toggleLED3();
+			break;
+		case (4): 
+			toggleLED4();
+			break;
 	}
 }
 
@@ -569,7 +629,7 @@ byte KeyTimerAction( void *UserPointer)
   byte bActEncSwitch;
   static  byte bLastKey         = 1;
   byte bActKey;
-  static  byte bLastDirSwitch   = 1; 
+  static  byte blastDirfSwitch   = 1; 
   byte bActDirSwitch;
 
 /******************************************************************************/
@@ -616,10 +676,10 @@ byte KeyTimerAction( void *UserPointer)
   {
     bActDirSwitch = DIRSWITCH_PIN & _BV(DIRSWITCH);
 
-    if (bActDirSwitch != bLastDirSwitch)         // change of direction
+    if (bActDirSwitch != blastDirfSwitch)         // change of direction
     {
       bEvent        |= EVENT_KEY;
-      bLastDirSwitch = bActDirSwitch;
+      blastDirfSwitch = bActDirSwitch;
 
       if (bActDirSwitch)
       {
@@ -972,7 +1032,7 @@ void vSetState( byte bState, rwSlotDataMsg *currentSlot)
 }
 
 
-void initSlots (struct rwslotdata_t *slotArray) {
+void initSlots (struct rwslotdata_t *slotArray, struct leddata_t *array) {
 	
 
   slotArray[0].command   = OPC_WR_SL_DATA;
@@ -991,8 +1051,9 @@ void initSlots (struct rwslotdata_t *slotArray) {
   slotArray[0].funKey	  = FUNKEY1;
   slotArray[0].funKeyStatus	  = 0;
   slotArray[0].funkeyTimeOut = 0;
-  slotArray[0].ledAdr	  = LED1;
-  slotArray[0].ledPort   = PORTA;
+  slotArray[0].ledNumber = 1;
+  
+
   
   
   //-----------------------------------------------------------------RSLOTZWEI---------------------------------
@@ -1013,8 +1074,8 @@ void initSlots (struct rwslotdata_t *slotArray) {
   slotArray[1].funKey	  = FUNKEY2;
   slotArray[1].funKeyStatus	  = 0;
   slotArray[1].funkeyTimeOut = 0;
-  slotArray[1].ledAdr	  = LED2;
-  slotArray[1].ledPort   = PORTA;  
+  slotArray[1].ledNumber = 2;
+ 
   //----------------------------------------------------------RSLOTDREI-----------------------------------------------
   slotArray[2].command   = OPC_WR_SL_DATA;
   slotArray[2].mesg_size = 14;
@@ -1032,8 +1093,8 @@ void initSlots (struct rwslotdata_t *slotArray) {
   slotArray[2].funKey	  = FUNKEY3;
   slotArray[2].funKeyStatus	  = 0;
   slotArray[2].funkeyTimeOut = 0;
-  slotArray[2].ledAdr	  = LED3;
-  slotArray[2].ledPort   = PORTC;
+  slotArray[2].ledNumber = 3;
+
   //-----------------------------------------------------------------RSLOTVIER---------------------------------
   
   slotArray[3].command   = OPC_WR_SL_DATA;
@@ -1052,8 +1113,26 @@ void initSlots (struct rwslotdata_t *slotArray) {
   slotArray[3].funKey	  = FUNKEY4;
   slotArray[3].funKeyStatus	  = 0;
   slotArray[3].funkeyTimeOut = 0;
-  slotArray[3].ledAdr	  = LED4;
-  slotArray[3].ledPort   = PORTC;
+  slotArray[3].ledNumber = 4;
+}
+
+void initLEDS (struct leddata_t *array) {
+	array[0].ledAdress = PINA;
+	array[0].bitToSet = LED1;
+	array[0].polung = 1;
+	
+	array[1].ledAdress = PINA;
+	array[1].bitToSet = LED2;
+	array[1].polung = 1;
+	
+	array[2].ledAdress = PINC;
+	array[2].bitToSet = LED3;
+	array[2].polung = 1;
+	
+	array[3].ledAdress = PINC;
+	array[3].bitToSet = LED4;
+	array[3].polung = 0;
+	
 }
 
 
@@ -1099,7 +1178,9 @@ int main(void)
   bSpdCnt = 0;
   
 	
-	initSlots(slotArray);			// initialisierung der vier rSlots.
+				
+	initLEDS(ledArray);
+	initSlots(slotArray, ledArray);			// initialisierung der vier rSlots.
 	//initSlots(&slotArray[0]);		äquivalent zu dem oberen.
 
   
@@ -1328,6 +1409,9 @@ byte sendLoco = 1;
 		//vProcessRxLoconetMessage(&slotArray[i]);
 		//processTimerActions();
 		//Main loop final
+		slotArray[i].lastDirf &= 0x00;
+		slotArray[i].lastDirf |= slotArray[i].dirf;
+		slotArray[i].lastDirf &= 0b00110100;
 		ProcessDirKeyInput8Streak(PINC, DIRKEY1,  1, &slotArray[0]);
 		ProcessDirKeyInput8Streak(PINA, DIRKEY2,  2, &slotArray[1]);
 		ProcessDirKeyInput8Streak(PINC, DIRKEY3,  3, &slotArray[2]);
@@ -1340,6 +1424,7 @@ byte sendLoco = 1;
 		ProcessShiftKeyInput8Streak(PINC, FUNKEY3, 3);
 		ProcessShiftKeyInput8Streak(PINA, FUNKEY4, 4);
 		if (shiftStatustwo[0] - 1 == i) {
+			
 			ProcessFunKeyInput8Streak(PIND, ERW_FUNKEY1, 1, &slotArray[i]);
 			ProcessFunKeyInput8Streak(PIND, ERW_FUNKEY2, 2, &slotArray[i]);
 			ProcessFunKeyInput8Streak(PIND, ERW_FUNKEY3, 3, &slotArray[i]);
@@ -1358,14 +1443,17 @@ byte sendLoco = 1;
 			sendLocoNetMove(0, 0, &slotArray[i]);
 			while (slotArray[i].adr == 0) {
 				vProcessRxLoconetMessage(&slotArray[i]);
+				toggleLED4();
 			}
 		} else {
 			transmitInputLoco(&slotArray[i], i);
 		}
+		if (slotArray[i].dirf & 0x20 || slotArray[i].slot == 0) {
+			disableLED(i +1);
+		} else {
+			enableLED(i + 1);
+		}
 		
-		//} else if (i == shiftStatustwo[0]) {
-			//Versuchen eine Lok zu bekommen
-		//}
 		
 		
 	}  //end of for
@@ -1597,7 +1685,7 @@ void vProcessRxLoconetMessage(rwSlotDataMsg *currentSlot)
             currentSlot->dirf &= 0x20;                       // get direction of fredi
             currentSlot->dirf |= (RxPacket->data[2] & ~0x20); // and add F0..F4
             sendLocoNetDirf(currentSlot);
-          }
+		  }
           else
           {
             currentSlot->dirf = RxPacket->data[2];          // direction is equal, so take F0..F4
@@ -1613,14 +1701,14 @@ void vProcessRxLoconetMessage(rwSlotDataMsg *currentSlot)
 			
          // LED_PORT &= ~_BV(LED_GREEN_R);			//Anpassen an LED.
          // LED_PORT |=  _BV(LED_GREEN_L);			//Rückwärts
-		  currentSlot->ledPort &= ~_BV(currentSlot->ledAdr);
+		  //currentSlot->ledPort &= ~_BV(currentSlot->ledAdr);
 		   
         }
         else
         {
           //LED_PORT &= ~_BV(LED_GREEN_L);			//Vorwärts   15.05.2017
           //LED_PORT |=  _BV(LED_GREEN_R);
-		  currentSlot->ledPort |= _BV(currentSlot->ledAdr);
+		  //currentSlot->ledPort |= _BV(currentSlot->ledAdr);
         }
       }
       break;
@@ -1705,7 +1793,7 @@ void vProcessKey(rwSlotDataMsg *currentSlot)
 			//currentSlot->dirKey |= 0x20;
           //  LED_PORT   &= ~_BV(LED_GREEN_L);					geändert 15.05.2017
           //  LED_PORT   |=  _BV(LED_GREEN_R);
-			currentSlot->ledPort |= _BV(currentSlot->ledAdr);
+			//currentSlot->ledPort |= _BV(currentSlot->ledAdr);
           }
           else
           { // dir switch was released
@@ -1713,7 +1801,7 @@ void vProcessKey(rwSlotDataMsg *currentSlot)
 		   //currentSlot->dirKey &= ~0x20;
           //  LED_PORT &= ~_BV(LED_GREEN_R);
           //  LED_PORT |=  _BV(LED_GREEN_L); 
-			currentSlot->ledPort &= ~_BV(currentSlot->ledAdr);
+			//currentSlot->ledPort &= ~_BV(currentSlot->ledAdr);
           }
           sendLocoNetDirf(currentSlot);
 
@@ -1890,22 +1978,7 @@ void ProcessDirKeyInput8Streak (byte pin, byte port, int8_t keyNumber, rwSlotDat
 	} else if (value == 0 && dirKeyCounter[keyNumber - 1] >= 5) {
 			dirKeyCounter[keyNumber - 1] = 0;
 			//Tastenevent hier einfügen
-			currentSlot->lastDir &= 0x00;
-			currentSlot->lastDir |= currentSlot->dirf;
-			currentSlot->lastDir &= 0b00100000;
 			currentSlot->dirf ^= 0b00100000; //Toggle dirKeyStatus
-						
-			
-			toggleLED2();
-			if (port == DIRKEY1) {
-			
-			} else if (port == DIRKEY2) {
-			
-			} else if (port == DIRKEY3) {
-			
-			} else if (port == DIRKEY4) {
-			
-			}
 	}
 }
 
@@ -1958,7 +2031,7 @@ void ProcessShiftKeyInput8Streak (byte pin, int8_t port, int8_t keyNumber) {
 			shiftStatustwo[1] = 0;
 		}
 		shiftStatustwo[0] = keyNumber;
-		toggleLED1();
+		
 	} 
 }
 
@@ -2003,10 +2076,12 @@ void ProcessFunKeyInput8Streak (byte pin, int8_t port, int8_t keyNumber, rwSlotD
 			
 			if (shiftStatustwo[1] == 0) { //Wenn Funtkionen F0-F5 aktiv sind
 				if (keyNumber == 1) {	  //Wenn die 1. Taste gedrückt ist
-					currentSlot->dirf |= 1 << (4); //Setze das 5. Bit (F0) Funktion)
-				} else {
+					currentSlot->dirf ^= 1 << (4); //Setze das 5. Bit (F0) Funktion)
+				} else if (keyNumber != 4) {
 					currentSlot->dirf |= 1 << (keyNumber - 2);
-				} 
+				} else {
+					currentSlot->dirf ^= 1 << (keyNumber - 2);
+				}
 			} else if (shiftStatustwo[1] == 1) {
 				if (!(keyNumber == 1)) {
 					currentSlot->snd |= 1 << (keyNumber - 2);
@@ -2014,16 +2089,16 @@ void ProcessFunKeyInput8Streak (byte pin, int8_t port, int8_t keyNumber, rwSlotD
 					currentSlot->dirf |= 1 << (3); //Setze das 4. bit (F4) Funktion)
 				}
 			}
-			if (shiftStatustwo[0] == 1) {
-				//currentSlot[shiftStatus].noch_einfügen
-				toggleLED1();
-			} else if (shiftStatustwo[0] == 2) {
-				toggleLED2();
-			} else if (shiftStatustwo[0] == 3) {
-				toggleLED3();
-			} else if (shiftStatustwo[0] == 4) {
-				toggleLED4();
-			}
+			//if (shiftStatustwo[0] == 1) {
+				////currentSlot[shiftStatus].noch_einfügen
+				//toggleLED1();
+			//} else if (shiftStatustwo[0] == 2) {
+				//toggleLED2();
+			//} else if (shiftStatustwo[0] == 3) {
+				//toggleLED3();
+			//} else if (shiftStatustwo[0] == 4) {
+				//toggleLED4();
+			//}
 		}
 }
 
@@ -2033,15 +2108,15 @@ void transmitInputLoco (rwSlotDataMsg *currentSlot, int8_t currentNumber) {
 			potiStatus &= ~(1 << currentNumber); //Clear bit wenn Senden erfolgreich war (sendstatus == LN_Done)
 		}
 	}
-	if(currentSlot->dirf & 0b00011111 || ((currentSlot->dirf & 0b00100000)^currentSlot->lastDir)) { //Ausführen falls Funktionstasten 0-4 || Richtungstaste gedrückt wurde
+	if(currentSlot->dirf & 0b00001011 || ((currentSlot->dirf & 0b00110100)^currentSlot->lastDirf)) { //Ausführen falls Funktionstasten 0-4 || Richtungstaste gedrückt wurde
 		//loconet senden (dirf, also direction + f0-f5 bits)
 		//sendLocoNetDirf(&currentSlot);
 		
 		sendStatus = sendLocoNet4BytePacketTry(0xA1,currentSlot->slot, currentSlot->dirf, 0x1A);
 		if (sendStatus == LN_DONE) {
-			currentSlot->dirf &= 0b00100000; //Alle bits löschen außer direction bit
-			currentSlot->lastDir &= 0x00;
-			currentSlot->lastDir |= currentSlot->dirf;
+			currentSlot->dirf &= 0b00110100; //Alle bits löschen außer direction, f0, f3 bit
+			currentSlot->lastDirf &= 0x00;
+			currentSlot->lastDirf |= currentSlot->dirf;
 		}
 		
 		

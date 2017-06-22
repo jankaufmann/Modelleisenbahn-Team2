@@ -56,6 +56,7 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../src/apps/Fredi/keys.c \
 ../src/apps/Fredi/fredi.c \
 ../src/apps/Fredi/fuses.c \
 ../src/apps/Fredi/potAdc.c \
@@ -74,6 +75,7 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+src/apps/Fredi/keys.o \
 src/apps/Fredi/fredi.o \
 src/apps/Fredi/fuses.o \
 src/apps/Fredi/potAdc.o \
@@ -85,6 +87,7 @@ src/loconet/utils.o \
 src/ASF/mega/boards/stk600/rcx_x/init.o
 
 OBJS_AS_ARGS +=  \
+src/apps/Fredi/keys.o \
 src/apps/Fredi/fredi.o \
 src/apps/Fredi/fuses.o \
 src/apps/Fredi/potAdc.o \
@@ -96,6 +99,7 @@ src/loconet/utils.o \
 src/ASF/mega/boards/stk600/rcx_x/init.o
 
 C_DEPS +=  \
+src/apps/Fredi/keys.d \
 src/apps/Fredi/fredi.d \
 src/apps/Fredi/fuses.d \
 src/apps/Fredi/potAdc.d \
@@ -107,6 +111,7 @@ src/loconet/utils.d \
 src/ASF/mega/boards/stk600/rcx_x/init.d
 
 C_DEPS_AS_ARGS +=  \
+src/apps/Fredi/keys.d \
 src/apps/Fredi/fredi.d \
 src/apps/Fredi/fuses.d \
 src/apps/Fredi/potAdc.d \
@@ -131,6 +136,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

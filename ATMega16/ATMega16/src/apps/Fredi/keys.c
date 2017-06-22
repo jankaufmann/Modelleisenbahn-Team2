@@ -17,11 +17,14 @@ typedef struct keydata_t {
 } keydata;
 
 typedef struct leddata_t {		//Struktur für 2-Farbige LED
-
-	
+	byte ledAdress;				//Adresse des LED bits
+	byte bitToSet;				//Bit das zur LED gehört
+	byte polung;				//0 setzen 
 } leddata;
 
 int ProcessKeyInput8Streak (keydata *key);
+void setLEDStatus(leddata *LED, int8_t status);
+void toggleLEDStatus(leddata *LED);
 
 
 
@@ -47,19 +50,23 @@ int ProcessKeyInput8Streak (keydata *key) {
 	return 0;
 }
 
-/*void setLEDStatus (leddata *LED, int8_t status) {
+void setLEDStatus (leddata *LED, int8_t status) {
 	if (status == 0) {
-		if (LED->ledStatus & 0x01) {
-			
+		if (LED->polung == 0) {
+			LED->ledAdress &= ~(_BV(LED->bitToSet));
 		} else {
-			
+			LED->ledAdress |= _BV(LED->bitToSet);
 		}
 	} else {
-		if (LED->ledStatus & 0x02) {
-			
+		if (LED->polung == 0) {
+			LED->ledAdress |= _BV(LED->bitToSet);
 		} else {
-
+			LED->ledAdress &= ~(_BV(LED->bitToSet));
 		}
 	}
-}*/
+}
+
+void toggleLEDStatus (leddata *LED) {
+	LED->ledAdress ^= 1 << LED->bitToSet;
+}
 

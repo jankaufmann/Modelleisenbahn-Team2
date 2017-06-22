@@ -124,6 +124,7 @@
 
 #include "common_defs.h"
 #include <stdint.h>
+#include "keys.h"
 
 /*** CONSTANTS ****/
 
@@ -448,7 +449,7 @@ typedef struct rwslotdata_t {
     byte adr;           /* loco address                                         */
     byte spd;           /* command speed                                        */
     byte dirf;          /* direction and F0-F4 bits                             */
-	byte lastDir;        /* last direction, to check if it changed               */
+	byte lastDirf;        /* last direction, to check if it changed               */
 	byte dirfS[2];      /* direction and F0-F4 [0] and F5-F8 [1]                */
     byte trk;           /* track status                                         */
     byte ss2;           /* slot status 2 (tells how to use ID1/ID2 & ADV Consist*/
@@ -463,8 +464,8 @@ typedef struct rwslotdata_t {
 	byte dirKey;		/* address of the direction key							09.05.2017		*/
 	int8_t dirKeyStatus;
 	byte spdInput;		/* address of the speed input							09.05.2017		*/
-	byte ledAdr;		/* address of the led									09.05.2017		*/
-	byte ledPort;		/* address of the led port								15.05.2017		*/
+	leddata LED;
+	byte ledNumber;
 	
 } rwSlotDataMsg;
 

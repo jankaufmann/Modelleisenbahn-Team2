@@ -16,7 +16,7 @@ src/loconet/ln_interface.d src/loconet/ln_interface.o: \
  e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  ../src/loconet/ln_interface.h ../src/apps/Fredi/sysdef.h \
  ../src/avr-base/common_defs.h ../src/loconet/ln_buf.h \
- ../src/loconet/loconet.h
+ ../src/loconet/loconet.h ../src/apps/Fredi/keys.h
 
 e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -55,3 +55,5 @@ e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr
 ../src/loconet/ln_buf.h:
 
 ../src/loconet/loconet.h:
+
+../src/apps/Fredi/keys.h:
