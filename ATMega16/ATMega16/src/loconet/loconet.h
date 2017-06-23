@@ -126,6 +126,7 @@
 #include <stdint.h>
 #include "keys.h"
 
+
 /*** CONSTANTS ****/
 
 /*** TYPES ***/
@@ -448,7 +449,9 @@ typedef struct rwslotdata_t {
     byte stat;          /* slot status                                          */
     byte adr;           /* loco address                                         */
     byte spd;           /* command speed                                        */
+	byte driveLock;		/* is 1 after switching direction, to lock              */
     byte dirf;          /* direction and F0-F4 bits                             */
+	
 	byte lastDirf;        /* last direction, to check if it changed               */
 	byte dirfS[2];      /* direction and F0-F4 [0] and F5-F8 [1]                */
     byte trk;           /* track status                                         */

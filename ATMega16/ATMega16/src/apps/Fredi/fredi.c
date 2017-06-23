@@ -93,7 +93,7 @@
 // - F5..F8 = F1..F4 + Shift
 /******************************************************************************/
 
-
+#include <stdlib.h>
 #include <stdint.h>         // typedef int8_t, typedef uint8_t,
                             // typedef int16_t, typedef uint16_t
 #include <avr/io.h>
@@ -152,6 +152,7 @@ void initKeys( void );
 void initSlots(struct rwslotdata_t *slotArray, struct leddata_t *array);
 //LED Funktionen
 void setLEDasOutput(void);		//setzt Port A Bit 0,1 und Port C Bit 3,4 als Ausgang
+void initLEDS (struct leddata_t *array); 
 void enableLED1(void);			//Einschalten LED 1
 void enableLED2(void);			//Einschalten LED 2
 void enableLED3(void);			//Einschalten LED 3
@@ -1476,9 +1477,9 @@ void processADC(void){
 			
 			neuerADCwert[adcCount-1] = ADCW / 8;
 			
-			if(neuerADCwert[adcCount-1] != slotArray[adcCount-1].spd){
+			if(abs(neuerADCwert[adcCount-1] - slotArray[adcCount-1].spd) > 2 || neuerADCwert[adcCount-1] < 2){
 				slotArray[adcCount-1].spd = neuerADCwert[adcCount-1];
-				sendLocoNetSpd(&slotArray[adcCount-1]);
+				//sendLocoNetSpd(&slotArray[adcCount-1]);
 			}
 			
 		}
@@ -1487,7 +1488,7 @@ void processADC(void){
 			
 			if(neuerADCwert[3] != slotArray[3].spd) {
 				slotArray[3].spd = neuerADCwert[3];
-				sendLocoNetSpd(&slotArray[3]);
+				//sendLocoNetSpd(&slotArray[3]);
 
 			}
 		}
@@ -1979,6 +1980,7 @@ void ProcessDirKeyInput8Streak (byte pin, byte port, int8_t keyNumber, rwSlotDat
 			dirKeyCounter[keyNumber - 1] = 0;
 			//Tastenevent hier einfügen
 			currentSlot->dirf ^= 0b00100000; //Toggle dirKeyStatus
+			currentSlot->driveLock = 1;
 	}
 }
 
@@ -2103,12 +2105,12 @@ void ProcessFunKeyInput8Streak (byte pin, int8_t port, int8_t keyNumber, rwSlotD
 }
 
 void transmitInputLoco (rwSlotDataMsg *currentSlot, int8_t currentNumber) {
-	if (((potiStatus) & (1<<(currentNumber)))) { //Wenn bit gesetzt ist senden
-		if (sendStatus == LN_DONE) {
-			potiStatus &= ~(1 << currentNumber); //Clear bit wenn Senden erfolgreich war (sendstatus == LN_Done)
-		}
+	if (!(currentSlot->driveLock)) {
+		sendLocoNetSpd(&currentSlot);
+	} else if (currentSlot->spd == 0) {
+		currentSlot->driveLock = 0;
 	}
-	if(currentSlot->dirf & 0b00001011 || ((currentSlot->dirf & 0b00110100)^currentSlot->lastDirf)) { //Ausführen falls Funktionstasten 0-4 || Richtungstaste gedrückt wurde
+	if(currentSlot->dirf & 0b00001011 || ((currentSlot->dirf & 0b00110100)^currentSlot->lastDirf || currentSlot->driveLock)) { //Ausführen falls Funktionstasten 0-4 || Richtungstaste gedrückt wurde
 		//loconet senden (dirf, also direction + f0-f5 bits)
 		//sendLocoNetDirf(&currentSlot);
 		
@@ -2117,6 +2119,9 @@ void transmitInputLoco (rwSlotDataMsg *currentSlot, int8_t currentNumber) {
 			currentSlot->dirf &= 0b00110100; //Alle bits löschen außer direction, f0, f3 bit
 			currentSlot->lastDirf &= 0x00;
 			currentSlot->lastDirf |= currentSlot->dirf;
+		}
+		if (currentSlot->driveLock) {
+			sendLocoNet4BytePacketTry(0xA0, currentSlot->slot, 0x00, 0x1A);
 		}
 		
 		

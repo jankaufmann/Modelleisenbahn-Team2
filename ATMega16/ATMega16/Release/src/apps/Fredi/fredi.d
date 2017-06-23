@@ -1,4 +1,6 @@
 src/apps/Fredi/fredi.d src/apps/Fredi/fredi.o: ../src/apps/Fredi/fredi.c \
+ e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
+ e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdint.h \
  e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdint.h \
  e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
@@ -12,7 +14,6 @@ src/apps/Fredi/fredi.d src/apps/Fredi/fredi.o: ../src/apps/Fredi/fredi.c \
  e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
  e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
  e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\eeprom.h \
- e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  ../src/apps/Fredi/sysdef.h \
  e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
  e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
@@ -23,6 +24,10 @@ src/apps/Fredi/fredi.d src/apps/Fredi/fredi.o: ../src/apps/Fredi/fredi.c \
  ../src/apps/Fredi/keys.h ../src/avr-base/systimer.h \
  ../src/avr-base/common_defs.h ../src/apps/Fredi/keys.h \
  ../src/apps/Fredi/processor.h ../src/apps/Fredi/potadc.h
+
+e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h:
+
+e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h:
 
 e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdint.h:
 
@@ -49,8 +54,6 @@ e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include
 e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
 
 e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\eeprom.h:
-
-e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h:
 
 ../src/apps/Fredi/sysdef.h:
 

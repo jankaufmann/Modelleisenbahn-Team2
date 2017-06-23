@@ -36,10 +36,8 @@ wenn der Zähler 5 erreicht hat wird auf ein Low-Signal (Taste gedrückt) reagiert
 */
 int ProcessKeyInput8Streak (keydata *key) {
 	for (int i = 0; i < 8; i++) {
-		value << 1;
-		if((bit_is_set(key->adress, key->bit))) {
-			value = value + 1;
-		}
+		value = value << 1;
+		value |= (bit_is_set(key->adress, key->bit) >> key->bit); 
 	}
 	if (key->counter < 6 && value == 255) {
 		key->counter++;
@@ -51,18 +49,10 @@ int ProcessKeyInput8Streak (keydata *key) {
 }
 
 void setLEDStatus (leddata *LED, int8_t status) {
-	if (status == 0) {
-		if (LED->polung == 0) {
-			LED->ledAdress &= ~(_BV(LED->bitToSet));
-		} else {
-			LED->ledAdress |= _BV(LED->bitToSet);
-		}
+	if (status - LED->polung) {
+		LED->ledAdress |= _BV(LED->bitToSet); //LED an
 	} else {
-		if (LED->polung == 0) {
-			LED->ledAdress |= _BV(LED->bitToSet);
-		} else {
-			LED->ledAdress &= ~(_BV(LED->bitToSet));
-		}
+		LED->ledAdress &= ~(_BV(LED->bitToSet)); //LED aus
 	}
 }
 
