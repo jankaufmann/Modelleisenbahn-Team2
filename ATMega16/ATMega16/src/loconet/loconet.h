@@ -122,9 +122,14 @@
 
 /*** INCLUDES ***/
 
+
 #include "common_defs.h"
 #include <stdint.h>
+#include "ln_status.h"
+#include "sysdef.h"
+#include "slot_state.h"
 #include "keys.h"
+
 
 
 /*** CONSTANTS ****/
@@ -445,19 +450,23 @@ typedef struct locospd_t {
 typedef struct rwslotdata_t {
     byte command;
     byte mesg_size;     /* ummmmm, size of the message in bytes?                */
+	THR_STATE slotStatus;
     byte slot;          /* slot number for this request                         */
-    byte stat;          /* slot status                                          */
+	byte stat;          /* slot status                                          */
     byte adr;           /* loco address                                         */
+	EEPROM_ADR epromAdr;
     byte spd;           /* command speed                                        */
+	LN_STATUS spdSendStatus;
 	byte driveLock;		/* is 1 after switching direction, to lock              */
+	LN_STATUS driveLockSendStatus[2];
     byte dirf;          /* direction and F0-F4 bits                             */
-	
-	byte lastDirf;        /* last direction, to check if it changed               */
-	byte dirfS[2];      /* direction and F0-F4 [0] and F5-F8 [1]                */
-    byte trk;           /* track status                                         */
+	LN_STATUS dirfSendStatus;;
+	byte trk;           /* track status                                         */
     byte ss2;           /* slot status 2 (tells how to use ID1/ID2 & ADV Consist*/
     byte adr2;          /* loco address high                                    */
+	EEPROM_ADR epromAdr2;
     byte snd;           /* Sound 1-4 / F5-F8                                    */
+	LN_STATUS sndSendStatus;
     byte id1;           /* ls 7 bits of ID code                                 */
     byte id2;           /* ms 7 bits of ID code                                 */
     byte chksum;        /* exclusive-or checksum for the message                */
@@ -467,7 +476,7 @@ typedef struct rwslotdata_t {
 	byte dirKey;		/* address of the direction key							09.05.2017		*/
 	int8_t dirKeyStatus;
 	byte spdInput;		/* address of the speed input							09.05.2017		*/
-	leddata LED;
+	keydata resetKey;
 	byte ledNumber;
 	
 } rwSlotDataMsg;

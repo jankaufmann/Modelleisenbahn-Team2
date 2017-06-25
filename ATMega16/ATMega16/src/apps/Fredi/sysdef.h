@@ -367,22 +367,20 @@
 /******************************************************************************/
 // eeprom 
 /******************************************************************************/
-enum EEPROM_ADR
+typedef enum
 {
   EEPROM_ID2,                     // changed by Olaf 09.12.2007
   EEPROM_ID1,
-  EEPROM_ADR_LOCO_HB,
-  EEPROM_ADR_LOCO_LB,
-  EEPROM_DECODER_TYPE,
-  EEPROM_IMAGE,
-  EEPROM_VERSION,
-  EEPROM_SW_INDEX_HB,
-  EEPROM_SW_INDEX_LB,
-  EEPROM_SW_DAY,
-  EEPROM_SW_MONTH,
-  EEPROM_SW_YEAR,
-  EEPROM_ADR_LAST,
-};
+  EEPROM_ADR_LOCO_HB_1,
+  EEPROM_ADR_LOCO_LB_1,
+  EEPROM_ADR_LOCO_HB_2,
+  EEPROM_ADR_LOCO_LB_2,
+  EEPROM_ADR_LOCO_HB_3,
+  EEPROM_ADR_LOCO_LB_3,
+  EEPROM_ADR_LOCO_HB_4,
+  EEPROM_ADR_LOCO_LB_4,
+  EEPROM_ADR_LAST
+}EEPROM_ADR;
 
 #define  EEPROM_ID1_DEFAULT             0x00
 #define  EEPROM_ID2_DEFAULT             0x00

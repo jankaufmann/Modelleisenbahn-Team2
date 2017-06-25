@@ -67,6 +67,7 @@ extern "C" {
 #endif
 
 #include "common_defs.h"
+#include "sysdef.h"
 #include "loconet.h"
 
 #ifndef LN_BUF_SIZE

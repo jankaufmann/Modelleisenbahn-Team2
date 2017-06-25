@@ -1,29 +1,31 @@
 /*
- * IncFile1.h
+ * KEYS_H_.h
  *
  * Created: 21.06.2017 11:16:05
- *  Author: Admin
+ *  Author: Phillip Wollschläger
  */ 
 
 
-#ifndef INCFILE1_H_
-#define INCFILE1_H_
+#ifndef KEYS_H_
+#define KEYS_H_
 
 
 typedef struct keydata_t {
-	byte adress;				//Abzufragende Adresse
+	volatile unsigned char *adress;				//Abzufragende Adresse
 	byte bit;					//Abzufragendes Bit der Adresse
-	uint8_t counter;			//Counter zum Entprellen
+	uint16_t counter;			//Counter zum Entprellen
 } keydata;
 
 typedef struct leddata_t {		//Struktur für 2-Farbige LED
-	byte ledAdress;				//Adresse des LED bits
+	volatile unsigned char *ledAdress;				//Adresse des LED bits
 	byte bitToSet;				//Bit das zur LED gehört
 	byte polung;				//0 setzen
 } leddata;
 
-int ProcessKeyInput8Streak (keydata *key);
-void setLEDStatus(int8_t status, leddata *LED);
+int ProcessKeyInputSgPress (keydata *key);
+int ProcessKeyInputKeepPressed (keydata *key, uint16_t delay);
+int ProcessKeyInputAtRelease (keydata *key);
+void setLEDStatus(leddata *LED, int8_t status);
 void toggleLEDStatus(leddata *LED);
 
-#endif /* INCFILE1_H_ */
+#endif /* KEYS_H_ */

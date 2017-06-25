@@ -6,6 +6,7 @@
 #include "sysdef.h"       // #define LOCONET_MASTER, F_CPU
 #include "common_defs.h"
 #include "ln_buf.h"
+#include "ln_status.h"
 
 /*
 ** TIMER1 is used for the bit period timings. It must be setup so that
@@ -15,16 +16,7 @@
 
 #define LN_BIT_PERIOD       (F_CPU / 16666)
 
-typedef enum
-{
-	LN_CD_BACKOFF = 0,
-	LN_PRIO_BACKOFF,
-	LN_NETWORK_BUSY,
-	LN_DONE,
-	LN_COLLISION,
-	LN_UNKNOWN_ERROR,
-	LN_RETRY_ERROR
-} LN_STATUS ;
+
 
 // CD Backoff starts after the Stop Bit (Bit 9) and has a minimum or 20 Bit Times
 // but initially starts with an additional 20 Bit Times 

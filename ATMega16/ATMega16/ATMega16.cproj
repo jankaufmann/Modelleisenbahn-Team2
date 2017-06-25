@@ -233,6 +233,9 @@
     <Folder Include="src\apps" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\apps\Fredi\slot_state.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\apps\Fredi\keys.h">
       <SubType>compile</SubType>
     </Compile>
@@ -270,6 +273,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\avr-base\systimer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\loconet\ln_status.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\loconet\ln_buf.c">
