@@ -14,7 +14,9 @@ src/loconet/ln_buf.d src/loconet/ln_buf.o: ../src/loconet/ln_buf.c \
  e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
  ../src/loconet/ln_buf.h ../src/avr-base/common_defs.h \
- ../src/loconet/loconet.h ../src/apps/Fredi/keys.h
+ ../src/apps/Fredi/sysdef.h ../src/loconet/loconet.h \
+ ../src/loconet/ln_status.h ../src/apps/Fredi/slot_state.h \
+ ../src/apps/Fredi/keys.h
 
 e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h:
 
@@ -48,6 +50,12 @@ e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include
 
 ../src/avr-base/common_defs.h:
 
+../src/apps/Fredi/sysdef.h:
+
 ../src/loconet/loconet.h:
+
+../src/loconet/ln_status.h:
+
+../src/apps/Fredi/slot_state.h:
 
 ../src/apps/Fredi/keys.h:

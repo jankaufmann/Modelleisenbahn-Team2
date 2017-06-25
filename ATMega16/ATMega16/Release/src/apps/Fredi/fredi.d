@@ -21,9 +21,11 @@ src/apps/Fredi/fredi.d src/apps/Fredi/fredi.o: ../src/apps/Fredi/fredi.c \
  ../src/avr-base/common_defs.h ../src/avr-base/ln_sw_uart.h \
  ../src/loconet/ln_interface.h ../src/apps/Fredi/sysdef.h \
  ../src/loconet/ln_buf.h ../src/loconet/loconet.h \
- ../src/apps/Fredi/keys.h ../src/avr-base/systimer.h \
- ../src/avr-base/common_defs.h ../src/apps/Fredi/keys.h \
- ../src/apps/Fredi/processor.h ../src/apps/Fredi/potadc.h
+ ../src/loconet/ln_status.h ../src/apps/Fredi/slot_state.h \
+ ../src/apps/Fredi/keys.h ../src/loconet/ln_status.h \
+ ../src/avr-base/systimer.h ../src/avr-base/common_defs.h \
+ ../src/apps/Fredi/keys.h ../src/apps/Fredi/processor.h \
+ ../src/apps/Fredi/potadc.h
 
 e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h:
 
@@ -75,7 +77,13 @@ e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include
 
 ../src/loconet/loconet.h:
 
+../src/loconet/ln_status.h:
+
+../src/apps/Fredi/slot_state.h:
+
 ../src/apps/Fredi/keys.h:
+
+../src/loconet/ln_status.h:
 
 ../src/avr-base/systimer.h:
 

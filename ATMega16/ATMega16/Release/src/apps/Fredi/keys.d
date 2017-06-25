@@ -10,7 +10,8 @@ src/apps/Fredi/keys.d src/apps/Fredi/keys.o: ../src/apps/Fredi/keys.c \
  e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\common.h \
  e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
- e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h
+ e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
+ ../src/apps/Fredi/sysdef.h ../src/apps/Fredi/keys.h
 
 e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdint.h:
 
@@ -35,3 +36,7 @@ e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include
 e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h:
 
 e:\uni\programme\atmel\ studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
+
+../src/apps/Fredi/sysdef.h:
+
+../src/apps/Fredi/keys.h:
